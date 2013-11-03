@@ -27,8 +27,8 @@ class PlaylistsController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+			array('allow',  // allow all users to perform 'index', 'view' and 'viewPlPerTag' actions
+				'actions'=>array('index','view','viewPlPerTag'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -55,6 +55,25 @@ class PlaylistsController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+
+	public function actionViewPlPerTag($tagid)
+    {
+        $tag=Tags::model()->findByPk($tagid);
+        $pls=$tag->playlists;
+		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		foreach($pls as $playlist)
+		{
+			$pltitle = $playlist->PLTITLE;
+			//echo Yii::trace(CVarDumper::dumpAsString($pltitle),'vardump');
+			
+		}
+        $this->render('selectedTag',array(
+            'pls'=>$pls,
+        ));
+    }
+
+
+
 
 	/**
 	 * Creates a new model.

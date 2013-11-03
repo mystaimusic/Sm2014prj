@@ -28,7 +28,7 @@ class SongsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','viewSongsPerPlist'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -55,6 +55,18 @@ class SongsController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+
+	public function actionViewSongsPerPlist($playlistId)
+	{
+		$playlist=Playlists::model()->findByPk($playlistId);
+        $songs=$playlist->songs;
+     
+		   
+		//$this->render('selectedTag',array(
+        //    'pls'=>$pls,
+        //));
+	}
+
 
 	/**
 	 * Creates a new model.

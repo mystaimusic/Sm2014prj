@@ -1,0 +1,35 @@
+2013/11/03 12:08:01 [trace] [vardump] 'I am in actionViewPlPerTag'
+in /opt/lampp/htdocs/SM3/protected/controllers/PlaylistsController.php (62)
+in /opt/lampp/htdocs/SM3/index.php (13)
+2013/11/03 12:08:02 [trace] [vardump] array
+(
+    0 => Playlists#1
+    (
+        [CActiveRecord:_new] => false
+        [CActiveRecord:_attributes] => array
+        (
+            'PLID' => '1'
+            'PLREF' => 'playlist-1'
+            'PLTITLE' => 'Metallica'
+            'DESCRIPTION' => null
+            'IMAGEPATH' => null
+        )
+        [CActiveRecord:_related] => array()
+        [CActiveRecord:_c] => null
+        [CActiveRecord:_pk] => '1'
+        [CActiveRecord:_alias] => 't'
+        [CModel:_errors] => array()
+        [CModel:_validators] => null
+        [CModel:_scenario] => 'update'
+        [CComponent:_e] => null
+        [CComponent:_m] => null
+    )
+)
+in /opt/lampp/htdocs/SM3/protected/controllers/PlaylistsController.php (66)
+in /opt/lampp/htdocs/SM3/index.php (13)
+2013/11/03 12:40:12 [trace] [vardump] 'M83'
+in /opt/lampp/htdocs/SM3/protected/controllers/PlaylistsController.php (67)
+in /opt/lampp/htdocs/SM3/index.php (13)
+2013/11/03 12:40:12 [trace] [vardump] 'Daftpunk'
+in /opt/lampp/htdocs/SM3/protected/controllers/PlaylistsController.php (67)
+in /opt/lampp/htdocs/SM3/index.php (13)

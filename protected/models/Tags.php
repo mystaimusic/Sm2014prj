@@ -47,7 +47,8 @@ class Tags extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'TAGID'),
+			//'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'TAGID'),
+			'playlists' => array(self::MANY_MANY, 'Playlists', 'bridge_tags_pl(TAGID,PLID)'),
 		);
 	}
 
@@ -63,8 +64,16 @@ class Tags extends CActiveRecord
 			'IMAGEPATH' => 'Imagepath',
 		);
 	}
+	
+	/*public function getUrl()
+	{
+		return Yii::app()->createUrl('tags/view', array(
+			'TAGID'=>$this->TAGID,
+			'TAGNAME'=>$this->TAGNAME,
+		));
+	}*/
 
-	/**
+/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
 	 * Typical usecase:
