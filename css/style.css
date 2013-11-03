@@ -1,0 +1,569 @@
+/** Import Reset CSS **/
+
+@import url("reset.css");
+
+/** Import Google fonts **/
+@font-face {
+font-family:'primaria';
+src: url('font/rexlia rg.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+
+}
+
+@font-face {
+font-family:'secondaria';
+src: url('font/DORISBR.TTF') format('truetype');
+font-weight: normal;
+font-style: normal;
+
+}
+@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+@import url("http://fonts.googleapis.com/css?family=Orienta");
+
+
+
+
+/** Global Styles **/
+
+html{
+height: 100%;
+overflow: auto;
+-webkit-font-smoothing: antialiased;
+-webkit-text-size-adjust: 100%;
+-ms-text-size-adjust: 100%;
+margin:0px;}
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+font-size: 13px;
+padding: 0 0 20px 0;
+background-color:#000; background-image:url(../images/sfondo1.jpg);
+background-repeat: no-repeat;
+margin:0px;}
+::selection { background: #000; color: #FFF; }
+::-moz-selection { background: #000; color: #FFF; }
+a {color: #00B2E0; text-decoration: none; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
+a:hover { color: #222; }
+
+
+
+
+/** Layout Styles **/
+
+.container
+{width: 100%;line-height: 22px; height:auto; position: relative; margin: auto; overflow: hidden;padding-bottom:0px; }
+.darkbg{max-width: 1000px;background-color:#FFFFFF;}
+.coverbg{max-width: 1000px;background-color:#FFFFFF;}
+.darkbg2{max-width: 1000px;background-color:#FFFFFF;}	
+.lightbluebg{background-color:#e60544;}
+.bg3{max-width: 1000px;background-color:#FFFFFF;}
+
+/** Menu TOP **/
+#menulogo
+{width:200px; height: 50px; margin:auto; float:left; }
+#menu
+{width:400px; float: right; height: 50px;}				
+.container #menucont
+{width: 80%; max-width: 980px; padding: 3px 0; margin: 0 auto; height: 60px;}			
+.container #menucont img
+{display: block; width: 100%; height:100%;}	
+.container #menucont .menu select
+{display: none; font-family: inherit;}
+@media (max-width: 768px)
+{.container #menucont .menu ul{display: none;}
+.container #menucont .menu select{display: inline-block; width: 100%; text-transform: none; font-family: inherit;}
+}
+.container #menucont ul
+{float: left;}
+.container #menucont ul li
+{display: inline;}
+.container #menucont ul li a
+{
+float: left;
+padding: 0 15px;
+font-weight: bold;
+font-size: 13px;
+text-decoration: none;
+color: #CCF5FF;
+font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;
+}
+.container #menucont ul li a:hover, .container #menucont ul li.active a
+{color: #FFF;}
+
+
+
+
+/** Header **/
+#headercont
+{
+background-color:#FFFFFF;
+text-align:center;
+width: 100%;
+max-width: 980px;
+margin:auto;
+position:relative;
+padding-bottom:0px;
+padding-top:5px;
+}
+
+
+
+/** CSS modules----------------------------------------------------- **/
+
+/** boxview----------------------------------------------------- **/
+.bv_maincont{width:100%; padding:15px; height:100%; margin-bottom:50px}
+.boxview
+{float:left;margin:0px; padding:0px; width:240px; height:240px; overflow:hidden; display:inline; border:#fff solid 1px}
+.boxview ul
+{}
+.boxview li
+{}
+.boxview img
+{width:100%; height:100%;  z-index:2}		
+.boxview .text
+{width: 240px; height:80px; z-index:10; position:absolute; background:#000000; filter:alpha(opacity=70);
+ -moz-opacity:.70; opacity:.70; color:#FFFFFF; margin-top:160px}	
+ .boxview .tag
+{height:20px; z-index:10; position:absolute; background:#e60544; color:#fff; margin-top:20px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;
+font-size:20px; padding:5px}
+
+
+
+/** mod_headervideo----------------------------------------------------- **/
+#headervideo
+{width:98%; background-color:#000; height:400px; margin:auto; float:left; border:#e60544 solid 6px; position:relative; margin-bottom:10px}		
+#headervideo h1
+{font-size: 26px; font-weight:400; padding-top: 26px;}			
+#headervideo h1 a
+{font-family: "Orienta", Arial, Helvetica, sans-serif;color:#FFF; font-size: 35px;letter-spacing: -2px;}				
+#headervideo h1 a:hover
+{color: #0CF;}
+
+
+/** mod_mainsearch----------------------------------------------------- **/
+#mod_mainsearch
+{width:100%;float:right; height:50px; max-width: 980px; margin: 0 auto; padding-left: 10px;margin-top:10px;color: #000;font-size: 28px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;background-color:#fff;}
+.search_input
+{background-color: #999999;text-decoration:none;border:#000 thin solid;}
+.search_button
+{background-color: #999999;text-decoration:none;border:#CCCCCC thin solid;margin-left:10px;}
+
+
+/** mod_mainsearch2----------------------------------------------------- **/
+#mod_mainsearch2
+{width:100%;float:left;  max-width: 1000px; margin:auto; color: #fff;font-size: 15px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;background-color: #CCCCCC; position:relative}
+#mod_mainsearch2 .search_box
+{ padding-left:5px; padding-right:5px; padding-bottom:3px; padding-top:3px;height:20px;}
+#mod_mainsearch2 .search_input
+{background-color: #999999;text-decoration:none;border:#000 thin solid; float:right}
+#mod_mainsearch2 .search_button
+{background-color: #999999;text-decoration:none;border:#CCCCCC thin solid;margin-left:10px; float:right}
+
+
+
+
+
+/** mod_banner1----------------------------------------------------- **/				
+.mod_banner1
+{width:100%; height:200px; float:right; padding:5px;font-size: 13px;font-weight:bold;}
+.mod_banner1 img
+{width:100%; height:100%;}
+
+
+/** mod_playCOVER----------------------------------------------------- **/				
+.mod_playCOVER
+{width:100%; height:100%; float:right; padding:0px;font-size: 13px;font-weight:bold;}
+.mod_playCOVER img
+{width:100%; height:100%;z-index:2}
+.mod_playCOVER .tag
+{height:20px; z-index:10; position:absolute; background:#e60544; color:#fff; margin-top:20px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;
+font-size:20px; padding:5px}
+
+
+/** mod_playlists----------------------------------------------------- **/
+.mod_playlists 
+{width:100%; background-color:#cfd0d2;float:right; margin: 0 auto;font-size: 13px;font-weight:bold;}
+.mod_playlists ul{  margin: 0 auto; text-decoration:none; padding:0px; text-align:left}
+.mod_playlists li{ color: #fff; width: auto; height:50px; border-bottom: 1px solid #666;text-decoration:none; display: block;padding-bottom:5px;padding-top:5px;
+}
+.mod_playlists .item{ float:left; padding-left:5px;}
+.mod_playlists .item_img{float:left}
+.mod_playlists a { color: #000; text-decoration: none;}
+.mod_playlists a:hover { color: #fff; }
+.mod_playlists H3 { color: #000;font-size: 20px; font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;margin-bottom:5px;}
+.mod_playlists .header 
+{
+width:auto;
+height:26px;
+background-image:url(../images/sf-lines.gif);
+background-repeat:no-repeat;
+background-color:#666;
+color:#fff;
+text-align:left;
+padding:0px;
+margin:0px;
+overflow: hidden;
+	}
+	
+.mod_playlists .title
+{
+display: inline-block;
+height:26px;
+width: auto;
+background-color: #0895ee;
+text-align:left;
+background-image:url(../images/icon-playlist.gif);
+background-repeat:no-repeat;
+padding-left: 30px;
+padding-right: 10px;
+}
+.mod_playlists .title  h2
+{
+font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;
+letter-spacing:0px;
+font-size:13px;
+font-weight:bold;
+margin:0px;
+color:#fff;
+
+	}
+
+.mod_playlists .cont
+{
+width:auto;
+text-align:left;
+margin: 0 auto;
+padding-left: 5px;
+padding-right: 5px;
+background-color: #E5E5E5;
+color:#fff;
+padding-bottom:10px;
+	}	
+.mod_playlists img
+{
+width:50px;
+height:50px;
+
+	}	
+
+
+
+	
+	
+/** mod_contlist----------------------------------------------------- **/
+#mod_contlist
+{
+position:relative;
+width:100%;
+max-width: 1000px;
+margin:auto;
+background-color: #333333;
+float:left;
+color:#fff;
+	}
+#mod_contlist .header
+{
+width: auto;
+height:26px;
+background-image:url(../images/sf-lines.gif);
+background-repeat:no-repeat;
+background-color: #666;
+color:#fff;
+text-align:left;
+padding:0px;
+	}
+
+#mod_contlist .title
+{
+display: inline-block;
+height:26px;
+width: auto;
+background-color:#e60544;
+text-align:left;
+background-image:url(../images/icon-songs.gif);
+background-repeat:no-repeat;
+padding-left: 30px;
+padding-right: 10px;
+}
+#mod_contlist .title  h2
+{
+font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;
+letter-spacing:0px;
+font-size:13px;
+font-weight:bold;
+margin:0px;
+color:#fff;
+
+	}	
+	
+	
+#mod_contlist .cont
+{
+width:auto;
+text-align:left;
+margin: 0 auto;
+padding-left: 0px;
+padding-right: 0px;
+color:#fff;
+	}	
+	
+	#mainlist
+{
+width:auto;
+text-align:left;
+min-height:100px;
+margin: 0 auto;
+padding-left: 5px;
+padding-right: 5px;
+background-color: #E5E5E5;
+color:#fff;
+	}	
+
+
+
+					
+/** Mid **/
+
+.container #midcont
+{background-color:#FFFFFF;
+text-align:center;
+width: 100%;
+max-width: 980px;
+margin:auto;
+position:relative;
+padding-bottom:0px;
+padding-top:0px;
+}
+
+
+
+
+
+
+/** Main **/
+					
+.container #maincont
+{
+background-color: #fff;
+text-align:left;
+width: 100%;
+height: auto;
+max-width: 1000px;
+margin:auto;
+position:relative;
+padding-bottom:50px;
+padding-top:0px;
+	}
+	
+#mainleft
+{
+color:#000;
+width:64%;
+height:auto;
+margin-top:0px;
+padding: 5px;
+float:left;
+}
+.mainleft_text
+{
+position:relative;
+margin-top:20px;
+margin-bottom:100px;
+padding-top:10px;
+float:left;
+}
+.mainleft_text h1
+{font-size: 25px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;}			
+#mainright
+{
+float: right;
+width: 34%;
+padding: 5px;
+}
+
+			
+
+	
+
+
+
+/** Footer **/
+			
+.container #footercont
+{
+width: 100%;
+margin: 0 auto;
+font-size: 11px;
+text-align: right;
+padding: 15px 0 0 0;
+color: #888;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** Responsive Magic **/
+
+@media screen and (max-width: 768px)
+{
+	.container
+	{
+		
+	}
+	
+		.container #headercont #headervideo, .container #headercont  #headerright
+		{
+			float: none;
+			width: 100%;
+			text-align: center;
+		}
+		
+			.container #headercont #headervideo h1 a img
+			{
+				width: 220px;
+			}
+			
+		.container #maincont
+		{
+			background: none;
+		}
+		
+		.container #maincont #mainleft, .container #maincont #mainright
+		{
+			float: none;
+			width: 100%;
+			text-align: center;
+			
+			min-height: 100px;
+			height: auto !important;
+			height: 100px;
+		}
+		
+		.container #maincont #mainright .sidecont
+		{
+			padding: 20px 0 10px 0;
+		}
+		
+			.container #maincont #mainright .sidesection h3
+			{
+				margin: 0 0 10px 0;
+				font-size: 20px;
+			}
+		
+			.container #maincont #mainright .sidesection
+			{
+				float: left;
+				width: 48%;
+				padding: 0 1%;
+				margin: 0 0 15px 0;
+			}
+			
+	.container #footercont
+	{
+		text-align: center;
+	}
+		
+
+
+
+
+
+
+
+
+
+
+		
+}
+
+@media screen and (max-width: 480px)
+{		
+.container
+{}
+	
+.container #headercont #headerlogo h1 a
+{font-size: 32px;}
+	
+.mod_playlists 
+{width:100%; background-color:#cfd0d2; min-height:160px; float:lrft; padding:5px;font-size: 13px;font-weight:bold;}
+.mod_playlists li{ color: #fff; width: 100%; height:20px; border-top: 1px solid #666; }
+.mod_playlists a { color: #000; text-decoration: none;}
+.mod_playlists a:hover { color: #fff; }
+.mod_playlists H3 { color: #000;font-size: 20px; font-family: "Open Sans", Arial, Verdana, Helvetica, sans-serif;margin-bottom:5px;}
+
+.mod_banner1
+{display:none;}
+
+#mod_mainsearch
+{width:98%;float:right; height:50px; max-width: 980px; margin: 0 auto; padding-left: 10px;margin-top:0px;color:#CCCCCC;background-color: #333333;}
+
+
+#mod_contlist
+{
+width:100%;
+height:150px;
+max-width: 980px;
+margin: 0 auto;
+background-color: #333333;
+float:left;
+color:#fff;
+	}
+.titlelist
+{
+width:100%;
+height:23px;
+margin: 0 auto;
+background-color: #666;
+color:#fff;
+	}
+#mainlist
+{
+width:auto;
+height:150px;
+margin: 0 auto;
+padding-left: 10px;
+padding-right: 10px;
+background-color: #333333;
+color:#fff;
+	}
+
+
+
+
+
+		.container #headercont #headerright p
+		{
+			font-size: 18px;
+		}
+	
+		.container #maincont #mainright .sidecont
+		{
+			
+		}
+		
+			.container #maincont #mainright .sidesection h3
+			{
+				margin: 0 0 10px 0;
+				font-size: 24px;
+			}
+
+			.container #maincont #mainright .sidesection
+			{
+				clear: both;
+				float: left;
+				width: 100%;
+				padding: 0%;
+				margin: 0 0 15px 0;
+			}
+}
+
