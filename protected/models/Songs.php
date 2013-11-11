@@ -54,9 +54,7 @@ class Songs extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'bands' => array(self::HAS_ONE, 'Bands', 'BANDID'),
-			//'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'SONGID'),
-			'songs' => array(self::MANY_MANY,'Songs', 'bridge_pl_songs(PLID,SONGID)'),
-
+			'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'SONGID'),
 		);
 	}
 

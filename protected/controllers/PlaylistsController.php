@@ -6,7 +6,7 @@ class PlaylistsController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	//public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -60,16 +60,20 @@ class PlaylistsController extends Controller
     {
         $tag=Tags::model()->findByPk($tagid);
         $pls=$tag->playlists;
+        
+		//echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
-		foreach($pls as $playlist)
+		$this->render('selectedTag',array(
+			'pls'=>$pls,
+		));
+		
+		/*foreach($pls as $pl)
 		{
-			$pltitle = $playlist->PLTITLE;
-			//echo Yii::trace(CVarDumper::dumpAsString($pltitle),'vardump');
-			
-		}
-        $this->render('selectedTag',array(
-            'pls'=>$pls,
-        ));
+			echo Yii::trace(CVarDumper::dumpAsString($pl),'vardump');
+			$this->render('selectedTag', array(
+				'pl'=>$pl,
+			));
+		}*/
     }
 
 

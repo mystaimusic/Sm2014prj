@@ -1,4 +1,4 @@
 <div class="palinsesto clearfix">
-	<?php echo $dataProvider->PLTITLE ?>
+	<a href="<?php echo "#".$data->PLREF?>" id="<?php echo $data->PLID?>" class="myplaylist"><?php echo $data->PLTITLE?></a>
 </div>
 

@@ -77,7 +77,6 @@
     
     
     
-    
     	
 
 <div id="mainleft">
@@ -93,6 +92,8 @@
 		
               </div>
 	  <!--headervideo--> 
+        
+        
         
         
 
@@ -132,10 +133,6 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 
 
-
-
-
-
 <div id="mainright">
 <div class="mod_playCOVER">
 <div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>
@@ -145,23 +142,17 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div class="cont">
     	<?php 
 			
-			$dataProvider = new CActiveDataProvider($pls);
-			$this->widget('zii.widgets.CListView', array(
-					'dataProvider'=>$dataProvider,
-					'itemView'=>'_selectedTag',
-					'sortableAttributes'=>array('PLTITLE'),
-			));
-			/*foreach($pls->getData() as $plist)
-			{
-				echo CHtml::tag('ul', array('class'=>'palinsesto clearfix'),false,false);
-            	echo CHtml::tag('li', array(), false,false);
-            	//echo CHtml::tag('div', array('class'=>'item_img'),$tag->TAGNAME,true);
-            	echo CHtml::tag('div', array('class'=>'item'),$plist->PLTITLE,true);
-				echo CHtml::closeTag('li');
-            	echo CHtml::closeTag('ul');
-
-			}*/
-
+    		foreach($pls as $pl)
+    		{
+    			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
+    			echo CHtml::link($pl->PLTITLE,'#'.$pl->PLREF, array('class' => 'myplaylist', 'id' =>$pl->PLID ) );
+    			echo CHtml::closeTag('div');
+    		}
+    	
+			//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+			
+			//Yii::app()->createUrl('Songs/viewSongsPerPlist');
+			
 		?>        
 </div><!--mod_playlists-->	
 
@@ -194,6 +185,11 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
           
           
 </div><!--mainright-->
+
+
+
+
+
 </div><!--maincont-->
 </div><!--container-->
 <div class="container clearfix">
@@ -206,8 +202,48 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 		(function($){
 
+			var firstPlaylist = $(".myplaylist")[0].id;
+			//alert("firstPlaylist: "+firstPlaylist);
+			var videoJSON_G = new Object();
+			$.ajax(
+           		{
+               		//alert("ajax call");
+              		url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
+                   	type: "GET",
+                    data: {playlistId: firstPlaylist},
+                    dataType: "json",
+                    async: false,
+                    success: function(response,status, jqXHR)
+                    {
+                    	if(response){
+                            //alert(jqXHR.responseText);
+                            videoJSON_G.title = firstPlaylist;
+                        	//alert(videoJSON.title);
+                            videoJSON_G.videos = [];
+                            $.each(response, function(i, data){
+                                    	//alert("data: "+data);
+                            	var oneVideoJSON = new Object();
+                            	oneVideoJSON.id = data.CODE;
+                            	oneVideoJSON.title = data.TITLE;
+                            	videoJSON_G.videos.push(oneVideoJSON);
+                            	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
+                                	//player.player('loadPlaylist', videoJSON);
+                            });
+                        }
+                    },
+                    error: function(data)
+                    {
+                    	alert("error!!!! "+data);
+                    }
+                }    
+           	);
+			
+
+			//alert(videoJSON_G);
+			
+			//alert($testVar);
 			var playlists = {
-				'playlist-1': {
+				'playlist-1': { 
 					title: 'Metallica',
 					videos: [
 						{ id: 'bAsA00-5KoI&gl', title: 'Metallica - Nothing Else Matters [Original Video]' },
@@ -236,8 +272,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				}
 			};
 
+			//alert(playlists['playlist-1'].videos[0].id);
+			//alert(videoJSON_G.videos[0].id);
+			
 			var playerConfig =  {
-				playlist: playlists['playlist-1'], // initial playlist
+					//
+					playlist: videoJSON_G,
+				//playlist: playlists['playlist-1'], // initial playlist
                                 onError: function(msg){
 
 					alert(msg);
@@ -251,8 +292,9 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 					$('#loading').hide();
 				}
 			};
-
+		
 			var player = $('.youtube-player').player( playerConfig );
+			//var player = $('.youtube-player').player( 'loadPlaylist', videoJSON );
 //                        $(".myplaylist").click(function(){
 //                            alert("click: "+this.id);
 //                        });
@@ -260,15 +302,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			//$('.playlists a[href*=#]').click(function(){
                         $(".myplaylist").click(function(){
                                 //TODO: replace with ajax call to the php function
-//                              var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
-//                                alert('click ' +playlist.videos[0].id);
+                              //var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
+                                //alert('click ' +playlist.videos[0].id);
                                 var selectedPlist = this.id;
                                 $.ajax(
                                 {
-                                    url: "PlaylistBOController.php",
+                                    url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
                                     type: "GET",
-//                                    url: "http://localhost/SM/PlaylistBO.php?class=PlaylistBO&method=getSongsByPlaylistRef&param=playlist-1",
-                                    data: {call: "getSongsByPlaylistRef", plref: selectedPlist},
+                                    data: {playlistId: selectedPlist},
                                     dataType: "json",
                                     success: function(response,status, jqXHR)
                                     {
@@ -281,8 +322,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                             $.each(response, function(i, data){
                                                 //alert("data: "+data);
                                                 var oneVideoJSON = new Object();
-                                                oneVideoJSON.id = data.ID_VIDEO;
-                                                oneVideoJSON.title = data.VIDEO_TITLE;
+                                                oneVideoJSON.id = data.CODE;
+                                                oneVideoJSON.title = data.TITLE;
                                                 videoJSON.videos.push(oneVideoJSON);
                                             });
                                             player.player('loadPlaylist', videoJSON);

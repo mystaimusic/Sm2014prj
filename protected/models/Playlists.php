@@ -52,6 +52,7 @@ class Playlists extends CActiveRecord
 		return array(
 			'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'PLID'),
 			'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'PLID'),
+			'songs' => array(self::MANY_MANY,'Songs', 'bridge_pl_songs(PLID,SONGID)'),
 		);
 	}
 
