@@ -9,7 +9,7 @@ body
 
 #page
 {
-	margin-top: 5px;
+	margin-top: 0px;
 	margin-bottom: 5px;
 	background: white;
 	border: 1px solid #C9E0ED;
@@ -20,6 +20,8 @@ body
 	margin: 0;
 	padding: 0;
 	border-top: 3px solid #C9E0ED;
+	height:100px;
+	background-color:#e60544;
 }
 
 #content
@@ -49,7 +51,7 @@ body
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat-x left top;
+background-color:#CCCCCC;
 }
 
 #mainmenu ul
@@ -65,7 +67,7 @@ body
 
 #mainmenu ul li a
 {
-	color:#ffffff;
+	color: #666666;
 	background-color:transparent;
 	font-size:12px;
 	font-weight:bold;
@@ -75,7 +77,7 @@ body
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-	color: #6399cd;
+	color: #00000;
 	background-color:#EFF4FA;
 	text-decoration:none;
 }
