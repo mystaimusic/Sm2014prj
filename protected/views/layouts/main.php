@@ -23,7 +23,9 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+	  <div id="logo">       
+              <div id="menulogo"><img src="images/logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
+          </div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
