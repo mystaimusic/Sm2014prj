@@ -1,4 +1,3 @@
-
 <!-- <h1>Tags</h1> -->
 <!DOCTYPE html>
 <html>
@@ -23,20 +22,6 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
-<div class="container lightbluebg">
-    <div id="menucont">
-    <a href="http://www.staimusic.com/test3" target="_self"><div id="menulogo"><img src="images/logo.png" border="0"></div></a>
-      <div class="menu">
-			<?php include("includes/menu-top.php"); ?> 
-            <?php function __autoload($class_name){
-                include $class_name . '.php';
-            }  
-            ?>
-        </div>
-
-
-    </div>
-</div>
 
 
 
