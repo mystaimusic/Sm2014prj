@@ -46,7 +46,7 @@
 		this.element = $( element ).addClass('ui-widget');
 
 		this.options = $.extend({
-			width: 425,			// player width (integer or string) old 425
+			width: '100%',			// player width (integer or string) old 425
 			height: '100%',			// player height (integer or string) old 270
 			swfobject: window.swfobject,	// swfobject object
 			playlist: {},			// playlist object (object literal)
