@@ -43,6 +43,53 @@ body
 	border-top: 1px solid #C9E0ED;
 }
 
+body
+{
+	margin: 0;
+	padding: 0;
+	color: #555;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	background: #EFEFEF;
+}
+
+#page
+{
+	margin-top: 0px;
+	margin-bottom: 5px;
+	background: white;
+	border: 1px solid #C9E0ED;
+}
+
+#header
+{
+	margin: 0;
+	padding: 0;
+	border-top: 3px solid #C9E0ED;
+	height:100px;
+	background-color:#e60544;
+	background-image:url(../images/sf-texture.gif);
+}
+
+#content
+{
+    padding:0px;
+}
+
+#sidebar
+{
+	padding: 20px 20px 20px 0;
+}
+
+#footer
+{
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 0.8em;
+	text-align: center;
+	background-color:#000000;
+	border-top: 1px solid #C9E0ED;
+}
+
 #logo
 {
 	padding: 10px 20px;
@@ -51,7 +98,7 @@ body
 
 #mainmenu
 {
-background-color:#CCCCCC;
+background-color:#e60544;
 }
 
 #mainmenu ul
