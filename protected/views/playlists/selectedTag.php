@@ -67,7 +67,7 @@
 
 <div id="mainleft">
 
-
+<div id="mainleft_header">
 		<div id="headervideo">
 				<div class="youtube-player">
 					<div class="youtube-player-video">
@@ -79,7 +79,7 @@
               </div>
 	  <!--headervideo--> 
         
-        
+        </div>  <!--mainleft_header-->   
         
         
 
@@ -178,11 +178,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 </div><!--maincont-->
 </div><!--container-->
-<div class="container clearfix">
-    <div id="footercont" class="clearfix">
-        <p>Staimusic &copy; 2013 - Design by <a title="Sintesilogica" href="http://www.sintesilogica.com/" rel="external">Sintesilogica</a></p>
-    </div>
-</div>
+
 	<script type="text/javascript">
 	//<![CDATA[
 
