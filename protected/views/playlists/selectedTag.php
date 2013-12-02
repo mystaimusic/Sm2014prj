@@ -98,7 +98,7 @@
 
 <div class="search_box">
 <div id="search">Search
-<button type="button" class='search_button'>Go</button><input type="text" class='search_input'/></div>
+<button type="button" class='search_button2'>Go</button><input type="text" class='search_input2'/></div>
 </div>
 
 <div id="result"></div>
