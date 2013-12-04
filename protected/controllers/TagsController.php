@@ -29,7 +29,7 @@ class TagsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','search'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -129,6 +129,28 @@ class TagsController extends Controller
 		));
 	}
 
+	public function actionSearch()
+	{
+		//echo Yii::trace(CVarDumper::dumpAsString("sono in actionSearch"),'vardump');
+		if(isset($_GET['tagNameMatch'])){
+			$tagNameMatch = $_GET['tagNameMatch'];
+			//echo Yii::trace(CVarDumper::dumpAsString($tagNameMatch),'vardump');
+			$q = new CDbCriteria();
+			$q->addSearchCondition('TAGNAME', $tagNameMatch);
+			echo Yii::trace(CVarDumper::dumpAsString($q),'vardump');
+			$filterTags = Tags::model()->findAll($q);
+
+			$dataProvider=new CActiveDataProvider($this, array(
+				'filterTags'=>$criteria,
+			));
+
+			echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
+			$this->render('index',array('dataProvider'=>$dataProvider));
+			
+		}
+	}
+	
+	
 	/**
 	 * Manages all models.
 	 */

@@ -35,6 +35,8 @@
 		// return the value from a method, or the jQuery object
 		return val || this;
 	}
+	
+	var arrayPlistIds = [];
 
 	// player constuctor
 	function player(element, options, pluginName){
@@ -58,6 +60,7 @@
 			autoPlay: 1,			// auto play the video when loading it via the playlist or toolbar controls (boolean)
 			repeat: 1,			// repeat videos (boolean)
 			repeatPlaylist: 0,		// repeat the playlist (boolean) 
+			loadNewPlaylist: 1,     // load a new playlist (boolean)
 			shuffle: 0,			// shuffle the play list (boolean)
 			chromeless: 0,			// chromeless player (boolean)
 			highDef: 0,			// high definition quality or normal quality (boolean)
@@ -130,6 +133,19 @@
 			playerVideo: this.element.find('.youtube-player-video'),
 			playerObject: this.element.find('.youtube-player-object')
 		};
+		
+		this.plIndex=0;
+		
+		$('.myplaylist').each( function(i)
+		{
+			var currentId = $(this).attr('id');
+			//alert(currentId);
+			arrayPlistIds.push(currentId);
+		});
+		
+//		this.containerElem = this.element.find('.cont');
+//		this.containerElem.children('.myplaylist')
+//		this.newPlaylist = document.getElementById(2);
 
 		// swfobject will destroy the video object <div>, so we clone it to use it to restore it when destroy()ing the plugin
 		this.elements.playerObjectClone = this.elements.playerObject.clone();
@@ -168,13 +184,19 @@
 			var type = typeof callback;
 
 			arg = arg || [];
-
+			
 			if ( type === 'string' && this.options[ callback ] && $.isFunction(this.options[ callback ]) ) {
+				//if(callback==='onEndPlaylist'){
+					//alert(callback);
+				//}
 
 				return this.options[ callback ].apply( scope, arg );
 
 			} else if ( type === 'function' ) {
 
+				//if(callback==='onEndPlaylist'){
+//					alert(this.options[ callback ] + " " + callback );
+				//}
 				callback.apply( scope, arg );
 			}
 		},
@@ -213,7 +235,7 @@
 				self.buttons.play.element && self.buttons.play.element.trigger( 'off' );
 
 				if (self.options.repeat) {
-
+//					alert("nextvideo called")
 					self.nextVideo();
 				}
 			}
@@ -238,7 +260,6 @@
 			}
 			
 			function videoCued(){
-
 				self._updatePlaylist();
 
 				self.elements.toolbar.updateStates();
@@ -899,7 +920,7 @@
 			show = show === undefined ? true : show;
 			
 			if ( playlist ) {
-
+				//alert(playlist);
 				this.options.playlist = playlist;
 			}
 
@@ -979,23 +1000,89 @@
 			
 			this.loadVideo(null, this._state('play') || this.options.autoPlay ? false : true);
 		},
-
+		
 		nextVideo : function(){
 
+			
+			function loadNextPlist(plId)
+			{
+				var plUrl = 'index.php?r=Songs/viewSongsPerPlist';
+//				alert("nextPlaylist: "+nextPlaylist );
+				var videoJSON_G = new Object();
+				$.ajax(
+		       		{
+		           		//alert("ajax call");
+		       			url: plUrl,
+		          		//url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
+		               	type: "GET",
+		                data: {playlistId: plId},
+		                dataType: "json",
+		                async: false,
+		                success: function(response,status, jqXHR)
+		                {
+		                	if(response){
+//		                        alert(jqXHR.responseText);
+		                        videoJSON_G.title = plId;
+		                    	//alert(videoJSON.title);
+		                        videoJSON_G.videos = [];
+		                        $.each(response, function(i, data){
+		                                	//alert("data: "+data);
+		                        	var oneVideoJSON = new Object();
+		                        	oneVideoJSON.id = data.CODE;
+		                        	oneVideoJSON.title = data.TITLE;
+		                        	videoJSON_G.videos.push(oneVideoJSON);
+		                        	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
+		                            	//player.player('loadPlaylist', videoJSON);
+		                        	
+		                        });
+		                    }
+		                },
+		                error: function(data)
+		                {
+		                	alert("error!!!! "+data);
+		                }
+		            }
+				);
+				return videoJSON_G;
+			}
+			
+			
+			
+			
+			
 			if (this.keys.video < this.options.playlist.videos.length-1) {
 					
 				this._setVideoKey( ++this.keys.video );
 
 			} else if ( this.options.repeatPlaylist ) {
 
+//				alert("repeat")
 				this._trigger(this, 'onEndPlaylist');
 				
 				this._setVideoKey( 0 );
 
+			} else if ( this.options.loadNewPlaylist ) {
+				
+//				alert("loadNewPlaylist");
+				this.plIndex++;
+//				alert("plIndex: "+this.plIndex );
+				//alert("len: "+arrayPlistIds.length );
+				
+				if(this.plIndex<arrayPlistIds.length){
+					var nextPlaylist = arrayPlistIds[this.plIndex];
+//					alert("nextPlaylist: "+nextPlaylist );
+					var videoJSON = loadNextPlist(nextPlaylist);
+					this.loadPlaylist(videoJSON);
+				}else{
+					this.plIndex = 0;
+				}
+				
 			} else return;
 
 			this.loadVideo(null, this._state('play') || this.options.autoPlay ? false : true);
 		},
+		
+		
 		
 		playlistToggle : function(button){
 
@@ -1058,6 +1145,12 @@
 		}
 	};
 
+	
+	
+	
+	
+	
+	
 	player.prototype.defaultToolbarButtons = {
 		play: { 
 			text: 'Play',

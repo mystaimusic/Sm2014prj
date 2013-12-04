@@ -91,10 +91,10 @@ class Tags extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('TAGID',$this->TAGID,true);
+		//$criteria->compare('TAGID',$this->TAGID,true);
 		$criteria->compare('TAGNAME',$this->TAGNAME,true);
-		$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
-		$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
+		//$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
+		//$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -56,7 +56,7 @@ class PlaylistsController extends Controller
 		));
 	}
 
-	public function actionViewPlPerTag($tagid)
+	public function actionViewPlPerTag($tagid,$tagname,$imagePath)
     {
         $tag=Tags::model()->findByPk($tagid);
         $pls=$tag->playlists;
@@ -65,6 +65,9 @@ class PlaylistsController extends Controller
 		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
+			'tagid'=>$tagid,
+			'tagname'=>$tagname,
+			'imagePath'=>$imagePath,
 		));
 		
 		/*foreach($pls as $pl)

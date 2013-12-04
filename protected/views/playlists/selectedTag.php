@@ -121,7 +121,11 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 <div id="mainright">
 <div class="mod_playCOVER">
-<div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>
+<?php 
+	echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
+	echo CHtml::image($imagePath);
+?>
+<!--  <div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>  -->
 <div class="mod_playlists">
 <div class="header">
 <span class="title"><h2>Our Playlist</h2></span></div>
@@ -291,12 +295,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                               //var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
                                 //alert('click ' +playlist.videos[0].id);
                                 var selectedPlist = this.id;
+                              	//alert('click ' +selectedPlist);
                                 $.ajax(
                                 {
                                     url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
                                     type: "GET",
                                     data: {playlistId: selectedPlist},
                                     dataType: "json",
+                                    async: false,
                                     success: function(response,status, jqXHR)
                                     {
                                         if(response){

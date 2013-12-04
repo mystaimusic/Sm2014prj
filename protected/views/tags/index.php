@@ -66,7 +66,7 @@
 			$imghtml = CHtml::image($tag->IMAGEPATH);
 			//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
 			//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
-			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID));
+			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$tag->IMAGEPATH));
 			//echo $nextUrl;
 			echo CHtml::closeTag('li');
 			echo CHtml::closeTag('ul');
@@ -141,154 +141,62 @@
 </div>
 	<script type="text/javascript">
 	//<![CDATA[
-
 		(function($){
-
-			var playlists = {
-				'playlist-1': {
-					title: 'Metallica',
-					videos: [
-						{ id: 'bAsA00-5KoI&gl', title: 'Metallica - Nothing Else Matters [Original Video]' },
-						{ id: 'CD-E-LDc384', title: 'Metallica - Enter Sandman [Official Music Video]' }
-					]
-				},
-				'playlist-2': {
-					title: 'M83',
-					videos: [
-						{ id: 'dX3k_QDnzHE', title: 'M83 Midnight City Official Video' },
-						{ id: 'Bzge5vY72hE', title: 'M83 - We Own the Sky' }
-					]
-				},
-				'playlist-3': {
-					title: 'U2',
-					videos: [
-						{ id: 'XmSdTa9kaiQ', title: 'U2 - With Or Without You'  						}
-					]
-				},
-				'playlist-4': {
-					title: 'Daftpank',
-					videos: [
-						{ id: 'PsO6ZnUZI0g', title: 'Kanye West - Stronger' },
-						{ id: 'G6WEIVDHS7k', title: 'ft Punk - Get Lucky'}
-					]
-				}
-			};
-
-			var playerConfig =  {
-				playlist: playlists['playlist-1'], // initial playlist
-                                onError: function(msg){
-
-					alert(msg);
-                                },
-				onBeforePlaylistLoaded: function(playlist){
-
-					$('#loading').show();
-				},
-				onAfterPlaylistLoaded: function(playlist){
-
-					$('#loading').hide();
-				}
-			};
-
-			var player = $('.youtube-player').player( playerConfig );
-//                        $(".myplaylist").click(function(){
-//                            alert("click: "+this.id);
-//                        });
-
-			//$('.playlists a[href*=#]').click(function(){
-                        $(".myplaylist").click(function(){
-                                //TODO: replace with ajax call to the php function
-//                              var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
-//                                alert('click ' +playlist.videos[0].id);
-                                var selectedPlist = this.id;
-                                $.ajax(
-                                {
-                                    url: "PlaylistBOController.php",
-                                    type: "GET",
-//                                    url: "http://localhost/SM/PlaylistBO.php?class=PlaylistBO&method=getSongsByPlaylistRef&param=playlist-1",
-                                    data: {call: "getSongsByPlaylistRef", plref: selectedPlist},
-                                    dataType: "json",
-                                    success: function(response,status, jqXHR)
-                                    {
-                                        if(response){
-                                            //alert(jqXHR.responseText);
-                                            var videoJSON = new Object();
-                                            videoJSON.title = selectedPlist;
-                                            videoJSON.videos = [];
-                                            //alert(videoJSON.title);
-                                            $.each(response, function(i, data){
-                                                //alert("data: "+data);
-                                                var oneVideoJSON = new Object();
-                                                oneVideoJSON.id = data.ID_VIDEO;
-                                                oneVideoJSON.title = data.VIDEO_TITLE;
-                                                videoJSON.videos.push(oneVideoJSON);
-                                            });
-                                            player.player('loadPlaylist', videoJSON);
-                                        }
-                                        
-                                    },
-                                    error: function(data)
-                                    {
-                                        alert("error!!!! "+data);
-                                    }
-                                }    
-                                );
-                                
-				//player.player('loadPlaylist', playlist);
-
-				return false;
-			});
-
-
-                        $(".search_input").focus();
-                        $(".search_input").bind("enterKey",function(e)
-                        {
-                            search(e,$(this).val());
-                        });
+	           
+	           
+            $(".search_input").focus();
+            $(".search_input").bind("enterKeyTag",function(e)
+            {
+            	searchTag(e,$(this).val());
+            });
 
 			$(".search_input").keyup(function(e){
 				if(e.keyCode == 13)
 				{
-					$(this).trigger("enterKey");
+					$(this).trigger("enterKeyTag");
 				}
 			});
                         
                         $(".search_button").click(function(e)
                         {
-                            search(e,$(".search_input").val());
+                            searchTag(e,$(".search_input").val());
                         });
 
-                        function search(e,search_input)
+                        function searchTag(e,search_input)
                         {    
-                            var keyword = encodeURIComponent(search_input);
-
-                            var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+keyword+'&max-results=10&v=2&alt=jsonc';
-
+                            alert(search_input);
                             $.ajax(
-                            {
-                                type: "GET",
-                                url: yt_url,
-                                dataType: "json",
-                                success: function(response)
-                                {
-                                    if(response.data.items)
                                     {
-//                                        alert("called function2");
-                                        var videoJSON = new Object();
-                                        videoJSON.title = 'SearchResult';
-                                        videoJSON.videos = [];
-                                        $.each(response.data.items, function(i, data){
-                                                var oneVideoJSON = new Object();
-                                                oneVideoJSON.id = data.id;
-                                                oneVideoJSON.title = data.title;
-                                                videoJSON.videos.push(oneVideoJSON);
-                                        });
-                                        player.player('loadPlaylist', videoJSON);
-                                    }
-                                }
-
-                            }       
-                            );
+                                        url: '<?php echo Yii::app()->createUrl('Tags/search')?>',
+                                        type: "GET",
+                                        data: {tagNameMatch: search_input},
+                                        dataType: "json",
+                                        async: false,
+                                        success: function(response,status, jqXHR)
+                                        {
+                                            if(response){
+                                                alert(jqXHR.responseText);
+                                                /*var videoJSON = new Object();
+                                                videoJSON.title = selectedPlist;
+                                                videoJSON.videos = [];
+                                                //alert(videoJSON.title);
+                                                $.each(response, function(i, data){
+                                                    //alert("data: "+data);
+                                                    var oneVideoJSON = new Object();
+                                                    oneVideoJSON.id = data.CODE;
+                                                    oneVideoJSON.title = data.TITLE;
+                                                    videoJSON.videos.push(oneVideoJSON);
+                                                });
+                                                player.player('loadPlaylist', videoJSON);*/
+                                            }
+                                            
+                                        },
+                                        error: function(data)
+                                        {
+                                            alert("error!!!! "+data);
+                                        }
+                                    }    
+                                    );
                         }
 
 		})(this.jQuery);
