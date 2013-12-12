@@ -143,7 +143,7 @@ class TagsController extends Controller
 				'id'=>'TAGID',
 			));
 
-			echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
 			
 			echo CJSON::encode(array('dataProvider'=>$dataProvider));
 			//$this->render('index',array('dataProvider'=>$dataProvider, ));
