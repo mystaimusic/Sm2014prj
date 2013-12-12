@@ -126,6 +126,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 	echo CHtml::image($imagePath);
 ?>
 <!--  <div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>  -->
+</div><!--mod_playCOVER-->	
 <div class="mod_playlists">
 <div class="header">
 <span class="title"><h2>Our Playlist</h2></span></div>
