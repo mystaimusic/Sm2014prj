@@ -23,38 +23,29 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
 
-
-
-
 <div class="container darkbg">
 <div id="headercont">
 
 <div id="mod_mainsearch">
 <div id="loading" style="margin: 4px 0;display:none;">loading...</div>
-				<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beating?
-					<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button><br/></div>
-				<div id="result"></div>
+<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beating?
+	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
+	
+	
+	<br/>
+</div>
+<div id="result"></div>
 
 </div><!--mod_mainsearch--><br><br><br><br><br>
 
 </div><!--headercont-->
 </div><!--container-->
 
-
-
-
-
-
-
-
-
-
-
 <div class="container">
 
 <div id="maincont" class="clearfix">
 	
-	<div class="bv_maincont">
+	<div id="req_res" class="bv_maincont">
 	<?php 
 		
 		foreach($dataProvider->getData() as $tag)
@@ -67,73 +58,16 @@
 			//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
 			//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
 			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$tag->IMAGEPATH));
-			//echo $nextUrl;
 			echo CHtml::closeTag('li');
 			echo CHtml::closeTag('ul');
 		}
 		
 	?>
 	
+	</div>
+</div>
+</div>
 
-</div>
-
-<!-- <div id="maincont" class="clearfix">
-	
-   <div class="bv_maincont"> 
-   
- <ul class="boxview"><li>
- <div class="tag">Rebellion</div>
-   <div class="text">prova prova</div>
- <img src="images/rebellion2.jpg" alt="playlist1">
- </li>
- </ul>
- 
-  <ul class="boxview"><li>
-   <div class="tag">California</div>
-   <div class="text">prova prova</div>
- <img src="images/california.jpg" alt="playlist1">
- </li>
- </ul>
- 
-  <ul class="boxview"><li>
-  <div class="tag">Punk</div>
-   <div class="text">prova prova</div>
- <img src="images/punk.jpg" alt="playlist1">
- </li>
- </ul>
- 
-  <ul class="boxview"><li>
-  <div class="tag">Skate</div>
-   <div class="text">prova prova</div>
- <img src="images/Skate.jpg" alt="playlist1">
- </li>
- </ul>
- 
-  <ul class="boxview"><li>
-   <div class="tag">Rebellion</div>
-   <div class="text">prova prova</div>
- <img src="images/rebellion2.jpg" alt="playlist1">
- </li>
- </ul>
- 
-  <ul class="boxview"><li>
-   <div class="tag">Rebellion</div>
-   <div class="text">prova prova</div>
- <img src="images/rebellion2.jpg" alt="playlist1">
- </li>
- </ul>
- 
-  <ul class="boxview"><li>
-   <div class="tag">Rebellion</div>
-   <div class="text">prova prova</div>
- <img src="images/rebellion2.jpg" alt="playlist1">
- </li>
- </ul>
-
-</div>
-</div>
-</div>
--->
 <div class="container clearfix">
     <div id="footercont" class="clearfix">
         <p>Staimusic &copy; 2013 - Design by <a title="Sintesilogica" href="http://www.sintesilogica.com/" rel="external">Sintesilogica</a></p>
@@ -162,8 +96,10 @@
                             searchTag(e,$(".search_input").val());
                         });
 
+                        
                         function searchTag(e,search_input)
-                        {    
+                        {
+                            var rawData;    
                             alert(search_input);
                             $.ajax(
                                     {
@@ -175,19 +111,17 @@
                                         success: function(response,status, jqXHR)
                                         {
                                             if(response){
-                                                alert(jqXHR.responseText);
-                                                /*var videoJSON = new Object();
-                                                videoJSON.title = selectedPlist;
-                                                videoJSON.videos = [];
-                                                //alert(videoJSON.title);
-                                                $.each(response, function(i, data){
-                                                    //alert("data: "+data);
-                                                    var oneVideoJSON = new Object();
-                                                    oneVideoJSON.id = data.CODE;
-                                                    oneVideoJSON.title = data.TITLE;
-                                                    videoJSON.videos.push(oneVideoJSON);
+
+                                                $("#req_res").empty();
+
+                                                var count = 0;
+                                                $.each(response.dataProvider.rawData, function(i, elem){
+                                                	$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
+                                                        	"</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+                                                        	+"<a href='/SM3/index.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+elem.TAGNAME+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
+
+                                                	count++;
                                                 });
-                                                player.player('loadPlaylist', videoJSON);*/
                                             }
                                             
                                         },
@@ -197,9 +131,13 @@
                                         }
                                     }    
                                     );
+                            
+                            
                         }
 
-		})(this.jQuery);
+
+
+            })(this.jQuery);
 
 	//]]>
 	</script>

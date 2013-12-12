@@ -131,22 +131,22 @@ class TagsController extends Controller
 
 	public function actionSearch()
 	{
-		//echo Yii::trace(CVarDumper::dumpAsString("sono in actionSearch"),'vardump');
 		if(isset($_GET['tagNameMatch'])){
 			$tagNameMatch = $_GET['tagNameMatch'];
 			//echo Yii::trace(CVarDumper::dumpAsString($tagNameMatch),'vardump');
 			$q = new CDbCriteria();
-			$q->addSearchCondition('TAGNAME', $tagNameMatch);
-			echo Yii::trace(CVarDumper::dumpAsString($q),'vardump');
+			$q->addSearchCondition('Tagname', $tagNameMatch);
+			//echo Yii::trace(CVarDumper::dumpAsString($q),'vardump');
 			$filterTags = Tags::model()->findAll($q);
 
-			$dataProvider=new CActiveDataProvider($this, array(
-				'filterTags'=>$criteria,
+			$dataProvider=new CArrayDataProvider($filterTags, array(
+				'id'=>'TAGID',
 			));
 
-			echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
-			$this->render('index',array('dataProvider'=>$dataProvider));
+			echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
 			
+			echo CJSON::encode(array('dataProvider'=>$dataProvider));
+			//$this->render('index',array('dataProvider'=>$dataProvider, ));
 		}
 	}
 	
