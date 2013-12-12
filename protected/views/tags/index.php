@@ -100,7 +100,7 @@
                         function searchTag(e,search_input)
                         {
                             var rawData;    
-                            alert(search_input);
+                            //alert(search_input);
                             $.ajax(
                                     {
                                         url: '<?php echo Yii::app()->createUrl('Tags/search')?>',
