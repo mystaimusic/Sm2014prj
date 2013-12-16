@@ -10,54 +10,15 @@ body
 #page
 {
 	margin-top: 0px;
-	margin-bottom: 5px;
+	margin-bottom: 0px;
 	background: white;
-	border: 1px solid #C9E0ED;
 }
 
-#header
-{
-	margin: 0;
-	padding: 0;
-	border-top: 3px solid #C9E0ED;
-	height:100px;
-	background-color:#e60544;
-}
-
-#content
-{
-    padding: 20px;
-}
-
-#sidebar
-{
-	padding: 20px 20px 20px 0;
-}
-
-#footer
-{
-	padding: 10px;
-	margin: 10px 20px;
-	font-size: 0.8em;
-	text-align: center;
-	border-top: 1px solid #C9E0ED;
-}
-
-body
-{
-	margin: 0;
-	padding: 0;
-	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
-}
-
-#page
+#page_dark
 {
 	margin-top: 0px;
-	margin-bottom: 5px;
-	background: white;
-	border: 1px solid #C9E0ED;
+	margin-bottom: 0px;
+	background:#000;
 }
 
 #header
@@ -82,8 +43,8 @@ body
 
 #footer
 {
-	padding: 10px;
-	margin: 10px 20px;
+	padding: 0px;
+	margin:0px;
 	font-size: 0.8em;
 	text-align: center;
 	background-color:#000000;
@@ -98,7 +59,7 @@ body
 
 #mainmenu
 {
-background-color:#e60544;
+background-color:#cf043d;
 }
 
 #mainmenu ul
@@ -110,11 +71,12 @@ background-color:#e60544;
 #mainmenu ul li
 {
 	display: inline;
+	
 }
 
 #mainmenu ul li a
 {
-	color: #666666;
+	color: #000;
 	background-color:transparent;
 	font-size:12px;
 	font-weight:bold;
