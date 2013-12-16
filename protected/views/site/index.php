@@ -72,7 +72,7 @@
 	<div class="bv_maincont2"class="clearfix" >
 		<?php 
 			foreach($dataProviderGenres->getData() as $genre){
-				echo CHtml::tag('ul', array('class=>boxview2'),false,false);
+				echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
 				echo CHtml::tag('li',array(),false,false);
 				$imgGenHtml = CHtml::image($genre->IMAGEPATH);
 				echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
