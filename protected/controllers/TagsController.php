@@ -123,10 +123,10 @@ class TagsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Tags');
+		/*$dataProvider=new CActiveDataProvider('Tags');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));
+		));*/
 	}
 
 	public function actionSearch()
