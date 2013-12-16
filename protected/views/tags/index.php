@@ -48,18 +48,23 @@
 	<div id="req_res" class="bv_maincont">
 	<?php 
 		
+		$max = 5;
+		$count = 1;
 		foreach($dataProvider->getData() as $tag)
 		{
-			echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
-			echo CHtml::tag('li', array(), false,false);
-			echo CHtml::tag('div', array('class'=>'tag'),$tag->TAGNAME,true);
-			echo CHtml::tag('div', array('class'=>'text'),$tag->DESCRIPTION,true);
-			$imghtml = CHtml::image($tag->IMAGEPATH);
-			//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
-			//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
-			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$tag->IMAGEPATH));
-			echo CHtml::closeTag('li');
-			echo CHtml::closeTag('ul');
+			if($count <= $max){
+				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
+				echo CHtml::tag('li', array(), false,false);
+				echo CHtml::tag('div', array('class'=>'tag'),$tag->TAGNAME,true);
+				echo CHtml::tag('div', array('class'=>'text'),$tag->DESCRIPTION,true);
+				$imghtml = CHtml::image($tag->IMAGEPATH);
+				//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
+				//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
+				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$tag->IMAGEPATH));
+				echo CHtml::closeTag('li');
+				echo CHtml::closeTag('ul');
+				$count++;
+			}
 		}
 		
 	?>
