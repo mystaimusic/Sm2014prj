@@ -73,15 +73,15 @@
 
 
 	<div class="bv_maincont2"class="clearfix" >
-	 <ul class="boxview2"><li> <img src="generi/punk-music.jpg" alt="punk-music"></li></ul>
-     	 <ul class="boxview2"><li> <img src="generi/disco-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/genres/country-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/numetal-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/rock-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/deathmetal-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/blues-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/electronic-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/house-music.jpg" alt="disco-music"></li></ul>
+	 <ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/punk-music.jpg" alt="punk-music"></li></ul>
+     	 <ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/disco-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/country-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/numetal-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/rock-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/deathmetal-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/blues-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/electronic-music.jpg" alt="disco-music"></li></ul>
+<ul class="boxview2"><li> <img src="http://www.staimusic.com/images/genres/house-music.jpg" alt="disco-music"></li></ul>
 </div><!--bv-maincont-->
 
 
