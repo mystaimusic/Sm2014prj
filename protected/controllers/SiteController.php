@@ -30,9 +30,10 @@ class SiteController extends Controller
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$dataProvider=new CActiveDataProvider('Tags');
-		echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+		$dataProviderGenres = new CActiveDataProvider('Genres');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'dataProviderGenres'=>$dataProviderGenres,
 		));
 		//$this->render('index');
 	}

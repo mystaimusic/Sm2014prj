@@ -68,21 +68,31 @@
 		}
 		
 	?>
-	
+	</div>
+	<div class="bv_maincont2"class="clearfix" >
+		<?php 
+			foreach($dataProviderGenres->getData() as $genre){
+				echo CHtml::tag('ul', array('class=>boxview2'),false,false);
+				echo CHtml::tag('li',array(),false,false);
+				$imgGenHtml = CHtml::image($genre->IMAGEPATH);
+				echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
+				echo CHtml::closeTag('li');
+				echo CHtml::closeTag('ul');
+			}
+		?>
 	</div>
 
-
-	<div class="bv_maincont2"class="clearfix" >
-	 <ul class="boxview2"><li> <img src="generi/punk-music.jpg" alt="punk-music"></li></ul>
-     	 <ul class="boxview2"><li> <img src="generi/disco-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/genres/country-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/numetal-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/rock-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/deathmetal-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/blues-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/electronic-music.jpg" alt="disco-music"></li></ul>
-<ul class="boxview2"><li> <img src="images/house-music.jpg" alt="disco-music"></li></ul>
-</div><!--bv-maincont-->
+	<!-- <div class="bv_maincont2"class="clearfix" >
+		<ul class="boxview2"><li> <img src="generi/punk-music.jpg" alt="punk-music"></li></ul>
+     	<ul class="boxview2"><li> <img src="generi/disco-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/genres/country-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/numetal-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/rock-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/deathmetal-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/blues-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/electronic-music.jpg" alt="disco-music"></li></ul>
+		<ul class="boxview2"><li> <img src="images/house-music.jpg" alt="disco-music"></li></ul>
+	</div>  --><!--bv-maincont-->
 
 
 

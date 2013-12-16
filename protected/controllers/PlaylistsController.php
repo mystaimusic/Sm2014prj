@@ -28,7 +28,7 @@ class PlaylistsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index', 'view' and 'viewPlPerTag' actions
-				'actions'=>array('index','view','viewPlPerTag'),
+				'actions'=>array('index','view','viewPlPerTag','viewPlPerGenres'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -77,6 +77,11 @@ class PlaylistsController extends Controller
 				'pl'=>$pl,
 			));
 		}*/
+    }
+    
+    public function actionViewPlPerGenres($genid)
+    {
+    	
     }
 
 
