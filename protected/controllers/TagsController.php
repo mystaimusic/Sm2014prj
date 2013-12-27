@@ -148,7 +148,11 @@ class TagsController extends Controller
 			
 			$dataProvider=new CArrayDataProvider($filterTags, array(
 				'id'=>'TAGID',
-				'order'=>'TAGNAME',
+				'sort'=>array(
+        			'attributes'=>array(
+             			'TAGNAME',
+        			),
+    			),
 			));
 			
 			
