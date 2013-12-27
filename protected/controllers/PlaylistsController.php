@@ -81,7 +81,9 @@ class PlaylistsController extends Controller
     
     public function actionViewPlPerGenres($genid)
     {
-    	
+    	$genre=Genres::model()->findByPk($genid);
+    	$bands=$genre->bands;
+    	$songs=$bands->songs; //TODO: check
     }
 
 

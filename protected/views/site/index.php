@@ -57,7 +57,11 @@
 				echo CHtml::tag('li', array(), false,false);
 				echo CHtml::tag('div', array('class'=>'tag'),$tag->TAGNAME,true);
 				echo CHtml::tag('div', array('class'=>'text'),$tag->DESCRIPTION,true);
-				$imghtml = CHtml::image($tag->IMAGEPATH);
+				if(file_exists ( $tag->IMAGEPATH )){
+					$imghtml = CHtml::image($tag->IMAGEPATH);
+				}else{
+					$imghtml = CHtml::image("images/stai-music.jpg");
+				}
 				//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
 				//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
 				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$tag->IMAGEPATH));
