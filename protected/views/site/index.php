@@ -58,13 +58,14 @@
 				echo CHtml::tag('div', array('class'=>'tag'),$tag->TAGNAME,true);
 				echo CHtml::tag('div', array('class'=>'text'),$tag->DESCRIPTION,true);
 				if(file_exists ( $tag->IMAGEPATH )){
-					$imghtml = CHtml::image($tag->IMAGEPATH);
+					$imagePath = $tag->IMAGEPATH;
 				}else{
-					$imghtml = CHtml::image("images/stai-music.jpg");
+					$imagePath = "images/stai-music.jpg";
 				}
+				$imghtml = CHtml::image($imagePath);
 				//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
 				//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
-				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$tag->IMAGEPATH));
+				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$imagePath));
 				echo CHtml::closeTag('li');
 				echo CHtml::closeTag('ul');
 				$count++;
@@ -78,7 +79,12 @@
 			foreach($dataProviderGenres->getData() as $genre){
 				echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
 				echo CHtml::tag('li',array(),false,false);
-				$imgGenHtml = CHtml::image($genre->IMAGEPATH);
+				if(file_exists ( $genre->IMAGEPATH )){
+					$imgGenHtml = CHtml::image($genre->IMAGEPATH);	
+				}else{
+					$imgGenHtml = CHtml::image("images/stai-music.jpg");
+				}
+				echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 				echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
 				echo CHtml::closeTag('li');
 				echo CHtml::closeTag('ul');
