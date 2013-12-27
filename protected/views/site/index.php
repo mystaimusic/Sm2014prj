@@ -55,8 +55,8 @@
 			if($count <= $max){
 				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
 				echo CHtml::tag('li', array(), false,false);
-				echo CHtml::tag('div', array('class'=>'tag'),$tag->TAGNAME,true);
-				echo CHtml::tag('div', array('class'=>'text'),$tag->DESCRIPTION,true);
+				echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+				echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
 				if(file_exists ( $tag->IMAGEPATH )){
 					$imagePath = $tag->IMAGEPATH;
 				}else{
@@ -65,7 +65,7 @@
 				$imghtml = CHtml::image($imagePath);
 				//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
 				//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
-				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>$tag->TAGNAME,'imagePath'=>$imagePath));
+				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
 				echo CHtml::closeTag('li');
 				echo CHtml::closeTag('ul');
 				$count++;

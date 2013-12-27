@@ -29,7 +29,13 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$dataProvider=new CActiveDataProvider('Tags');
+		$dataProvider=new CActiveDataProvider('Tags',
+			array(
+				'criteria'=>array(
+        			'order'=>'TAGNAME',
+    			),
+			)
+		);
 		$dataProviderGenres = new CActiveDataProvider('Genres');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
