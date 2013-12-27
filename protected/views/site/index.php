@@ -165,8 +165,7 @@
                                                     
                                                 	$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
                                                         	"</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                                                        	+"<a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
-
+                                                        	+"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
                                                 	count++;
                                                 });
                                             }
