@@ -133,15 +133,24 @@ class TagsController extends Controller
 	{
 		if(isset($_GET['tagNameMatch'])){
 			$tagNameMatch = $_GET['tagNameMatch'];
-			//echo Yii::trace(CVarDumper::dumpAsString($tagNameMatch),'vardump');
 			$q = new CDbCriteria();
 			$q->addSearchCondition('Tagname', $tagNameMatch);
 			//echo Yii::trace(CVarDumper::dumpAsString($q),'vardump');
 			$filterTags = Tags::model()->findAll($q);
 
+			foreach($filterTags as $tag)
+			{
+				if(!file_exists ( $tag->IMAGEPATH ))
+				{
+					$tag = "images/stai-music.jpg";	
+				}
+			}
+			
 			$dataProvider=new CArrayDataProvider($filterTags, array(
 				'id'=>'TAGID',
 			));
+			
+			
 
 			//echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
 			
