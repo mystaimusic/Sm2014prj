@@ -30,7 +30,7 @@
 
 <div id="mod_mainsearch">
 <div id="loading" style="margin: 4px 0;display:none;">loading...</div>
-				<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beating?
+				<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beat?
 					<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button><br/></div>
 				<div id="result"></div>
 
