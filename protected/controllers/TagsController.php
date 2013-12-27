@@ -142,7 +142,7 @@ class TagsController extends Controller
 			{
 				if(!file_exists ( $tag->IMAGEPATH ))
 				{
-					$tag = "images/stai-music.jpg";	
+					$tag->IMAGEPATH = "images/stai-music.jpg";	
 				}
 			}
 			
