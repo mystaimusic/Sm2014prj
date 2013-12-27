@@ -156,14 +156,16 @@
                                         success: function(response,status, jqXHR)
                                         {
                                             if(response){
-
                                                 $("#req_res").empty();
-
                                                 var count = 0;
                                                 $.each(response.dataProvider.rawData, function(i, elem){
-                                                	$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
-                                                        	"</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                                                        	+"<a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+elem.TAGNAME+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
+													var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+													var descEnc = encodeURIComponent(elem.DESCRIPTION);
+													var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+                                                    
+                                                	$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + tagNameEnc + 
+                                                        	"</div><div class='text'>"+ descEnc +"</div>"
+                                                        	+"<a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+imgPathEnc+"'><img src='"+imgPathEnc+"' alt='' /></a></li></ul>");
 
                                                 	count++;
                                                 });
