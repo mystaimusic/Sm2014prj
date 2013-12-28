@@ -121,9 +121,11 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 <div id="mainright">
 <div class="mod_playCOVER">
-<?php 
-	echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
-	echo CHtml::image($imagePath);
+<?php
+	if((!isset($tagname) || trim($tagname)==='')){} else{
+		echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
+		echo CHtml::image($imagePath);
+	}
 ?>
 <!--  <div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>  -->
 </div><!--mod_playCOVER-->	
@@ -133,11 +135,19 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div class="cont">
     	<?php 
 			
-    		foreach($pls as $pl)
+    		if((!isset($oneRecord)|| $oneRecord === false))
     		{
+    			foreach($pls as $pl)
+    			{
+    				echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
+    				echo CHtml::link($pl->PLTITLE,'#'.$pl->PLREF, array('class' => 'myplaylist', 'id' =>$pl->PLID ) );
+    				echo CHtml::closeTag('div');
+    			}
+    		}else{
     			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-    			echo CHtml::link($pl->PLTITLE,'#'.$pl->PLREF, array('class' => 'myplaylist', 'id' =>$pl->PLID ) );
+    			echo CHtml::link($pls->PLTITLE,'#'.$pls->PLREF, array('class' => 'myplaylist', 'id' =>$pls->PLID ) );
     			echo CHtml::closeTag('div');
+    			
     		}
     	
 			//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');

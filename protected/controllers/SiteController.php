@@ -36,10 +36,21 @@ class SiteController extends Controller
     			),
 			)
 		);
+		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
+			array(
+				'criteria'=>array(
+					'order'=>'PLTITLE',
+				),
+				'pagination'=>array(
+        			'pageSize'=>20,
+    			),
+			)
+		);
 		$dataProviderGenres = new CActiveDataProvider('Genres');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'dataProviderGenres'=>$dataProviderGenres,
+			'dataProviderPlaylist'=>$dataProviderPlaylist,
 		));
 		//$this->render('index');
 	}

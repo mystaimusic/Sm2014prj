@@ -28,7 +28,7 @@ class PlaylistsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index', 'view' and 'viewPlPerTag' actions
-				'actions'=>array('index','view','viewPlPerTag','viewPlPerGenres'),
+				'actions'=>array('index','view','viewPlPerTag','viewPlPerGenres','view2'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -55,6 +55,23 @@ class PlaylistsController extends Controller
 			'model'=>$this->loadModel($id),
 		));
 	}
+	
+	public function actionView2($id)
+	{
+		$plist = $this->loadModel($id);
+		
+		$dataProvider=new CArrayDataProvider($plist, array(
+				'id'=>'PLID',
+		));
+		$pls = $dataProvider->rawData;
+		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView2"),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		$this->render('selectedTag',array(
+			'pls' => $pls,
+			'imagePath'=>$plist->IMAGEPATH,
+			'oneRecord'=>true,
+		));
+	}
 
 	public function actionViewPlPerTag($tagid,$tagname,$imagePath)
     {
@@ -62,7 +79,8 @@ class PlaylistsController extends Controller
         $pls=$tag->playlists;
         
 		//echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
-		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+        echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
 			'tagid'=>$tagid,

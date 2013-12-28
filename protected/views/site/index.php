@@ -50,7 +50,29 @@
 		
 		$max = 5;
 		$count = 1;
-		foreach($dataProvider->getData() as $tag)
+		foreach($dataProviderPlaylist->getData() as $playlist)
+		{
+			if($count <= $max)
+			{
+				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
+				echo CHtml::tag('li', array(), false,false);
+				echo CHtml::tag('div', array('class'=>'tag'),trim($playlist->PLTITLE),true);
+				echo CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
+				if(file_exists ( $playlist->IMAGEPATH )){
+					$imagePath = $playlist->IMAGEPATH;
+				}else{
+					$imagePath = "images/stai-music.jpg";
+				}
+				$imghtml = CHtml::image($imagePath);
+				echo CHtml::link($imghtml, array('Playlists/view2','id'=>$playlist->PLID));
+				echo CHtml::closeTag('li');
+				echo CHtml::closeTag('ul');
+				$count++;
+			}
+			
+		}
+		
+		/*foreach($dataProvider->getData() as $tag)
 		{
 			if($count <= $max){
 				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
@@ -63,14 +85,12 @@
 					$imagePath = "images/stai-music.jpg";
 				}
 				$imghtml = CHtml::image($imagePath);
-				//echo CHtml::link($imghtml, /*$tag->url*/ '#', array('view','id'=>$tag->TAGID));
-				//$nextUrl = CHtml::link($imghtml,$url, array('target'=>'_blank'));
 				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
 				echo CHtml::closeTag('li');
 				echo CHtml::closeTag('ul');
 				$count++;
 			}
-		}
+		}*/
 		
 	?>
 	</div>
