@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!--  <!DOCTYPE html>
 <html>
 <head>
 <title>Website Name Here</title>
 <meta charset="UTF-8">
-<!--[if IE]><![endif]-->
+
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -15,14 +15,13 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
 <script src="js/scripts.js"></script>
-<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
 
-
+-->
 
 
 <div class="container darkbg">
@@ -412,5 +411,5 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 	//]]>
 	</script>
-</body>
-</html>
+<!--  </body>
+</html> -->
