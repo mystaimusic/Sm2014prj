@@ -44,6 +44,7 @@
 
 <div id="maincont" class="clearfix">
 	
+	<!-- div playlists -->
 	<div id="req_res" class="bv_maincont">
 	<?php 
 		
@@ -77,28 +78,9 @@
 			
 		}
 		
-		/*foreach($dataProvider->getData() as $tag)
-		{
-			if($count <= $max){
-				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
-				echo CHtml::tag('li', array(), false,false);
-				echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-				echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
-				if(file_exists ( $tag->IMAGEPATH )){
-					$imagePath = $tag->IMAGEPATH;
-				}else{
-					$imagePath = "images/stai-music.jpg";
-				}
-				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
-				echo CHtml::closeTag('li');
-				echo CHtml::closeTag('ul');
-				$count++;
-			}
-		}*/
-		
 	?>
 	</div>
+	<!-- div genres -->
 	<div class="bv_maincont2"class="clearfix" >
 		<?php 
 			foreach($dataProviderGenres->getData() as $genre){
@@ -116,7 +98,31 @@
 			}
 		?>
 	</div>
-
+	<!-- div tags -->
+	<div class="bv_maincont3"class="clearfix" >
+		<?php 
+			foreach($dataProvider->getData() as $tag)
+			{
+				if($count <= $max){
+					echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
+					echo CHtml::tag('li', array(), false,false);
+					echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+					echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+					if(file_exists ( $tag->IMAGEPATH )){
+						$imagePath = $tag->IMAGEPATH;
+					}else{
+						$imagePath = "images/stai-music.jpg";
+					}
+					$imghtml = CHtml::image($imagePath);
+					echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+					echo CHtml::closeTag('li');
+					echo CHtml::closeTag('ul');
+					$count++;
+				}
+			}
+			
+		?>
+	</div>
 	<!-- <div class="bv_maincont2"class="clearfix" >
 		<ul class="boxview2"><li> <img src="generi/punk-music.jpg" alt="punk-music"></li></ul>
      	<ul class="boxview2"><li> <img src="generi/disco-music.jpg" alt="disco-music"></li></ul>
