@@ -123,7 +123,12 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div class="mod_playCOVER">
 <?php
 	if((!isset($tagname) || trim($tagname)==='')){
-		echo CHtml::tag('div',array('class'=>'tag'),$pls->PLTITLE,true);
+		if(strlen($pls->PLTITLE)>16){
+			$shortTitle = substr($pls->PLTITLE, 0, 16) . " ...";
+		}else{
+			$shortTitle = $pls->PLTITLE;
+		}
+		echo CHtml::tag('div',array('class'=>'tag'),$shortTitle,true);
 		
 		if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
 			$imgPath = $pls->IMAGEPATH;
