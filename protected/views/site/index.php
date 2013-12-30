@@ -1,28 +1,27 @@
 <!-- <h1>Tags</h1> -->
-<!DOCTYPE html>
+<!--  <!DOCTYPE html>
 <html>
 <head>
 <title>Website Name Here</title>
 <meta charset="UTF-8">
-<!--[if IE]><![endif]-->
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <link rel="stylesheet" href="css/style.css">
-	<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/black-tie/jquery-ui.css" />
-	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&amp;subset=latin" />
-	<link type="text/css" rel="stylesheet" href="css/youtube-player.css" />
+<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/black-tie/jquery-ui.css" />
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&amp;subset=latin" />
+<link type="text/css" rel="stylesheet" href="css/youtube-player.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
-<script src="js/scripts.js"></script>
+<script src="js/scripts.js"></script> -->
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-</head>
-<body>
+<!--   </head> -->
+<!--  <body>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
-
+-->
 <div class="container darkbg">
 <div id="headercont">
 
@@ -213,7 +212,7 @@
 
 	//]]>
 	</script>
-</body>
-</html>
+<!--  </body>
+</html> -->
 
 
