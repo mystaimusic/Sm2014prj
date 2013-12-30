@@ -44,6 +44,33 @@
 
 <div id="maincont" class="clearfix">
 	
+	<!-- div tags -->
+	<div class="bv_maincont3"class="clearfix" >
+		<?php
+			$max = 5;
+			$count = 1; 
+			foreach($dataProvider->getData() as $tag)
+			{
+				if($count <= $max){
+					echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
+					echo CHtml::tag('li', array(), false,false);
+					echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+					echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+					if(file_exists ( $tag->IMAGEPATH )){
+						$imagePath = $tag->IMAGEPATH;
+					}else{
+						$imagePath = "images/stai-music.jpg";
+					}
+					$imghtml = CHtml::image($imagePath);
+					echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+					echo CHtml::closeTag('li');
+					echo CHtml::closeTag('ul');
+					$count++;
+				}
+			}	
+		?>
+	</div>
+	
 	<!-- div playlists -->
 	<div id="req_res" class="bv_maincont">
 	<?php 
@@ -83,61 +110,27 @@
 	<!-- div genres -->
 	<div class="bv_maincont2"class="clearfix" >
 		<?php
+			$maxGen = 5;
+			$countGen = 1;
 			foreach($dataProviderGenres->getData() as $genre){
-				echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
-				echo CHtml::tag('li',array(),false,false);
-				if(file_exists ( $genre->IMAGEPATH )){
-					$imgGenHtml = CHtml::image($genre->IMAGEPATH);	
-				}else{
-					$imgGenHtml = CHtml::image("images/stai-music.jpg");
+				if($countGen <= $maxGen)
+				{
+					echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
+					echo CHtml::tag('li',array(),false,false);
+					if(file_exists ( $genre->IMAGEPATH )){
+						$imgGenHtml = CHtml::image($genre->IMAGEPATH);	
+					}else{
+						$imgGenHtml = CHtml::image("images/stai-music.jpg");
+					}
+					echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
+					echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
+					echo CHtml::closeTag('li');
+					echo CHtml::closeTag('ul');
+					$countGen++;
 				}
-				echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
-				echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
-				echo CHtml::closeTag('li');
-				echo CHtml::closeTag('ul');
 			}
 		?>
 	</div>
-	<!-- div tags -->
-	<div class="bv_maincont3"class="clearfix" >
-		<?php
-			$max = 5;
-			$count = 1; 
-			foreach($dataProvider->getData() as $tag)
-			{
-				if($count <= $max){
-					echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
-					echo CHtml::tag('li', array(), false,false);
-					echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-					echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
-					if(file_exists ( $tag->IMAGEPATH )){
-						$imagePath = $tag->IMAGEPATH;
-					}else{
-						$imagePath = "images/stai-music.jpg";
-					}
-					$imghtml = CHtml::image($imagePath);
-					echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
-					echo CHtml::closeTag('li');
-					echo CHtml::closeTag('ul');
-					$count++;
-				}
-			}	
-		?>
-	</div>
-	<!-- <div class="bv_maincont2"class="clearfix" >
-		<ul class="boxview2"><li> <img src="generi/punk-music.jpg" alt="punk-music"></li></ul>
-     	<ul class="boxview2"><li> <img src="generi/disco-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/genres/country-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/numetal-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/rock-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/deathmetal-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/blues-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/electronic-music.jpg" alt="disco-music"></li></ul>
-		<ul class="boxview2"><li> <img src="images/house-music.jpg" alt="disco-music"></li></ul>
-	</div>  --><!--bv-maincont-->
-
-
-
 
 </div><!--maincont-->
 </div><!--container-->
