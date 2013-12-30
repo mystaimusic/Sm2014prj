@@ -110,7 +110,7 @@
 	<!-- div genres -->
 	<div class="bv_maincont2"class="clearfix" >
 		<?php
-			$maxGen = 5;
+			$maxGen = 9;
 			$countGen = 1;
 			foreach($dataProviderGenres->getData() as $genre){
 				if($countGen <= $maxGen)
