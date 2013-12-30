@@ -122,7 +122,16 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div id="mainright">
 <div class="mod_playCOVER">
 <?php
-	if((!isset($tagname) || trim($tagname)==='')){} else{
+	if((!isset($tagname) || trim($tagname)==='')){
+		//echo CHtml::tag('div',array('class'=>'tag'),"D",true);
+		if(file_exists ( $pls->IMAGEPATH )){
+			$imgHtml = CHtml::image($pls->IMAGEPATH);	
+		}else{
+			$imgHtml = CHtml::image("images/stai-music.jpg");
+		}
+		echo CHtml::image($imgHtml);
+	} 
+	else{
 		echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
 		echo CHtml::image($imagePath);
 	}
