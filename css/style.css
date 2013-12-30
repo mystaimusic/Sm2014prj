@@ -37,8 +37,7 @@ margin:0px;}
 body{
 font-family: Arial, Helvetica, sans-serif;
 font-size: 13px;
-padding: 0 0 20px 0;
-background-color:#000; background-image:url(../images/sfondo1.jpg);
+padding: 0 0 0px 0;
 background-repeat: no-repeat;
 margin:0px;}
 ::selection { background: #000; color: #FFF; }
@@ -127,7 +126,7 @@ color:#FFFFFF
  -moz-opacity:.70; opacity:.70; color:#FFFFFF; margin-top:160px}	
  .boxview .tag
 {height:20px; z-index:10; position:absolute; background:#e60544; color:#fff; margin-top:20px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;
-font-size:20px; padding:5px}
+font-size:15px; padding:5px}
 
 /** boxview2----------------------------------------------------- **/
 .bv_maincont2{float:left;width:100%; padding:0px; height:auto; margin:auto; position:relative; margin-top:20px; margin-left:30px; margin-bottom:20px}
@@ -143,6 +142,24 @@ font-size:20px; padding:5px}
 {width: 240px; height:80px; z-index:10; position:absolute; background:#000000; filter:alpha(opacity=70);
  -moz-opacity:.70; opacity:.70; color:#FFFFFF; margin-top:160px}	
  .boxview2 .tag
+{height:20px; z-index:10; position:absolute; background:#e60544; color:#fff; margin-top:20px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;
+font-size:20px; padding:5px}
+
+
+/** boxview3----------------------------------------------------- **/
+.bv_maincont3{float:left;width:100%; padding:0px; height:auto; margin:auto; position:relative; margin-top:20px; margin-left:30px; margin-bottom:20px}
+.boxview3
+{float:left;margin:0px; padding:0px; width:132px; height:132px; overflow:hidden; display:inline; border:#fff solid 2px}
+.boxview3 ul
+{text-decoration:none;}
+.boxview3 li
+{display:block}
+.boxview3 img
+{width:100%; height:100%;  z-index:2}		
+.boxview3 .text
+{width: 240px; height:80px; z-index:10; position:absolute; background:#000000; filter:alpha(opacity=70);
+ -moz-opacity:.70; opacity:.70; color:#FFFFFF; margin-top:160px}	
+ .boxview3 .tag
 {height:20px; z-index:10; position:absolute; background:#e60544; color:#fff; margin-top:20px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;
 font-size:20px; padding:5px}
 

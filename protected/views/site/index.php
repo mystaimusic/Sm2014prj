@@ -138,11 +138,7 @@
 
 
 
-<div class="container clearfix">
-    <div id="footercont" class="clearfix">
-        <p>Staimusic &copy; 2013 - Design by <a title="Sintesilogica" href="http://www.sintesilogica.com/" rel="external">Sintesilogica</a></p>
-    </div>
-</div>
+
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
