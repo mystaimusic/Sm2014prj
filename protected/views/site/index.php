@@ -82,7 +82,7 @@
 	</div>
 	<!-- div genres -->
 	<div class="bv_maincont2"class="clearfix" >
-		<?php 
+		<?php
 			foreach($dataProviderGenres->getData() as $genre){
 				echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
 				echo CHtml::tag('li',array(),false,false);
@@ -100,7 +100,9 @@
 	</div>
 	<!-- div tags -->
 	<div class="bv_maincont3"class="clearfix" >
-		<?php 
+		<?php
+			$max = 5;
+			$count = 1; 
 			foreach($dataProvider->getData() as $tag)
 			{
 				if($count <= $max){
@@ -119,8 +121,7 @@
 					echo CHtml::closeTag('ul');
 					$count++;
 				}
-			}
-			
+			}	
 		?>
 	</div>
 	<!-- <div class="bv_maincont2"class="clearfix" >
