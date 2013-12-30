@@ -39,7 +39,7 @@ class SiteController extends Controller
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
 			array(
 				'criteria'=>array(
-					'order'=>'PLREF',
+					'order'=>'PLID',
 				),
 				'pagination'=>array(
         			'pageSize'=>20,
