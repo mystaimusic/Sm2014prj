@@ -56,7 +56,13 @@
 			{
 				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
 				echo CHtml::tag('li', array(), false,false);
-				echo CHtml::tag('div', array('class'=>'tag'),trim($playlist->PLTITLE),true);
+				$titleTrimmed = trim($playlist->PLTITLE);
+				if(strlen($titleTrimmed)>16){
+					$shortTitle = substr($playlist->PLTITLE, 0, 16) . " ...";
+				}else{
+					$shortTitle = $titleTrimmed; 
+				}
+				echo CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
 				echo CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
 				if(file_exists ( $playlist->IMAGEPATH )){
 					$imagePath = $playlist->IMAGEPATH;
