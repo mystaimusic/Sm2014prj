@@ -39,13 +39,17 @@ class SiteController extends Controller
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
 			array(
 				'criteria'=>array(
-					'order'=>'PLTITLE',
+					'order'=>'PLREF',
 				),
 				'pagination'=>array(
         			'pageSize'=>20,
     			),
 			)
 		);
+		
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($dataProviderPlaylist),'vardump');
+		
 		$dataProviderGenres = new CActiveDataProvider('Genres');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

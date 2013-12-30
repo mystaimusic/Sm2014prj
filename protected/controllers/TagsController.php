@@ -135,7 +135,6 @@ class TagsController extends Controller
 			$tagNameMatch = $_GET['tagNameMatch'];
 			$q = new CDbCriteria();
 			$q->addSearchCondition('Tagname', $tagNameMatch);
-			//echo Yii::trace(CVarDumper::dumpAsString($q),'vardump');
 			$filterTags = Tags::model()->findAll($q);
 
 			foreach($filterTags as $tag)

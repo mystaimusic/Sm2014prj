@@ -64,8 +64,8 @@ class PlaylistsController extends Controller
 				'id'=>'PLID',
 		));
 		$pls = $dataProvider->rawData;
-		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView2"),'vardump');
-		echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView2"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls' => $pls,
 			'imagePath'=>$plist->IMAGEPATH,
@@ -79,8 +79,8 @@ class PlaylistsController extends Controller
         $pls=$tag->playlists;
         
 		//echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
-		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
-        echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+        //echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
 			'tagid'=>$tagid,
