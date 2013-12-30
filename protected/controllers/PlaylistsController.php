@@ -68,7 +68,7 @@ class PlaylistsController extends Controller
 		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls' => $pls,
-			'imagePath'=>$plist->IMAGEPATH,
+			'imagePath'=>$pls->IMAGEPATH,
 			'oneRecord'=>true,
 		));
 	}
