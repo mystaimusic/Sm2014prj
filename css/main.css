@@ -4,12 +4,14 @@
 	margin-top: 0px;
 	margin-bottom: 0px;
 	background: white;
+ width:100%
 }
 .total_content
 {
 	margin-top: 0px;
 	margin: 0px;
 	background: white;
+        width:100%
 }
 
 #page_dark
@@ -20,17 +22,16 @@
 }
 
 #header
-{
+{ width:100%
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
 	height:100px;
 	background-color:#e60544;
 	background-image:url(../images/sf-texture.gif);
 }
 
 #content
-{
+{ width:100%
     padding:0px;
 }
 
@@ -40,7 +41,7 @@
 }
 
 #footer
-{
+{ width:100%
 	padding: 0px;
 	margin:0px;
 	font-size: 0.8em;
