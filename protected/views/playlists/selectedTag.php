@@ -66,19 +66,23 @@
 
 <div id="mainleft">
 
-<div id="mainleft_header">
+   <div id="mainleft_header">
 		<div id="headervideo">
 				<div class="youtube-player">
 					<div class="youtube-player-video">
 					<div class="youtube-player-object">
 					You need Flash player 8+ and JavaScript enabled to view this video.					</div>
 					</div>
-				</div><!--youtubeplayer-->
-		
-              </div>
-	  <!--headervideo--> 
+				</div><!--youtubeplayer-->		
+        </div><!--headervideo--> 
+      
+      
+         <div id="player_toolbar">
+	     </div><!--player_toolbar-->
+      
+      
         
-        </div>  <!--mainleft_header-->   
+   </div>  <!--mainleft_header-->   
         
         
 
