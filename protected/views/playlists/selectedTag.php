@@ -75,7 +75,7 @@
 					</div>
 				</div><!--youtubeplayer-->		
         </div><!--headervideo--> 
-      
+       <div id="headertext"></div><!--headertext-->     
       
          <div id="player_toolbar">
 	     </div><!--player_toolbar-->
