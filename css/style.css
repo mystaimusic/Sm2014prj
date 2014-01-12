@@ -113,6 +113,25 @@ color:#FFFFFF
 
 /** CSS modules----------------------------------------------------- **/
 
+/** jcarousel ------------------------------------------------------ **/
+.jcarousel {
+	position: relative;
+	overflow: hidden;
+	width: 70%;
+}
+.jcarousel ul {
+	width: 20000em;
+	position: relative;
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.jcarousel li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
+
 /** boxview playlist----------------------------------------------------- **/
 .bv_maincont{float:left; width:auto; padding:0px; height:auto; margin:auto; position:relative; margin-top:20px;margin-left:30px}
 .boxview

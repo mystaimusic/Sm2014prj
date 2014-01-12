@@ -44,33 +44,40 @@
 
 <div id="maincont" class="clearfix">
 	
-	<!-- div tags -->
-	<div class="bv_maincont3"class="clearfix" >
-		<?php
-			$max = 5;
-			$count = 1; 
-			foreach($dataProvider->getData() as $tag)
-			{
-				if($count <= $max){
-					echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
-					echo CHtml::tag('li', array(), false,false);
-					echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-					echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
-					if(file_exists ( $tag->IMAGEPATH )){
-						$imagePath = $tag->IMAGEPATH;
-					}else{
-						$imagePath = "images/stai-music.jpg";
+	<div class="jcarousel-wrapper">
+		<!-- div tags -->
+		<!-- <div class="bv_maincont3" class="clearfix" >  -->
+			<div id="myCarousel" class="jcarousel" data-jcarousel="true">
+				<?php
+					$max = 5;
+					$count = 1;
+					echo CHtml::tag('ul', array('class'=>'boxview'),false,false); 
+					foreach($dataProvider->getData() as $tag)
+					{
+						//if($count <= $max){
+							
+							echo CHtml::tag('li', array(), false,false);
+							echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+							echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+							if(file_exists ( $tag->IMAGEPATH )){
+								$imagePath = $tag->IMAGEPATH;
+							}else{
+								$imagePath = "images/stai-music.jpg";
+							}
+							$imghtml = CHtml::image($imagePath);
+							echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+							echo CHtml::closeTag('li');
+							
+							$count++;
+						//}
 					}
-					$imghtml = CHtml::image($imagePath);
-					echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
-					echo CHtml::closeTag('li');
 					echo CHtml::closeTag('ul');
-					$count++;
-				}
-			}	
-		?>
+				?>
+			</div>
+			<a href="#" class="jcarousel-prev" data-jcarouselcontrol="true">prev</a>
+			<a href="#" class="jcarousel-next" data-jcarouselcontrol="true">next</a>
+		<!-- </div>  -->
 	</div>
-	
 	<!-- div playlists -->
 	<div id="req_res" class="bv_maincont">
 	<?php 
@@ -142,7 +149,38 @@
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
-	           
+
+			/*$('.jcarousel').jcarousel({
+		        // Configuration goes here
+				animation: 'slow'
+		    });*/
+		    //alert("instanzion jcarousel");
+		    $('.jcarousel').jcarousel();
+
+		    //var instance = $('#myCarousel').data('jcarousel');
+		    //alert(instance);
+
+		    
+		    //instance.jcarousel('scroll', '+=1');
+		    $('.jcarousel-prev').jcarouselControl({
+        		target: '-=5'
+    		});
+
+    		$('.jcarousel-next').jcarouselControl({
+        		target: '+=5'
+    		});
+			
+			
+			/*$('.jcarousel-prev').click(function() {
+				alert("click prev");
+				instance.scroll('-=1');
+			});
+
+			$('.jcarousel-next').click(function() {
+				alert("click next");
+				instance.scroll('+=1');
+			});*/
+
 	           
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
