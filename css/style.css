@@ -114,6 +114,7 @@ color:#FFFFFF
 /** CSS modules----------------------------------------------------- **/
 
 /** jcarousel ------------------------------------------------------ **/
+/** tags **/
 .jcarousel {
 	position: relative;
 	overflow: hidden;
@@ -130,6 +131,42 @@ color:#FFFFFF
     /* Required only for block elements like <li>'s */
     float: left;
 }
+/** playlists **/
+.jcarousel-plist {
+	position: relative;
+	overflow: hidden;
+	width: 70%;
+}
+.jcarousel-plist ul {
+	width: 20000em;
+	position: relative;
+	list-style: none;
+	    margin: 0;
+    padding: 0;
+}
+.jcarousel-plist li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
+/**  genres **/
+.jcarousel-gen {
+	position: relative;
+	overflow: hidden;
+	width: 70%;
+}
+.jcarousel-gen ul {
+	width: 20000em;
+	position: relative;
+	list-style: none;
+	    margin: 0;
+    padding: 0;
+}
+.jcarousel-gen li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+}
+
 
 
 /** boxview playlist----------------------------------------------------- **/
