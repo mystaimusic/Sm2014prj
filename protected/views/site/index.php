@@ -79,7 +79,8 @@
 		<!-- </div>  -->
 	</div>
 	<!-- div playlists -->
-	<div id="req_res" class="bv_maincont">
+	<!-- <div id="req_res" class="bv_maincont"> -->
+	<div id="myCarousel-plist" class="jcarousel-plist" data-jcarousel="true">
 	<?php 
 		
 		$max = 5;
@@ -114,8 +115,12 @@
 		
 	?>
 	</div>
+	<a href="#" class="jcarousel-plist-prev" data-jcarouselcontrol="true">prev</a>
+	<a href="#" class="jcarousel-plist-next" data-jcarouselcontrol="true">next</a>
+	<!-- </div> -->
 	<!-- div genres -->
-	<div class="bv_maincont2"class="clearfix" >
+	<!-- <div class="bv_maincont2"class="clearfix" > -->
+	<div id="myCarousel-gen" class="jcarousel-gen" data-jcarousel="true">
 		<?php
 			$maxGen = 9;
 			$countGen = 1;
@@ -137,7 +142,10 @@
 				}
 			}
 		?>
+	<a href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">prev</a>
+	<a href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">next</a>	
 	</div>
+	<!-- </div> -->
 
 </div><!--maincont-->
 </div><!--container-->
@@ -149,37 +157,34 @@
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
+			//tags
+		 	$('.jcarousel').jcarousel();
 
-			/*$('.jcarousel').jcarousel({
-		        // Configuration goes here
-				animation: 'slow'
-		    });*/
-		    //alert("instanzion jcarousel");
-		    $('.jcarousel').jcarousel();
+		    	$('.jcarousel-prev').jcarouselControl({
+        			target: '-=5'
+    			});
 
-		    //var instance = $('#myCarousel').data('jcarousel');
-		    //alert(instance);
-
-		    
-		    //instance.jcarousel('scroll', '+=1');
-		    $('.jcarousel-prev').jcarouselControl({
-        		target: '-=5'
-    		});
-
-    		$('.jcarousel-next').jcarouselControl({
-        		target: '+=5'
-    		});
+    			$('.jcarousel-next').jcarouselControl({
+        			target: '+=5'
+    			});
+			//plists
+			$('.jcarousel-plist').jcarousel();
 			
-			
-			/*$('.jcarousel-prev').click(function() {
-				alert("click prev");
-				instance.scroll('-=1');
+			$('.jcarousel-plist-prev').jcarouselControl({
+				target: '-=5'
 			});
-
-			$('.jcarousel-next').click(function() {
-				alert("click next");
-				instance.scroll('+=1');
-			});*/
+			$('.jcarousel-plist-next').jcarouselControl({
+				target: '+=5'
+			});
+			//gens
+			$('.jcarousel-gen').jcarousel();
+			$('.jcarousel-gen-prev').jcarouselControl({
+				target: '-=5'
+			});
+			$('.jcarousel-gen-next').jcarouselControl({
+				target: '+=5'
+			});
+		
 
 	           
             $(".search_input").focus();
