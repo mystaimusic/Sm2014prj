@@ -45,7 +45,12 @@
 <div id="maincont" class="clearfix">
 	
 	<div class="jcarousel-wrapper">
-		<!-- div tags -->
+		<!-- div tags -->		
+		<div class="jcarousel-prev">
+			<a href="#" class="jcarousel-prev" data-jcarouselcontrol="true">
+				<img src="images/button-prev.png" />
+			</a>
+		</div>
 		<!-- <div class="bv_maincont3" class="clearfix" >  -->
 			<div id="myCarousel" class="jcarousel" data-jcarousel="true">
 				<?php
@@ -74,22 +79,32 @@
 					echo CHtml::closeTag('ul');
 				?>
 			</div>
-			<a href="#" class="jcarousel-prev" data-jcarouselcontrol="true">prev</a>
-			<a href="#" class="jcarousel-next" data-jcarouselcontrol="true">next</a>
-		<!-- </div>  -->
-	</div>
-	<!-- div playlists -->
+
+		<div class="jcarousel-next">
+			<a href="#" class="jcarousel-next" data-jcarouselcontrol="true">
+				<img src="images/button-next.png" />
+			</a>
+		</div>
+		</div>
+		
+		<div class="jcarousel-plist-wrapper">
+		<!-- div playlists -->
+		<div class="jcarousel-plist-prev">
+			<a href="#" class="jcarousel-plist-prev" data-jcarouselcontrol="true">
+				<img src="images/button-prev.png" />
+			</a>
+		</div>
 	<!-- <div id="req_res" class="bv_maincont"> -->
 	<div id="myCarousel-plist" class="jcarousel-plist" data-jcarousel="true">
 	<?php 
 		
 		$max = 5;
 		$count = 1;
+		echo CHtml::tag('ul', array('class'=>'boxview3'),false,false);
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
-			if($count <= $max)
-			{
-				echo CHtml::tag('ul', array('class'=>'boxview'),false,false);
+			//if($count <= $max)
+			//{
 				echo CHtml::tag('li', array(), false,false);
 				$titleTrimmed = trim($playlist->PLTITLE);
 				if(strlen($titleTrimmed)>16){
@@ -107,27 +122,42 @@
 				$imghtml = CHtml::image($imagePath);
 				echo CHtml::link($imghtml, array('Playlists/view2','id'=>$playlist->PLID));
 				echo CHtml::closeTag('li');
-				echo CHtml::closeTag('ul');
+				
 				$count++;
-			}
-			
+			//}
 		}
-		
+		echo CHtml::closeTag('ul');
 	?>
 	</div>
-	<a href="#" class="jcarousel-plist-prev" data-jcarouselcontrol="true">prev</a>
-	<a href="#" class="jcarousel-plist-next" data-jcarouselcontrol="true">next</a>
-	<!-- </div> -->
-	<!-- div genres -->
-	<!-- <div class="bv_maincont2"class="clearfix" > -->
+		<div class="jcarousel-plist-next">
+			<a href="#" class="jcarousel-plist-next" data-jcarouselcontrol="true">
+				<img src="images/button-next.png" />
+			</a>
+		</div>
+		
+		
+		
+	  </div>
+    
+    
+    
+  <div class="jcarousel-gen-wrapper">
+		<!-- div playlists -->
+		<div class="jcarousel-gen-prev">
+			<a href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">
+				<img src="images/button-prev.png" />
+			</a>
+		</div>
+	<!-- <div id="req_res" class="bv_maincont"> -->
 	<div id="myCarousel-gen" class="jcarousel-gen" data-jcarousel="true">
-		<?php
+    
+    <?php
 			$maxGen = 9;
 			$countGen = 1;
+			echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
 			foreach($dataProviderGenres->getData() as $genre){
-				if($countGen <= $maxGen)
-				{
-					echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
+				//if($countGen <= $maxGen)
+				//{
 					echo CHtml::tag('li',array(),false,false);
 					if(file_exists ( $genre->IMAGEPATH )){
 						$imgGenHtml = CHtml::image($genre->IMAGEPATH);	
@@ -137,15 +167,26 @@
 					echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 					echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
 					echo CHtml::closeTag('li');
-					echo CHtml::closeTag('ul');
+					
 					$countGen++;
-				}
+				//}
 			}
+			echo CHtml::closeTag('ul');
 		?>
-	<a href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">prev</a>
-	<a href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">next</a>	
-	</div>
-	<!-- </div> -->
+    
+    </div>
+		<div class="jcarousel-gen-next">
+			<a href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">
+				<img src="images/button-next.png" />
+			</a>
+		</div>
+		
+		
+		
+	  </div>
+    
+    
+  
 
 </div><!--maincont-->
 </div><!--container-->
@@ -160,13 +201,13 @@
 			//tags
 		 	$('.jcarousel').jcarousel();
 
-		    	$('.jcarousel-prev').jcarouselControl({
-        			target: '-=5'
-    			});
+		    $('.jcarousel-prev').jcarouselControl({
+        		target: '-=5'
+    		});
 
-    			$('.jcarousel-next').jcarouselControl({
-        			target: '+=5'
-    			});
+    		$('.jcarousel-next').jcarouselControl({
+        		target: '+=5'
+    		});
 			//plists
 			$('.jcarousel-plist').jcarousel();
 			
@@ -184,8 +225,7 @@
 			$('.jcarousel-gen-next').jcarouselControl({
 				target: '+=5'
 			});
-		
-
+			
 	           
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
@@ -202,6 +242,7 @@
                         
                         $(".search_button").click(function(e)
                         {
+                            alert("clicked button");
                             searchTag(e,$(".search_input").val());
                         });
 
