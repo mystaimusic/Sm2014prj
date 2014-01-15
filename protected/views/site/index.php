@@ -48,7 +48,7 @@
 		<!-- div tags -->		
 		<div class="jcarousel-prev">
 			<a href="#" class="jcarousel-prev" data-jcarouselcontrol="true">
-				<img src="images/button-prev.png" />
+
 			</a>
 		</div>
 		<!-- <div class="bv_maincont3" class="clearfix" >  -->
@@ -82,7 +82,7 @@
 
 		<div class="jcarousel-next">
 			<a href="#" class="jcarousel-next" data-jcarouselcontrol="true">
-				<img src="images/button-next.png" />
+
 			</a>
 		</div>
 		</div>
@@ -91,7 +91,7 @@
 		<!-- div playlists -->
 		<div class="jcarousel-plist-prev">
 			<a href="#" class="jcarousel-plist-prev" data-jcarouselcontrol="true">
-				<img src="images/button-prev.png" />
+
 			</a>
 		</div>
 	<!-- <div id="req_res" class="bv_maincont"> -->
@@ -131,7 +131,7 @@
 	</div>
 		<div class="jcarousel-plist-next">
 			<a href="#" class="jcarousel-plist-next" data-jcarouselcontrol="true">
-				<img src="images/button-next.png" />
+
 			</a>
 		</div>
 		
@@ -145,7 +145,7 @@
 		<!-- div playlists -->
 		<div class="jcarousel-gen-prev">
 			<a href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">
-				<img src="images/button-prev.png" />
+
 			</a>
 		</div>
 	<!-- <div id="req_res" class="bv_maincont"> -->
@@ -177,7 +177,7 @@
     </div>
 		<div class="jcarousel-gen-next">
 			<a href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">
-				<img src="images/button-next.png" />
+
 			</a>
 		</div>
 		
