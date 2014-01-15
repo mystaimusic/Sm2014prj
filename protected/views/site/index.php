@@ -259,18 +259,24 @@
                    	success: function(response,status, jqXHR)
                     {
                     	if(response){
-                    		$("#req_res").empty();
+                    		$("#myCarousel").empty();
                             var count = 0;
+                            $("#myCarousel").append("<ul id='myCarouselUl' class='boxview'>");
                             $.each(response.dataProvider.rawData, function(i, elem){
-								//var tagNameEnc = encodeURIComponent(elem.TAGNAME);
-								//var descEnc = encodeURIComponent(elem.DESCRIPTION);
-								//var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-                                //$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
-                                //            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                                //            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
-                                buildTagDiv(i,elem);
+								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+								var descEnc = encodeURIComponent(elem.DESCRIPTION);
+								var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+                                $("#myCarouselUl").append("<li><div class='tag'>" + elem.TAGNAME + 
+                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+                                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+                                            +elem.TAGID+"&amp;tagname="
+                                            +tagNameEnc+"&amp;imagePath="
+                                            +elem.IMAGEPATH+"'><img src='"
+                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+                                //buildTagDiv(i,elem);
                                 count++;
                   			});
+                            //</ul>
                     	}
              		},
                     error: function(data)
@@ -285,9 +291,10 @@
 				var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 				var descEnc = encodeURIComponent(elem.DESCRIPTION);
 				var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-                $("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
+				
+                $(/*"#req_res"*/"#myCarousel").append(/*"<ul id="+i+" class='boxview'>*/"<li><div class='tag'>" + elem.TAGNAME + 
                              "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
+                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>"/*</ul>"*/);
 			}
             
   		})(this.jQuery);
