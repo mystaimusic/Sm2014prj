@@ -225,70 +225,72 @@
 			$('.jcarousel-gen-next').jcarouselControl({
 				target: '+=5'
 			});
+
 			
-	           
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
             {
             	searchTag(e,$(this).val());
             });
 
-			$(".search_input").keyup(function(e){
+            $(".search_input").keyup(function(e){
 				if(e.keyCode == 13)
 				{
 					$(this).trigger("enterKeyTag");
 				}
 			});
-                        
-                        $(".search_button").click(function(e)
-                        {
-                            alert("clicked button");
-                            searchTag(e,$(".search_input").val());
-                        });
+            
+            $(".search_button").click(function(e)
+            {
+            	alert("clicked button");
+                searchTag(e,$(".search_input").val());
+            });
+            
+           	function searchTag(e,search_input)
+            {
+            	var rawData;    
+                //alert(search_input);
+                $.ajax({
+                	url: '<?php echo Yii::app()->createUrl('Tags/search')?>',
+                    type: "GET",
+                    data: {tagNameMatch: search_input},
+                  	dataType: "json",
+                    async: false,
+                   	success: function(response,status, jqXHR)
+                    {
+                    	if(response){
+                    		$("#req_res").empty();
+                            var count = 0;
+                            $.each(response.dataProvider.rawData, function(i, elem){
+								//var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+								//var descEnc = encodeURIComponent(elem.DESCRIPTION);
+								//var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+                                //$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
+                                //            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+                                //            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
+                                buildTagDiv(i,elem);
+                                count++;
+                  			});
+                    	}
+             		},
+                    error: function(data)
+                    {
+                    	alert("error!!!! "+data);
+                   	}
+                });
+            }
 
-                        
-                        function searchTag(e,search_input)
-                        {
-                            var rawData;    
-                            //alert(search_input);
-                            $.ajax(
-                                    {
-                                        url: '<?php echo Yii::app()->createUrl('Tags/search')?>',
-                                        type: "GET",
-                                        data: {tagNameMatch: search_input},
-                                        dataType: "json",
-                                        async: false,
-                                        success: function(response,status, jqXHR)
-                                        {
-                                            if(response){
-                                                $("#req_res").empty();
-                                                var count = 0;
-                                                $.each(response.dataProvider.rawData, function(i, elem){
-													var tagNameEnc = encodeURIComponent(elem.TAGNAME);
-													var descEnc = encodeURIComponent(elem.DESCRIPTION);
-													var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-                                                    
-                                                	$("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
-                                                        	"</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                                                        	+"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
-                                                	count++;
-                                                });
-                                            }
-                                            
-                                        },
-                                        error: function(data)
-                                        {
-                                            alert("error!!!! "+data);
-                                        }
-                                    }    
-                                    );
-                            
-                            
-                        }
-
-
-
-            })(this.jQuery);
+			function buildTagDiv(i,elem)
+			{
+				var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+				var descEnc = encodeURIComponent(elem.DESCRIPTION);
+				var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+                $("#req_res").append("<ul id="+i+" class='boxview'><li><div class='tag'>" + elem.TAGNAME + 
+                             "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li></ul>");
+			}
+            
+  		})(this.jQuery);
 
 	//]]>
 	</script>

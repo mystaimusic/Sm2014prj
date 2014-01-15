@@ -21,6 +21,24 @@ class SiteController extends Controller
 		);
 	}
 
+	
+/*function actionIndex(){
+    $criteria=new CDbCriteria();
+    $count=Article::model()->count($criteria);
+    $pages=new CPagination($count);
+
+    // results per page
+    $pages->pageSize=10;
+    $pages->applyLimit($criteria);
+    $models=Article::model()->findAll($criteria);
+
+    $this->render('index', array(
+    'models' => $models,
+         'pages' => $pages
+    ));
+}*/
+	
+	
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
@@ -29,28 +47,46 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+		/*$criteria=new CDbCriteria();
+    	$count=Tags::model()->count($criteria);
+    	$pages=new CPagination($count);
+    	$pages->pageSize=10;
+    	$pages->applyLimit($criteria);
+    	$models=Tags::model()->findAll($criteria);
+		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');*/
+		
 		$dataProvider=new CActiveDataProvider('Tags',
 			array(
 				'criteria'=>array(
         			'order'=>'TAGNAME',
     			),
+    			'pagination'=>array(
+        			'pageSize'=>1000, // or another reasonable high value...
+    			),
 			)
 		);
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex 2"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($dataProvider->getData()),'vardump');
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
 			array(
 				'criteria'=>array(
 					'order'=>'PLID',
 				),
 				'pagination'=>array(
-        			'pageSize'=>20,
+        			'pageSize'=>1000,
     			),
 			)
 		);
 		
-		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
-		//echo Yii::trace(CVarDumper::dumpAsString($dataProviderPlaylist),'vardump');
-		
-		$dataProviderGenres = new CActiveDataProvider('Genres');
+		$dataProviderGenres = new CActiveDataProvider('Genres',
+			array(
+				'criteria'=>array(
+					'order'=>'GENREID',	
+				),
+				'pagination'=>array('pageSize'=>1000),
+			)
+		);
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'dataProviderGenres'=>$dataProviderGenres,
@@ -59,6 +95,17 @@ class SiteController extends Controller
 		//$this->render('index');
 	}
 
+	public function getNext()
+	{
+		$dataProvider=new CActiveDataProvider('Tags',
+			array(
+				'criteria'=>array(
+        			'order'=>'TAGNAME',
+    			),
+			)
+		);
+	}
+	
 	/**
 	 * This is the action to handle external exceptions.
 	 */
