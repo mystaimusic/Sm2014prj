@@ -51,11 +51,15 @@ class PlaylistsController extends Controller
 	 */
 	public function actionView($id)
 	{
+		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView"),'vardump');
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
 	}
 	
+	/**
+	 * Displays a particular model passing the id of the playlist to display
+	 */
 	public function actionView2($id)
 	{
 		$plist = $this->loadModel($id);

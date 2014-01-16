@@ -75,7 +75,14 @@
 					</div>
 				</div><!--youtubeplayer-->		
         </div><!--headervideo--> 
-       <div id="headertext"></div><!--headertext-->     
+       	<div id="headertext">
+       		<?php 
+       			if((isset($oneRecord) && $oneRecord === true))
+       			{
+       				echo $pls->DESCRIPTION;
+       			}
+       		?>
+       	</div><!--headertext-->     
       
          <div id="player_toolbar">
 	     </div><!--player_toolbar-->
@@ -107,7 +114,6 @@
 <div id="result"></div>
 </div>
  <!--mod_mainsearch2-->
- 
  
 
 <div class="mainleft_text">
@@ -152,7 +158,6 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <span class="title"><h2>Our Playlist</h2></span></div>
 <div class="cont">
     	<?php 
-			
     		if((!isset($oneRecord)|| $oneRecord === false))
     		{
     			foreach($pls as $pl)
