@@ -24,7 +24,7 @@ font-style: normal;
 
 /**GlobalStyles**/
 html{height:100%;width:100%;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0px; overflow-x: hidden;}
-body{width:100%;font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:000px0;background-repeat:no-repeat;margin:0px;}
+body{width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:000px0;background-repeat:no-repeat;margin:0px;}
 ::selection{background:#000;color:#FFF;}
 ::-moz-selection{background:#000;color:#FFF;}
 a{color:#00B2E0;text-decoration:none;-webkit-transition:all0.2slinear;-moz-transition:all0.2slinear;-o-transition:all0.2slinear;transition:all0.2slinear;}
@@ -76,9 +76,9 @@ a:hover{color:#222;}
 
 
 /** jcarousel SLIDE IN HOMEPAGE------------------------------------------------------ **/
-.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px}
-.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px}
-.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px}
+.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px; margin-top:10px}
+.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px;margin-top:10px}
+.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px; margin-top:10px}
 
 .jcarousel-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
 .jcarousel-prev a:hover{background-image:url(../images/button-prevACT.png);}
@@ -90,10 +90,10 @@ a:hover{color:#222;}
 .jcarousel-plist-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat;}
 .jcarousel-plist-next a:hover{background-image:url(../images/button-prevACT.png);}
 
-.jcarousel-gen-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
-.jcarousel-gen-prev a:hover{background-image:url(../images/button-prevACT.png);}
-.jcarousel-gen-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat;}
-.jcarousel-gen-next a:hover{background-image:url(../images/button-prevACT.png);}
+.jcarousel-gen-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev-small.png);background-repeat:no-repeat;}
+.jcarousel-gen-prev a:hover{background-image:url(../images/button-prevACT-small.png);}
+.jcarousel-gen-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next-small.png);background-repeat:no-repeat;}
+.jcarousel-gen-next a:hover{background-image:url(../images/button-prevACT-small.png);}
 
 
 
@@ -124,16 +124,16 @@ a:hover{color:#222;}
 .boxview .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
 .boxview .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
-/** playlists-----------------------------------------------------**/
+/** genres-----------------------------------------------------**/
 .bv_maincont2{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
-.boxview2 {float:left;margin:0px;padding:0px;width:240px;height:240px;display:inline;}
+.boxview2 {float:left;margin:0px;padding:0px;width:134px;height:132px;display:inline;}
 .boxview2 ul{text-decoration:none;}
 .boxview2 li{display:block}
-.boxview2 img{width:240px; height:240px;  z-index:2}			
+.boxview2 img{width:132px; height:132px;  z-index:2}			
 .boxview2 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
 .boxview2 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
-/**  genres -----------------------------------------------------**/
+/**  playlists -----------------------------------------------------**/
 .bv_maincont3{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
 .boxview3 {float:left;margin:0px;padding:0px;width:240px;height:240px;display:inline;}
 .boxview3 ul{text-decoration:none;}
@@ -294,4 +294,5 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:12px;text-
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
 .search_button{text-decoration:none;border:hidden;margin-left:10px;background-image:url(../images/button-search1.png);background-repeat:no-repeat;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif}
 }
+
 
