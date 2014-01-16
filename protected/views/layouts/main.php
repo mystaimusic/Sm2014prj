@@ -61,10 +61,13 @@
 
 	<div class="clear"></div>
 
-	<div id="footer">
+	<div id="footer"><div class="footer-col">
 		Copyright &copy; <?php echo date('Y'); ?> by Staimusic.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		<?php echo Yii::powered(); ?></div> 
+                <div class="footer-col"></div> 
+                        <div class="footer-col"></div> 
+                                <div class="footer-col"></div> 
 	</div><!-- footer -->
 
 </div><!-- page -->
