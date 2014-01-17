@@ -75,6 +75,14 @@
 					</div>
 				</div><!--youtubeplayer-->		
         </div><!--headervideo--> 
+        <div id="headertitle">
+               		<?php 
+       			if((isset($oneRecord) && $oneRecord === true))
+       			{
+				echo $pls->PLTITLE;
+       			}
+       		?>
+        </div><!--headertitle-->
        	<div id="headertext">
        		<?php 
        			if((isset($oneRecord) && $oneRecord === true))
@@ -82,7 +90,7 @@
        				echo $pls->DESCRIPTION;
        			}
        		?>
-       	</div><!--headertext-->     
+       	</div><!--headertext-->    
       
          <div id="player_toolbar">
 	     </div><!--player_toolbar-->
