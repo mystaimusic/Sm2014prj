@@ -150,12 +150,13 @@ a:hover{color:#222;}
 #headervideo h1 a{font-family:"Orienta",Arial,Helvetica,sans-serif;color:#FFF;font-size:35px;letter-spacing:-2px;}				
 #headervideo h1 a:hover{color:#0CF;}
 /**headertext-----------------------------------------------------**/
-#headertext{width:330px;height:358px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;max-width:600px;float:left;
-font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:12px;text-align:left}	
+#headertext{width:330px;height:280px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;max-width:600px;float:left;
+font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-align:left}	
+/**headertitle-----------------------------------------------------**/
+#headertitle{width:330px;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;float:left;
+font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;font-size:25px;color:#000;text-align:left; line-height:25px}	
 /**player_toolbar-----------------------------------------------------**/
-#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
-
-
+#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}
 
 /**mod_mainsearch-----------------------------------------------------**/
 #mod_mainsearch{width:100%;float:left;max-width:1200px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;}
