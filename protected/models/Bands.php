@@ -48,7 +48,8 @@ class Bands extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bAND' => array(self::BELONGS_TO, 'Songs', 'BANDID'),
+			//'bAND' => array(self::BELONGS_TO, 'Songs', 'BANDID'),
+			'band' => array(self::BELONGS_TO, 'Songs', 'BANDID'),
 			'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'BID'),
 		);
 	}

@@ -159,13 +159,13 @@
 				//if($countGen <= $maxGen)
 				//{
 					echo CHtml::tag('li',array(),false,false);
+					$imgGenStr = "images/stai-music.jpg";
 					if(file_exists ( $genre->IMAGEPATH )){
-						$imgGenHtml = CHtml::image($genre->IMAGEPATH);	
-					}else{
-						$imgGenHtml = CHtml::image("images/stai-music.jpg");
+						$imgGenStr = $genre->IMAGEPATH;	
 					}
+					$imgGenHtml = CHtml::image($imgGenStr);
 					echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
-					echo CHtml::link($imgGenHtml, array('Playlists/viewPlPerGenres','genid'=>$genre->GENREID));
+					echo CHtml::link($imgGenHtml, array('Genres/viewBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH));
 					echo CHtml::closeTag('li');
 					
 					$countGen++;

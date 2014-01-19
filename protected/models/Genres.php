@@ -47,7 +47,8 @@ class Genres extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'GID'),
+			//'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'GID'),
+			'bands' => array(self::MANY_MANY, 'Bands', 'bridge_genres_band(GID,BID)'),
 		);
 	}
 

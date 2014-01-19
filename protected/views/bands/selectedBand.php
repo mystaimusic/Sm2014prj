@@ -139,36 +139,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div id="mainright">
 <div class="mod_playCOVER">
 <?php
-	if(isset($fromGenres) && $fromGenres==true)
-	{//display bands
-		echo CHtml::tag('div',array('class'=>'tag'),true);
-		if(file_exists ( $genImagePath )){
-			$imgPath = $genImagePath;
-		}else{
-			$imgPath = "images/stai-music.jpg";
-		}
-		echo CHtml::image($imgPath);
-	}else{//display playlists
-		if((!isset($tagname) || trim($tagname)==='')){
-			if(strlen($pls->PLTITLE)>16){
-				$shortTitle = substr($pls->PLTITLE, 0, 16) . " ...";
-			}else{
-				$shortTitle = $pls->PLTITLE;
-			}
-			echo CHtml::tag('div',array('class'=>'tag'),$shortTitle,true);
-			
-			if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
-				$imgPath = $pls->IMAGEPATH;
-			}else{
-				$imgPath = "images/stai-music.jpg";
-			}
-			echo CHtml::image($imgPath);
-		} 
-		else{
-			echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
-			echo CHtml::image($imagePath);
-		}
+	echo CHtml::tag('div',array('class'=>'tag'),true);
+	if(file_exists ( $genImagePath )){
+		$imgPath = $genImagePath;
+	}else{
+		$imgPath = "images/stai-music.jpg";
 	}
+	echo CHtml::image($imgPath);
 ?>
 <!--  <div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>  -->
 </div><!--mod_playCOVER-->	
@@ -178,36 +155,12 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div class="cont">
     	<?php 
     		
-    		if(isset($fromGenres) && $fromGenres==true)
-    		{//display bands
-    			foreach($bands as $band)
-    			{
-    				echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
-    				echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myband', 'id'=>$band->BANDID));	
-    				echo CHtml::closeTag('div');
-    			}	
+    		foreach($bands as $band)
+    		{
+    			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
+    			echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myband', 'id'=>$band->BANDID));	
+    			echo CHtml::closeTag('div');
     		}
-    		else
-    		{//display playlists
-	    		if((!isset($oneRecord)|| $oneRecord === false))
-	    		{
-	    			foreach($pls as $pl)
-	    			{
-	    				echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-	    				echo CHtml::link($pl->PLTITLE,'#'.$pl->PLREF, array('class' => 'myplaylist', 'id' =>$pl->PLID ) );
-	    				echo CHtml::closeTag('div');
-	    			}
-	    		}else{
-	    			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-	    			echo CHtml::link($pls->PLTITLE,'#'.$pls->PLREF, array('class' => 'myplaylist', 'id' =>$pls->PLID ) );
-	    			echo CHtml::closeTag('div');
-	    		}
-    		}
-    	
-			//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
-			
-			//Yii::app()->createUrl('Songs/viewSongsPerPlist');
-			
 		?>        
 </div><!--mod_playlists-->	
 
@@ -253,22 +206,22 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 		(function($){
 
-			var firstPlaylist = $(".myplaylist")[0].id;
-			//alert("firstPlaylist: "+firstPlaylist);
+			var firstBandPlaylist = $(".myband")[0].id;
+			//alert("firstPlaylist: "+firstBandPlaylist);
 			var videoJSON_G = new Object();
 			$.ajax(
            		{
                		//alert("ajax call");
-              		url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
+              		url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerBand')?>',
                    	type: "GET",
-                    data: {playlistId: firstPlaylist},
+                    data: {bandId: firstBandPlaylist},
                     dataType: "json",
                     async: false,
                     success: function(response,status, jqXHR)
                     {
                     	if(response){
                             //alert(jqXHR.responseText);
-                            videoJSON_G.title = firstPlaylist;
+                            videoJSON_G.title = firstBandPlaylist;
                         	//alert(videoJSON.title);
                             videoJSON_G.videos = [];
                             $.each(response, function(i, data){
@@ -288,44 +241,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                     }
                 }    
            	);
-			
-
-			//alert(videoJSON_G);
-			
-			//alert($testVar);
-			/*var playlists = {
-				'playlist-1': { 
-					title: 'Metallica',
-					videos: [
-						{ id: 'bAsA00-5KoI&gl', title: 'Metallica - Nothing Else Matters [Original Video]' },
-						{ id: 'CD-E-LDc384', title: 'Metallica - Enter Sandman [Official Music Video]' }
-					]
-				},
-				'playlist-2': {
-					title: 'M83',
-					videos: [
-						{ id: 'dX3k_QDnzHE', title: 'M83 Midnight City Official Video' },
-						{ id: 'Bzge5vY72hE', title: 'M83 - We Own the Sky' }
-					]
-				},
-				'playlist-3': {
-					title: 'U2',
-					videos: [
-						{ id: 'XmSdTa9kaiQ', title: 'U2 - With Or Without You'  						}
-					]
-				},
-				'playlist-4': {
-					title: 'Daftpank',
-					videos: [
-						{ id: 'PsO6ZnUZI0g', title: 'Kanye West - Stronger' },
-						{ id: 'G6WEIVDHS7k', title: 'ft Punk - Get Lucky'}
-					]
-				}
-			};*/
-
-			//alert(playlists['playlist-1'].videos[0].id);
-			//alert(videoJSON_G.videos[0].id);
-			
+						
 			var playerConfig =  {
 					//
 					playlist: videoJSON_G,
@@ -351,7 +267,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 //                        });
 
 			//$('.playlists a[href*=#]').click(function(){
-                        $(".myplaylist").click(function(){
+                        $(".myband").click(function(){
                                 //TODO: replace with ajax call to the php function
                               //var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
                                 //alert('click ' +playlist.videos[0].id);
@@ -359,9 +275,9 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                               	//alert('click ' +selectedPlist);
                                 $.ajax(
                                 {
-                                    url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
+                                    url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerBand')?>',
                                     type: "GET",
-                                    data: {playlistId: selectedPlist},
+                                    data: {bandId: selectedPlist},
                                     dataType: "json",
                                     async: false,
                                     success: function(response,status, jqXHR)
