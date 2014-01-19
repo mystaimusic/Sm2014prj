@@ -28,7 +28,7 @@ class SongsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','viewSongsPerPlist'),
+				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -63,6 +63,27 @@ class SongsController extends Controller
 
         $output = CJSON::encode($songs);
 		//echo Yii::trace(CVarDumper::dumpAsString("sono in actionViewSongsPerPlaylist"),'vardump');
+        
+        echo $output;
+		//echo Yii::trace(CVarDumper::dumpAsString($playlist),'vardump');
+		/*foreach($songs as $song){
+        	$this->render('selectedTag',array(
+            	'song'=>$song,
+        	));
+		}*/
+	}
+	
+	public function actionViewSongsPerBand($bandId)
+	{
+		$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+       	//echo Yii::trace(CVarDumper::dumpAsString($songsModel),'vardump');
+		
+		//$playlist=Playlists::model()->findByPk($bandId);
+        //$songs = $playlist->songs;
+
+        $output = CJSON::encode($songsModel);
+		echo Yii::trace(CVarDumper::dumpAsString("sono in actionViewSongsPerBand"),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
         
         echo $output;
 		//echo Yii::trace(CVarDumper::dumpAsString($playlist),'vardump');

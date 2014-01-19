@@ -6,7 +6,7 @@ class GenresController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	//public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -28,7 +28,7 @@ class GenresController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','viewBandsPerGenres'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -56,6 +56,32 @@ class GenresController extends Controller
 		));
 	}
 
+	
+	public function actionViewBandsPerGenres($genid,$genImagePath)
+    {
+    	$genre=Genres::model()->findByPk($genid);
+    	$bands=$genre->bands;
+    	//$songs=$bands->songs;
+    	
+    	//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerGenres"),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
+    	/*foreach($bands as $band)
+    	{
+    		$bandId = $band->BANDID;
+    		$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+        	echo Yii::trace(CVarDumper::dumpAsString($songsModel),'vardump');
+    	}*/
+    	
+    	$this->render('/bands/selectedBand',array(
+			'bands'=>$bands,
+			'fromGenres'=>true,
+			'genImagePath'=>$genImagePath,
+		));
+    	
+
+    	//echo Yii::trace(CVarDumper::dumpAsString($songs),'vardump');        
+    }
+	
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.

@@ -28,7 +28,7 @@ class PlaylistsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index', 'view' and 'viewPlPerTag' actions
-				'actions'=>array('index','view','viewPlPerTag','viewPlPerGenres','view2'),
+				'actions'=>array('index','view','viewPlPerTag','view2'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -82,8 +82,9 @@ class PlaylistsController extends Controller
         $tag=Tags::model()->findByPk($tagid);
         $pls=$tag->playlists;
         
-		//echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
-		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+        echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
+		
         //echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
@@ -101,14 +102,6 @@ class PlaylistsController extends Controller
 		}*/
     }
     
-    public function actionViewPlPerGenres($genid)
-    {
-    	$genre=Genres::model()->findByPk($genid);
-    	$bands=$genre->bands;
-    	$songs=$bands->songs; //TODO: check
-    }
-
-
 
 
 	/**
