@@ -28,7 +28,7 @@ class SongsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand'),
+				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand','viewRandomSongsPerGenres'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -73,6 +73,7 @@ class SongsController extends Controller
 		}*/
 	}
 	
+	//this is an ajaxcall
 	public function actionViewSongsPerBand($bandId)
 	{
 		$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
@@ -82,7 +83,7 @@ class SongsController extends Controller
         //$songs = $playlist->songs;
 
         $output = CJSON::encode($songsModel);
-		echo Yii::trace(CVarDumper::dumpAsString("sono in actionViewSongsPerBand"),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewSongsPerBand"),'vardump');
 		echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
         
         echo $output;
@@ -92,6 +93,35 @@ class SongsController extends Controller
             	'song'=>$song,
         	));
 		}*/
+	}
+	
+	//this is an ajaxcall
+	public function actionViewRandomSongsPerGenres($genreId)
+	{
+		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomSongsPerGenres"),'vardump');
+		$genre=Genres::model()->findByPk($genreId);
+    	$bands=$genre->bands;
+    	$songsArray = array();
+    	$count = 0;
+    	foreach($bands as $band)
+    	{
+    		$bandid = $band->BANDID;
+    		//$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+    		$criteria = new CDbCriteria();
+    		$songModel = Songs::model()->findAll($bandid,array(
+    			'select'=>'*, rand() as rand',
+    			'limit'=>1,
+    			'order'=>'rand',
+    		));
+    		//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
+    		//array_push(songsArray,$count,$songModel);
+    		$songsArray[$count] = $songModel;
+    		$count++;
+    	}
+    	//echo Yii::trace(CVarDumper::dumpAsString($songsArray),'vardump');
+    	$output = CJSON::encode($songsArray);
+    	echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+    	echo $output;
 	}
 
 

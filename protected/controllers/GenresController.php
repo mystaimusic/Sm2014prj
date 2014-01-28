@@ -61,10 +61,11 @@ class GenresController extends Controller
     {
     	$genre=Genres::model()->findByPk($genid);
     	$bands=$genre->bands;
+    	$tags=$genre->tags;
     	//$songs=$bands->songs;
     	
     	//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerGenres"),'vardump');
-    	//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString($tags),'vardump');
     	/*foreach($bands as $band)
     	{
     		$bandId = $band->BANDID;
@@ -76,6 +77,7 @@ class GenresController extends Controller
 			'bands'=>$bands,
 			'fromGenres'=>true,
 			'genImagePath'=>$genImagePath,
+    		'genreId'=>$genid,
 		));
     	
 

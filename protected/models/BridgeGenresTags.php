@@ -1,25 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "genres".
+ * This is the model class for table "bridge_genres_band".
  *
- * The followings are the available columns in table 'genres':
- * @property string $GENREID
- * @property string $GENRENAME
- * @property string $DESCRIPTION
- * @property string $IMAGEPATH
+ * The followings are the available columns in table 'bridge_genres_band':
+ * @property string $ID
+ * @property string $GID
+ * @property string $BID
+ * @property double $PERCENTAGE
  *
  * The followings are the available model relations:
- * @property BridgeGenresBand[] $bridgeGenresBands
+ * @property Bands $b
+ * @property Genres $g
  */
-class Genres extends CActiveRecord
+class BridgeGenresBand extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'genres';
+		return 'bridge_genres_band';
 	}
 
 	/**
@@ -30,12 +31,11 @@ class Genres extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('GENRENAME', 'required'),
-			array('GENRENAME, IMAGEPATH', 'length', 'max'=>64),
-			array('DESCRIPTION', 'length', 'max'=>128),
+			array('GID, TID', 'required'),
+			array('GID, TID', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('GENREID, GENRENAME, DESCRIPTION, IMAGEPATH', 'safe', 'on'=>'search'),
+			array('ID, GID, TID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,9 +47,9 @@ class Genres extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			//'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'GID'),
-			'tags' => array(self::MANY_MANY,'Tags', 'bridge_genres_tags(GID,TID)'),
-			'bands' => array(self::MANY_MANY, 'Bands', 'bridge_genres_band(GID,BID)'),
+			'b' => array(self::BELONGS_TO, 'Bands', 'BID'),
+			'g' => array(self::BELONGS_TO, 'Genres', 'GID'),
+			't' => array(self::BELONGS_TO, 'Tags', 'TID'),
 		);
 	}
 
@@ -59,10 +59,9 @@ class Genres extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'GENREID' => 'Genreid',
-			'GENRENAME' => 'Genrename',
-			'DESCRIPTION' => 'Description',
-			'IMAGEPATH' => 'Imagepath',
+			'ID' => 'ID',
+			'GID' => 'Gid',
+			'TID' => 'Tid',
 		);
 	}
 
@@ -84,11 +83,10 @@ class Genres extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('GENREID',$this->GENREID,true);
-		$criteria->compare('GENRENAME',$this->GENRENAME,true);
-		$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
-		$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
-
+		$criteria->compare('ID',$this->ID,true);
+		$criteria->compare('GID',$this->GID,true);
+		$criteria->compare('TID',$this->TID,true);
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -98,7 +96,7 @@ class Genres extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Genres the static model class
+	 * @return BridgeGenresBand the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
