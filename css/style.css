@@ -60,12 +60,12 @@ a:hover{color:#222;}
 
 /**Main-------------------------------------------------------**/
 .container #maincont{text-align:center;width:100%;height:100%;margin:auto;position:relative;padding:0px;}	
-#mainleft{color:#000;width:900px;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
+#mainleft{color:#000;width:70%;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
 #mainleft_header{color:#000;background-color:#CCCCCC;margin-top:0px;padding:0px;padding-left:30px;padding-right:10px;text-align:center;margin:auto;position:relative;overflow:hidden;background-position:right;}
 #mainleft_header img{height:100%;width:100%;}
 .mainleft_text{position:relative;margin-top:20px;margin-bottom:100px;padding-top:10px;float:left;padding-left:10px;}
 .mainleft_texth1{font-size:25px;font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;}			
-#mainright{float:right;background-color:#fff;width:450px;padding:0px;height:100%;}
+#mainright{float:right;background-color:#fff;width:30%;padding:0px;height:100%;}
 
 /**Footer---------------------------------------------**/		
 .container #footercont{width:100%;margin:0auto;font-size:11px;text-align:right;padding:15px000;color:#fff;background-color:#000000}
@@ -115,6 +115,18 @@ a:hover{color:#222;}
 
 /**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
 
+/** suggested -----------------------------------------------------**/
+.suggested_cont{float:left;width:98%;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;}
+.suggested_title{float:left;height:20px;}
+ul.suggested {text-decoration:none; list-style: none; 	padding: 0; margin-top:10px;float:left;}
+ul.suggested li{ float:left; background-color:#999999; margin-right:5px; margin-bottom:20px; }
+ul.suggested li a{width:70px; height:70px;background-color:#999999;display: block; }
+ul.suggested img{width: 100%; height: auto;  z-index:2}	
+
+
+
+
+
 /** tags -----------------------------------------------------**/
 .bv_maincont{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
 .boxview {float:left;margin:0px;padding:0px;width:240px;height:240px;display:inline;}
@@ -145,18 +157,33 @@ a:hover{color:#222;}
 
 
 /**headervideo-----------------------------------------------------**/
-#headervideo{width:500px;background-color:#000;height:350px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;margin-right:10px;max-width:600px;float:left;border:#CCCCCC solid 4px;}		
+	#headervideo_cont {
+	 width: 65%;display: inline-block;position: relative;;margin-bottom:10px;margin-top:10px;margin-right:10px;max-width:600px;float:left;border:#CCCCCC solid 4px;}		
+	#headervideo_cont:after {
+		padding-top: 66.25%;
+		display: block;
+		content: '';
+	}
+	#headervideo {
+		position: absolute;
+		top: 0; bottom: 0; right: 0; left: 0;
+		background-color: blue;
+		color: white;
+	}
+		
 #headervideo h1{font-size:26px;font-weight:400;padding-top:26px;}			
 #headervideo h1 a{font-family:"Orienta",Arial,Helvetica,sans-serif;color:#FFF;font-size:35px;letter-spacing:-2px;}				
 #headervideo h1 a:hover{color:#0CF;}
 /**headertext-----------------------------------------------------**/
-#headertext{width:330px;height:280px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;max-width:600px;float:left;
+#headertext{width:30%;height:280px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;max-width:600px;float:left;
 font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-align:left}	
 /**headertitle-----------------------------------------------------**/
-#headertitle{width:330px;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;float:left;
+#headertitle{width: auto;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;
 font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;font-size:25px;color:#000;text-align:left; line-height:25px}	
 /**player_toolbar-----------------------------------------------------**/
-#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}
+#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
+
+
 
 /**mod_mainsearch-----------------------------------------------------**/
 #mod_mainsearch{width:100%;float:left;max-width:1200px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;}
@@ -178,7 +205,7 @@ font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;font-size:25px;
 
 /**mod_playCOVER-----------------------------------------------------**/				
 .mod_playCOVER{width:50%;height:auto;padding:0px;font-size:13px;float:left;font-weight:bold;max-width:400px;margin-left:10px;margin-top:10px;margin-bottom:10px}
-.mod_playCOVER img{width:100%;height:100%;z-index:2}
+.mod_playCOVER img{width:100%;height: auto;z-index:2}
 .mod_playCOVER .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;font-size:20px;padding:5px}
 
 
@@ -223,25 +250,9 @@ padding-left:30px;padding-right:10px;}
 
 /**ResponsiveMagic**/
 
-@media screen and (max-width:1400px)
+@media screen and (max-width:1200px)
 {
-/**LAYOUTSTYLES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
-/**Main-------------------------------------------------------**/
-#mainleft{color:#000;width:70%;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
-#mainright{float:right;background-color:#fff;width:300px;padding:0px;height:100%;}	
-
-
-
-/**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
-/**headervideo-----------------------------------------------------**/
-#headervideo{width:350px;background-color:#000;height:300px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;margin-right:10px;float:left;border:#CCCCCC solid 4px}		
-#headervideo h1{font-size:26px;font-weight:400;padding-top:26px;}			
-#headervideo h1 a{font-family:"Orienta",Arial,Helvetica,sans-serif;color:#FFF;font-size:35px;letter-spacing:-2px;}				
-#headervideo h1 a:hover{color:#0CF;}
-/**headertext-----------------------------------------------------**/
-#headertext{width:40%;height:358px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;min-width:50px;float:left;font-family:"Orienta",Arial,Helvetica,sans-serifcolor:#000;font-size:12px;text-align:left}	
-/**player_toolbar-----------------------------------------------------**/
-#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
+	
 
 
 
