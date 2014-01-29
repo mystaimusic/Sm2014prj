@@ -67,6 +67,7 @@
 <div id="mainleft">
 
    <div id="mainleft_header">
+   		<div id="headervideo_cont">
 		<div id="headervideo">
 				<div class="youtube-player">
 					<div class="youtube-player-video">
@@ -75,7 +76,10 @@
 					</div>
 				</div><!--youtubeplayer-->		
         </div><!--headervideo--> 
-        <div id="headertitle">
+        </div><!--headervideo_cont--> 
+
+       	<div id="headertext">
+       	        <div id="headertitle">
            	<?php 
        			if((isset($oneRecord) && $oneRecord === true))
        			{
@@ -83,7 +87,6 @@
        			}
        		?>
         </div><!--headertitle-->
-       	<div id="headertext">
        		<?php 
        			if((isset($oneRecord) && $oneRecord === true))
        			{
@@ -163,7 +166,26 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 		?>
 </div><!--mod_playlists-->	
 
+<div class="suggested_cont">
+<div class="suggested_title">Tag suggeriti</div>
+<ul class="suggested">
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+</ul>  <br /><br /><br />
 
+
+ <div class="suggested_title">Playlist suggerite</div>
+<ul class="suggested">
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+</ul>     
+</div><!--suggested_cont-->
 
 
 
