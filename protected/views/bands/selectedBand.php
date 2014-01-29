@@ -207,7 +207,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 			var firstBandPlaylist = $(".myband")[0].id;
 			var videoJSON_G = new Object();
-			var random15 = false;
+			var random15 = true;
 			
 			if(random15==true)
 			{
@@ -269,7 +269,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                             	oneVideoJSON.id = data.CODE;
                             	oneVideoJSON.title = data.TITLE;
                             	videoJSON_G.videos.push(oneVideoJSON);
-                            	alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
+                            	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
                                 	//player.player('loadPlaylist', videoJSON);
                             });
                             
