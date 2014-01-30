@@ -47,16 +47,14 @@
 	<div class="jcarousel-wrapper">
 		<!-- div tags -->		
 		<div class="jcarousel-prev">
-			<a href="#" class="jcarousel-prev" data-jcarouselcontrol="true">
-
-			</a>
+			<a id="jcarousel-prev-btn" href="#" class="jcarousel-prev" data-jcarouselcontrol="true"></a>
 		</div>
 		<!-- <div class="bv_maincont3" class="clearfix" >  -->
 			<div id="myCarousel" class="jcarousel" data-jcarousel="true">
 				<?php
 					$max = 5;
 					$count = 1;
-					echo CHtml::tag('ul', array('class'=>'boxview'),false,false); 
+					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false); 
 					foreach($dataProvider->getData() as $tag)
 					{
 						//if($count <= $max){
@@ -81,9 +79,7 @@
 			</div>
 
 		<div class="jcarousel-next">
-			<a href="#" class="jcarousel-next" data-jcarouselcontrol="true">
-
-			</a>
+			<a id="jcarousel-next-btn" href="#" class="jcarousel-next" data-jcarouselcontrol="true"></a>
 		</div>
 		</div>
 		
@@ -198,6 +194,7 @@
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
+			var tagsPage = 0;
 			//tags
 		 	$('.jcarousel').jcarousel();
 
@@ -226,6 +223,104 @@
 				target: '+=5'
 			});
 
+			$("#jcarousel-prev-btn").click(function(e)
+			{
+				//alert("clicked prev");
+				if(tagsPage>0){
+					tagsPage--;
+				}
+				//alert(tagsPage);
+				$.ajax({
+                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
+                    type: "GET",
+                    data: {currentPage: tagsPage},
+                  	dataType: "json",
+                    async: false,
+                   	success: function(response,status, jqXHR)
+                    {
+                    	if(response){
+                    		//$("#myCarousel").empty();
+                            var count = 0;
+                            //$("#myCarouselUl").append("<ul id='myCarouselUl' class='boxview'>");
+							var html;
+                            $.each(response.dataProvider.rawData, function(i, elem){
+								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+								var descEnc = encodeURIComponent(elem.DESCRIPTION);
+								var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+								html += "<li><div class='tag'>"+elem.TAGNAME+"</div><div class='text'>"
+                            	+ elem.DESCRIPTION + "</div>" + "<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+                            	+elem.TAGID+"&amp;tagname="
+                                +tagNameEnc+"&amp;imagePath="
+                                +elem.IMAGEPATH+"'><img src='"
+                                +elem.IMAGEPATH+"' alt='' /></a></li>";
+
+                                count++;
+                  			});
+                            $("#myCarouselUl").prepend(html);
+                            //html += '</ul>';
+                            //alert(html);
+                            jcarousel.html(html);
+                         	// Reload carousel
+                            //jcarousel.jcarousel('reload');
+                    	}
+             		},
+                    error: function(data)
+                    {
+                    	alert("error!!!! "+data);
+                   	}
+                });
+				
+					
+			});
+
+			$("#jcarousel-next-btn").click(function(e)
+			{
+				//alert("clicked next");
+				tagsPage++;
+				//alert(tagsPage);
+				$.ajax({
+                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
+                    type: "GET",
+                    data: {currentPage: tagsPage},
+                  	dataType: "json",
+                    async: false,
+                   	success: function(response,status, jqXHR)
+                    {
+                    	if(response){
+                    		//$("#myCarousel").empty();
+                            var count = 0;
+                            //$("#myCarouselUl").append("<ul id='myCarouselUl' class='boxview'>");
+                            var html;
+                            $.each(response.dataProvider.rawData, function(i, elem){                               
+								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+								var descEnc = encodeURIComponent(elem.DESCRIPTION);
+								var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+								//alert($("#myCarouselUl"));
+								html += "<li><div class='tag'>" + elem.TAGNAME + 
+                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+                                +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+                                +elem.TAGID+"&amp;tagname="
+                                +tagNameEnc+"&amp;imagePath="
+                                +elem.IMAGEPATH+"'><img src='"
+                                +elem.IMAGEPATH+"' alt='' /></a></li>";
+                                
+                                //buildTagDiv(i,elem);
+                                count++;
+                  			});
+                            //</ul>
+                            //alert(html);
+                            $("#myCarouselUl").html(html);
+                            //jcarousel.jcarousel('reload');
+                    	}
+             		},
+                    error: function(data)
+                    {
+                    	alert("error!!!! "+data);
+                   	}
+                });
+				
+            });
+
 			
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
@@ -242,7 +337,7 @@
             
             $(".search_button").click(function(e)
             {
-            	alert("clicked button");
+            	//alert("clicked button");
                 searchTag(e,$(".search_input").val());
             });
             

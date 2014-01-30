@@ -30,12 +30,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		/*$criteria=new CDbCriteria();
-    	$count=Tags::model()->count($criteria);
-    	$pages=new CPagination($count);
-    	$pages->pageSize=10;
-    	$pages->applyLimit($criteria);
-    	$models=Tags::model()->findAll($criteria);
+		/*
 		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
 		echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');*/
 		
@@ -45,7 +40,7 @@ class SiteController extends Controller
         			'order'=>'TAGNAME',
     			),
     			'pagination'=>array(
-        			'pageSize'=>1000, // or another reasonable high value...
+        			'pageSize'=>5, // or another reasonable high value...
     			),
 			)
 		);
@@ -78,15 +73,32 @@ class SiteController extends Controller
 		//$this->render('index');
 	}
 
-	public function getNext()
+	//this is an ajax call
+	public function actionGetNextTag($currentPage)
 	{
-		$dataProvider=new CActiveDataProvider('Tags',
-			array(
-				'criteria'=>array(
-        			'order'=>'TAGNAME',
-    			),
-			)
-		);
+		$criteria=new CDbCriteria();
+		$criteria->order='TAGNAME';
+    	$count=Tags::model()->count($criteria);
+    	$pages=new CPagination($count);
+    	$pages->pageSize=5;
+    	$pages->setCurrentPage($currentPage);
+    	$pages->applyLimit($criteria);
+    	$models=Tags::model()->findAll($criteria);
+    	//echo Yii::trace(CVarDumper::dumpAsString("---> sono in getNextTag"),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString($currentPage),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');
+    	
+		$dataProvider=new CArrayDataProvider($models, array(
+			'id'=>'TAGID',
+			'sort'=>array(
+        		'attributes'=>array(
+             		'TAGNAME',
+        		),
+    		),
+		));
+
+		$output = CJSON::encode(array('dataProvider'=>$dataProvider));
+		echo $output;
 	}
 	
 	/**
