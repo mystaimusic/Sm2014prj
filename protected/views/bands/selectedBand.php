@@ -169,12 +169,29 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div class="suggested_cont">
 <div class="suggested_title">Tag suggeriti</div>
 <ul class="suggested">
+	<?php 
+		foreach($tags as $tag)
+		{
+			echo CHtml::tag('li', array(), false,false);
+			//echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+			//echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+			if(file_exists ( $tag->IMAGEPATH )){
+				$imagePath = $tag->IMAGEPATH;
+			}else{
+				$imagePath = "images/stai-music.jpg";
+			}
+			$imghtml = CHtml::image($imagePath);
+			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+			echo CHtml::closeTag('li');
+		}
+	?>
+
+<!--  <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
-</ul>  <br /><br /><br />
+<li><a href=""></a></li> -->
+</ul>  <br /><br /><br /><br />
 
 
  <div class="suggested_title">Playlist suggerite</div>

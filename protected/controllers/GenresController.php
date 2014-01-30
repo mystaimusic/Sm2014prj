@@ -75,6 +75,7 @@ class GenresController extends Controller
     	
     	$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
+    		'tags'=>$tags,
 			'fromGenres'=>true,
 			'genImagePath'=>$genImagePath,
     		'genreId'=>$genid,
