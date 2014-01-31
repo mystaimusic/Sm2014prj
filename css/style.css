@@ -48,8 +48,7 @@ a:hover{color:#222;}
 .container#menucont{width:80%;max-width:980px;padding:3px0;margin:0auto;height:60px;}			
 .container#menucont img{display:block;width:100%;height:100%;}	
 .container#menucont.menuselect{display:none;font-family:inherit;}
-@media(max-width:768px){.container#menucont.menu ul{display:none;}
-.container#menucont.menuselect{display:inline-block;width:100%;text-transform:none;font-family:inherit;}}
+
 .container#menucont ul{float:left;}
 .container#menucontul li{display:inline;}
 .container#menucontullia{float:left;padding:015px;font-weight:bold;font-size:13px;text-decoration:none;color:#CCF5FF;font-family:"primaria", Arial, Verdana, Helvetica, sans-serif}
@@ -76,23 +75,24 @@ a:hover{color:#222;}
 
 
 /** jcarousel SLIDE IN HOMEPAGE------------------------------------------------------ **/
-.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px; margin-top:10px}
-.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px;margin-top:10px}
-.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:240px; margin-top:10px}
+.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:240px; margin-top:10px}
+.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:240px;margin-top:10px}
+.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:140px; margin-top:10px}
 
-.jcarousel-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
+.jcarousel-prev{float:left;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
 .jcarousel-prev a:hover{background-image:url(../images/button-prevACT.png);}
-.jcarousel-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat;}
+.jcarousel-next{float:right;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat; background-position:right}
 .jcarousel-next a:hover{background-image:url(../images/button-prevACT.png);}
 
-.jcarousel-plist-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
+.jcarousel-plist-prev{float:left;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
 .jcarousel-plist-prev a:hover{background-image:url(../images/button-prevACT.png);}
-.jcarousel-plist-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat;}
+.jcarousel-plist-next{float:right;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat; background-position:right}
 .jcarousel-plist-next a:hover{background-image:url(../images/button-prevACT.png);}
 
-.jcarousel-gen-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev-small.png);background-repeat:no-repeat;}
+
+.jcarousel-gen-prev{float:left;width: 20px;height:140px;margin:auto;position:relative;background-image:url(../images/button-prev-small.png);background-repeat:no-repeat;}
 .jcarousel-gen-prev a:hover{background-image:url(../images/button-prevACT-small.png);}
-.jcarousel-gen-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next-small.png);background-repeat:no-repeat;}
+.jcarousel-gen-next{float:right;width: 20px;height:140px;margin:auto;position:relative;background-image:url(../images/button-next-small.png);background-repeat:no-repeat;background-position:right }
 .jcarousel-gen-next a:hover{background-image:url(../images/button-prevACT-small.png);}
 
 
@@ -104,8 +104,7 @@ a:hover{color:#222;}
 
 /** playlists **/
 .jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
-.jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
-.jcarousel-plist li {float: left; border:#fff solid 2px}
+
 
 /**  genres **/
 .jcarousel-gen {float:left;position: relative;overflow: hidden;width: 1220px;}
@@ -116,10 +115,10 @@ a:hover{color:#222;}
 /**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
 
 /** suggested -----------------------------------------------------**/
-.suggested_cont{float:left;width:98%;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;}
-.suggested_title{float:left;height:20px;}
+.suggested_cont{float:left;width:98%;padding:0px;height:70px;margin:auto;position:relative;margin-top:20px;}
+.suggested_title{float:left;height:20px;width:98%; text-align:left; padding-top:10px}
 ul.suggested {text-decoration:none; list-style: none; 	padding: 0; margin-top:10px;float:left;}
-ul.suggested li{ float:left; background-color:#999999; margin-right:5px; margin-bottom:20px; }
+ul.suggested li{ float:left; background-color:#999999; margin-right:5px; margin-bottom:20px; padding:0px}
 ul.suggested li a{width:70px; height:70px;background-color:#999999;display: block; }
 ul.suggested img{width: 100%; height: auto;  z-index:2}	
 
@@ -147,13 +146,13 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 .boxview2 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 /**  playlists -----------------------------------------------------**/
 .bv_maincont3{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
-.boxview3 {float:left;margin:0px;padding:0px;width:240px;height:240px;display:inline;}
-.boxview3 ul{text-decoration:none;}
-.boxview3 li{display:block}
-.boxview3 img{width:240px; height:240px;  z-index:2}			
-.boxview3 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
+ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inline;width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
+ul.boxview3 li{display:block; width:240px;height:240px; float:left; border:#fff solid 2px}
+ul.boxview3 li a {display:block;}
+ul.boxview3 img{width:240px; height:240px;  z-index:2}			
+ul.boxview3 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
-.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
+ul.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 
 
 /**headervideo-----------------------------------------------------**/
@@ -212,11 +211,11 @@ font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;font-size:25px;
 /**mod_playlists-----------------------------------------------------**/
 .mod_playlists{width:100%;margin:0auto;font-size:13px;font-weight:bold;float:left;margin-left:10px}
 .mod_playlists ul{margin:0auto;text-decoration:none;padding:0px;text-align:left}
-.mod_playlists li{color:#fff;width:auto;height:50px;border-bottom:1px solid #666;text-decoration:none;display:block;padding-bottom:5px;padding-top:5px;}
+.mod_playlists li{color:#fff;width:auto;height:50px;border-bottom:1px solid #666;text-decoration:none;display:block;padding-bottom:0px;padding-top:0px;}
 .mod_playlists .item{float:left;padding-left:5px;}
 .mod_playlists .item_ img{float:left}
 .mod_playlists a{color:#000;text-decoration:none;}
-.mod_playlists a:hover{color:#666;}
+.mod_playlists a:hover{color: #cf043d;}
 .mod_playlists H3{color:#000;font-size:20px;font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;margin-bottom:5px;}
 .mod_playlists .header{width:auto;height:26px;background-image:url(../images/sf-lines.gif);background-repeat:no-repeat;background-color:#0895ee;color:#fff;text-align:left;padding:0px;margin:0px;overflow:hidden;}	
 .mod_playlists .title{display:inline-block;height:26px;width:auto;background-color:#0895ee;text-align:left;background-image:url(../images/icon-playlist.gif);background-repeat:no-repeat;padding-left:30px;padding-right:10px;}
@@ -228,7 +227,7 @@ font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;font-size:25px;
 	
 /**mod_contlist-----------------------------------------------------**/
 #mod_contlist{position:relative;width:100%;background-color:#333333;color:#fff;overflow:hidden}
-#mod_contlist .header{width:auto;height:26px;background-image:url(../images/sf-lines.gif);background-repeat:no-repeat;background-color:#e60544;color:#fff;text-align:left;padding:0px;}
+#mod_contlist .header{width:auto;height:26px;background-image:url(../images/sf-lines.gif);background-repeat:repeat;background-color:#e60544;color:#fff;text-align:left;padding:0px;}
 #mod_contlist .title{display:inline-block;height:26px;width:auto;background-color:#e60544;text-align:left;background-image:url(../images/icon-songs.gif);background-repeat:no-repeat;
 padding-left:30px;padding-right:10px;}
 #mod_contlist .title h2{font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;letter-spacing:0px;font-size:13px;font-weight:bold;margin:0px;color:#fff;}	
@@ -285,6 +284,24 @@ background-position:right;height:600px;}
 #mainright{display:none;float:right;background-color:#fff;width:450px;padding:0px;height:100%;}
 
 
+/** jcarousel SLIDE IN HOMEPAGE------------------------------------------------------ **/
+.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:280px; height:240px; margin-top:10px}
+.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:280px; height:240px;margin-top:10px}
+.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:280px; height:140px; margin-top:10px}
+/** tags **/
+.jcarousel {float:left; position: relative; overflow: hidden;width: 240px;}
+.jcarousel ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel li {float: left; border:#fff solid 2px}
+/** playlists **/
+.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 240px;}
+/**  genres **/
+.jcarousel-gen {float:left;position: relative;overflow: hidden;width: 240px;}
+.jcarousel-gen ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel-gen li {float: left; border:#fff solid 2px}
+
+
+
+
 
 
 /**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
@@ -301,8 +318,29 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:12px;text-
 
 
 
+/**MenuTOP**/
+#menulogo{width:200px;height:50px;margin:auto;float:left;}
+#menu{width:400px;float:right;height:50px;}				
+.container#menucont{width:80%;max-width:980px;padding:3px0;margin:0auto;height:60px;}			
+.container#menucont img{display:block;width:100%;height:100%;}	
+.container#menucont.menuselect{display:none;font-family:inherit;}
+
+.container#menucont ul{float:left;}
+.container#menucontul li{display:inline;}
+.container#menucontullia{float:left;padding:015px;font-weight:bold;font-size:13px;text-decoration:none;color:#CCF5FF;font-family:"primaria", Arial, Verdana, Helvetica, sans-serif}
+.container#menucontullia:hover,.container#menucontulli.activea{color:#FFF;}
+
+
+
+
+
+.coverbg{max-width:1000px;background-color:#FFFFFF;}
+
+
+/**Header**/
+#headercont{background-color:#cf043d;width:100%;margin-left:0px;position:relative;padding-bottom:0px;padding-top:5px;color:#FFFFFF}
 /**mod_mainsearch-----------------------------------------------------**/
-#mod_mainsearch{width:90%;float:left;height:100%;max-width:480px;margin:0auto;color:#fff;font-size:10px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;}
+#mod_mainsearch{width:100%;height:100%;max-width:480px;margin:auto;color:#fff;font-size:13px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif; padding-left:0px}
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
 .search_button{text-decoration:none;border:hidden;margin-left:10px;background-image:url(../images/button-search1.png);background-repeat:no-repeat;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif}
 }
