@@ -309,7 +309,7 @@
                             //myjcarousel.html(html);
 							//myjcarousel.next();
                             //myjcarousel.jcarousel('reload');
-                            $("#myCarouselUl").append(html);
+                            $("#myCarouselUl").html(html);
                             //alert($("#myCarouselUl"));
                             //jcarousel.jcarousel('reload');
                             //$('.jcarousel-next').jcarouselControl({

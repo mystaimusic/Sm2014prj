@@ -40,7 +40,7 @@ class SiteController extends Controller
         			'order'=>'TAGNAME',
     			),
     			'pagination'=>array(
-        			'pageSize'=>10, // or another reasonable high value...
+        			'pageSize'=>5, // or another reasonable high value...
     			),
 			)
 		);
@@ -80,7 +80,7 @@ class SiteController extends Controller
 		$criteria->order='TAGNAME';
     	$count=Tags::model()->count($criteria);
     	$pages=new CPagination($count);
-    	$pages->pageSize=10;
+    	$pages->pageSize=5;
     	$pages->setCurrentPage($currentPage);
     	$pages->applyLimit($criteria);
     	$models=Tags::model()->findAll($criteria);
