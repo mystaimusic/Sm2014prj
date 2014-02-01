@@ -85,12 +85,20 @@
        			{
 					echo $pls->PLTITLE;
        			}
+       			if((isset($fromGenres) && $fromGenres===true))
+       			{
+       				echo $genDescription;
+       			}
        		?>
         </div><!--headertitle-->
        		<?php 
        			if((isset($oneRecord) && $oneRecord === true))
        			{
        				echo $pls->DESCRIPTION;
+       			}
+       			if((isset($fromGenres) && $fromGenres===true))
+       			{
+       				echo $genDescription;
        			}
        		?>
        	</div><!--headertext-->    

@@ -51,28 +51,24 @@
 		</div>
 		<!-- <div class="bv_maincont3" class="clearfix" >  -->
 			<div id="myCarousel" class="jcarousel" data-jcarousel="true">
+			<!--  <div id="myCarousel" class="jcarousel" data-jcarousel="true">  -->
 				<?php
 					$max = 5;
 					$count = 1;
 					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false); 
 					foreach($dataProvider->getData() as $tag)
-					{
-						//if($count <= $max){
-							
-							echo CHtml::tag('li', array(), false,false);
-							echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-							echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
-							if(file_exists ( $tag->IMAGEPATH )){
-								$imagePath = $tag->IMAGEPATH;
-							}else{
-								$imagePath = "images/stai-music.jpg";
-							}
-							$imghtml = CHtml::image($imagePath);
-							echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
-							echo CHtml::closeTag('li');
-							
-							$count++;
-						//}
+					{		
+						echo CHtml::tag('li', array(), false,false);
+						echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+						echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+						if(file_exists ( $tag->IMAGEPATH )){
+							$imagePath = $tag->IMAGEPATH;
+						}else{
+							$imagePath = "images/stai-music.jpg";
+						}
+						$imghtml = CHtml::image($imagePath);
+						echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+						echo CHtml::closeTag('li');
 					}
 					echo CHtml::closeTag('ul');
 				?>
@@ -130,10 +126,7 @@
 
 			</a>
 		</div>
-		
-		
-		
-	  </div>
+	</div>
     
     
     
@@ -148,27 +141,20 @@
 	<div id="myCarousel-gen" class="jcarousel-gen" data-jcarousel="true">
     
     <?php
-			$maxGen = 9;
-			$countGen = 1;
-			echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
-			foreach($dataProviderGenres->getData() as $genre){
-				//if($countGen <= $maxGen)
-				//{
-					echo CHtml::tag('li',array(),false,false);
-					$imgGenStr = "images/stai-music.jpg";
-					if(file_exists ( $genre->IMAGEPATH )){
-						$imgGenStr = $genre->IMAGEPATH;	
-					}
-					$imgGenHtml = CHtml::image($imgGenStr);
-					echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
-					echo CHtml::link($imgGenHtml, array('Genres/viewBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH));
-					echo CHtml::closeTag('li');
-					
-					$countGen++;
-				//}
+		echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
+		foreach($dataProviderGenres->getData() as $genre){
+			echo CHtml::tag('li',array(),false,false);
+			$imgGenStr = "images/stai-music.jpg";
+			if(file_exists ( $genre->IMAGEPATH )){
+				$imgGenStr = $genre->IMAGEPATH;	
 			}
-			echo CHtml::closeTag('ul');
-		?>
+			$imgGenHtml = CHtml::image($imgGenStr);
+			echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
+			echo CHtml::link($imgGenHtml, array('Genres/viewBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
+			echo CHtml::closeTag('li');
+		}
+		echo CHtml::closeTag('ul');
+	?>
     
     </div>
 		<div class="jcarousel-gen-next">
@@ -196,7 +182,11 @@
 		(function($){
 			var tagsPage = 0;
 			//tags
-		 	$('.jcarousel').jcarousel();
+			$("#myCarousel").jcarousel();
+		 	//$('#myCarousel').jcarousel({
+		 		//itemVisibleOutCallback: {onAfterAnimation: function(carousel, item, i, state, evt) { carousel.remove(i); }},
+		 		//buttonNextCallback: mycarousel_itemLoadCallback
+		 	//});
 
 		    $('.jcarousel-prev').jcarouselControl({
         		target: '-=5'
@@ -224,9 +214,11 @@
 			});
 
 			$("#jcarousel-prev-btn").click(function(e)
+			//function mycarousel_itemLoadCallback()
 			{
-				//alert("clicked prev");
-				if(tagsPage>0){
+				//alert("mycarousel_itemLoadCallback");
+				if(tagsPage>0)
+				{
 					tagsPage--;
 				}
 				//alert(tagsPage);
@@ -257,11 +249,17 @@
                                 count++;
                   			});
                             $("#myCarouselUl").prepend(html);
+                            ///myjcarousel.prepend(html);
+                            //myjcarousel.jcarousel('reload');
                             //html += '</ul>';
                             //alert(html);
-                            jcarousel.html(html);
+                            //jcarousel.html(html);
                          	// Reload carousel
                             //jcarousel.jcarousel('reload');
+                            
+                            /*$('.jcarousel-prev').jcarouselControl({
+                        		target: '-=2'
+                    		});*/
                     	}
              		},
                     error: function(data)
@@ -269,10 +267,9 @@
                     	alert("error!!!! "+data);
                    	}
                 });
-				
-					
 			});
 
+			//function next()
 			$("#jcarousel-next-btn").click(function(e)
 			{
 				//alert("clicked next");
@@ -309,8 +306,15 @@
                   			});
                             //</ul>
                             //alert(html);
-                            $("#myCarouselUl").html(html);
+                            //myjcarousel.html(html);
+							//myjcarousel.next();
+                            //myjcarousel.jcarousel('reload');
+                            $("#myCarouselUl").append(html);
+                            //alert($("#myCarouselUl"));
                             //jcarousel.jcarousel('reload');
+                            //$('.jcarousel-next').jcarouselControl({
+                        	//	target: '+=2'
+                    		//});
                     	}
              		},
                     error: function(data)

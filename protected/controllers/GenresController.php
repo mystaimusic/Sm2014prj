@@ -57,7 +57,7 @@ class GenresController extends Controller
 	}
 
 	
-	public function actionViewBandsPerGenres($genid,$genImagePath)
+	public function actionViewBandsPerGenres($genid,$genImagePath,$genDescription)
     {
     	$genre=Genres::model()->findByPk($genid);
     	$bands=$genre->bands;
@@ -78,6 +78,7 @@ class GenresController extends Controller
     		'tags'=>$tags,
 			'fromGenres'=>true,
 			'genImagePath'=>$genImagePath,
+    		'genDescription'=>$genDescription,
     		'genreId'=>$genid,
 		));
     	
