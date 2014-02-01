@@ -51,7 +51,7 @@ class PlaylistsController extends Controller
 	 */
 	public function actionView($id)
 	{
-		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView"),'vardump');
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -82,8 +82,8 @@ class PlaylistsController extends Controller
         $tag=Tags::model()->findByPk($tagid);
         $pls=$tag->playlists;
         
-        echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
-		echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
+        //echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
 		
         //echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(

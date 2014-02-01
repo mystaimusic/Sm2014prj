@@ -83,8 +83,8 @@ class SongsController extends Controller
         //$songs = $playlist->songs;
 
         $output = CJSON::encode($songsModel);
-		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewSongsPerBand"),'vardump');
-		echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewSongsPerBand"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
         
         echo $output;
 		//echo Yii::trace(CVarDumper::dumpAsString($playlist),'vardump');
