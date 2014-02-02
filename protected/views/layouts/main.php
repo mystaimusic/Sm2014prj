@@ -61,7 +61,7 @@
 
 	<div class="clear"></div>
 
-	<div id="footer"><div class="footer-col"><img src="images/staimusic-logosmall.png" border="0" alt="staimusic" height="46px" width="100px"><br/>
+	<div id="footer"><div class="footer-col"><img src="images/staimusic-logosmall.png" border="0" alt="staimusic project" height="46px" width="100px"><br/>
 		Copyright &copy; <?php echo date('Y'); ?> by Staimusic.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?></div> 
