@@ -98,7 +98,7 @@ class SongsController extends Controller
 	//this is an ajaxcall
 	public function actionViewRandomSongsPerBands($bandsListStr)
 	{
-		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomSongsPerBands"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomSongsPerBands"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($bandsList),'vardump');
 		//$genre=Genres::model()->findByPk($genreId);
 		//extracts 15 random band
@@ -132,7 +132,7 @@ class SongsController extends Controller
     	
     	//echo Yii::trace(CVarDumper::dumpAsString($songsArray),'vardump');
     	$output = CJSON::encode($songsArray);
-    	echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
     	echo $output;
 	}
 

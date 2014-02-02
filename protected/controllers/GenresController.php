@@ -88,31 +88,42 @@ class GenresController extends Controller
     
     public function actionViewRandomBandsPerGenres($genid,$genImagePath,$genDescription)
     {
-    	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
     	$genre=Genres::model()->findByPk($genid);
+    	$bandsDB=$genre->bands;
     	$tags=$genre->tags;
     	
+    	echo Yii::trace(CVarDumper::dumpAsString(count($bandsDB)),'vardump');
+    	//$randomBands = array_rand($input, 2);
+    	//echo Yii::trace(CVarDumper::dumpAsString($randomBands),'vardump');
+    	
     	$bandsIdStr='';
-    	$max = Bands::model()->count();
+    	$max = count($bandsDB);
+    	//$max = Bands::model()->count();
     	$bands = array();
-    	for($i =0; $i<15; $i++){
-    		$offset = rand(0,$max);
-    		$band = Bands::model()->find(array('offset'=>$offset));
-    		$bands[$i] = $band;
-    		if($i==0){
-    			$bandsIdStr .= $band->BANDID;
-    		}else{
-    			$tmpVar = '#' . $band->BANDID;
-    			$bandsIdStr .= $tmpVar;
+    	$limitNum = max($max,15);
+    	//$bandsIdArr = array_rand($bandsDB, $max);
+    	echo Yii::trace(CVarDumper::dumpAsString($bandsDB),'vardump');
+    	//foreach($bandsIdArr as $bandId) {
+    	for($i =0; ($i<15 && $i<$max); $i++){
+    		$bandId = array_rand($bandsDB, 1);
+    		//echo Yii::trace(CVarDumper::dumpAsString($bandsId),'vardump');
+    		//$bandId = $bandsIdArr[$i];
+    		echo Yii::trace(CVarDumper::dumpAsString($bandId),'vardump');
+    		$band = Bands::model()->findByPk($bandId);
+    		echo Yii::trace(CVarDumper::dumpAsString($band),'vardump');
+    		if(!is_null($band)) {
+	    		$bands[$i] = $band;
+	    		if($i==0){
+	    			$bandsIdStr .= $band->BANDID;
+	    		}else{
+	    			$tmpVar = '#' . $band->BANDID;
+	    			$bandsIdStr .= $tmpVar;
+	    		}
     		}
+    		unset($bandId);
     	}
-    	/*$bands = Bands::model()->findAll($genid,array(
-			'select'=>'*, rand() as rand',
-			'limit'=>15,
-			'order'=>'rand',
-		));*/
-		//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
-		
+    	
 		$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
     		'tags'=>$tags,
