@@ -28,7 +28,7 @@ class SongsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand','viewRandomSongsPerGenres'),
+				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand','viewRandomSongsPerBands'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -96,31 +96,43 @@ class SongsController extends Controller
 	}
 	
 	//this is an ajaxcall
-	public function actionViewRandomSongsPerGenres($genreId)
+	public function actionViewRandomSongsPerBands($bandsListStr)
 	{
-		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomSongsPerGenres"),'vardump');
-		$genre=Genres::model()->findByPk($genreId);
-    	$bands=$genre->bands;
-    	$songsArray = array();
+		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomSongsPerBands"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($bandsList),'vardump');
+		//$genre=Genres::model()->findByPk($genreId);
+		//extracts 15 random band
+		$bandsIdList = explode('#',$bandsListStr);
+		//echo Yii::trace(CVarDumper::dumpAsString($bandsIdList),'vardump');
+		//$bands=$genre->bands;
+    	$max = Songs::model()->count();
+		$songsArray = array();
     	$count = 0;
-    	foreach($bands as $band)
+    	
+    	foreach($bandsIdList as $bandId)
     	{
-    		$bandid = $band->BANDID;
-    		//$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
-    		$criteria = new CDbCriteria();
-    		$songModel = Songs::model()->findAll($bandid,array(
-    			'select'=>'*, rand() as rand',
-    			'limit'=>1,
-    			'order'=>'rand',
-    		));
+    		//echo Yii::trace(CVarDumper::dumpAsString($bandId),'vardump');
+    		$offset = rand(0,$max);
+    		$songModel = Songs::model()->findByAttributes(array('BANDID'=>$bandId));
     		//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
-    		//array_push(songsArray,$count,$songModel);
-    		$songsArray[$count] = $songModel;
+    		//$songsArray[$count] = $song;
+    		//$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+    		//$criteria = new CDbCriteria();
+    		//extracts 1 random song from each random band
+    		//$songModel = Songs::model()->findAll($bandId,array(
+    		//	'select'=>'*, rand() as rand',
+    		//	'limit'=>1,
+    		//	'order'=>'rand',
+    		//));
+    		//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
+    		//array_push($songsArray,$count,$songModel);
+    		$songsArray[$count]=$songModel;
     		$count++;
     	}
+    	
     	//echo Yii::trace(CVarDumper::dumpAsString($songsArray),'vardump');
     	$output = CJSON::encode($songsArray);
-    	//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+    	echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
     	echo $output;
 	}
 

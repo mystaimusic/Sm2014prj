@@ -163,15 +163,18 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </div><!--mod_playCOVER-->	
 <div class="mod_playlists">
 <div class="header">
-<span class="title"><h2>Our Playlist</h2></span></div>
+<span class="title"><h2>Our Bands</h2></span></div>
 <div class="cont">
     	<?php
+    		
     		foreach($bands as $band)
     		{
     			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
     			echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myband', 'id'=>$band->BANDID));	
     			echo CHtml::closeTag('div');
     		}
+    		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in selectedBands ourbands"),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
 		?>
 </div><!--mod_playlists-->	
 
@@ -253,6 +256,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 		(function($){
 
+			//alert("ajax");
 			var firstBandPlaylist = $(".myband")[0].id;
 			var videoJSON_G = new Object();
 			var random15 = true;
@@ -263,31 +267,28 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				var outputTitle = "random15";
 				//var searchInput = {bandId: 1}; //TODO: change with selected genres
 				//genericAjaxCallForSongs(urlStr,inputDataArray,outputTitle);
-				var genreIdVar = <?php echo $genreId?>;
+				var bandsListVar = <?php echo json_encode($bandsIdStr); ?>;
+				//alert(bandsListVar);
 				$.ajax({
-					url: '<?php echo Yii::app()->createUrl('Songs/viewRandomSongsPerGenres')?>',
+					url: '<?php echo Yii::app()->createUrl('Songs/viewRandomSongsPerBands')?>',
 				   	type: "GET",
-				    data: {genreId: genreIdVar},
+				    data: {bandsListStr: bandsListVar},
 				    dataType: "json",
 				    async: false,
 				    success: function(response,status, jqXHR)
 				    {
 				    	if(response){
-				            //alert(jqXHR.responseText);
 				            videoJSON_G.title = outputTitle;
-				        	//alert(videoJSON.title);
 				            videoJSON_G.videos = [];
 				            $.each(response, function(i, data){
-				                    	//alert("data: "+data);
 				            	var oneVideoJSON = new Object();
-				            	oneVideoJSON.id = data[i].CODE;
-				            	oneVideoJSON.title = data[i].TITLE;
+				            	//alert(response[i]);
+				            	//alert(data.CODE);
+				            	oneVideoJSON.id = data.CODE;
+				            	oneVideoJSON.title = data.TITLE;
 				            	videoJSON_G.videos.push(oneVideoJSON);
-				            	//alert(oneVideoJSON.id + " - " +oneVideoJSON.title);
 				            	i++;
-				                	//player.player('loadPlaylist', videoJSON);
 				            });
-				            //player.player('loadPlaylist', videoJSON);
 				        }
 				    },
 				    error: function(data)

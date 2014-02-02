@@ -150,7 +150,7 @@
 			}
 			$imgGenHtml = CHtml::image($imgGenStr);
 			echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
-			echo CHtml::link($imgGenHtml, array('Genres/viewBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
+			echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
 			echo CHtml::closeTag('li');
 		}
 		echo CHtml::closeTag('ul');

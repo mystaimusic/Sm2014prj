@@ -28,7 +28,7 @@ class GenresController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','viewBandsPerGenres'),
+				'actions'=>array('index','view','viewBandsPerGenres','viewRandomBandsPerGenres'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -84,6 +84,45 @@ class GenresController extends Controller
     	
 
     	//echo Yii::trace(CVarDumper::dumpAsString($songs),'vardump');        
+    }
+    
+    public function actionViewRandomBandsPerGenres($genid,$genImagePath,$genDescription)
+    {
+    	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	$genre=Genres::model()->findByPk($genid);
+    	$tags=$genre->tags;
+    	
+    	$bandsIdStr='';
+    	$max = Bands::model()->count();
+    	$bands = array();
+    	for($i =0; $i<15; $i++){
+    		$offset = rand(0,$max);
+    		$band = Bands::model()->find(array('offset'=>$offset));
+    		$bands[$i] = $band;
+    		if($i==0){
+    			$bandsIdStr .= $band->BANDID;
+    		}else{
+    			$tmpVar = '#' . $band->BANDID;
+    			$bandsIdStr .= $tmpVar;
+    		}
+    	}
+    	/*$bands = Bands::model()->findAll($genid,array(
+			'select'=>'*, rand() as rand',
+			'limit'=>15,
+			'order'=>'rand',
+		));*/
+		//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
+		
+		$this->render('/bands/selectedBand',array(
+			'bands'=>$bands,
+    		'tags'=>$tags,
+			'fromGenres'=>true,
+			'genImagePath'=>$genImagePath,
+    		'genDescription'=>$genDescription,
+    		'genreId'=>$genid,
+			'bandsIdStr'=>$bandsIdStr,
+		));
+    
     }
 	
 	/**
