@@ -88,12 +88,12 @@ class GenresController extends Controller
     
     public function actionViewRandomBandsPerGenres($genid,$genImagePath,$genDescription)
     {
-    	echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
     	$genre=Genres::model()->findByPk($genid);
     	$bandsDB=$genre->bands;
     	$tags=$genre->tags;
     	
-    	echo Yii::trace(CVarDumper::dumpAsString(count($bandsDB)),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString(count($bandsDB)),'vardump');
     	//$randomBands = array_rand($input, 2);
     	//echo Yii::trace(CVarDumper::dumpAsString($randomBands),'vardump');
     	
@@ -121,7 +121,7 @@ class GenresController extends Controller
 	    			$bandsIdStr .= $tmpVar;
 	    		}
     		}
-    		unset($bandId);
+    		//unset($bandId);
     	}
     	
 		$this->render('/bands/selectedBand',array(
