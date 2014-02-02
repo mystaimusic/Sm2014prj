@@ -114,9 +114,9 @@ a:hover{color:#222;}
 
 /**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
 
-/** suggested -----------------------------------------------------**/
+/** suggested link-----------------------------------------------------**/
 .suggested_cont{float:left;width:98%;padding:0px;height:70px;margin:auto;position:relative;margin-top:20px;}
-.suggested_title{float:left;height:20px;width:98%; text-align:left; padding-top:10px}
+.suggested_title{float:left;height:20px;width:100%; text-align:left; padding-top:10px;padding-bottom:3px; border-bottom:#666 solid 1px; font-size:12px;font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;}
 ul.suggested {text-decoration:none; list-style: none; 	padding: 0; margin-top:10px;float:left;}
 ul.suggested li{ float:left; background-color:#999999; margin-right:5px; margin-bottom:20px; padding:0px}
 ul.suggested li a{width:70px; height:70px;background-color:#999999;display: block; }
