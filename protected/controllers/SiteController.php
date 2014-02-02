@@ -84,6 +84,13 @@ class SiteController extends Controller
     	$pages->setCurrentPage($currentPage);
     	$pages->applyLimit($criteria);
     	$models=Tags::model()->findAll($criteria);
+    	foreach($models as $model)
+    	{
+    		$imgGenStr = "images/stai-music.jpg";
+			if(!file_exists ( $model->IMAGEPATH )){
+				$model->IMAGEPATH = $imgGenStr;	
+			}
+    	}
     	//echo Yii::trace(CVarDumper::dumpAsString("---> sono in getNextTag"),'vardump');
     	//echo Yii::trace(CVarDumper::dumpAsString($currentPage),'vardump');
     	//echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');

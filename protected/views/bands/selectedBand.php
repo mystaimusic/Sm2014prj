@@ -87,6 +87,7 @@
        			}
        			if((isset($fromGenres) && $fromGenres===true))
        			{
+       				header ('Content-type: text/html; charset=utf-8');
        				echo $genDescription;
        			}
        		?>
@@ -96,10 +97,10 @@
        			{
        				echo $pls->DESCRIPTION;
        			}
-       			if((isset($fromGenres) && $fromGenres===true))
+       			/*if((isset($fromGenres) && $fromGenres===true))
        			{
        				echo $genDescription;
-       			}
+       			}*/
        		?>
        	</div><!--headertext-->    
       
