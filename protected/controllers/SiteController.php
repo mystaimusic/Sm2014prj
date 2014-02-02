@@ -40,7 +40,7 @@ class SiteController extends Controller
         			'order'=>'TAGNAME',
     			),
     			'pagination'=>array(
-        			'pageSize'=>5, // or another reasonable high value...
+        			'pageSize'=>10, // or another reasonable high value...
     			),
 			)
 		);

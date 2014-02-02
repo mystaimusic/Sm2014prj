@@ -53,8 +53,6 @@
 			<div id="myCarousel" class="jcarousel" data-jcarousel="true">
 			<!--  <div id="myCarousel" class="jcarousel" data-jcarousel="true">  -->
 				<?php
-					$max = 5;
-					$count = 1;
 					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false); 
 					foreach($dataProvider->getData() as $tag)
 					{		
@@ -180,9 +178,11 @@
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
-			var tagsPage = 0;
+			var tagsPage = 2;
 			//tags
-			$("#myCarousel").jcarousel();
+			var myjcarousel = $("#myCarousel").jcarousel();
+				//itemVisibleOutCallback: {onAfterAnimation: function(carousel, item, i, state, evt) { carousel.remove(i); }},
+		 		//buttonNextCallback: mycarousel_itemLoadCallback
 		 	//$('#myCarousel').jcarousel({
 		 		//itemVisibleOutCallback: {onAfterAnimation: function(carousel, item, i, state, evt) { carousel.remove(i); }},
 		 		//buttonNextCallback: mycarousel_itemLoadCallback
@@ -212,64 +212,8 @@
 			$('.jcarousel-gen-next').jcarouselControl({
 				target: '+=5'
 			});
-
-			$("#jcarousel-prev-btn").click(function(e)
-			//function mycarousel_itemLoadCallback()
-			{
-				//alert("mycarousel_itemLoadCallback");
-				if(tagsPage>0)
-				{
-					tagsPage--;
-				}
-				//alert(tagsPage);
-				$.ajax({
-                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
-                    type: "GET",
-                    data: {currentPage: tagsPage},
-                  	dataType: "json",
-                    async: false,
-                   	success: function(response,status, jqXHR)
-                    {
-                    	if(response){
-                    		//$("#myCarousel").empty();
-                            var count = 0;
-                            //$("#myCarouselUl").append("<ul id='myCarouselUl' class='boxview'>");
-							var html;
-                            $.each(response.dataProvider.rawData, function(i, elem){
-								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
-								var descEnc = encodeURIComponent(elem.DESCRIPTION);
-								var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-								html += "<li><div class='tag'>"+elem.TAGNAME+"</div><div class='text'>"
-                            	+ elem.DESCRIPTION + "</div>" + "<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
-                            	+elem.TAGID+"&amp;tagname="
-                                +tagNameEnc+"&amp;imagePath="
-                                +elem.IMAGEPATH+"'><img src='"
-                                +elem.IMAGEPATH+"' alt='' /></a></li>";
-
-                                count++;
-                  			});
-                            $("#myCarouselUl").prepend(html);
-                            ///myjcarousel.prepend(html);
-                            //myjcarousel.jcarousel('reload');
-                            //html += '</ul>';
-                            //alert(html);
-                            //jcarousel.html(html);
-                         	// Reload carousel
-                            //jcarousel.jcarousel('reload');
-                            
-                            /*$('.jcarousel-prev').jcarouselControl({
-                        		target: '-=2'
-                    		});*/
-                    	}
-             		},
-                    error: function(data)
-                    {
-                    	alert("error!!!! "+data);
-                   	}
-                });
-			});
-
-			//function next()
+			
+			
 			$("#jcarousel-next-btn").click(function(e)
 			{
 				//alert("clicked next");
@@ -285,9 +229,8 @@
                     {
                     	if(response){
                     		//$("#myCarousel").empty();
-                            var count = 0;
                             //$("#myCarouselUl").append("<ul id='myCarouselUl' class='boxview'>");
-                            var html;
+                            var html='';
                             $.each(response.dataProvider.rawData, function(i, elem){                               
 								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 								var descEnc = encodeURIComponent(elem.DESCRIPTION);
@@ -302,16 +245,25 @@
                                 +elem.IMAGEPATH+"' alt='' /></a></li>";
                                 
                                 //buildTagDiv(i,elem);
-                                count++;
+                                
                   			});
                             //</ul>
                             //alert(html);
                             //myjcarousel.html(html);
 							//myjcarousel.next();
-                            //myjcarousel.jcarousel('reload');
-                            $("#myCarouselUl").html(html);
+                            
+                            $("#myCarouselUl").append(html);
                             //alert($("#myCarouselUl"));
+                            // Append items
+            				//myjcarousel.html(html);
+
+				            // Reload carousel
+            				myjcarousel.jcarousel('reload');
+                            
+                            //myjcarousel.reload();
+                            //myjcarousel.scroll('+=5');
                             //jcarousel.jcarousel('reload');
+                            //myjcarousel.scroll('+=5');
                             //$('.jcarousel-next').jcarouselControl({
                         	//	target: '+=2'
                     		//});
