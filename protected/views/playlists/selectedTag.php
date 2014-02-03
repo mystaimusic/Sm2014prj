@@ -439,8 +439,9 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                         function search(e,search_input)
                         {    
                             var keyword = encodeURIComponent(search_input);
+                            var vevoKeyword = 'vevo%20'+keyword;
 
-                            var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+keyword+'&max-results=10&v=2&alt=jsonc';
+                            var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+vevoKeyword+'&max-results=10&v=2&alt=jsonc';
 
                             $.ajax(
                             {
@@ -456,10 +457,15 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                         videoJSON.title = 'SearchResult';
                                         videoJSON.videos = [];
                                         $.each(response.data.items, function(i, data){
-                                                var oneVideoJSON = new Object();
-                                                oneVideoJSON.id = data.id;
-                                                oneVideoJSON.title = data.title;
-                                                videoJSON.videos.push(oneVideoJSON);
+											var titleUp = data.title.substring(0,2).toUpperCase();
+											var keywordUp = keyword.substring(0,2).toUpperCase();
+											if(titleUp==keywordUp)
+											{
+	                                            var oneVideoJSON = new Object();
+	                                            oneVideoJSON.id = data.id;
+	                                            oneVideoJSON.title = data.title;
+	                                            videoJSON.videos.push(oneVideoJSON);
+											}
                                         });
                                         player.player('loadPlaylist', videoJSON);
                                     }

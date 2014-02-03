@@ -475,10 +475,15 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                         videoJSON.title = 'SearchResult';
                                         videoJSON.videos = [];
                                         $.each(response.data.items, function(i, data){
-                                                var oneVideoJSON = new Object();
-                                                oneVideoJSON.id = data.id;
-                                                oneVideoJSON.title = data.title;
-                                                videoJSON.videos.push(oneVideoJSON);
+											var titleUp = data.title.substring(0,2).toUpperCase();
+											var keywordUp = keyword.substring(0,2).toUpperCase();
+											if(titleUp==keywordUp)
+											{
+	                                            var oneVideoJSON = new Object();
+	                                            oneVideoJSON.id = data.id;
+	                                            oneVideoJSON.title = data.title;
+	                                            videoJSON.videos.push(oneVideoJSON);
+											}
                                         });
                                         player.player('loadPlaylist', videoJSON);
                                     }
