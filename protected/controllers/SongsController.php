@@ -100,7 +100,7 @@ class SongsController extends Controller
 	{
 		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
 		$bandsIdStr = Yii::app()->user->getState('bandsIdStr');
-		$sql = 'SELECT * FROM bands WHERE bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 3';
+		$sql = 'SELECT * FROM bands WHERE bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 15';
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
 		$songsArray = array();
 		echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');

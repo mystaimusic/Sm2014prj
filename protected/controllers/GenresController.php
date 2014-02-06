@@ -97,7 +97,7 @@ class GenresController extends Controller
     	$max = count($bandsDB);
     	$bands = array();
     	$limitNum = max($max,15);
-    	for($i =0; ($i<15 && $i<3); $i++){
+    	for($i =0; ($i<15 && $i<$max); $i++){
     		//$bandId = array_rand($bandsDB, 1);
     		//$band = Bands::model()->findByPk($bandId);
     		$band = $bandsDB[$i];
