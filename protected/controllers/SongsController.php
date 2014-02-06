@@ -28,7 +28,7 @@ class SongsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand','viewRandomSongsPerBands'),
+				'actions'=>array('index','view','viewSongsPerPlist','viewSongsPerBand','viewRandomSongsPerBands','viewBandsSongsPerGenres'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -95,14 +95,35 @@ class SongsController extends Controller
 		}*/
 	}
 	
+	//this is an ajaxcall: the input is a genresid in this case
+	public function actionViewBandsSongsPerGenres($playlistId)
+	{
+		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
+		$bandsIdStr = Yii::app()->user->getState('bandsIdStr');
+		$sql = 'SELECT * FROM bands WHERE bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 3';
+		$bands = Yii::app()->db->createCommand($sql)->queryAll();
+		$songsArray = array();
+		echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
+		foreach($bands as $band) {
+			$bandId = $band['BANDID'];
+			$bandName = $band['BANDNAME'];
+			$songModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+			$songsArray[$bandName]=$songModel;			
+			$tmpVar = ',' . $bandId;
+			$bandsIdStr .= $tmpVar;
+		}
+		Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
+		$output = CJSON::encode($songsArray);
+		echo $output;
+	}
+	
 	//this is an ajaxcall
 	public function actionViewRandomSongsPerBands($bandsListStr)
 	{
-		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomSongsPerBands"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($bandsList),'vardump');
 		//$genre=Genres::model()->findByPk($genreId);
-		//extracts 15 random band
-		$bandsIdList = explode('#',$bandsListStr);
+		//extracts 15 random bands
+		$bandsIdList = explode(',',$bandsListStr);
 		//echo Yii::trace(CVarDumper::dumpAsString($bandsIdList),'vardump');
 		//$bands=$genre->bands;
     	$max = Songs::model()->count();

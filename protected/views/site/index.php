@@ -245,28 +245,10 @@
                                 +elem.IMAGEPATH+"' alt='' /></a></li>";
                                 
                                 //buildTagDiv(i,elem);
-                                
                   			});
-                            //</ul>
-                            //alert(html);
-                            //myjcarousel.html(html);
-							//myjcarousel.next();
-                            
                             $("#myCarouselUl").append(html);
-                            //alert($("#myCarouselUl"));
-                            // Append items
-            				//myjcarousel.html(html);
-
 				            // Reload carousel
             				myjcarousel.jcarousel('reload');
-                            
-                            //myjcarousel.reload();
-                            //myjcarousel.scroll('+=5');
-                            //jcarousel.jcarousel('reload');
-                            //myjcarousel.scroll('+=5');
-                            //$('.jcarousel-next').jcarouselControl({
-                        	//	target: '+=2'
-                    		//});
                     	}
              		},
                     error: function(data)
@@ -299,6 +281,7 @@
             
            	function searchTag(e,search_input)
             {
+           		<?php unset(Yii::app()->session['bandsIdStr']);?>
             	var rawData;    
                 //alert(search_input);
                 $.ajax({

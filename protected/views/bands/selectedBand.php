@@ -164,13 +164,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <div class="mod_playlists">
 <div class="header">
 <span class="title"><h2>Our Bands</h2></span></div>
-<div class="cont">
+<div id="bandList" class="cont">
     	<?php
     		
     		foreach($bands as $band)
     		{
     			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
-    			echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myband', 'id'=>$band->BANDID));	
+    			echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myplaylist', 'id'=>$band->BANDID));	
     			echo CHtml::closeTag('div');
     		}
     		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in selectedBands ourbands"),'vardump');
@@ -257,7 +257,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 		(function($){
 
 			//alert("ajax");
-			var firstBandPlaylist = $(".myband")[0].id;
+			var firstBandPlaylist = $(".myplaylist")[0].id;
 			var videoJSON_G = new Object();
 			var random15 = true;
 			
@@ -335,16 +335,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 					//
 				playlist: videoJSON_G,
 				//playlist: playlists['playlist-1'], // initial playlist
-                      onError: function(msg){
-
+                onError: function(msg){
 					alert(msg);
-                                },
+                },
 				onBeforePlaylistLoaded: function(playlist){
 					//alert(videoJSON_G);
 					$('#loading').show();
 				},
 				onAfterPlaylistLoaded: function(playlist){
-
 					$('#loading').hide();
 				}
 			};
@@ -356,7 +354,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 //                        });
 
 			//$('.playlists a[href*=#]').click(function(){
-                        $(".myband").click(function(){
+                        $(".myplaylist").click(function(){
                                 //TODO: replace with ajax call to the php function
                               //var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
                                 //alert('click ' +playlist.videos[0].id);

@@ -61,6 +61,7 @@
 			repeat: 1,			// repeat videos (boolean)
 			repeatPlaylist: 0,		// repeat the playlist (boolean) 
 			loadNewPlaylist: 1,     // load a new playlist (boolean)
+			loadRandomPlaylist: 1, // load 15 bands maximum and one songs for each band (boolean)
 			shuffle: 0,			// shuffle the play list (boolean)
 			chromeless: 0,			// chromeless player (boolean)
 			highDef: 0,			// high definition quality or normal quality (boolean)
@@ -142,6 +143,7 @@
 			//alert(currentId);
 			arrayPlistIds.push(currentId);
 		});
+		//alert(arrayPlistIds.length);
 		
 //		this.containerElem = this.element.find('.cont');
 //		this.containerElem.children('.myplaylist')
@@ -1004,9 +1006,12 @@
 		nextVideo : function(){
 
 			
-			function loadNextPlist(plId)
+			function loadNextPlist(plId,isRandom)
 			{
 				var plUrl = 'index.php?r=Songs/viewSongsPerPlist';
+				if(isRandom==1){
+					plUrl = 'index.php?r=Songs/viewBandsSongsPerGenres';
+				}
 //				alert("nextPlaylist: "+nextPlaylist );
 				var videoJSON_G = new Object();
 				$.ajax(
@@ -1025,16 +1030,25 @@
 		                        videoJSON_G.title = plId;
 		                    	//alert(videoJSON.title);
 		                        videoJSON_G.videos = [];
+		                        var count = 0;
+		                        var html = '';
 		                        $.each(response, function(i, data){
-		                                	//alert("data: "+data);
+		                            //alert("data bandName: "+ i);
+		                        	var bandIdTmp = data[0].BANDID;
+		                        	$("#bandList").empty();
+		                        	html += "<div class='palinsesto clearfix'><a class='myplaylist' id='"+bandIdTmp+"' href='#"+bandIdTmp+"'>"
+		                        	+i+"</a></div>";
 		                        	var oneVideoJSON = new Object();
-		                        	oneVideoJSON.id = data.CODE;
-		                        	oneVideoJSON.title = data.TITLE;
+		                        	oneVideoJSON.id = data[0].CODE;
+		                        	oneVideoJSON.title = data[0].TITLE;
 		                        	videoJSON_G.videos.push(oneVideoJSON);
+		                        	count++;
 		                        	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
-		                            	//player.player('loadPlaylist', videoJSON);
-		                        	
+		                        	//player.player('loadPlaylist', videoJSON);
 		                        });
+		                        html+="</div>";
+		                        //alert(html);
+		                        $("#bandList").append(html);
 		                    }
 		                },
 		                error: function(data)
@@ -1045,9 +1059,6 @@
 				);
 				return videoJSON_G;
 			}
-			
-			
-			
 			
 			
 			if (this.keys.video < this.options.playlist.videos.length-1) {
@@ -1070,8 +1081,10 @@
 				
 				if(this.plIndex<arrayPlistIds.length){
 					var nextPlaylist = arrayPlistIds[this.plIndex];
-//					alert("nextPlaylist: "+nextPlaylist );
-					var videoJSON = loadNextPlist(nextPlaylist);
+					//alert("nextPlaylist: "+nextPlaylist );
+					
+					var videoJSON = loadNextPlist(nextPlaylist,this.options.loadRandomPlaylist);
+					
 					this.loadPlaylist(videoJSON);
 				}else{
 					this.plIndex = 0;

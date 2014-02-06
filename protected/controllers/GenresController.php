@@ -92,37 +92,28 @@ class GenresController extends Controller
     	$genre=Genres::model()->findByPk($genid);
     	$bandsDB=$genre->bands;
     	$tags=$genre->tags;
-    	
-    	//echo Yii::trace(CVarDumper::dumpAsString(count($bandsDB)),'vardump');
-    	//$randomBands = array_rand($input, 2);
-    	//echo Yii::trace(CVarDumper::dumpAsString($randomBands),'vardump');
-    	
+    	//echo Yii::trace(CVarDumper::dumpAsString($bandsDB),'vardump');
     	$bandsIdStr='';
     	$max = count($bandsDB);
-    	//$max = Bands::model()->count();
     	$bands = array();
     	$limitNum = max($max,15);
-    	//$bandsIdArr = array_rand($bandsDB, $max);
-    	echo Yii::trace(CVarDumper::dumpAsString($bandsDB),'vardump');
-    	//foreach($bandsIdArr as $bandId) {
-    	for($i =0; ($i<15 && $i<$max); $i++){
-    		$bandId = array_rand($bandsDB, 1);
-    		//echo Yii::trace(CVarDumper::dumpAsString($bandsId),'vardump');
-    		//$bandId = $bandsIdArr[$i];
-    		echo Yii::trace(CVarDumper::dumpAsString($bandId),'vardump');
-    		$band = Bands::model()->findByPk($bandId);
-    		echo Yii::trace(CVarDumper::dumpAsString($band),'vardump');
+    	for($i =0; ($i<15 && $i<3); $i++){
+    		//$bandId = array_rand($bandsDB, 1);
+    		//$band = Bands::model()->findByPk($bandId);
+    		$band = $bandsDB[$i];
     		if(!is_null($band)) {
 	    		$bands[$i] = $band;
 	    		if($i==0){
 	    			$bandsIdStr .= $band->BANDID;
 	    		}else{
-	    			$tmpVar = '#' . $band->BANDID;
+	    			$tmpVar = ',' . $band->BANDID;
 	    			$bandsIdStr .= $tmpVar;
 	    		}
     		}
     		//unset($bandId);
     	}
+    	
+    	Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
     	
 		$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
