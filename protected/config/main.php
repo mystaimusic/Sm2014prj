@@ -58,7 +58,7 @@ return array(
 			'connectionString' => 'mysql:host=62.149.150.98;dbname=Sql273343_2',
 			'emulatePrepare' => true,
 			'username' => 'Sql273343',
-			'password' => '97b60891',
+			'password' => '873cv7109i',
 			'charset' => 'utf8',
 		),
 		
