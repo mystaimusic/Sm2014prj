@@ -29,9 +29,14 @@
 
 <div id="mod_mainsearch">
 <div id="loading" style="margin: 4px 0;display:none;">loading...</div>
-				<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beat?
-					<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button><br/></div>
-				<div id="result"></div>
+<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beat?
+	
+	<form id="search_tags" action="<?php echo Yii::app()->createUrl('Tags/searchRender') ?>">
+		<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button><br/>
+	</form>
+	<br/>
+</div>
+<div id="result"></div>
 
 </div><!--mod_mainsearch--><br><br>
 
@@ -60,10 +65,6 @@
 	<div id="maincont" class="clearfix">
 	
     
-    
-    
-    	
-
 <div id="mainleft">
 
    <div id="mainleft_header">
@@ -72,8 +73,9 @@
 				<div class="youtube-player">
 					<div class="youtube-player-video">
 					<div class="youtube-player-object">
-					You need Flash player 8+ and JavaScript enabled to view this video.					</div>
+					<!--  You need Flash player 8+ and JavaScript enabled to view this video. -->					
 					</div>
+				</div>
 				</div><!--youtubeplayer-->		
         </div><!--headervideo--> 
         </div><!--headervideo_cont--> 
@@ -417,64 +419,66 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				return false;
 			});
 
+            $("#search_tags").submit(function( event ) {
+           		alert( "Handler for .submit() called." );
+            	event.preventDefault();
+           	});
+           	
+                        
+			$(".search_input").focus();
+            //$(".search_input2").focus();
+            $(".search_input2").bind("enterKey",function(e)
+            {
+            	search(e,$(this).val());
+            });
 
-                        $(".search_input").focus();
-                        $(".search_input").bind("enterKey",function(e)
-                        {
-                            search(e,$(this).val());
-                        });
-
-			$(".search_input").keyup(function(e){
+			$(".search_input2").keyup(function(e){
 				if(e.keyCode == 13)
 				{
 					$(this).trigger("enterKey");
 				}
 			});
                         
-                        $(".search_button").click(function(e)
+            $(".search_button2").click(function(e)
+            {
+           		search(e,$(".search_input2").val());
+            });
+
+            function search(e,search_input)
+            {    
+            	var keyword = encodeURIComponent(search_input);
+                var vevoKeyword = 'vevo%20'+keyword;
+
+                var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+vevoKeyword+'&max-results=10&v=2&alt=jsonc';
+
+                $.ajax({
+                	type: "GET",
+                    url: yt_url,
+                    dataType: "json",
+                    success: function(response)
+                    {
+                    	if(response.data.items)
                         {
-                            search(e,$(".search_input").val());
-                        });
-
-                        function search(e,search_input)
-                        {    
-                            var keyword = encodeURIComponent(search_input);
-                            var vevoKeyword = 'vevo%20'+keyword;
-
-                            var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+vevoKeyword+'&max-results=10&v=2&alt=jsonc';
-
-                            $.ajax(
-                            {
-                                type: "GET",
-                                url: yt_url,
-                                dataType: "json",
-                                success: function(response)
-                                {
-                                    if(response.data.items)
-                                    {
 //                                        alert("called function2");
-                                        var videoJSON = new Object();
-                                        videoJSON.title = 'SearchResult';
-                                        videoJSON.videos = [];
-                                        $.each(response.data.items, function(i, data){
-											var titleUp = data.title.substring(0,2).toUpperCase();
-											var keywordUp = keyword.substring(0,2).toUpperCase();
-											if(titleUp==keywordUp)
-											{
-	                                            var oneVideoJSON = new Object();
-	                                            oneVideoJSON.id = data.id;
-	                                            oneVideoJSON.title = data.title;
-	                                            videoJSON.videos.push(oneVideoJSON);
-											}
-                                        });
-                                        player.player('loadPlaylist', videoJSON);
-                                    }
-                                }
-
-                            }       
-                            );
+                        	var videoJSON = new Object();
+							videoJSON.title = 'SearchResult';
+                            videoJSON.videos = [];
+                            $.each(response.data.items, function(i, data){
+								var titleUp = data.title.substring(0,2).toUpperCase();
+								var keywordUp = keyword.substring(0,2).toUpperCase();
+								if(titleUp==keywordUp)
+								{
+	                            	var oneVideoJSON = new Object();
+	                                oneVideoJSON.id = data.id;
+	                                oneVideoJSON.title = data.title;
+	                                videoJSON.videos.push(oneVideoJSON);
+								}
+                             });
+                             player.player('loadPlaylist', videoJSON);
                         }
-
+                     }
+                 });
+            }
 		})(this.jQuery);
 
 	//]]>

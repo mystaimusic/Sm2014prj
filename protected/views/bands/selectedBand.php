@@ -72,8 +72,9 @@
 				<div class="youtube-player">
 					<div class="youtube-player-video">
 					<div class="youtube-player-object">
-					You need Flash player 8+ and JavaScript enabled to view this video.					</div>
+					<!--  You need Flash player 8+ and JavaScript enabled to view this video. -->					
 					</div>
+				</div>
 				</div><!--youtubeplayer-->		
         </div><!--headervideo--> 
         </div><!--headervideo_cont--> 
@@ -321,7 +322,6 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                             	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
                                 	//player.player('loadPlaylist', videoJSON);
                             });
-                            
                         }
                     },
                     error: function(data)
@@ -398,22 +398,22 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				return false;
 			});
 
-            $(".search_input").focus();
-            $(".search_input").bind("enterKey",function(e)
+            $(".search_input2").focus();
+            $(".search_input2").bind("enterKey",function(e)
             {
             	search(e,$(this).val());
             });
 
-			$(".search_input").keyup(function(e){
+			$(".search_input2").keyup(function(e){
 				if(e.keyCode == 13)
 				{
 					$(this).trigger("enterKey");
 				}
 			});
                         
-            $(".search_button").click(function(e)
+            $(".search_button2").click(function(e)
             {
-            	search(e,$(".search_input").val());
+            	search(e,$(".search_input2").val());
             });
 
             //should work for search on youtue, get songs per playlists and get songs per bands {bandId: selectedPlist}

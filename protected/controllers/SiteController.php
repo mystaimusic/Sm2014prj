@@ -73,6 +73,11 @@ class SiteController extends Controller
 		//$this->render('index');
 	}
 
+	public function actionSearch($queryString)
+	{
+		
+	}
+	
 	//this is an ajax call
 	public function actionGetNextTag($currentPage)
 	{

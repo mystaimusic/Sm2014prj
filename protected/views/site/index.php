@@ -90,7 +90,7 @@
 		
 		$max = 5;
 		$count = 1;
-		echo CHtml::tag('ul', array('class'=>'boxview3'),false,false);
+		echo CHtml::tag('ul', array('id'=>'myCarousel-plistUl','class'=>'boxview3'),false,false);
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
 			//if($count <= $max)
@@ -139,7 +139,7 @@
 	<div id="myCarousel-gen" class="jcarousel-gen" data-jcarousel="true">
     
     <?php
-		echo CHtml::tag('ul', array('class'=>'boxview2'),false,false);
+		echo CHtml::tag('ul', array('id'=>'myCarousel-genUl','class'=>'boxview2'),false,false);
 		foreach($dataProviderGenres->getData() as $genre){
 			echo CHtml::tag('li',array(),false,false);
 			$imgGenStr = "images/stai-music.jpg";
@@ -147,7 +147,7 @@
 				$imgGenStr = $genre->IMAGEPATH;	
 			}
 			$imgGenHtml = CHtml::image($imgGenStr);
-			echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 			echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
 			echo CHtml::closeTag('li');
 		}
@@ -181,23 +181,14 @@
 			var tagsPage = 2;
 			//tags
 			var myjcarousel = $("#myCarousel").jcarousel();
-				//itemVisibleOutCallback: {onAfterAnimation: function(carousel, item, i, state, evt) { carousel.remove(i); }},
-		 		//buttonNextCallback: mycarousel_itemLoadCallback
-		 	//$('#myCarousel').jcarousel({
-		 		//itemVisibleOutCallback: {onAfterAnimation: function(carousel, item, i, state, evt) { carousel.remove(i); }},
-		 		//buttonNextCallback: mycarousel_itemLoadCallback
-		 	//});
-
-		    $('.jcarousel-prev').jcarouselControl({
+			$('.jcarousel-prev').jcarouselControl({
         		target: '-=5'
     		});
-
     		$('.jcarousel-next').jcarouselControl({
         		target: '+=5'
     		});
 			//plists
 			$('.jcarousel-plist').jcarousel();
-			
 			$('.jcarousel-plist-prev').jcarouselControl({
 				target: '-=5'
 			});
@@ -211,14 +202,11 @@
 			});
 			$('.jcarousel-gen-next').jcarouselControl({
 				target: '+=5'
-			});
-			
+			});			
 			
 			$("#jcarousel-next-btn").click(function(e)
 			{
-				//alert("clicked next");
 				tagsPage++;
-				//alert(tagsPage);
 				$.ajax({
                 	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
                     type: "GET",
@@ -243,8 +231,6 @@
                                 +tagNameEnc+"&amp;imagePath="
                                 +elem.IMAGEPATH+"'><img src='"
                                 +elem.IMAGEPATH+"' alt='' /></a></li>";
-                                
-                                //buildTagDiv(i,elem);
                   			});
                             $("#myCarouselUl").append(html);
 				            // Reload carousel
@@ -256,10 +242,8 @@
                     	alert("error!!!! "+data);
                    	}
                 });
-				
             });
 
-			
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
             {
@@ -275,7 +259,6 @@
             
             $(".search_button").click(function(e)
             {
-            	//alert("clicked button");
                 searchTag(e,$(".search_input").val());
             });
             
@@ -283,7 +266,6 @@
             {
            		<?php unset(Yii::app()->session['bandsIdStr']);?>
             	var rawData;    
-                //alert(search_input);
                 $.ajax({
                 	url: '<?php echo Yii::app()->createUrl('Tags/search')?>',
                     type: "GET",
@@ -293,24 +275,58 @@
                    	success: function(response,status, jqXHR)
                     {
                     	if(response){
-                    		$("#myCarousel").empty();
                             var count = 0;
-                            $("#myCarousel").append("<ul id='myCarouselUl' class='boxview'>");
-                            $.each(response.dataProvider.rawData, function(i, elem){
-								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
-								var descEnc = encodeURIComponent(elem.DESCRIPTION);
-								var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-                                $("#myCarouselUl").append("<li><div class='tag'>" + elem.TAGNAME + 
-                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
-                                            +elem.TAGID+"&amp;tagname="
-                                            +tagNameEnc+"&amp;imagePath="
-                                            +elem.IMAGEPATH+"'><img src='"
-                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
-                                //buildTagDiv(i,elem);
-                                count++;
-                  			});
-                            //</ul>
+                            if(response.type=='TAG'){
+                            	$("#myCarousel").empty();
+	                            $("#myCarousel").append("<ul id='myCarouselUl' class='boxview'>");
+	                            $.each(response.dataProvider.rawData, function(i, elem){
+									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+									var descEnc = encodeURIComponent(elem.DESCRIPTION);
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+	                                $("#myCarouselUl").append("<li><div class='tag'>" + elem.TAGNAME + 
+	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+	                                            +elem.TAGID+"&amp;tagname="
+	                                            +tagNameEnc+"&amp;imagePath="
+	                                            +elem.IMAGEPATH+"'><img src='"
+	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+	                                count++;
+	                  			});
+	                    	}
+	                    	if(response.type=='PL'){
+	                    		$("#myCarousel-plist").empty();
+	                    	    $("#myCarousel-plist").append("<ul id='myCarousel-plistUl' class='boxview'>");
+	                    	    $.each(response.dataProvider.rawData, function(i, elem){
+		                    	    var plTitle = elem.PLTITLE;
+		                    	    if(elem.PLTITLE.length>16){
+										plTitle = elem.PLTITLE.substring(0,16) + " ...";					
+			                    	} 
+	                    	    	var tagNameEnc = encodeURIComponent(plTitle);
+									var descEnc = encodeURIComponent(elem.DESCRIPTION);
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+	                                $("#myCarousel-plistUl").append("<li><div class='tag'>" + elem.PLTITLE + 
+	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                            +"<a href='index-test.php?r=Playlists/view2&amp;id="
+	                                            +elem.PLID+"'><img src='"
+	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+	                                count++;
+		                    	});
+		                    }
+		                    if(response.type=='GEN'){
+		                    	$("#myCarousel-gen").empty();
+	                    	    $("#myCarousel-gen").append("<ul id='myCarousel-genUl' class='boxview2'>");
+	                    	    $.each(response.dataProvider.rawData, function(i, elem){
+	                    	    	var tagNameEnc = encodeURIComponent(elem.GENRENAME);
+									var descEnc = encodeURIComponent(elem.DESCRIPTION);
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+	                                $("#myCarousel-genUl").append("<li><a href='index-test.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
+	                                            +elem.GENREID+"&amp;genImagePath="
+	                                            +elem.IMAGEPATH+"&amp;genDescription="
+	                                            +elem.descEnc+"'><img src='"
+	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+	                                count++;
+		                    	});
+				            }
                     	}
              		},
                     error: function(data)
@@ -320,17 +336,6 @@
                 });
             }
 
-			function buildTagDiv(i,elem)
-			{
-				var tagNameEnc = encodeURIComponent(elem.TAGNAME);
-				var descEnc = encodeURIComponent(elem.DESCRIPTION);
-				var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-				
-                $(/*"#req_res"*/"#myCarousel").append(/*"<ul id="+i+" class='boxview'>*/"<li><div class='tag'>" + elem.TAGNAME + 
-                             "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="+elem.TAGID+"&amp;tagname="+tagNameEnc+"&amp;imagePath="+elem.IMAGEPATH+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>"/*</ul>"*/);
-			}
-            
   		})(this.jQuery);
 
 	//]]>

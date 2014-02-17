@@ -29,7 +29,7 @@ class TagsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','search'),
+				'actions'=>array('index','view','search','searchRender'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -129,8 +129,9 @@ class TagsController extends Controller
 		));*/
 	}
 
-	public function actionSearch()
+	public function commonSearch()
 	{
+		$dataProvider = null;
 		if(isset($_GET['tagNameMatch'])){
 			$tagNameMatch = $_GET['tagNameMatch'];
 			$q = new CDbCriteria();
@@ -153,15 +154,110 @@ class TagsController extends Controller
         			),
     			),
 			));
-			
-			
+		}
+		return $dataProvider;
+	}
+	
+	
+	public function actionSearchRender()
+	{
+		echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
+		//$dataProvider = commonSearch();
+		//echo Yii::trace(CVarDumper::dumpAsString($searchField),'vardump');
+		
+		//$this->render('index',array(
+		//	'dataProvider'=>$dataProvider
+			//'dataProviderGenres'=>$dataProviderGenres,
+			//'dataProviderPlaylist'=>$dataProviderPlaylist,
+		//));	
+	
+	}
+	
+	
+	
+	
+	public function actionSearch()
+	{
+		echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionSearch()"),'vardump');
+		if(isset($_GET['tagNameMatch'])){
+			$tagNameMatch = $_GET['tagNameMatch'];
+			$q = new CDbCriteria();
+			$q->addSearchCondition('Tagname', $tagNameMatch);
+			$filterTags = Tags::model()->findAll($q);
 
-			//echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+			$output = "";
+			if(count($filterTags)==0){
+				$q = new CDbCriteria();
+				$q->addSearchCondition('Pltitle',$tagNameMatch);
+				$filterTags = Playlists::model()->findAll($q);
+				if(count($filterTags)==0) {
+					$q = new CDbCriteria();
+					$q->addSearchCondition('Genrename',$tagNameMatch);
+					$filterTags = Genres::model()->findAll($q);
+					if(count($filterTags)==0){
+						return;
+					}else{
+						foreach($filterTags as $tag) {
+							if(!file_exists ( $tag->IMAGEPATH )) {
+								$tag->IMAGEPATH = "images/stai-music.jpg";	
+							}
+						}
+						$dataProvider=new CArrayDataProvider($filterTags, array(
+							'id'=>'GENREID',
+							'sort'=>array(
+        					'attributes'=>array(
+             					'GENRENAME',
+        						),
+    						),
+						));
+						echo Yii::trace(CVarDumper::dumpAsString("-----------> GENERI"),'vardump');
+						echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+						$output = CJSON::encode(array('type'=>'GEN','dataProvider'=>$dataProvider));
+					}
+				}else{
+					foreach($filterTags as $tag) {
+						if(!file_exists ( $tag->IMAGEPATH )) {
+							$tag->IMAGEPATH = "images/stai-music.jpg";	
+						}
+					}
+					$dataProvider=new CArrayDataProvider($filterTags, array(
+					'id'=>'PLID',
+					'sort'=>array(
+        				'attributes'=>array(
+             				'PLTITLE',
+        					),
+    					),
+					));
+					echo Yii::trace(CVarDumper::dumpAsString("-----------> PLAYLISTS"),'vardump');
+					echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+					$output = CJSON::encode(array('type'=>'PL','dataProvider'=>$dataProvider));
+				}	
+			}else{
+				foreach($filterTags as $tag) {
+					if(!file_exists ( $tag->IMAGEPATH )) {
+						$tag->IMAGEPATH = "images/stai-music.jpg";	
+					}
+				}
+				$dataProvider=new CArrayDataProvider($filterTags, array(
+					'id'=>'TAGID',
+					'sort'=>array(
+        				'attributes'=>array(
+             				'TAGNAME',
+        				),
+    				),
+				));
+				echo Yii::trace(CVarDumper::dumpAsString("-----------> TAGS"),'vardump');
+				echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+				$output = CJSON::encode(array('type'=>'TAG','dataProvider'=>$dataProvider));
+			}
 			
-			echo CJSON::encode(array('dataProvider'=>$dataProvider));
+			echo Yii::trace(CVarDumper::dumpAsString("$output"),'vardump');
+			echo Yii::trace(CVarDumper::dumpAsString("-------------> TagsController->actionSearch() HO FINITO"),'vardump');
+			echo $output;
 			//$this->render('index',array('dataProvider'=>$dataProvider, ));
 		}
 	}
+	
 	
 	
 	/**
