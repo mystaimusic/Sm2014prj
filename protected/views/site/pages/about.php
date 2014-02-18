@@ -8,7 +8,7 @@
 <div class="header-form">
 <input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
 </div><!--headerform-->
-</div><!--mod_mainsearch-->
+</div><!--mod_mainsearch-about-->
 
 
 
