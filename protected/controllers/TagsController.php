@@ -178,7 +178,7 @@ class TagsController extends Controller
 	
 	public function actionSearch()
 	{
-		echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionSearch()"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionSearch()"),'vardump');
 		if(isset($_GET['tagNameMatch'])){
 			$tagNameMatch = $_GET['tagNameMatch'];
 			$q = new CDbCriteria();
@@ -210,8 +210,8 @@ class TagsController extends Controller
         						),
     						),
 						));
-						echo Yii::trace(CVarDumper::dumpAsString("-----------> GENERI"),'vardump');
-						echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+						//echo Yii::trace(CVarDumper::dumpAsString("-----------> GENERI"),'vardump');
+						//echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
 						$output = CJSON::encode(array('type'=>'GEN','dataProvider'=>$dataProvider));
 					}
 				}else{
@@ -228,8 +228,8 @@ class TagsController extends Controller
         					),
     					),
 					));
-					echo Yii::trace(CVarDumper::dumpAsString("-----------> PLAYLISTS"),'vardump');
-					echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+					//echo Yii::trace(CVarDumper::dumpAsString("-----------> PLAYLISTS"),'vardump');
+					//echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
 					$output = CJSON::encode(array('type'=>'PL','dataProvider'=>$dataProvider));
 				}	
 			}else{
@@ -246,13 +246,13 @@ class TagsController extends Controller
         				),
     				),
 				));
-				echo Yii::trace(CVarDumper::dumpAsString("-----------> TAGS"),'vardump');
-				echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
+				//echo Yii::trace(CVarDumper::dumpAsString("-----------> TAGS"),'vardump');
+				//echo Yii::trace(CVarDumper::dumpAsString($dataProvider),'vardump');
 				$output = CJSON::encode(array('type'=>'TAG','dataProvider'=>$dataProvider));
 			}
 			
-			echo Yii::trace(CVarDumper::dumpAsString("$output"),'vardump');
-			echo Yii::trace(CVarDumper::dumpAsString("-------------> TagsController->actionSearch() HO FINITO"),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString("$output"),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString("-------------> TagsController->actionSearch() HO FINITO"),'vardump');
 			echo $output;
 			//$this->render('index',array('dataProvider'=>$dataProvider, ));
 		}

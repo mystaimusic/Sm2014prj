@@ -34,6 +34,14 @@ class SiteController extends Controller
 		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
 		echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');*/
 		
+		//TODO: mettere in sessione il contatore del numero di tags. playlists e generi totali
+		$countTags = Tags::model()->count();
+		$countPlists = Playlists::model()->count();
+		$countGenres = Genres::model()->count();
+		Yii::app()->user->setState('countTags', $countTags);
+		Yii::app()->user->setState('countPlists', $countPlists);
+		Yii::app()->user->setState('countGenres', $countGenres);
+		
 		$dataProvider=new CActiveDataProvider('Tags',
 			array(
 				'criteria'=>array(
@@ -52,7 +60,7 @@ class SiteController extends Controller
 					'order'=>'PLID',
 				),
 				'pagination'=>array(
-        			'pageSize'=>1000,
+        			'pageSize'=>10,
     			),
 			)
 		);
@@ -79,38 +87,90 @@ class SiteController extends Controller
 	}
 	
 	//this is an ajax call
-	public function actionGetNextTag($currentPage)
+	public function actionGetNextTag($currentPage,$type)
 	{
 		$criteria=new CDbCriteria();
-		$criteria->order='TAGNAME';
-    	$count=Tags::model()->count($criteria);
+		$count = 0;
+		if($type == "TAG"){
+			$criteria->order='TAGNAME';
+			//$count=Tags::model()->count($criteria);
+			$count= Yii::app()->user->getState('countTags');
+		}
+		if($type == "GEN"){
+			$criteria->order='GENRENAME';
+			//$count=Genres::model()->count($criteria);
+			$count= Yii::app()->user->getState('countGenres');
+		}
+		if($type == "PL"){
+			$criteria->order='PLTITLE';
+			//$count=Playlists::model()->count($criteria);
+			$count= Yii::app()->user->getState('countPlists');
+		}
     	$pages=new CPagination($count);
     	$pages->pageSize=5;
     	$pages->setCurrentPage($currentPage);
     	$pages->applyLimit($criteria);
-    	$models=Tags::model()->findAll($criteria);
-    	foreach($models as $model)
-    	{
-    		$imgGenStr = "images/stai-music.jpg";
-			if(!file_exists ( $model->IMAGEPATH )){
-				$model->IMAGEPATH = $imgGenStr;	
-			}
+    	if($type == "TAG"){
+    		$models=Tags::model()->findAll($criteria);
+    		foreach($models as $model)
+	    	{
+	    		$imgGenStr = "images/stai-music.jpg";
+				if(!file_exists ( $model->IMAGEPATH )){
+					$model->IMAGEPATH = $imgGenStr;	
+				}
+	    	}
+			$dataProvider=new CArrayDataProvider($models, array(
+				'id'=>'TAGID',
+				'sort'=>array(
+	        		'attributes'=>array(
+	             		'TAGNAME',
+	        		),
+	    		),
+			));
+			$output = CJSON::encode(array('dataProvider'=>$dataProvider));
+			echo $output;
     	}
-    	//echo Yii::trace(CVarDumper::dumpAsString("---> sono in getNextTag"),'vardump');
-    	//echo Yii::trace(CVarDumper::dumpAsString($currentPage),'vardump');
-    	//echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');
+    	if($type=="GEN"){
+    		$models=Genres::model()->findAll($criteria);
+    		foreach($models as $model)
+	    	{
+	    		$imgGenStr = "images/stai-music.jpg";
+				if(!file_exists ( $model->IMAGEPATH )){
+					$model->IMAGEPATH = $imgGenStr;	
+				}
+	    	}
+			$dataProvider=new CArrayDataProvider($models, array(
+				'id'=>'GENREID',
+				'sort'=>array(
+	        		'attributes'=>array(
+	             		'GENRENAME',
+	        		),
+	    		),
+			));
+			$output = CJSON::encode(array('dataProvider'=>$dataProvider));
+			echo $output;
+    	}
+    	if($type=="PL"){
+    		$models=Playlists::model()->findAll($criteria);
+    		foreach($models as $model)
+	    	{
+	    		$imgGenStr = "images/stai-music.jpg";
+				if(!file_exists ( $model->IMAGEPATH )){
+					$model->IMAGEPATH = $imgGenStr;	
+				}
+	    	}
+			$dataProvider=new CArrayDataProvider($models, array(
+				'id'=>'PID',
+				'sort'=>array(
+	        		'attributes'=>array(
+	             		'PLTITLE',
+	        		),
+	    		),
+			));
+			$output = CJSON::encode(array('dataProvider'=>$dataProvider));
+			echo $output;
+    	}
     	
-		$dataProvider=new CArrayDataProvider($models, array(
-			'id'=>'TAGID',
-			'sort'=>array(
-        		'attributes'=>array(
-             		'TAGNAME',
-        		),
-    		),
-		));
-
-		$output = CJSON::encode(array('dataProvider'=>$dataProvider));
-		echo $output;
 	}
 	
 	/**

@@ -27,11 +27,11 @@
 
 <div id="mod_mainsearch">
 <div id="loading" style="margin: 4px 0;display:none;">loading...</div>
-<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beat?
-	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
-	
-	
-	<br/>
+<div id="search" class="header-answer">What makes your body move...and your heart beat?
+	<div class="header-form">
+		<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
+		<br/>
+	</div>
 </div>
 <div id="result"></div>
 
@@ -75,21 +75,17 @@
 		<div class="jcarousel-next">
 			<a id="jcarousel-next-btn" href="#" class="jcarousel-next" data-jcarouselcontrol="true"></a>
 		</div>
-		</div>
+	</div>
 		
-		<div class="jcarousel-plist-wrapper">
+	<div class="jcarousel-plist-wrapper">
 		<!-- div playlists -->
 		<div class="jcarousel-plist-prev">
-			<a href="#" class="jcarousel-plist-prev" data-jcarouselcontrol="true">
-
-			</a>
+			<a id="jcarousel-plist-prev-btn" href="#" class="jcarousel-plist-prev" data-jcarouselcontrol="true"></a>
 		</div>
 	<!-- <div id="req_res" class="bv_maincont"> -->
 	<div id="myCarousel-plist" class="jcarousel-plist" data-jcarousel="true">
 	<?php 
 		
-		$max = 5;
-		$count = 1;
 		echo CHtml::tag('ul', array('id'=>'myCarousel-plistUl','class'=>'boxview3'),false,false);
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
@@ -112,16 +108,13 @@
 				$imghtml = CHtml::image($imagePath);
 				echo CHtml::link($imghtml, array('Playlists/view2','id'=>$playlist->PLID));
 				echo CHtml::closeTag('li');
-				
-				$count++;
 			//}
 		}
 		echo CHtml::closeTag('ul');
 	?>
 	</div>
 		<div class="jcarousel-plist-next">
-			<a href="#" class="jcarousel-plist-next" data-jcarouselcontrol="true">
-
+			<a id="jcarousel-plist-next-btn" href="#" class="jcarousel-plist-next" data-jcarouselcontrol="true">
 			</a>
 		</div>
 	</div>
@@ -179,8 +172,35 @@
 	//<![CDATA[
 		(function($){
 			var tagsPage = 2;
+			var plistPage = 2;
+			var gensPage = 2;
+			var totalTags = <?php echo Yii::app()->user->getState('countTags');?>;
+			var totalPlist = <?php echo Yii::app()->user->getState('countPlists');?>;
+			var totalGenres = <?php echo Yii::app()->user->getState('countGenres');?>;
+
+			var totTagPages = Math.floor(totalTags/5);
+			var remTags = totalTags % 5;
+			//var testVar = 20%5;
+			//alert(testVar);
+			if(remTags>0){
+				totTagPages++; 
+			}
+			var totPlistPage = Math.floor(totalPlist/5);
+			var remPlist = totPlistPage % 5;
+			if(remPlist>0){
+				totPlistPage++;
+			}
+			//alert(rem);
+			
 			//tags
-			var myjcarousel = $("#myCarousel").jcarousel();
+			var myjcarousel = $("#myCarousel")
+				/*.on('jcarousel:create jcarousel:reload', function(){
+					var element = $(this),
+					width = element.innerWidth();
+					element.jcarousel('items').css('width', width/5 + 'px');
+				})*/
+				.jcarousel();
+
 			$('.jcarousel-prev').jcarouselControl({
         		target: '-=5'
     		});
@@ -188,7 +208,8 @@
         		target: '+=5'
     		});
 			//plists
-			$('.jcarousel-plist').jcarousel();
+			var myjcarouselPlist = $("#myCarousel-plist").jcarousel();
+			//$('.jcarousel-plist').jcarousel();
 			$('.jcarousel-plist-prev').jcarouselControl({
 				target: '-=5'
 			});
@@ -202,48 +223,89 @@
 			});
 			$('.jcarousel-gen-next').jcarouselControl({
 				target: '+=5'
-			});			
+			});
 			
 			$("#jcarousel-next-btn").click(function(e)
 			{
-				tagsPage++;
-				$.ajax({
-                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
-                    type: "GET",
-                    data: {currentPage: tagsPage},
-                  	dataType: "json",
-                    async: false,
-                   	success: function(response,status, jqXHR)
-                    {
-                    	if(response){
-                    		//$("#myCarousel").empty();
-                            //$("#myCarouselUl").append("<ul id='myCarouselUl' class='boxview'>");
-                            var html='';
-                            $.each(response.dataProvider.rawData, function(i, elem){                               
-								var tagNameEnc = encodeURIComponent(elem.TAGNAME);
-								var descEnc = encodeURIComponent(elem.DESCRIPTION);
-								var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-								//alert($("#myCarouselUl"));
-								html += "<li><div class='tag'>" + elem.TAGNAME + 
-                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-                                +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
-                                +elem.TAGID+"&amp;tagname="
-                                +tagNameEnc+"&amp;imagePath="
-                                +elem.IMAGEPATH+"'><img src='"
-                                +elem.IMAGEPATH+"' alt='' /></a></li>";
-                  			});
-                            $("#myCarouselUl").append(html);
-				            // Reload carousel
-            				myjcarousel.jcarousel('reload');
-                    	}
-             		},
-                    error: function(data)
-                    {
-                    	alert("error!!!! "+data);
-                   	}
-                });
+				if(tagsPage<totTagPages-1){
+					tagsPage++;
+					$.ajax({
+	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
+	                    type: "GET",
+	                    data: {currentPage: tagsPage, type: "TAG"},
+	                  	dataType: "json",
+	                    async: false,
+	                   	success: function(response,status, jqXHR)
+	                    {
+	                    	if(response){
+	                            var html='';
+	                            $.each(response.dataProvider.rawData, function(i, elem){                               
+									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
+									var descEnc = encodeURIComponent(elem.DESCRIPTION);
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+									html += "<li><div class='tag'>" + elem.TAGNAME + 
+	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+	                                +elem.TAGID+"&amp;tagname="
+	                                +tagNameEnc+"&amp;imagePath="
+	                                +elem.IMAGEPATH+"'><img src='"
+	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
+	                  			});
+	                            $("#myCarouselUl").append(html);
+					            // Reload carousel
+	            				myjcarousel.jcarousel('reload');
+	                    	}
+	             		},
+	                    error: function(data)
+	                    {
+	                    	alert("error!!!! "+data);
+	                   	}
+	                });
+				}
             });
 
+			$("#jcarousel-plist-next-btn").click(function(e)
+			{
+				if(plistPage<totPlistPage-1){
+					plistPage++;
+					$.ajax({
+	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
+	                    type: "GET",
+	                    data: {currentPage: plistPage, type: "PL"},
+	                  	dataType: "json",
+	                    async: false,
+	                   	success: function(response,status, jqXHR)
+	                    {
+	                    	if(response){
+	                            var html='';
+	                            //alert("response");
+	                            $.each(response.dataProvider.rawData, function(i, elem){
+	                                var plTitle = elem.PLTITLE;
+	                                if(elem.PLTITLE.length>16){
+	                                	plTitle = elem.PLTITLE.substring(0,16) + " ...";
+	                                }
+									var tagNameEnc = encodeURIComponent(plTitle);
+									var descEnc = encodeURIComponent(elem.DESCRIPTION);
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+									html += "<li><div class='tag'>" + plTitle + 
+	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                +"<a href='index-test.php?r=Playlists/view2&amp;id="
+	                                +elem.PLID+"'><img src='"
+	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
+	                  			});
+	                            $("#myCarousel-plistUl").append(html);
+					            // Reload carousel
+	            				myjcarouselPlist.jcarousel('reload');
+	                    	}
+	             		},
+	                    error: function(data)
+	                    {
+	                    	alert("error!!!! "+data);
+	                   	}
+	                });
+				}
+			});
+			
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
             {
