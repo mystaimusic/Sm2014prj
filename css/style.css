@@ -187,10 +187,20 @@ font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;font-size:25px;
 
 
 
-/**mod_mainsearch-----------------------------------------------------**/
+/**mod_mainsearch-----------------------------------------------------OLD
 #mod_mainsearch{width:100%;float:left;max-width:1200px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;}
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
-.search_button{text-decoration:none;border:hidden;margin-left:10px;background-image:url(../images/button-search1.png);background-repeat:no-repeat;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif}
+.search_button{text-decoration:none;border:hidden;margin-left:10px;background-image:url(../images/button-search1.png);background-repeat:no-repeat;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif}**/
+
+
+/**mod_mainsearch-----------------------------------------------------**/
+#mod_mainsearch{width:100%;float:left;max-width:1300px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"secondaria",Arial,Verdana,Helvetica,sans-serif;}
+.header-answer{ float:left; width:800px;}
+.header-form{ float:left; width:400px;}
+.search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
+#mod_mainsearch .search_button{text-decoration:none;border:hidden;margin-left:10px;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif; cursor: pointer; }
+#mod_mainsearch .search_button:hover{background-color: #990000;}
+
 
 
 /**mod_mainsearch2-----------------------------------------------------**/
