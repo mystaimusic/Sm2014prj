@@ -101,9 +101,12 @@ a:hover{color:#222;}
 .jcarousel {float:left; position: relative; overflow: hidden;width: 1220px;}
 .jcarousel ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel li {float: left; border:#fff solid 2px}
+/** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
 /** playlists **/
 .jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
+.jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel-plist li {float: left; border:#fff solid 2px}
 
 
 /**  genres **/
