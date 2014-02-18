@@ -28,15 +28,14 @@
   <div id="headercont">
 
 <div id="mod_mainsearch">
-<div id="loading" style="margin: 4px 0;display:none;">loading...</div>
-<div id="search" style="margin: 10px 0;">What makes your body move...and your heart beat?
-	
+<!--  <div id="loading" style="margin: 4px 0;display:none;">loading...</div> -->
+<div id="search" class="header-answer">What makes your body move...and your heart beat?</div>
+<div class="header-form">
 	<form id="search_tags" action="<?php echo Yii::app()->createUrl('Tags/searchRender') ?>">
-		<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button><br/>
+		<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
 	</form>
-	<br/>
 </div>
-<div id="result"></div>
+<!--  <div id="result"></div> -->
 
 </div><!--mod_mainsearch--><br><br>
 
