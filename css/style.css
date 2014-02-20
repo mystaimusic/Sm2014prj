@@ -5,7 +5,7 @@
 
 
 @font-face {
-    font-family:'titoli';
+    font-family:'TitleExtraBold';
     src: url('font/opensans/OpenSans-ExtraBold-webfont.eot');
     src: url('font/opensans/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'),
          url('font/opensans/OpenSans-ExtraBold-webfont.woff') format('woff'),
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-    font-family:'titoli2';
+    font-family:'TitleBold';
     src: url('font/opensans/OpenSans-Bold-webfont.eot');
     src: url('font/opensans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
          url('font/opensans/OpenSans-Bold-webfont.woff') format('woff'),
@@ -28,29 +28,35 @@
 
 }
 
-
-
 @font-face {
-    font-family:'titoletti';
+    font-family:'Text';
+    src: url('font/opensans/OpenSans-Regular-webfont.eot');
+    src: url('font/opensans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/opensans/OpenSans-Regular-webfont.woff') format('woff'),
+         url('font/opensans/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('font/opensans/OpenSans-Regular-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face { 
+    font-family:'SubTitle';
     src: url('font/compressed/trump_gothic_west_bold.ttf');
     font-weight: normal;
     font-style: normal;
-	letter-spacing:50px;
+    
 
 }
 
 
 
-@import url("http://fonts.googleapis.com/css?family=Open+Sans");
-@import url("http://fonts.googleapis.com/css?family=Orienta");
-
-
 /**GlobalStyles**/
-html{height:100%;width:100%;margin:0px; overflow-x: hidden;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}
-body{width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:0;background-repeat:no-repeat;margin:0px;}
+html{height: 100%;overflow: auto;-webkit-font-smoothing: antialiased;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}
+body{width:100%;height:100%;font-family: "Text", Arial, Verdana, Helvetica, sans-serif;font-size:13px;padding:0;background-repeat:no-repeat;margin:0px;}
 ::selection{background:#000;color:#FFF;}
 ::-moz-selection{background:#000;color:#FFF;}
-a{color:#00B2E0;text-decoration:none;}
+a{color:#00B2E0;text-decoration:none;; text-decoration: none; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear;}
 a:hover{color:#222;}
 
 
@@ -66,7 +72,6 @@ a:hover{color:#222;}
 .bg3{max-width:1000px;background-color:#FFFFFF;}
 
 /**MenuTOP**/
-#menulogo{width:200px;height:50px;margin:auto;float:left;}
 #menu{width:400px;float:right;height:50px;}				
 .container#menucont{width:80%;max-width:980px;padding:3px0;margin:0auto;height:60px;}			
 .container#menucont img{display:block;width:100%;height:100%;}	
@@ -85,8 +90,9 @@ a:hover{color:#222;}
 #mainleft{color:#000;width:70%;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
 #mainleft_header{color:#000;background-color:#CCCCCC;margin-top:0px;padding:0px;padding-left:30px;padding-right:10px;text-align:center;margin:auto;position:relative;overflow:hidden;background-position:right;}
 #mainleft_header img{height:100%;width:100%;}
-.mainleft_text{position:relative;margin-top:20px;margin-bottom:100px;padding-top:10px;float:left;padding-left:10px;}
-.mainleft_text h1{font-size:24px;font-weight: normal;font-family: "titoli", Arial, Verdana, Helvetica, sans-serif;}			
+.mainleft_text{position:relative;margin-top:20px;margin-bottom:100px;padding-top:10px;float:left;padding-left:20px;}
+.mainleft_text h1{font-size:24px; font-weight: bold;font-family: "TitleExtraBold", Arial, Verdana, Helvetica, sans-serif;font-size:26px; line-height: 26px;}	
+.mainleft_text h2{font-size:18px; font-weight: bold;font-family: "TitleBold", Arial, Verdana, Helvetica, sans-serif; line-height: 26px;}		
 #mainright{float:right;background-color:#fff;width:30%;padding:0px;height:100%;}
 
 /**Footer---------------------------------------------**/		
@@ -142,7 +148,7 @@ a:hover{color:#222;}
 
 /** suggested link-----------------------------------------------------**/
 .suggested_cont{float:left;width:98%;padding:0px;height:70px;margin:auto;position:relative;margin-top:20px;}
-.suggested_title{float:left;height:20px;width:100%; text-align:left; padding-top:10px;padding-bottom:3px; border-bottom:#666 solid 1px; font-size:22px;font-family: "titoletti", Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase}
+.suggested_title{float:left;height:20px;width:100%; text-align:left; padding-top:10px;padding-bottom:3px; border-bottom:#666 solid 1px; font-size:22px;font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase;  letter-spacing:1px;}
 ul.suggested {text-decoration:none; list-style: none; 	padding: 0; margin-top:10px;float:left;}
 ul.suggested li{ float:left; background-color:#999999; margin-right:5px; margin-bottom:20px; padding:0px}
 ul.suggested li a{width:70px; height:70px;background-color:#999999;display: block; }
@@ -160,7 +166,7 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 .boxview img{width:240px; height:240px;  z-index:2}			
 .boxview .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
-.boxview .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"titoli",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
+.boxview .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 /** genres-----------------------------------------------------**/
 .bv_maincont2{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
 .boxview2 {float:left;margin:0px;padding:0px;width:134px;height:132px;display:inline;}
@@ -169,7 +175,7 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 .boxview2 img{width:132px; height:132px;  z-index:2}			
 .boxview2 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
-.boxview2 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"titoli",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
+.boxview2 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 /**  playlists -----------------------------------------------------**/
 .bv_maincont3{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
 ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inline;width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
@@ -178,7 +184,7 @@ ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
 ul.boxview3 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
-ul.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"titoli",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
+ul.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 
 
 /**headervideo-----------------------------------------------------**/
@@ -204,7 +210,7 @@ ul.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;col
 font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-align:left}	
 /**headertitle-----------------------------------------------------**/
 #headertitle{width: auto;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;
-font-family: "titolo", Arial, Verdana, Helvetica, sans-serif;font-size:25px;color:#000;text-align:left; line-height:25px}	
+ font-family: "TitleBold", Arial, Helvetica, sans-serif; font-size:25px;color:#000;text-align:left; font-size: 26px; line-height: 26px; }	
 /**player_toolbar-----------------------------------------------------**/
 #player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
 
@@ -217,11 +223,11 @@ font-family: "titolo", Arial, Verdana, Helvetica, sans-serif;font-size:25px;colo
 
 
 /**mod_mainsearch-----------------------------------------------------**/
-#mod_mainsearch{width:100%;float:left;max-width:1300px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"titoli",Arial,Verdana,Helvetica,sans-serif;}
-.header-answer{ float:left; width:850px;font-size:32px;font-family:"titoli2",Arial,Verdana,Helvetica,sans-serif;}
+#mod_mainsearch{width:100%;float:left;max-width:1300px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
+.header-answer{ float:left; width:850px;font-size:30px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
 .header-form{ float:left; width:400px;}
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
-#mod_mainsearch .search_button{text-decoration:none;border:hidden;margin-left:10px;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif; cursor: pointer; }
+#mod_mainsearch .search_button{text-decoration:none;border:hidden;margin-left:10px;width:87px;height:26px;background-color:#9a012c;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif; cursor: pointer; }
 #mod_mainsearch .search_button:hover{background-color: #990000;}
 
 
@@ -252,10 +258,10 @@ font-family: "titolo", Arial, Verdana, Helvetica, sans-serif;font-size:25px;colo
 .mod_playlists .item_ img{float:left}
 .mod_playlists a{color:#000;text-decoration:none;}
 .mod_playlists a:hover{color: #cf043d;}
-.mod_playlists H3{color:#000;font-size:20px;font-family: "primaria", Arial, Verdana, Helvetica, sans-serif;margin-bottom:5px;}
+.mod_playlists H3{color:#000;font-size:20px;font-family: "TitleBold", Arial, Verdana, Helvetica, sans-serif;margin-bottom:5px;}
 .mod_playlists .header{width:auto;height:26px;background-image:url(../images/sf-lines.gif);background-repeat:no-repeat;background-color:#0895ee;color:#fff;text-align:left;padding:0px;margin:0px;overflow:hidden;}	
 .mod_playlists .title{display:inline-block;height:26px;width:auto;background-color:#0895ee;text-align:left;background-image:url(../images/icon-playlist.gif);background-repeat:no-repeat;padding-left:30px;padding-right:10px;}
-.mod_playlists .title h2{font-family: "titoletti", Arial, Verdana, Helvetica, sans-serif;letter-spacing:0px;font-size:22px;font-weight:bold;margin:0px;color:#fff;text-transform:uppercase; padding-top:2px;}
+.mod_playlists .title h2{font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;letter-spacing:0px;font-size:22px;font-weight:bold;margin:0px;color:#fff;text-transform:uppercase; padding-top:2px; letter-spacing:1px;}
 .mod_playlists .cont{width:auto;text-align:left;margin:0auto;padding-left:5px;padding-right:5px;color:#fff;padding-bottom:10px;}	
 .mod_playlists img{width:50px;height:50px;}	
 
@@ -266,7 +272,7 @@ font-family: "titolo", Arial, Verdana, Helvetica, sans-serif;font-size:25px;colo
 #mod_contlist .header{width:auto;height:26px;background-image:url(../images/sf-lines.gif);background-repeat:repeat;background-color:#e60544;color:#fff;text-align:left;padding:0px;}
 #mod_contlist .title{display:inline-block;height:26px;width:auto;background-color:#e60544;text-align:left;background-image:url(../images/icon-songs.gif);background-repeat:no-repeat;
 padding-left:30px;padding-right:10px;}
-#mod_contlist .title h2{font-family: "titoletti", Arial, Verdana, Helvetica, sans-serif;letter-spacing:0px;font-size:22px;font-weight:bold;margin:0px;color:#fff;text-transform:uppercase; padding-top:2px;}	
+#mod_contlist .title h2{font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;letter-spacing:0px;font-size:22px;font-weight:bold;margin:0px;color:#fff;text-transform:uppercase; padding-top:2px; letter-spacing:1px;}	
 #mod_contlist .cont{width:auto;text-align:left;margin:0auto;padding-left:0px;padding-right:0px;color:#fff;}	
 #mainlist{width:auto;text-align:left;min-height:100px;margin:0auto;padding-left:5px;padding-right:5px;background-color:#E5E5E5;color:#fff;}	
 
@@ -315,8 +321,8 @@ padding-left:30px;padding-right:10px;}
 
 /**Main-------------------------------------------------------**/
 #mainleft{color:#000;width:100%;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
-#mainleft_header{color:#000;background-color:#CCCCCC;margin-top:0px;padding:0px;padding-left:30px;padding-right:10px;text-align:center;margin:auto;position:relative;overflow:hidden;
-background-position:right;height:600px;}
+#mainleft_header{color:#000;background-color:#CCCCCC;margin-top:0px;padding:0px;padding-left:20px;padding-right:20px;text-align:center;margin:auto;position:relative;overflow:hidden;
+background-position:right;height: auto;}
 #mainright{display:none;float:right;background-color:#fff;width:450px;padding:0px;height:100%;}
 
 
@@ -342,15 +348,31 @@ background-position:right;height:600px;}
 
 /**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
 /**headervideo-----------------------------------------------------**/
-#headervideo{width:350px;background-color:#000;height:300px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;margin-right:10px;float:left;border:#CCCCCC solid 4px;}		
+	#headervideo_cont {
+	 width: 98%;display: inline-block;position: relative;margin-bottom:10px;margin-top:10px;max-width:600px;float:left;border:#CCCCCC solid 4px;}		
+	#headervideo_cont:after {
+		padding-top: 66.25%;
+		display: block;
+		content: '';
+	}
+	#headervideo {
+		position: absolute;
+		top: 0; bottom: 0; right: 0; left: 0;
+		background-color: blue;
+		color: white;
+	}
+
 #headervideo h1{font-size:26px;font-weight:400;padding-top:26px;}			
 #headervideo h1 a{font-family:"Orienta",Arial,Helvetica,sans-serif;color:#FFF;font-size:35px;letter-spacing:-2px;}				
 #headervideo h1 a:hover{color:#0CF;}
 /**headertext-----------------------------------------------------**/
-#headertext{width:100%;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;min-width:50px;float:left;
-font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:12px;text-align:left}	
+#headertext{width:100%;height:130px;margin:auto;position:relative;margin-bottom:10px;margin-top:10px;max-width:600px;float:left;
+font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-align:left}	
+/**headertitle-----------------------------------------------------**/
+#headertitle{width: auto;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;
+ font-family: "TitleBold", Arial, Helvetica, sans-serif; font-size:25px;color:#000;text-align:left; font-size: 26px; line-height: 26px; }	
 /**player_toolbar-----------------------------------------------------**/
-#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
+#player_toolbar{width:100%;background-color:#999999;height:20px;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
 
 
 
@@ -374,11 +396,14 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:12px;text-
 
 
 /**Header**/
-#headercont{background-color:#cf043d;width:100%;margin-left:0px;position:relative;padding-bottom:0px;padding-top:5px;color:#FFFFFF}
+#headercont{background-color:#cf043d;width:100%;margin-left:0px;position:relative;padding-bottom:0px;padding-top:5px;color:#FFFFFF;height: 80px;}
 /**mod_mainsearch-----------------------------------------------------**/
-#mod_mainsearch{width:100%;height:100%;max-width:480px;margin:auto;color:#fff;font-size:13px; font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif; padding-left:0px}
+#mod_mainsearch{width:100%;float:left;max-width:1300px;margin:0auto;padding-left:0px; padding-right:0px;color:#fff;font-size:32px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
+.header-answer{  font-size:13px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;padding-left:1%; padding-right:1%; width:100%}
+.header-form{ width:100%;}
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
-.search_button{text-decoration:none;border:hidden;margin-left:10px;background-image:url(../images/button-search1.png);background-repeat:no-repeat;width:87px;height:26px;background-color:#cf043d;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif}
+#mod_mainsearch .search_button{text-decoration:none;border:hidden;margin-left:10px;width:87px;height:26px;background-color:#9a012c;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif; cursor: pointer; }
+#mod_mainsearch .search_button:hover{background-color: #990000;}
 }
 
 
