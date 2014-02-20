@@ -98,22 +98,26 @@ class SongsController extends Controller
 	//this is an ajaxcall: the input is a genresid in this case
 	public function actionViewBandsSongsPerGenres($playlistId)
 	{
-		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
+		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
 		$bandsIdStr = Yii::app()->user->getState('bandsIdStr');
 		$sql = 'SELECT * FROM bands WHERE bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 15';
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
 		$songsArray = array();
-		echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
 		foreach($bands as $band) {
 			$bandId = $band['BANDID'];
 			$bandName = $band['BANDNAME'];
-			$songModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+			$songModel = Songs::model()->findByAttributes(array('BANDID'=>$bandId));
+			//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
+			$songModel->TITLE = $bandName . ' - ' . $songModel->TITLE;
+			echo Yii::trace(CVarDumper::dumpAsString($songModel->TITLE),'vardump'); 
 			$songsArray[$bandName]=$songModel;			
 			$tmpVar = ',' . $bandId;
 			$bandsIdStr .= $tmpVar;
 		}
 		Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
 		$output = CJSON::encode($songsArray);
+		echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
 		echo $output;
 	}
 	
@@ -135,6 +139,9 @@ class SongsController extends Controller
     		//echo Yii::trace(CVarDumper::dumpAsString($bandId),'vardump');
     		$offset = rand(0,$max);
     		$songModel = Songs::model()->findByAttributes(array('BANDID'=>$bandId));
+    		$bandModel = Bands::model()->findByPk($bandId);
+    		$bandName = $bandModel->BANDNAME;
+    		$songModel->TITLE = $bandName . ' - ' . $songModel->TITLE;
     		//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
     		//$songsArray[$count] = $song;
     		//$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));

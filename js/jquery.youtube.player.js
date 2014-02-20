@@ -1010,6 +1010,7 @@
 			{
 				var plUrl = 'index.php?r=Songs/viewSongsPerPlist';
 				if(isRandom==1){
+					//alert("isRandom");
 					plUrl = 'index.php?r=Songs/viewBandsSongsPerGenres';
 				}
 //				alert("nextPlaylist: "+nextPlaylist );
@@ -1034,13 +1035,18 @@
 		                        var html = '';
 		                        $.each(response, function(i, data){
 		                            //alert("data bandName: "+ i);
-		                        	var bandIdTmp = data[0].BANDID;
+		                            //alert("data " +data);
+		                            //alert("data[0] "+data[0]);
+		                            //alert("data.SONGID "+data.SONGID);
+		                            //alert("data[0].SONGID "+data[0].SONGID);
+		                            
+		                        	var bandIdTmp = data.BANDID;
 		                        	$("#bandList").empty();
 		                        	html += "<div class='palinsesto clearfix'><a class='myplaylist' id='"+bandIdTmp+"' href='#"+bandIdTmp+"'>"
 		                        	+i+"</a></div>";
 		                        	var oneVideoJSON = new Object();
-		                        	oneVideoJSON.id = data[0].CODE;
-		                        	oneVideoJSON.title = data[0].TITLE;
+		                        	oneVideoJSON.id = data.CODE;
+		                        	oneVideoJSON.title = data.TITLE;
 		                        	videoJSON_G.videos.push(oneVideoJSON);
 		                        	count++;
 		                        	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
