@@ -62,6 +62,7 @@ class PlaylistsController extends Controller
 	 */
 	public function actionView2($id)
 	{
+		Yii::app()->user->setState('ACTION_CLK', 'PLONE');
 		$plist = $this->loadModel($id);
 		
 		$dataProvider=new CArrayDataProvider($plist, array(
@@ -79,6 +80,7 @@ class PlaylistsController extends Controller
 
 	public function actionViewPlPerTag($tagid,$tagname,$imagePath)
     {
+    	Yii::app()->user->setState('ACTION_CLK', 'PLTAG');
         $tag=Tags::model()->findByPk($tagid);
         $pls=$tag->playlists;
         

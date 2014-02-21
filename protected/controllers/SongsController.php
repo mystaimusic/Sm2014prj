@@ -95,12 +95,15 @@ class SongsController extends Controller
 		}*/
 	}
 	
-	//this is an ajaxcall: the input is a genresid in this case
+	//this is an ajaxcall: the input is obsolete can be removed
 	public function actionViewBandsSongsPerGenres($playlistId)
 	{
-		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
+		//$playlistId in this case is the genreIds
+		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
+		$genid = Yii::app()->user->getState('SELECTED_GENID');
 		$bandsIdStr = Yii::app()->user->getState('bandsIdStr');
-		$sql = 'SELECT * FROM bands WHERE bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 15';
+		//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
+		$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. $genid .' and g.bid = b.bandid and b.bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 15';
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
 		$songsArray = array();
 		//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
@@ -110,14 +113,14 @@ class SongsController extends Controller
 			$songModel = Songs::model()->findByAttributes(array('BANDID'=>$bandId));
 			//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
 			$songModel->TITLE = $bandName . ' - ' . $songModel->TITLE;
-			echo Yii::trace(CVarDumper::dumpAsString($songModel->TITLE),'vardump'); 
+			//echo Yii::trace(CVarDumper::dumpAsString($songModel->TITLE),'vardump'); 
 			$songsArray[$bandName]=$songModel;			
 			$tmpVar = ',' . $bandId;
 			$bandsIdStr .= $tmpVar;
 		}
 		Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
 		$output = CJSON::encode($songsArray);
-		echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
 		echo $output;
 	}
 	
