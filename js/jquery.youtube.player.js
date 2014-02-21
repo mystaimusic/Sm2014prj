@@ -1008,10 +1008,12 @@
 			
 			function loadNextPlist(plId,isRandom)
 			{
-				var plUrl = 'index.php?r=Songs/viewSongsPerPlist';
+				var plUrl = 'index-test.php?r=Songs/viewSongsPerPlist';
+				//var plUrl = <?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist'); ?>;
 				if(isRandom==1){
 					//alert("isRandom");
-					plUrl = 'index.php?r=Songs/viewBandsSongsPerGenres';
+					plUrl = 'index-test.php?r=Songs/viewBandsSongsPerGenres';
+					//plUrl = <?php echo Yii::app()->createUrl('Songs/viewBandsSongsPerGenres'); ?>;
 				}
 //				alert("nextPlaylist: "+nextPlaylist );
 				var videoJSON_G = new Object();
