@@ -3,13 +3,73 @@
 /* @var $model ContactForm */
 /* @var $form CActiveForm */
 
-$this->pageTitle=Yii::app()->name . ' - Contact Us';
-$this->breadcrumbs=array(
-	'Contact',
-);
+
 ?>
 
-<h1>Contact Us</h1>
+
+
+
+
+
+
+<div class="container darkbg">
+  <div id="headercont">
+
+
+
+<div id="mod_mainsearch">
+<div class="header-answer">What makes your body move...and your heart beat?</div>
+<div class="header-form">
+<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
+</div><!--headerform-->
+</div><!--mod_mainsearch-about-->
+
+
+
+
+
+  </div><!--headercont-->
+</div><!--container-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+<div id="maincont" class="clearfix">
+	
+    
+<div id="mainleft">
+<div class="mainleft_text">
+<h1>Contattaci</h1>
+<p>
+Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi<br />
+<strong>Contatto Spagna: <a href="mailto:barcelona@staimusic.com">barcelona@staimusic.com</a></strong><br />
+<strong>Contatto Belgio: <a href="mailto:bruxelles@staimusic.com">bruxelles@staimusic.com</a></strong><br />
+<strong>Contatto Italia: <a href="mailto:milano@staimusic.com">milano@staimusic.com</a></strong><br />
+<strong>Contatto U.S.A: <a href="mailto:newyork@staimusic.com">newyork@staimusic.com</a></strong><br />
+</p>
+<img src="images/mappa.gif" border="0" alt="Staimusic" width="700px" height="auto">
+
+
+
+
+
+<hr>
+
+<h2>Inviaci una mail attraverso la form</h2>
+<p>
+
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -83,3 +143,23 @@ If you have business inquiries or other questions, please fill out the following
 </div><!-- form -->
 
 <?php endif; ?>
+
+</p>
+
+
+</div><!--mainleft_text"-->		          
+</div><!--mainleft-->
+
+
+
+
+<div id="mainright">
+       
+</div><!--mainright-->
+
+
+
+
+
+</div><!--maincont-->
+</div><!--container-->
