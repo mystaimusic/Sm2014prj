@@ -1068,6 +1068,49 @@
 				return videoJSON_G;
 			}
 			
+			function loadNextRandomBands()
+			{
+				var	plUrl = 'index-test.php?r=Songs/viewBandsSongsPerGenres';
+				var videoJSON_G = new Object();
+				$.ajax(
+		       		{
+		       			url: plUrl,
+		          		//url: '<?php echo Yii::app()->createUrl('Songs/viewBandsSongsPerGenres')?>',
+		               	type: "GET",
+		                dataType: "json",
+		                async: false,
+		                success: function(response,status, jqXHR)
+		                {
+		                	if(response){
+//		                        videoJSON_G.title = plId;
+		                    	videoJSON_G.videos = [];
+		                        var count = 0;
+		                        var html = '';
+		                        $.each(response, function(i, data){
+		                        	var bandIdTmp = data.BANDID;
+		                        	$("#bandList").empty();
+		                        	html += "<div class='palinsesto clearfix'><a class='myplaylist' id='"+bandIdTmp+"' href='#"+bandIdTmp+"'>"
+		                        	+i+"</a></div>";
+		                        	var oneVideoJSON = new Object();
+		                        	oneVideoJSON.id = data.CODE;
+		                        	oneVideoJSON.title = data.TITLE;
+		                        	videoJSON_G.videos.push(oneVideoJSON);
+		                        	count++;
+		                        });
+		                        html+="</div>";
+		                        $("#bandList").append(html);
+		                    }
+		                },
+		                error: function(data)
+		                {
+		                	alert("error!!!! "+data);
+		                }
+		            }
+				);
+				return videoJSON_G;
+				
+			}
+			
 			
 			if (this.keys.video < this.options.playlist.videos.length-1) {
 					
@@ -1090,8 +1133,14 @@
 				if(this.plIndex<arrayPlistIds.length){
 					var nextPlaylist = arrayPlistIds[this.plIndex];
 					//alert("nextPlaylist: "+nextPlaylist );
-					
-					var videoJSON = loadNextPlist(nextPlaylist,this.options.loadRandomPlaylist);
+					//var actionClick = "<?php echo Yii::app()->user->getState('ACTION_CLK', 'GEN') ;?>";
+					//alert(actionClick);
+					//var videoJSON='';
+					//if(actionClick=='GEN'){
+					//	videoJSON = loadNextRandomBands(); 
+					//}else{
+					var	videoJSON = loadNextPlist(nextPlaylist,this.options.loadRandomPlaylist);
+					//}
 					
 					this.loadPlaylist(videoJSON);
 				}else{

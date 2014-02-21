@@ -95,6 +95,25 @@ class SongsController extends Controller
 		}*/
 	}
 	
+	public function validateInput($bandsIdStr)
+	{
+		$bandsIdList = explode(',',$bandsIdStr);
+		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in validateInput"),'vardump');
+		//try{
+			foreach($bandsIdList as $bandId)
+			{
+				//echo Yii::trace(CVarDumper::dumpAsString($e),'vardump');
+				(int)$bandId;
+			}
+		//}catch(Exception $e)
+		//{
+			//echo Yii::trace(CVarDumper::dumpAsString("---------------> exception in method SongsController->validateInput()"),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString($e),'vardump');
+			//return false;
+		//}
+		return true;
+	}
+	
 	//this is an ajaxcall: the input is obsolete can be removed
 	public function actionViewBandsSongsPerGenres($playlistId)
 	{
@@ -102,9 +121,22 @@ class SongsController extends Controller
 		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewBandsSongsPerGenres"),'vardump');
 		$genid = Yii::app()->user->getState('SELECTED_GENID');
 		$bandsIdStr = Yii::app()->user->getState('bandsIdStr');
+		
+		/*if(validateInput($bandsIdStr))
+		{
+			echo Yii::trace(CVarDumper::dumpAsString("input corretto"),'vardump');
+		}*/
+		
 		//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
-		$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. $genid .' and g.bid = b.bandid and b.bandid NOT IN ('. $bandsIdStr .') LIMIT 0 , 15';
+		$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid = '. (int)$genid.' and g.bid = b.bandid and b.bandid NOT IN ('. $bandsIdStr .') ORDER BY RAND() LIMIT 0 , 15';
+		//$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid = :genid and g.bid = b.bandid ORDER BY RAND() LIMIT 0 , 15';
+		$command = Yii::app()->db->createCommand($sql);
+		//$command->bindParam(":genid",$genid,PDO::PARAM_INT);
+		//$command->bindParam(":bandsIdStr",bandsIdStr,PDO::PARAM_STR);
+		//$bands = $command->execute(array(':genid'=>$genid));
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
+		//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
+		
 		$songsArray = array();
 		//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
 		foreach($bands as $band) {
@@ -114,7 +146,7 @@ class SongsController extends Controller
 			//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
 			$songModel->TITLE = $bandName . ' - ' . $songModel->TITLE;
 			//echo Yii::trace(CVarDumper::dumpAsString($songModel->TITLE),'vardump'); 
-			$songsArray[$bandName]=$songModel;			
+			$songsArray[$bandName]=$songModel;
 			$tmpVar = ',' . $bandId;
 			$bandsIdStr .= $tmpVar;
 		}

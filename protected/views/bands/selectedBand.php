@@ -173,7 +173,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
     		foreach($bands as $band)
     		{
     			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
-    			echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myplaylist', 'id'=>$band->BANDID));	
+    			echo CHtml::link($band['BANDNAME'],'#'.$band['BANDID'], array('class'=>'myplaylist', 'id'=>$band['BANDID']));
     			echo CHtml::closeTag('div');
     		}
     		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in selectedBands ourbands"),'vardump');
