@@ -37,7 +37,7 @@
 	}
 	
 	var arrayPlistIds = [];
-
+	
 	// player constuctor
 	function player(element, options, pluginName){
 
@@ -1006,65 +1006,46 @@
 		nextVideo : function(){
 
 			
-			function loadNextPlist(plId,isRandom)
+			function loadNextPlist(plId)
 			{
 				var plUrl = 'index-test.php?r=Songs/viewSongsPerPlist';
-				//var plUrl = <?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist'); ?>;
-				if(isRandom==1){
-					//alert("isRandom");
-					plUrl = 'index-test.php?r=Songs/viewBandsSongsPerGenres';
-					//plUrl = <?php echo Yii::app()->createUrl('Songs/viewBandsSongsPerGenres'); ?>;
-				}
-//				alert("nextPlaylist: "+nextPlaylist );
 				var videoJSON_G = new Object();
-				$.ajax(
-		       		{
-		           		//alert("ajax call");
-		       			url: plUrl,
-		          		//url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
-		               	type: "GET",
-		                data: {playlistId: plId},
-		                dataType: "json",
-		                async: false,
-		                success: function(response,status, jqXHR)
-		                {
-		                	if(response){
+				$.ajax({
+	           		//alert("ajax call");
+	       			url: plUrl,
+	          		//url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
+	               	type: "GET",
+	                data: {playlistId: plId},
+	                dataType: "json",
+	                async: false,
+	                success: function(response,status, jqXHR)
+	                {
+	                	if(response){
 //		                        alert(jqXHR.responseText);
-		                        videoJSON_G.title = plId;
-		                    	//alert(videoJSON.title);
-		                        videoJSON_G.videos = [];
-		                        var count = 0;
-		                        var html = '';
-		                        $.each(response, function(i, data){
-		                            //alert("data bandName: "+ i);
-		                            //alert("data " +data);
-		                            //alert("data[0] "+data[0]);
-		                            //alert("data.SONGID "+data.SONGID);
-		                            //alert("data[0].SONGID "+data[0].SONGID);
-		                            
-		                        	var bandIdTmp = data.BANDID;
-		                        	$("#bandList").empty();
-		                        	html += "<div class='palinsesto clearfix'><a class='myplaylist' id='"+bandIdTmp+"' href='#"+bandIdTmp+"'>"
-		                        	+i+"</a></div>";
-		                        	var oneVideoJSON = new Object();
-		                        	oneVideoJSON.id = data.CODE;
-		                        	oneVideoJSON.title = data.TITLE;
-		                        	videoJSON_G.videos.push(oneVideoJSON);
-		                        	count++;
-		                        	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
-		                        	//player.player('loadPlaylist', videoJSON);
-		                        });
-		                        html+="</div>";
-		                        //alert(html);
-		                        $("#bandList").append(html);
-		                    }
-		                },
-		                error: function(data)
-		                {
-		                	alert("error!!!! "+data);
-		                }
-		            }
-				);
+	                        videoJSON_G.title = plId;
+	                    	//alert(videoJSON.title);
+	                        videoJSON_G.videos = [];
+	                        var count = 0;
+	                        var html = '';
+	                        $.each(response, function(i, data){
+	                        	//var bandIdTmp = data.BANDID;
+	                        	//$("#bandList").empty();
+	                        	//html += "<div class='palinsesto clearfix'><a class='myplaylist' id='"+bandIdTmp+"' href='#"+bandIdTmp+"'>"
+	                        	//+i+"</a></div>";
+	                        	var oneVideoJSON = new Object();
+	                        	oneVideoJSON.id = data.CODE;
+	                        	oneVideoJSON.title = data.TITLE;
+	                        	videoJSON_G.videos.push(oneVideoJSON);
+	                        	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
+	                        	//player.player('loadPlaylist', videoJSON);
+	                        });
+	                    }
+	                },
+	                error: function(data)
+	                {
+	                	alert("error!!!! "+data);
+	                }
+	            });
 				return videoJSON_G;
 			}
 			
@@ -1078,6 +1059,7 @@
 		          		//url: '<?php echo Yii::app()->createUrl('Songs/viewBandsSongsPerGenres')?>',
 		               	type: "GET",
 		                dataType: "json",
+		                data: {playlistId: 1},  //TO BE REMOVED
 		                async: false,
 		                success: function(response,status, jqXHR)
 		                {
@@ -1133,13 +1115,18 @@
 				if(this.plIndex<arrayPlistIds.length){
 					var nextPlaylist = arrayPlistIds[this.plIndex];
 					//alert("nextPlaylist: "+nextPlaylist );
-					//var actionClick = "<?php echo Yii::app()->user->getState('ACTION_CLK', 'GEN') ;?>";
-					//alert(actionClick);
+					//var actionClick = <?php echo json_encode(Yii::app()->user->getState('ACTION_CLK')) ;?>;
+					//var actionClick = { sessionClick : '<?php echo $_SESSION['ACTION_CLK']; ?>' };
 					//var videoJSON='';
 					//if(actionClick=='GEN'){
 					//	videoJSON = loadNextRandomBands(); 
 					//}else{
-					var	videoJSON = loadNextPlist(nextPlaylist,this.options.loadRandomPlaylist);
+					var videoJSON = '';
+					if(this.options.innerPage == "TAG"){
+						videoJSON = loadNextPlist(nextPlaylist/*,this.options.loadRandomPlaylist*/);
+					}else if(this.options.innerPage == "BAND"){
+						videoJSON = loadNextRandomBands();
+					}
 					//}
 					
 					this.loadPlaylist(videoJSON);

@@ -364,7 +364,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				onAfterPlaylistLoaded: function(playlist){
 
 					$('#loading').hide();
-				}
+				},
+				innerPage : "TAG",
 			};
 		
 			var player = $('.youtube-player').player( playerConfig );
