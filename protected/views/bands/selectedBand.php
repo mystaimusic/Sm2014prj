@@ -211,11 +211,26 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
  <div class="suggested_title">Playlist suggerite</div>
 <ul class="suggested">
+	<?php 
+		foreach($plistsOut as $plist)
+		{
+			echo CHtml::tag('li',array(),false,false);
+			if(file_exists($plist['IMAGEPATH'])){
+				$imagePath = $plist['IMAGEPATH'];
+			}else{
+				$imagePath = "images/stai-music.jpg";
+			}
+			$imghtml = CHtml::image($imagePath);
+			echo CHtml::link($imghtml,array('Playlists/view2','id'=>$plist['PLID']));
+			echo CHtml::closeTag('li');
+		}
+
+	?>
+<!--  <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
+<li><a href=""></a></li> -->
 </ul>     
 </div><!--suggested_cont-->
 

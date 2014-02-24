@@ -59,9 +59,18 @@ class GenresController extends Controller
 	
 	public function actionViewBandsPerGenres($genid,$genImagePath,$genDescription)
     {
+    	//echo Yii::trace(CVarDumper::dumpAsString("-------------> sono in actionViewSongsPerGenres"),'vardumper');
     	$genre=Genres::model()->findByPk($genid);
     	$bands=$genre->bands;
     	$tags=$genre->tags;
+    	$plArray = array();
+    	$count = 0;
+    	foreach($tags as $tag){
+    		$plists=$tag->playlists;
+    		$plArray[$count] = $plists[0];
+    		$count++; 
+    	}
+    	//echo Yii::trace(CVarDumper::dumpAsString($plArray),'vardumper');
     	//$songs=$bands->songs;
     	
     	//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerGenres"),'vardump');
@@ -88,7 +97,7 @@ class GenresController extends Controller
     
     public function actionViewRandomBandsPerGenres($genid,$genImagePath,$genDescription)
     {
-    	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
     	Yii::app()->user->setState('ACTION_CLK', 'GEN');
     	Yii::app()->user->setState('SELECTED_GENID', $genid);
     	
@@ -129,10 +138,23 @@ class GenresController extends Controller
     	
     	Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
     	//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
+    	$plArray = array();
+    	$count = 0;
+    	
+    	echo Yii::trace(CVarDumper::dumpAsString($tags),'vardump');
+    	foreach($tags as $tag){
+    		$plists=$tag->playlists;
+    		$randomId = array_rand($plists);
+    		$plArray[$count] = $plists[$randomId];
+    		$count++;
+    	}
+    	
+    	echo Yii::trace(CVarDumper::dumpAsString($plArray),'vardump');
     	
 		$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
     		'tags'=>$tags,
+			'plistsOut'=>$plArray,
 			'fromGenres'=>true,
 			'genImagePath'=>$genImagePath,
     		'genDescription'=>$genDescription,
