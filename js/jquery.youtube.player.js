@@ -152,7 +152,7 @@
 		// swfobject will destroy the video object <div>, so we clone it to use it to restore it when destroy()ing the plugin
 		this.elements.playerObjectClone = this.elements.playerObject.clone();
 
-		this.keys = { video: 0 };
+		this.keys = { video: 0, play: 1 };
 
 		// swfobject requires the video object <div> to have an id set
 		var id;
