@@ -97,33 +97,16 @@ class GenresController extends Controller
     
     public function actionViewRandomBandsPerGenres($genid,$genImagePath,$genDescription)
     {
-    	echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
     	Yii::app()->user->setState('ACTION_CLK', 'GEN');
     	Yii::app()->user->setState('SELECTED_GENID', $genid);
     	
     	$genre=Genres::model()->findByPk($genid);
+    	//echo Yii::trace(CVarDumper::dumpAsString($genre),'vardump');
     	//$bandsDB=$genre->bands;
     	$tags=$genre->tags; //gets suggested tags for the genre
     	$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. $genid .' and g.bid = b.bandid ORDER BY RAND() LIMIT 0 , 15'; //the order by rand() works well form max 1000 records
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
-    	//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
-    	//$bandsIdStr='';
-    	//$max = count($bandsDB);
-    	//$bands = array();
-    	//$limitNum = max($max,15);
-    	/*for($i =0; ($i<15 && $i<$max); $i++){
-    		$band = $bandsDB[$i];
-    		if(!is_null($band)) {
-	    		$bands[$i] = $band;
-	    		if($i==0){
-	    			$bandsIdStr .= $band->BANDID;
-	    		}else{
-	    			$tmpVar = ',' . $band->BANDID;
-	    			$bandsIdStr .= $tmpVar;
-	    		}
-    		}
-    	}*/
-		
 		$bandsIdStr='';
 		$i = 0;
 		foreach($bands as $band) {
@@ -135,22 +118,23 @@ class GenresController extends Controller
 	    	}
 	    	$i++;
 		}
-    	
     	Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
     	//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
     	$plArray = array();
     	$count = 0;
     	
-    	echo Yii::trace(CVarDumper::dumpAsString($tags),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString($tags),'vardump');
     	foreach($tags as $tag){
     		$plists=$tag->playlists;
+    		//echo Yii::trace(CVarDumper::dumpAsString($plists),'vardump');
     		$randomId = array_rand($plists);
-    		$plArray[$count] = $plists[$randomId];
-    		$count++;
+    		//echo Yii::trace(CVarDumper::dumpAsString($randomId),'vardump');
+    		if(!is_null($randomId)){
+    			$plArray[$count] = $plists[$randomId];
+    			$count++;
+    		}
     	}
-    	
-    	echo Yii::trace(CVarDumper::dumpAsString($plArray),'vardump');
-    	
+    	//echo Yii::trace(CVarDumper::dumpAsString($plArray),'vardump');
 		$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
     		'tags'=>$tags,
@@ -161,7 +145,6 @@ class GenresController extends Controller
     		'genreId'=>$genid,
 			'bandsIdStr'=>$bandsIdStr,
 		));
-    
     }
 	
 	/**

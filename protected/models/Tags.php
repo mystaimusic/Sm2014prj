@@ -49,6 +49,7 @@ class Tags extends CActiveRecord
 		return array(
 			//'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'TAGID'),
 			'playlists' => array(self::MANY_MANY, 'Playlists', 'bridge_tags_pl(TAGID,PLID)'),
+			'genres' => array(self::MANY_MANY, 'Genres', 'bridge_genres_tags(GID,TID)'),
 		);
 	}
 

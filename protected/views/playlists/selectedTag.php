@@ -216,23 +216,91 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </div><!--mod_playlists-->	
 
 <div class="suggested_cont">
-<div class="suggested_title">Tag suggeriti</div>
+<div class="suggested_title">Generi suggeriti</div>
 <ul class="suggested">
+	<?php 
+		if(isset($genres)){
+			foreach($genres as $genre)
+			{
+				echo CHtml::tag('li',array(),false,false);
+				$imgPathDB = '';
+				$genIdDB = '';
+				$genDescDB = '';
+				if(is_array($genre)){
+					$imgPathDB = $genre['IMAGEPATH'];
+					$genIdDB = $genre['GENREID'];
+					$genDescDB = $genre['DESCRIPTION'];	
+				}else{
+					$imgPathDB = $genre->IMAGEPATH;
+					$genIdDB = $genre->GENREID;
+					$genDescDB = $genre->DESCRIPTION;
+				}
+				$imgGenStr = "images/stai-music.jpg";
+				if(file_exists ( $imgPathDB )){
+					$imgGenStr = $imgPathDB;
+				}
+				$imgGenHtml = CHtml::image($imgGenStr);
+				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genIdDB,'genImagePath'=>$imgGenStr,'genDescription'=>$genDescDB));
+				//echo CHtml::link($imgGenHtml);
+				echo CHtml::closeTag('li');
+			}
+		}
+	?>
+	
+<!--  <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
+<li><a href=""></a></li> -->
 </ul>  <br /><br /><br />
 
 
  <div class="suggested_title">Playlist suggerite</div>
 <ul class="suggested">
+	<?php 
+		/*if(isset($pls)&&count($pls)>0){
+			$count = 0;
+			foreach($pls as $plist){
+				if($count<5){
+					$titleDb = '';
+					$idDb = '';
+					$imagePathDb = '';
+					echo Yii::trace(CVarDumper::dumpAsString("--------> sono in selectedTag"),'vardump');
+					echo Yii::trace(CVarDumper::dumpAsString($plist),'vardump');
+					if(is_array($plist)){
+						$titleDb = $plist['PLTITLE'];
+						$idDb = $plist['PLID'];
+						$imagePathDb = $plist['IMAGEPATH'];
+					}else{
+						$titleDb = $plist->PLTITLE;
+						$idDb = $plist->PLID;
+						$imagePathDb = $plist->IMAGEPATH;
+					}
+					echo CHtml::tag('li',array(),false,false);
+					$titleTrimmed = trim($titleDb);
+					if(strlen($titleTrimmed)>16){
+						$shortTitle = substr($titleDb, 0, 16) . " ...";
+					}else{
+						$shortTitle = $titleTrimmed; 
+					}
+					if(file_exists ( $imagePathDb )){
+						$imagePath = $imagePathDb;
+					}else{
+						$imagePath = "images/stai-music.jpg";
+					}
+					$imghtml = CHtml::image($imagePath);
+					echo CHtml::link($imghtml, array('Playlists/view2','id'=>$idDb));
+					echo CHtml::closeTag('li');
+				}
+				$count++;
+			}
+		}*/
+	?>
+<!--  <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
 <li><a href=""></a></li>
-<li><a href=""></a></li>
-<li><a href=""></a></li>
+<li><a href=""></a></li>-->
 </ul>     
 </div><!--suggested_cont-->
 
