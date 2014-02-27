@@ -57,7 +57,7 @@ Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni
 <strong>Contatto Spagna: <a href="mailto:barcelona@staimusic.com">barcelona@staimusic.com</a></strong><br />
 <strong>Contatto Belgio: <a href="mailto:bruxelles@staimusic.com">bruxelles@staimusic.com</a></strong><br />
 <strong>Contatto Italia: <a href="mailto:milano@staimusic.com">milano@staimusic.com</a></strong><br />
-<strong>Contatto U.S.A: <a href="mailto:newyork@staimusic.com">newyork@staimusic.com</a></strong><br />
+
 </p>
 <img src="images/mappa.gif" border="0" alt="Staimusic" width="700px" height="auto">
 
