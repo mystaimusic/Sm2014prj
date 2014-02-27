@@ -83,13 +83,57 @@ class PlaylistsController extends Controller
     	Yii::app()->user->setState('ACTION_CLK', 'PLTAG');
         $tag=Tags::model()->findByPk($tagid);
         $pls=$tag->playlists;
+        $genres = $tag->genres;
         
+        $genSize = sizeof($genres);
+        if($genSize<5){
+        	$genIdArray = array();
+        	$limit = 5-$genSize;
+        	$count=0;
+        	$sql = "select * from genres where genreid not in (";
+        	foreach($genres as $genre){
+        		$genid = $genre['GENREID'];
+        		if($count==0){
+        			$tmpVar = $genid;
+        		}else{
+        			$tmpVar = ',' . $genid;
+        		}
+        		$sql=$sql . $tmpVar;
+        		$count++;
+        	}
+        	$sql=$sql . ") LIMIT 0," . $limit;
+			//$command = Yii::app()->db->createCommand($sql);
+			$genresExtend = Yii::app()->db->createCommand($sql)->queryAll();
+			$genres = array_merge($genres, $genresExtend);	
+        }
         //echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
-		//echo Yii::trace(CVarDumper::dumpAsString($tag),'vardump');
-		
-        //echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($genres),'vardump');
+		$plsSize = sizeof($pls);
+        if($plsSize<5){
+        	$plsIdArray = array();
+        	$limitPls = 5 - $plsSize;
+        	$countPls = 0;
+        	$sqlPls = "select * from playlists where plid not in(";
+        	foreach($pls as $pl){
+        		$plid = $pl['PLID'];
+        		if($countPls==0){
+        			$tmpVarPl = $plid;
+        		}else{
+        			$tmpVarPl = ',' . $plid;
+        		}
+        		$sqlPls =$sqlPls . $tmpVarPl;
+        		$countPls++;
+        	}
+        	$sqlPls= $sqlPls . ") LIMIT 0," . $limitPls;
+        	$plistExtend = Yii::app()->db->createCommand($sqlPls)->queryAll();
+        	//$pls = array_merge($pls,$plistExtend); commentato per ora
+        }
+        
+        
+		echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
+			'genres'=>$genres,
 			'tagid'=>$tagid,
 			'tagname'=>$tagname,
 			'imagePath'=>$imagePath,
