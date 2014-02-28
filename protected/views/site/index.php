@@ -183,6 +183,7 @@
 			if(remTags>0){
 				totTagPages++; 
 			}
+			//alert(totTagPages);
 			var totPlistPage = Math.floor(totalPlist/5);
 			var remPlist = totPlistPage % 5;
 			if(remPlist>0){
@@ -202,18 +203,18 @@
 			$('.jcarousel-prev').jcarouselControl({
         		target: '-=5'
     		});
-    		$('.jcarousel-next').jcarouselControl({
-        		target: '+=5'
-    		});
+    		//$('.jcarousel-next').jcarouselControl({
+        	//	target: '+=5'
+    		//});
 			//plists
 			var myjcarouselPlist = $("#myCarousel-plist").jcarousel();
 			//$('.jcarousel-plist').jcarousel();
 			$('.jcarousel-plist-prev').jcarouselControl({
 				target: '-=5'
 			});
-			$('.jcarousel-plist-next').jcarouselControl({
-				target: '+=5'
-			});
+			//$('.jcarousel-plist-next').jcarouselControl({
+			//	target: '+=5'
+			//});
 			//gens
 			$('.jcarousel-gen').jcarousel();
 			$('.jcarousel-gen-prev').jcarouselControl({
@@ -227,6 +228,11 @@
 			{
 				if(tagsPage<totTagPages-1){
 					tagsPage++;
+					//myjcarousel.jcarousel('scroll','+=5');
+					$('.jcarousel-next').jcarouselControl({
+        				target: '+=5'
+    				});
+    				//alert(totTagPages +' ' +tagsPage);
 					$.ajax({
 	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
 	                    type: "GET",
@@ -266,6 +272,10 @@
 			{
 				if(plistPage<totPlistPage-1){
 					plistPage++;
+					$('.jcarousel-plist-next').jcarouselControl({
+						target: '+=5'
+					});
+					//alert(totPlistPage +' ' +plistPage);
 					$.ajax({
 	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
 	                    type: "GET",
