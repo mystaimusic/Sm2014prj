@@ -58,9 +58,19 @@ class SongsController extends Controller
 
 	public function actionViewSongsPerPlist($playlistId)
 	{
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerPlaylist"),'vardump');
 		$playlist=Playlists::model()->findByPk($playlistId);
         $songs = $playlist->songs;
 
+        foreach($songs as $song){
+        	$band = $song->bands;
+        	if(!is_null($band)){
+        		$bandName = $band->BANDNAME;
+        		//echo Yii::trace(CVarDumper::dumpAsString($bandName),'vardump');
+        		$song->TITLE = $bandName . ' - ' . $song->TITLE; 
+        	}
+        }
+        
         $output = CJSON::encode($songs);
 		//echo Yii::trace(CVarDumper::dumpAsString("sono in actionViewSongsPerPlaylist"),'vardump');
         
