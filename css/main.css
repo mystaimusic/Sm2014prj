@@ -14,22 +14,30 @@
 #footer .footer-col{ width:300px;background-color: #000000;margin-top:10px;border-right: solid thin #333333;height: 180px;float:left;text-align: left;color:#999999;padding-left:25px;}
 
 
-#logo{padding: 10px 20px;width:267px;}
+#logo{padding-left:20px;width:267px;height:92px; float:left}
 #menulogo{width:267px;height:72px;margin:auto;float:left;}
-#payoff{width:200px;height:20px;margin:auto;float:left;}
+#payoff{padding-left:10px;width:200px;height:20px;margin:auto;float:left; font-weight:bold; font-size:14px}
+
+#banner-top{    background-color: #666666;
+    float: right;
+    height: 84px;
+    margin-right: 40px;
+    margin-top: 10px;
+    width: 467px;}
 
 #mainmenu{background-color:#cf043d;font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase;letter-spacing:1px;}
 #mainmenu ul{padding:6px 20px 5px 20px;margin:0px;}
 #mainmenu ul li{display: inline;}
 #mainmenu ul li a{color: #000;background-color:transparent;font-size:22px;font-weight:bold;text-decoration:none;padding:5px 8px;}
 #mainmenu ul li a:hover, #mainmenu ul li.active a{color: #00000;background-color:#EFF4FA;text-decoration:none;}
-@media screen and (max-width:580px)
+@media screen and (max-width:830px)
 {
 #header{ width:100%;margin: 0;padding: 0;height:100px;background-color:#e60544;background-image:url(../images/sf-texture.gif); text-align:center}
 
-#logo{width:267px;margin:auto;}
+#logo{width:267px;margin:auto; float:none;}
 #menulogo{width:267px;height:72px;margin:auto;}
-#payoff{width:200px;height:20px;margin:auto;float:left;}
+#payoff{display:none;}
+#banner-top{display:none;}
 
 #mainmenu{background-color:#cf043d;font-family:Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase;letter-spacing:1px; }
 #mainmenu ul{padding:6px 20px 5px 20px;margin:0px;}
