@@ -70,9 +70,19 @@ class PlaylistsController extends Controller
 		));
 		$pls = $dataProvider->rawData;
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView2"),'vardump');
-		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		
+		$tags = $pls->tags;
+		//echo Yii::trace(CVarDumper::dumpAsString($tags[0]->TAGID),'vardump');
+		$tagid = $tags[0]->TAGID;
+		$randSugTags = $this->getRandomSuggestedTags($tagid);
+		
+		//get random genres
+		$randomGenres = $this->getRandomGenres();
+		
 		$this->render('selectedTag',array(
 			'pls' => $pls,
+			'suggestedTags'=>$randSugTags,
+			'randomGenres'=> $randomGenres,
 			'imagePath'=>$pls->IMAGEPATH,
 			'oneRecord'=>true,
 		));
@@ -106,9 +116,9 @@ class PlaylistsController extends Controller
 			$genresExtend = Yii::app()->db->createCommand($sql)->queryAll();
 			$genres = array_merge($genres, $genresExtend);	
         }
-        //echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+        echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($genres),'vardump');
-		$plsSize = sizeof($pls);
+		/*$plsSize = sizeof($pls);
         if($plsSize<5){
         	$plsIdArray = array();
         	$limitPls = 5 - $plsSize;
@@ -126,30 +136,39 @@ class PlaylistsController extends Controller
         	}
         	$sqlPls= $sqlPls . ") LIMIT 0," . $limitPls;
         	$plistExtend = Yii::app()->db->createCommand($sqlPls)->queryAll();
-        	//$pls = array_merge($pls,$plistExtend); commentato per ora
-        }
+        	$pls = array_merge($pls,$plistExtend); commentato per ora
+        }*/
         
+        //find suggested tags randomly
+        //$sqlRandomTags = "SELECT TAGID, TAGNAME, DESCRIPTION, IMAGEPATH FROM tags WHERE TAGID NOT IN (:tagid) ORDER BY RAND() LIMIT 0, 5";
+		//$randSugTags = Tags::model()->findAllBySql($sqlRandomTags, array(':tagid'=>$tagid));
+		$randSugTags = $this->getRandomSuggestedTags($tagid);
         
-		echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($randSugTags),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
 			'genres'=>$genres,
+			'suggestedTags'=>$randSugTags,
 			'tagid'=>$tagid,
 			'tagname'=>$tagname,
 			'imagePath'=>$imagePath,
-		));
-		
-		/*foreach($pls as $pl)
-		{
-			echo Yii::trace(CVarDumper::dumpAsString($pl),'vardump');
-			$this->render('selectedTag', array(
-				'pl'=>$pl,
-			));
-		}*/
+		));		
+    }
+
+    
+    private function getRandomSuggestedTags($tagid){
+    	$sqlRandomTags = "SELECT TAGID, TAGNAME, DESCRIPTION, IMAGEPATH FROM tags WHERE TAGID NOT IN (:tagid) ORDER BY RAND() LIMIT 0, 5";
+		$randSugTags = Tags::model()->findAllBySql($sqlRandomTags, array(':tagid'=>$tagid));
+		return $randSugTags;
     }
     
-
-
+    private function getRandomGenres()
+    {
+    	$sqlRandomGenres = "SELECT * FROM genres ORDER BY RAND() LIMIT 0, 5";
+    	$randomGenres = Genres::model()->findAllBySql($sqlRandomGenres);
+    	return $randomGenres;
+    }
+    
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.

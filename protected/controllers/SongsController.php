@@ -61,12 +61,14 @@ class SongsController extends Controller
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerPlaylist"),'vardump');
 		$playlist=Playlists::model()->findByPk($playlistId);
         $songs = $playlist->songs;
-
+		//echo Yii::trace(CVarDumper::dumpAsString($songs),'vardump');
         foreach($songs as $song){
-        	$band = $song->bands;
+        	$bandid = $song->BANDID;
+        	$band = Bands::model()->findByPk($bandid);
+        	//$band = $song->bands;
         	if(!is_null($band)){
         		$bandName = $band->BANDNAME;
-        		//echo Yii::trace(CVarDumper::dumpAsString($bandName),'vardump');
+        		echo Yii::trace(CVarDumper::dumpAsString($bandName),'vardump');
         		$song->TITLE = $bandName . ' - ' . $song->TITLE; 
         	}
         }

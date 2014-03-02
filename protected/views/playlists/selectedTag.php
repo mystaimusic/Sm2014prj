@@ -241,9 +241,20 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				}
 				$imgGenHtml = CHtml::image($imgGenStr);
 				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genIdDB,'genImagePath'=>$imgGenStr,'genDescription'=>$genDescDB));
-				//echo CHtml::link($imgGenHtml);
 				echo CHtml::closeTag('li');
 			}
+		}else if(isset($randomGenres)){
+			foreach($randomGenres as $randomGenre ){
+				echo CHtml::tag('li',array(),false,false);
+				$imgGenStr = "images/stai-music.jpg";
+				if(file_exists ( $randomGenre['IMAGEPATH'] )){
+					$imgGenStr = $randomGenre['IMAGEPATH'];
+				}
+				$imgGenHtml = CHtml::image($imgGenStr);
+				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$randomGenre['GENREID'],'genImagePath'=>$imgGenStr,'genDescription'=>$randomGenre['DESCRIPTION']));
+				echo CHtml::closeTag('li');
+			}
+			
 		}
 	?>
 	
@@ -255,9 +266,23 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </ul>  <br /><br /><br />
 
 
- <div class="suggested_title">Playlist suggerite</div>
+ <div class="suggested_title">Tags suggerite</div>
 <ul class="suggested">
 	<?php 
+		if(isset($suggestedTags) && count($suggestedTags)){
+			foreach($suggestedTags as $sugTag){
+				echo CHtml::tag('li',array(),false,false);		
+				if(file_exists ( $sugTag['IMAGEPATH'] )){
+					$imagePath = $sugTag['IMAGEPATH'];
+				}else{
+					$imagePath = "images/stai-music.jpg";
+				}
+				$imghtml = CHtml::image($imagePath);
+				echo CHtml::link($imghtml, array('Playlists/view2','id'=>$sugTag['TAGID']));
+				echo CHtml::closeTag('li');
+			}
+		}
+	
 		/*if(isset($pls)&&count($pls)>0){
 			$count = 0;
 			foreach($pls as $plist){
