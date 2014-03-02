@@ -39,6 +39,49 @@
 </div><!--container-->
 
 <div class="container">
+<script type="text/javascript">        	
+$(document).ready(function(){
+
+    //Set opacity on each span to 0%
+    $("ul.boxview li .text").css({'opacity':'0'});
+
+	$('.boxview li a').hover(
+
+		function() {
+			$(this).find('.text').stop().fadeTo(700, 0.8);
+		},
+		function() {
+			$(this).find('.text').stop().fadeTo(500, 0);
+		}
+
+	)
+
+});	
+</script>
+
+
+<script type="text/javascript">        	
+$(document).ready(function(){
+
+    //Set opacity on each span to 0%
+    $("ul.boxview3 li .text").css({'opacity':'0'});
+
+	$('.boxview3 li a').hover(
+
+		function() {
+			$(this).find('.text').stop().fadeTo(700, 0.8);
+		},
+		function() {
+			$(this).find('.text').stop().fadeTo(500, 0);
+		}
+
+	)
+
+});	
+</script>
+
+
+
 
 <div id="maincont" class="clearfix">
 	
@@ -55,15 +98,15 @@
 					foreach($dataProvider->getData() as $tag)
 					{		
 						echo CHtml::tag('li', array(), false,false);
-						echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-						echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
+						$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
 						if(file_exists ( $tag->IMAGEPATH )){
 							$imagePath = $tag->IMAGEPATH;
 						}else{
 							$imagePath = "images/stai-music.jpg";
 						}
 						$imghtml = CHtml::image($imagePath);
-						echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+						echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
 						echo CHtml::closeTag('li');
 					}
 					echo CHtml::closeTag('ul');
@@ -74,6 +117,11 @@
 			<a id="jcarousel-next-btn" href="#" class="jcarousel-next" data-jcarouselcontrol="true"></a>
 		</div>
 	</div>
+
+
+
+
+
 		
 	<div class="jcarousel-plist-wrapper">
 		<!-- div playlists -->
@@ -96,15 +144,15 @@
 				}else{
 					$shortTitle = $titleTrimmed; 
 				}
-				echo CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
-				echo CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
+				$divtag = CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
+				$divtext = CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
 				if(file_exists ( $playlist->IMAGEPATH )){
 					$imagePath = $playlist->IMAGEPATH;
 				}else{
 					$imagePath = "images/stai-music.jpg";
 				}
 				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($imghtml, array('Playlists/view2','id'=>$playlist->PLID));
+				echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/view2','id'=>$playlist->PLID));
 				echo CHtml::closeTag('li');
 			//}
 		}
