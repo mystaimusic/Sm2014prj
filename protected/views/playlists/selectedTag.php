@@ -80,20 +80,20 @@
         </div><!--headervideo_cont--> 
 
        	<div id="headertext">
-       	        <div id="headertitle">
-           	<?php 
-       			if((isset($oneRecord) && $oneRecord === true))
-       			{
-					echo $pls->PLTITLE;
-       			}
-       		?>
-        </div><!--headertitle-->
-       		<?php 
-       			if((isset($oneRecord) && $oneRecord === true))
-       			{
-       				echo $pls->DESCRIPTION;
-       			}
-       		?>
+       		<div id="headertitle">
+           		<?php 
+       				/*if((isset($oneRecord) && $oneRecord === true))
+       				{
+						echo $pls->PLTITLE;
+       				}*/
+       			?>
+        	</div><!--headertitle-->
+       			<?php 
+       				/*if((isset($oneRecord) && $oneRecord === true))
+       				{
+       					echo $pls->DESCRIPTION;
+       				}*/
+       			?>
        	</div><!--headertext-->    
       
          <div id="player_toolbar">
@@ -387,7 +387,10 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                             videoJSON_G.title = firstPlaylist;
                         	//alert(videoJSON.title);
                             videoJSON_G.videos = [];
-                            $.each(response, function(i, data){
+                            //$("#headertext").empty();
+                            var html = "<div id='headertitle'>"+response.title+"</div>"+response.description;
+                            $("#headertext").append(html);
+                            $.each(response.songs, function(i, data){
                                     	//alert("data: "+data);
                             	var oneVideoJSON = new Object();
                             	oneVideoJSON.id = data.CODE;
@@ -456,7 +459,9 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				},
 				onAfterPlaylistLoaded: function(playlist){
 
+					//alert("onAfterPlaylistLoaded");
 					$('#loading').hide();
+					//self.elements.playlist.children(":first").trigger("click");
 				},
 				innerPage : "TAG",
 			};
@@ -474,38 +479,36 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                 //alert('click ' +playlist.videos[0].id);
                                 var selectedPlist = this.id;
                               	//alert('click ' +selectedPlist);
-                                $.ajax(
-                                {
+                                $.ajax({
                                     url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerPlist')?>',
                                     type: "GET",
                                     data: {playlistId: selectedPlist},
                                     dataType: "json",
                                     async: false,
-                                    success: function(response,status, jqXHR)
-                                    {
+                                    success: function(response,status, jqXHR){
                                         if(response){
-                                            //alert(jqXHR.responseText);
                                             var videoJSON = new Object();
-                                            videoJSON.title = selectedPlist;
+                                            //videoJSON.title = selectedPlist;
+                                            videoJSON.title = response.title;
                                             videoJSON.videos = [];
-                                            //alert(videoJSON.title);
-                                            $.each(response, function(i, data){
-                                                //alert("data: "+data);
+                                            $("#headertext").empty();
+                                            var html = "<div id='headertitle'>"+response.title+"</div>"+response.description;
+                                            $("#headertext").append(html);
+                                            $.each(response.songs, function(i, data){
                                                 var oneVideoJSON = new Object();
+                                                //alert(data);
                                                 oneVideoJSON.id = data.CODE;
                                                 oneVideoJSON.title = data.TITLE;
                                                 videoJSON.videos.push(oneVideoJSON);
                                             });
                                             player.player('loadPlaylist', videoJSON);
                                         }
-                                        
                                     },
                                     error: function(data)
                                     {
                                         alert("error!!!! "+data);
                                     }
-                                }    
-                                );
+                                });
                                 
 				//player.player('loadPlaylist', playlist);
 
@@ -522,7 +525,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
             //$(".search_input2").focus();
             $(".search_input2").bind("enterKey",function(e)
             {
-            	search(e,$(this).val());
+            	search(e,$(this).val(),player);
             });
 
 			$(".search_input2").keyup(function(e){
@@ -534,10 +537,10 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                         
             $(".search_button2").click(function(e)
             {
-           		search(e,$(".search_input2").val());
+           		search(e,$(".search_input2").val(),player);
             });
 
-            function search(e,search_input)
+            /*function search(e,search_input)
             {    
             	var keyword = encodeURIComponent(search_input);
                 var vevoKeyword = 'vevo%20'+keyword;
@@ -552,7 +555,6 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                     {
                     	if(response.data.items)
                         {
-//                                        alert("called function2");
                         	var videoJSON = new Object();
 							videoJSON.title = 'SearchResult';
                             videoJSON.videos = [];
@@ -571,7 +573,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                         }
                      }
                  });
-            }
+            }*/
 		})(this.jQuery);
 
 	//]]>

@@ -105,7 +105,7 @@ class GenresController extends Controller
     	//echo Yii::trace(CVarDumper::dumpAsString($genre),'vardump');
     	//$bandsDB=$genre->bands;
     	$tags=$genre->tags; //gets suggested tags for the genre
-    	$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. $genid .' and g.bid = b.bandid ORDER BY RAND() LIMIT 0 , 15'; //the order by rand() works well form max 1000 records
+    	$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. (int)$genid .' and g.bid = b.bandid ORDER BY RAND() LIMIT 0 , 15'; //the order by rand() works well form max 1000 records
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
 		$bandsIdStr='';
 		$i = 0;

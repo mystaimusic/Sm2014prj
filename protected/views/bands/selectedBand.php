@@ -301,8 +301,6 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				            videoJSON_G.videos = [];
 				            $.each(response, function(i, data){
 				            	var oneVideoJSON = new Object();
-				            	//alert(response[i]);
-				            	//alert(data.CODE);
 				            	oneVideoJSON.id = data.CODE;
 				            	oneVideoJSON.title = data.TITLE;
 				            	videoJSON_G.videos.push(oneVideoJSON);
@@ -339,7 +337,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                             	videoJSON_G.videos.push(oneVideoJSON);
                             	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
                                 	//player.player('loadPlaylist', videoJSON);
-                            });
+                            }); 
                         }
                     },
                     error: function(data)
@@ -374,13 +372,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 
 			//$('.playlists a[href*=#]').click(function(){
                         $(".myplaylist").click(function(){
-                                //TODO: replace with ajax call to the php function
+                        	//TODO: replace with ajax call to the php function
                               //var playlist = playlists[ this.hash.replace(/^.*?#/, '') ];
                                 //alert('click ' +playlist.videos[0].id);
                                 var selectedPlist = this.id;
-                              	//alert('click ' +selectedPlist);
-                                $.ajax(
-                                {
+                                var selector = "#"+selectedPlist;
+                                var bandName = $(selector).text();
+                                //var bandName = this.text();
+                              	$.ajax({
                                     url: '<?php echo Yii::app()->createUrl('Songs/viewSongsPerBand')?>',
                                     type: "GET",
                                     data: {bandId: selectedPlist},
@@ -394,13 +393,46 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                             videoJSON.title = selectedPlist;
                                             videoJSON.videos = [];
                                             //alert(videoJSON.title);
+                                            var count= 0;
                                             $.each(response, function(i, data){
-                                                //alert("data: "+data);
                                                 var oneVideoJSON = new Object();
                                                 oneVideoJSON.id = data.CODE;
                                                 oneVideoJSON.title = data.TITLE;
                                                 videoJSON.videos.push(oneVideoJSON);
+                                                count++;
                                             });
+                							//alert(count);
+                                            if(count < 15){
+                								var limit = 15 - count;
+                								var keyword = encodeURIComponent(bandName);
+                							    var vevoKeyword = 'vevo%20'+keyword;
+                							    var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+vevoKeyword+'&max-results=30&v=2&alt=jsonc';
+                							    $.ajax({
+                							    	type: "GET",
+                							        url: yt_url,
+                							        dataType: "json",
+                							        async: false,
+                							        success: function(response)
+                							        {
+                							        	if(response.data.items)
+                							            {
+                							                $.each(response.data.items, function(i, data){
+                    							                //alert(i);
+                												var titleUp = data.title.substring(0,2).toUpperCase();
+                												var keywordUp = keyword.substring(0,2).toUpperCase();
+                												if(titleUp==keywordUp /*&& data.title.search(/full album/i)*/)
+                												{
+                													//alert("ho trovato");
+                							                    	var oneVideoJSON = new Object();
+                							                        oneVideoJSON.id = data.id;
+                							                        oneVideoJSON.title = data.title;
+                							                        videoJSON.videos.push(oneVideoJSON);
+                												}
+                							                 });
+                							            }
+                							         }
+                							     });
+                                            }
                                             player.player('loadPlaylist', videoJSON);
                                         }
                                         
@@ -409,8 +441,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                     {
                                         alert("error!!!! "+data);
                                     }
-                                }    
-                                );
+                                });
                                 
 				//player.player('loadPlaylist', playlist);
 
@@ -420,7 +451,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
             $(".search_input2").focus();
             $(".search_input2").bind("enterKey",function(e)
             {
-            	search(e,$(this).val());
+            	search(e,$(this).val(),player);
             });
 
 			$(".search_input2").keyup(function(e){
@@ -432,7 +463,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                         
             $(".search_button2").click(function(e)
             {
-            	search(e,$(".search_input2").val());
+            	search(e,$(".search_input2").val(),player);
             });
 
             //should work for search on youtue, get songs per playlists and get songs per bands {bandId: selectedPlist}
@@ -472,7 +503,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 		
 
                         
-                        function search(e,search_input)
+                        /*function search(e,search_input)
                         {    
                             var keyword = encodeURIComponent(search_input);
 
@@ -494,7 +525,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                         $.each(response.data.items, function(i, data){
 											var titleUp = data.title.substring(0,2).toUpperCase();
 											var keywordUp = keyword.substring(0,2).toUpperCase();
-											if(titleUp==keywordUp)
+											if(titleUp==keywordUp ^^)
 											{
 	                                            var oneVideoJSON = new Object();
 	                                            oneVideoJSON.id = data.id;
@@ -507,7 +538,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                 }
 
                             });
-                        }
+                        }*/
 
 		})(this.jQuery);
 

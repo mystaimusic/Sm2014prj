@@ -439,7 +439,7 @@
 					( toggle || toggle == undefined) ? $(this).trigger('on') : $(this).trigger('off');
 				})
 				.click(function(){
-
+					//alert("click 442");
 					var button = $(this).data('button'), 
 						state = self._state(val);
 
@@ -551,7 +551,6 @@
 						})
 						.appendTo(self.elements.playlist);
 				});
-
 				self._trigger(self, 'onAfterVideosAddedToPlaylist');
 			};
 
@@ -560,7 +559,7 @@
 				playlist
 				.items
 				.click(function(){
-
+					//alert("click 563");
 					self._trigger(this, videoClickHandler, arguments);
 
 					self._trigger(self, 'playlistBuilderClickHandler', arguments);
@@ -1202,12 +1201,6 @@
 		}
 	};
 
-	
-	
-	
-	
-	
-	
 	player.prototype.defaultToolbarButtons = {
 		play: { 
 			text: 'Play',
@@ -1287,3 +1280,38 @@
 	};
 
 })(this.jQuery, this, document);
+
+
+function search(e,search_input,player){    
+	var keyword = encodeURIComponent(search_input);
+    var vevoKeyword = 'vevo%20'+keyword;
+
+    var yt_url = 'http://gdata.youtube.com/feeds/api/videos?q='+vevoKeyword+'&max-results=30&v=2&alt=jsonc';
+
+    $.ajax({
+    	type: "GET",
+        url: yt_url,
+        dataType: "json",
+        success: function(response)
+        {
+        	if(response.data.items)
+            {
+            	var videoJSON = new Object();
+				videoJSON.title = 'SearchResult';
+                videoJSON.videos = [];
+                $.each(response.data.items, function(i, data){
+					var titleUp = data.title.substring(0,2).toUpperCase();
+					var keywordUp = keyword.substring(0,2).toUpperCase();
+					if(titleUp==keywordUp /*&& data.title.search(/full album/i)*/)
+					{
+                    	var oneVideoJSON = new Object();
+                        oneVideoJSON.id = data.id;
+                        oneVideoJSON.title = data.title;
+                        videoJSON.videos.push(oneVideoJSON);
+					}
+                 });
+                 player.player('loadPlaylist', videoJSON);
+            }
+         }
+     });
+}
