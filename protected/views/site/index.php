@@ -22,23 +22,6 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
 -->
-<div class="container darkbg">
-<div id="headercont">
-
-<div id="mod_mainsearch">
-<!-- <div id="loading" style="margin: 4px 0;display:none;">loading...</div>  -->
-<div id="search" class="header-answer">What makes your body move...and your heart beat?</div>
-<div class="header-form">
-	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
-</div>
-<!-- <div id="result"></div>  -->
-
-</div><!--mod_mainsearch--><br><br><br><br><br>
-
-</div><!--headercont-->
-</div><!--container-->
-
-<div class="container">
 <script type="text/javascript">        	
 $(document).ready(function(){
 
@@ -58,6 +41,24 @@ $(document).ready(function(){
 
 });	
 </script>
+
+<div class="container darkbg">
+<div id="headercont">
+
+<div id="mod_mainsearch">
+<!-- <div id="loading" style="margin: 4px 0;display:none;">loading...</div>  -->
+<div id="search" class="header-answer">What makes your body move...and your heart beat?</div>
+<div class="header-form">
+	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
+</div>
+<!-- <div id="result"></div>  -->
+
+</div><!--mod_mainsearch--><br><br><br><br><br>
+
+</div><!--headercont-->
+</div><!--container-->
+
+<div class="container">
 
 
 <script type="text/javascript">        	
@@ -295,12 +296,12 @@ $(document).ready(function(){
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><div class='tag'>" + elem.TAGNAME + 
-	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-	                                +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+									html += "<li><a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
 	                                +elem.TAGID+"&amp;tagname="
 	                                +tagNameEnc+"&amp;imagePath="
-	                                +elem.IMAGEPATH+"'><img src='"
+	                                +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
+	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
 	                            $("#myCarouselUl").append(html);
@@ -343,10 +344,10 @@ $(document).ready(function(){
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><div class='tag'>" + plTitle + 
+									html += "<li><a href='index-test.php?r=Playlists/view2&amp;id="
+	                                +elem.PLID+"'><div class='tag'>" + plTitle + 
 	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-	                                +"<a href='index-test.php?r=Playlists/view2&amp;id="
-	                                +elem.PLID+"'><img src='"
+	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
 	                            $("#myCarousel-plistUl").append(html);
