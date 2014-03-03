@@ -39,7 +39,7 @@
 
 	<div id="header">
 	  <div id="logo">       
-              <div id="menulogo"><img src="images/logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
+              <div id="menulogo"><img src="images/staimusic-logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
               <div id="payoff">Just play your sound!</div>
           </div>
           <div id="banner-top"></div>
