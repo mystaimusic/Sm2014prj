@@ -22,25 +22,6 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
 -->
-<script type="text/javascript">        	
-$(document).ready(function(){
-
-    //Set opacity on each span to 0%
-    $("ul.boxview li .text").css({'opacity':'0'});
-
-	$('.boxview li a').hover(
-
-		function() {
-			$(this).find('.text').stop().fadeTo(700, 0.8);
-		},
-		function() {
-			$(this).find('.text').stop().fadeTo(500, 0);
-		}
-
-	)
-
-});	
-</script>
 
 <div class="container darkbg">
 <div id="headercont">
@@ -59,28 +40,6 @@ $(document).ready(function(){
 </div><!--container-->
 
 <div class="container">
-
-
-<script type="text/javascript">        	
-$(document).ready(function(){
-
-    //Set opacity on each span to 0%
-    $("ul.boxview3 li .text").css({'opacity':'0'});
-
-	$('.boxview3 li a').hover(
-
-		function() {
-			$(this).find('.text').stop().fadeTo(700, 0.8);
-		},
-		function() {
-			$(this).find('.text').stop().fadeTo(500, 0);
-		}
-
-	)
-
-});	
-</script>
-
 
 
 
@@ -218,6 +177,8 @@ $(document).ready(function(){
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
+			addFading("ul.boxview li .text", ".boxview li a");
+			addFading("ul.boxview3 li .text", ".boxview3 li a");
 			var tagsPage = 2;
 			var plistPage = 2;
 			var gensPage = 2;
@@ -307,6 +268,7 @@ $(document).ready(function(){
 	                            $("#myCarouselUl").append(html);
 					            // Reload carousel
 	            				myjcarousel.jcarousel('reload');
+	            				addFading("ul.boxview li .text", ".boxview li a");
 	                    	}
 	             		},
 	                    error: function(data)
@@ -353,6 +315,7 @@ $(document).ready(function(){
 	                            $("#myCarousel-plistUl").append(html);
 					            // Reload carousel
 	            				myjcarouselPlist.jcarousel('reload');
+	            				addFading("ul.boxview3 li .text", ".boxview3 li a");
 	                    	}
 	             		},
 	                    error: function(data)
@@ -380,6 +343,22 @@ $(document).ready(function(){
             {
                 searchTag(e,$(".search_input").val());
             });
+
+			function addFading(selector_ul, selector_a){
+				$(selector_ul).css({'opacity':'0'});
+
+				$(selector_a).hover(
+
+					function() {
+						$(this).find('.text').stop().fadeTo(700, 0.8);
+					},
+					function() {
+						$(this).find('.text').stop().fadeTo(500, 0);
+					}
+
+				)
+			}
+
             
            	function searchTag(e,search_input)
             {
