@@ -28,6 +28,9 @@
 	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+       <meta name="description" content="Ascolta gratis tutta la musica che vuoi, guarda i video musicali attraverso un percorso di sensazioni e parole" /><meta name="copyright" content="Staimusic" />
+<meta name="keywords" content="musica, musica gratis, musica anni 80, musica anni 70, musica rock, musica dance, musica commerciale, musica elettronica,musica streaming, musica youtube, video youtube, video musicali,videogratis,canzoni famose, canzoni italiane" />
+
 </head>
 
 <body>
@@ -76,6 +79,15 @@
 	</div><!-- footer -->
 
 </div><!-- page -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-48591946-1', 'staimusic.com');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>
