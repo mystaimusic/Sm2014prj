@@ -65,16 +65,16 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
-	<div class="container darkbg">
+	<!--  <div class="container darkbg">
 		<div id="headercont">
 			<div id="mod_mainsearch">
 				<div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
 					<div class="header-form">
 					<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
 				</div>
-			</div><!--mod_mainsearch--><br><br><br><br><br>
-		</div><!--headercont-->
-	</div><!--container-->
+			</div><br><br><br><br><br>
+		</div>
+	</div> -->
 	
 	<?php echo $content; ?>
 

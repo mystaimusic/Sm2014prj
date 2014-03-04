@@ -23,7 +23,7 @@
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
 -->
 
-<!--  <div class="container darkbg">
+<div class="container darkbg">
 <div id="headercont">
 
 <div id="mod_mainsearch">
@@ -36,7 +36,7 @@
 </div><br><br><br><br><br>
 
 </div>
-</div> -->
+</div>
 
 <div class="container">
 

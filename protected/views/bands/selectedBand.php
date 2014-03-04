@@ -82,26 +82,15 @@
        	<div id="headertext">
        	        <div id="headertitle">
            	<?php 
-       			if((isset($oneRecord) && $oneRecord === true))
-       			{
-					echo $pls->PLTITLE;
-       			}
-       			if((isset($fromGenres) && $fromGenres===true))
-       			{
-       				header ('Content-type: text/html; charset=utf-8');
-       				echo $genDescription;
-       			}
+       			if(isset($genName)){
+           			echo $genName; 
+				}
        		?>
         </div><!--headertitle-->
        		<?php 
-       			if((isset($oneRecord) && $oneRecord === true))
-       			{
-       				echo $pls->DESCRIPTION;
-       			}
-       			/*if((isset($fromGenres) && $fromGenres===true))
-       			{
+       			if(isset($genDescription)){
        				echo $genDescription;
-       			}*/
+       			}
        		?>
        	</div><!--headertext-->    
       

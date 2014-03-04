@@ -102,6 +102,7 @@ class GenresController extends Controller
     	Yii::app()->user->setState('SELECTED_GENID', $genid);
     	
     	$genre=Genres::model()->findByPk($genid);
+    	$genreName = $genre->GENRENAME;
     	//echo Yii::trace(CVarDumper::dumpAsString($genre),'vardump');
     	//$bandsDB=$genre->bands;
     	$tags=$genre->tags; //gets suggested tags for the genre
@@ -142,6 +143,7 @@ class GenresController extends Controller
 			'fromGenres'=>true,
 			'genImagePath'=>$genImagePath,
     		'genDescription'=>$genDescription,
+			'genName'=>$genreName,
     		'genreId'=>$genid,
 			'bandsIdStr'=>$bandsIdStr,
 		));
