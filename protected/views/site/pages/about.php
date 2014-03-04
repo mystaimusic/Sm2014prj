@@ -1,21 +1,4 @@
-<div class="container darkbg">
-  <div id="headercont">
 
-
-
-<div id="mod_mainsearch">
-<div class="header-answer">What makes your body move...and your heart beat?</div>
-<div class="header-form">
-<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
-</div><!--headerform-->
-</div><!--mod_mainsearch-about-->
-
-
-
-
-
-  </div><!--headercont-->
-</div><!--container-->
 
 
 
