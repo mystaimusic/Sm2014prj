@@ -28,7 +28,7 @@
 
 <div id="mod_mainsearch">
 <!-- <div id="loading" style="margin: 4px 0;display:none;">loading...</div>  -->
-<div id="search" class="header-answer">What makes your body move...and your heart beat?</div>
+<div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
 <div class="header-form">
 	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
 </div>
