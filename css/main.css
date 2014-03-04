@@ -15,8 +15,8 @@
 
 
 #logo{padding-left:20px;width:267px;height:92px; float:left}
-#menulogo{width:267px;height:72px;margin:auto;float:left;}
-#payoff{padding-left:10px;width:200px;height:20px;margin:auto;float:left; font-weight:bold; font-size:14px}
+#menulogo{width:267px;height:72px;margin:auto;float:left;padding-top:4px}
+#payoff{display:none;padding-left:10px;width:200px;height:20px;margin:auto;float:left; font-weight:bold; font-size:14px}
 
 #banner-top{    background-color: #666666;
     float: right;
