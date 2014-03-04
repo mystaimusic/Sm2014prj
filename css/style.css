@@ -133,7 +133,7 @@ a:hover{color:#00B2E0;}
 /** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
 /** playlists **/
-.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
+.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;height:240px}
 .jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel-plist li {float: left; border:#fff solid 2px}
 
@@ -182,8 +182,8 @@ ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inli
 ul.boxview3 li{display:block; width:240px;height:240px; float:left; border:#fff solid 2px}
 ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
-ul.boxview3 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
--moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
+ul.boxview3 .text{width:230px;height:99px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
+-moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:130px;font-size:12px;line-height:15px;padding:5px;text-align:left;color:#cccccc}	
 ul.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 
 
