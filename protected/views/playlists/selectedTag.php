@@ -24,23 +24,22 @@
 -->
 
 
-<div class="container darkbg">
+<!--  <div class="container darkbg">
   <div id="headercont">
 
 <div id="mod_mainsearch">
-<!--  <div id="loading" style="margin: 4px 0;display:none;">loading...</div> -->
 <div id="search" class="header-answer">What makes your body move...and your heart beat?</div>
 <div class="header-form">
 	<form id="search_tags" action="<?php echo Yii::app()->createUrl('Tags/searchRender') ?>">
 		<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
 	</form>
 </div>
-<!--  <div id="result"></div> -->
 
-</div><!--mod_mainsearch--><br><br>
 
-  </div><!--headercont-->
-</div><!--container-->
+</div><br><br>
+
+  </div>
+</div>-->
 
 
 

@@ -65,10 +65,21 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
+	<div class="container darkbg">
+		<div id="headercont">
+			<div id="mod_mainsearch">
+				<div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
+					<div class="header-form">
+					<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
+				</div>
+			</div><!--mod_mainsearch--><br><br><br><br><br>
+		</div><!--headercont-->
+	</div><!--container-->
+	
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
-
+	
 	<div id="footer"><div class="footer-col"><img src="images/staimusic-logosmall.png" border="0" alt="staimusic project" height="46px" width="100px"><br/>
 		Copyright &copy; <?php echo date('Y'); ?> by Staimusic.<br/>
 		All Rights Reserved.<br/>

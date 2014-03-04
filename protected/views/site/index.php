@@ -23,21 +23,20 @@
 	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
 -->
 
-<div class="container darkbg">
+<!--  <div class="container darkbg">
 <div id="headercont">
 
 <div id="mod_mainsearch">
-<!-- <div id="loading" style="margin: 4px 0;display:none;">loading...</div>  -->
+
 <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
 <div class="header-form">
 	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
 </div>
-<!-- <div id="result"></div>  -->
 
-</div><!--mod_mainsearch--><br><br><br><br><br>
+</div><br><br><br><br><br>
 
-</div><!--headercont-->
-</div><!--container-->
+</div>
+</div> -->
 
 <div class="container">
 
