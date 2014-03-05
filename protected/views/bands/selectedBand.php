@@ -94,9 +94,32 @@
        		?>
        	</div><!--headertext-->    
       
+
+
+
          <div id="player_toolbar">
 	     </div><!--player_toolbar-->
-      
+   
+       <div id="mainsearch2_cont">
+
+ <div id="mod_mainsearch2">
+<div id="loading" style="margin: 4px 0;display:none;">loading...</div>
+
+
+
+<div class="search_box"> 
+<div id="search">
+<button type="button" class='search_button2'>Go</button>
+<input type="text" class='search_input2'/></div>
+<div class="search_text2">Ricerca libera</div>
+</div>
+
+<div id="result"></div>
+</div>
+ <!--mod_mainsearch2-->
+	     </div><!--mainsearch2cont-->
+
+   
       
         
    </div>  <!--mainleft_header-->   
@@ -113,17 +136,7 @@
 </div>
 <!--mod_contlist--> 
 
- <div id="mod_mainsearch2">
-<div id="loading" style="margin: 4px 0;display:none;">loading...</div>
 
-<div class="search_box">
-<div id="search">Search
-<button type="button" class='search_button2'>Go</button><input type="text" class='search_input2'/></div>
-</div>
-
-<div id="result"></div>
-</div>
- <!--mod_mainsearch2-->
  
 
 <div class="mainleft_text">
