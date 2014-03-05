@@ -76,8 +76,8 @@ class SongsController extends Controller
         }
         
         $output = CJSON::encode(array('songs'=>$songs, 'title'=>$title,'description'=>$description));
-		echo Yii::trace(CVarDumper::dumpAsString("sono in actionViewSongsPerPlaylist"),'vardump');
-        echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("sono in actionViewSongsPerPlaylist"),'vardump');
+        //echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
         echo $output;
 		
 		/*foreach($songs as $song){
@@ -112,7 +112,7 @@ class SongsController extends Controller
 	public function validateInput($bandsIdStr)
 	{
 		$bandsIdList = explode(',',$bandsIdStr);
-		echo Yii::trace(CVarDumper::dumpAsString("----------> sono in validateInput"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in validateInput"),'vardump');
 		//try{
 			foreach($bandsIdList as $bandId)
 			{

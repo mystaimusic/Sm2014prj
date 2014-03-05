@@ -116,7 +116,7 @@ class PlaylistsController extends Controller
 			$genresExtend = Yii::app()->db->createCommand($sql)->queryAll();
 			$genres = array_merge($genres, $genresExtend);	
         }
-        echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
+        //echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($genres),'vardump');
 		/*$plsSize = sizeof($pls);
         if($plsSize<5){

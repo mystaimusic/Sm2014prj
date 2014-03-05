@@ -29,7 +29,7 @@ class TagsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','search','searchRender'),
+				'actions'=>array('index','view','search','searchRender','parallelSearch'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -173,8 +173,107 @@ class TagsController extends Controller
 	
 	}
 	
+	public function replaceDefaultImage($dbArray)
+	{
+		foreach($dbArray as $dbObj){
+			if(!file_exists ( $dbObj->IMAGEPATH )) {
+				$dbObj->IMAGEPATH = "images/stai-music.jpg";	
+			}
+		}
+	}
 	
+	public function shortPlistTitle($plists)
+	{
+		foreach($plists as $plist){
+			$titleTrimmed = trim($plist->PLTITLE);
+			if(strlen($titleTrimmed)>16){
+				$shortTitle = substr($titleTrimmed, 0, 16) . " ...";
+			}else{
+				$shortTitle = $titleTrimmed; 
+			}
+			$plist->PLTITLE = $shortTitle;
+		}
+	}
 	
+	public function actionParallelSearch()
+	{
+		$output='';
+		if(isset($_GET['tagNameMatch'])){
+			//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
+			try{
+				$tagNameMatch = $_GET['tagNameMatch'];
+				//tags
+				$qTag = new CDbCriteria();
+				$qTag->addSearchCondition('Tagname', $tagNameMatch);
+				$qTag->order='tagname';
+				$filterTags = Tags::model()->findAll($qTag);
+				$filterTagsLen = count($filterTags);
+				if($filterTagsLen>0 && $filterTagsLen<10){
+					$filterTagsLimit = 10 - $filterTagsLen;
+					$filterTagsLast = end($filterTags);
+					$tagname = $filterTagsLast['TAGNAME'];
+					//$sqlOtherTags = mysql_real_escape_string("SELECT * FROM tags WHERE tagname >  '" . $tagname . "' ORDER BY TAGNAME LIMIT 0, ".$filterTagsLimit); //todo check
+					//$otherTags =  Yii::app()->db->createCommand($sqlOtherTags)->queryAll();
+					$otherTags = Tags::model()->findAll(array(
+							'condition'=>'tagname>:tagname',
+							'params'=>array(':tagname'=>$tagname),
+							'order'=>'tagname',
+							'limit'=>$filterTagsLimit,
+					));
+					$filterTags = array_merge($filterTags, $otherTags);
+				}
+				$this->replaceDefaultImage($filterTags);
+				//playlists
+				$qPlist = new CDbCriteria();
+				$qPlist->addSearchCondition('Pltitle',$tagNameMatch);
+				$qPlist->order='Pltitle';
+				$filterPlist = Playlists::model()->findAll($qPlist);
+				$filterPlistLen = count($filterPlist);
+				if($filterPlistLen>0 && $filterPlistLen<10){
+					$filterPlistLimit = 10 - $filterPlistLen;
+					$filterPlistLast = end($filterPlist);
+					$plTitle = $filterPlistLast['PLTITLE'];
+					$otherPlists = Playlists::model()->findAll(array(
+							'condition'=>'pltitle>:pltitle',
+							'params'=>array(':pltitle'=>$plTitle),
+							'order'=>'pltitle',
+							'limit'=>$filterPlistLimit,
+					));
+					//echo Yii::trace(CVarDumper::dumpAsString($otherPlists),'vardump');
+					$filterPlist = array_merge($filterPlist, $otherPlists);
+				}
+				$this->replaceDefaultImage($filterPlist);
+				$this->shortPlistTitle($filterPlist);
+				//genres
+				$qGen = new CDbCriteria();
+				$qGen->addSearchCondition('Genrename',$tagNameMatch);
+				$qGen->order='Genrename';
+				$filterGen = Genres::model()->findAll($qGen);
+				$filterGenLen = count($filterGen);
+				if($filterGenLen>0 && $filterGenLen<10){
+					$filterGenLimit = 10 - $filterGenLen;
+					$filterGenLast = end($filterGen);
+					$genName = $filterGenLast['GENRENAME'];
+					$otherGenres = Genres::model()->findAll(array(
+							'condition'=>'genrename>:genrename',
+							'params'=>array(':genrename'=>$genName),
+							'order'=>'genrename',
+							'limit'=>$filterGenLimit,
+					));
+					$filterGen = array_merge($filterGen, $otherGenres);
+				}
+				$this->replaceDefaultImage($filterGen);
+				
+				$output = CJSON::encode(array('filterTags'=>$filterTags,
+											'filterPlist'=>$filterPlist,
+											'filterGen'=>$filterGen));
+				
+				//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+				
+			}catch(Exception $e){echo Yii::trace(CVarDumper::dumpAsString($e),'vardump');}
+		}
+		echo $output;
+	}
 	
 	public function actionSearch()
 	{

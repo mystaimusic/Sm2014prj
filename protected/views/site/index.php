@@ -207,7 +207,7 @@
 					width = element.innerWidth();
 					element.jcarousel('items').css('width', width/5 + 'px');
 				})*/
-				.jcarousel();
+				.jcarousel({ wrap: 'circular'});
 
 			$('.jcarousel-prev').jcarouselControl({
         		target: '-=5'
@@ -216,7 +216,7 @@
         	//	target: '+=5'
     		//});
 			//plists
-			var myjcarouselPlist = $("#myCarousel-plist").jcarousel();
+			var myjcarouselPlist = $("#myCarousel-plist").jcarousel({ wrap: 'circular'});
 			//$('.jcarousel-plist').jcarousel();
 			$('.jcarousel-plist-prev').jcarouselControl({
 				target: '-=5'
@@ -225,7 +225,7 @@
 			//	target: '+=5'
 			//});
 			//gens
-			$('.jcarousel-gen').jcarousel();
+			$('.jcarousel-gen').jcarousel({ wrap: 'circular'});
 			$('.jcarousel-gen-prev').jcarouselControl({
 				target: '-=5'
 			});
@@ -354,7 +354,6 @@
 					function() {
 						$(this).find('.text').stop().fadeTo(500, 0);
 					}
-
 				)
 			}
 
@@ -364,7 +363,7 @@
            		<?php unset(Yii::app()->session['bandsIdStr']);?>
             	var rawData;    
                 $.ajax({
-                	url: '<?php echo Yii::app()->createUrl('Tags/search')?>',
+                	url: '<?php echo Yii::app()->createUrl('Tags/parallelSearch')?>',
                     type: "GET",
                     data: {tagNameMatch: search_input},
                   	dataType: "json",
@@ -373,10 +372,22 @@
                     {
                     	if(response){
                             var count = 0;
-                            if(response.type=='TAG'){
+                            //if(response.type=='TAG'){
                             	$("#myCarousel").empty();
 	                            $("#myCarousel").append("<ul id='myCarouselUl' class='boxview'>");
-	                            $.each(response.dataProvider.rawData, function(i, elem){
+	                            if(response.filterTags.length==0){
+	                            	$(".jcarousel-prev").hide();
+	                            	$(".jcarousel-next").hide();
+	                            	$("#jcarousel-next-btn").hide();
+	                            	$("#jcarousel-prev-btn").hide();
+		                        }else{
+		                        	$(".jcarousel-prev").show();
+		                        	$(".jcarousel-next").show();
+		                        	$("#jcarousel-next-btn").show();
+	                            	$("#jcarousel-prev-btn").show();
+			                    }
+	                            $.each(response.filterTags, function(i, elem){
+	                            //$.each(response.dataProvider.rawData, function(i, elem){
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
@@ -389,11 +400,23 @@
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
 	                  			});
-	                    	}
-	                    	if(response.type=='PL'){
+	                  			addFading("ul.boxview li .text", ".boxview li a");
+	                    	//}
+	                    	//if(response.type=='PL'){
 	                    		$("#myCarousel-plist").empty();
-	                    	    $("#myCarousel-plist").append("<ul id='myCarousel-plistUl' class='boxview'>");
-	                    	    $.each(response.dataProvider.rawData, function(i, elem){
+	                    	    $("#myCarousel-plist").append("<ul id='myCarousel-plistUl' class='boxview3'>");
+	                    	    if(response.filterPlist.length==0){
+		                    	    $(".jcarousel-plist-prev").hide();
+		                    	    $(".jcarousel-plist-next").hide();
+	                    	    	$("#jcarousel-plist-next-btn").hide();
+	                    	    	$("#jcarousel-plist-prev-btn").hide();
+		                    	}else{
+		                    		$(".jcarousel-plist-prev").show();
+		                    	    $(".jcarousel-plist-next").show();
+		                    		$("#jcarousel-plist-next-btn").show();
+	                    	    	$("#jcarousel-plist-prev-btn").show();
+			                    }
+	                    	    $.each(response.filterPlist, function(i, elem){
 		                    	    var plTitle = elem.PLTITLE;
 		                    	    if(elem.PLTITLE.length>16){
 										plTitle = elem.PLTITLE.substring(0,16) + " ...";					
@@ -408,11 +431,23 @@
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
-		                    }
-		                    if(response.type=='GEN'){
+	                    	    addFading("ul.boxview3 li .text", ".boxview3 li a");
+		                    //}
+		                    //if(response.type=='GEN'){
 		                    	$("#myCarousel-gen").empty();
 	                    	    $("#myCarousel-gen").append("<ul id='myCarousel-genUl' class='boxview2'>");
-	                    	    $.each(response.dataProvider.rawData, function(i, elem){
+	                    	    if(response.filterGen.length==0){
+	                    	    	$(".jcarousel-gen-prev").hide();
+		                    	    $(".jcarousel-gen-next").hide();
+	                    	    	$("#jcarousel-gen-next-btn").hide();
+	                    	    	$("#jcarousel-gen-prev-btn").hide();
+		                    	}else{
+		                    		$(".jcarousel-gen-prev").show();
+		                    	    $(".jcarousel-gen-next").show();
+		                    		$("#jcarousel-gen-next-btn").show();
+	                    	    	$("#jcarousel-gen-prev-btn").show();
+			                    }
+	                    	    $.each(response.filterGen, function(i, elem){
 	                    	    	var tagNameEnc = encodeURIComponent(elem.GENRENAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
@@ -423,7 +458,7 @@
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
-				            }
+				            //}
                     	}
              		},
                     error: function(data)
