@@ -133,7 +133,7 @@ a:hover{color:#00B2E0;}
 /** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
 /** playlists **/
-.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
+.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;height:240px}
 .jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel-plist li {float: left; border:#fff solid 2px}
 
@@ -182,8 +182,8 @@ ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inli
 ul.boxview3 li{display:block; width:240px;height:240px; float:left; border:#fff solid 2px}
 ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
-ul.boxview3 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
--moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:160px;font-size:12px;line-height:15px;padding:2px;text-align:left;color:#cccccc}	
+ul.boxview3 .text{width:230px;height:99px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
+-moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:130px;font-size:12px;line-height:15px;padding:5px;text-align:left;color:#cccccc}	
 ul.boxview3 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 
 
@@ -212,7 +212,7 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 #headertitle{width: auto;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;
  font-family: "TitleBold", Arial, Helvetica, sans-serif; font-size:25px;color:#000;text-align:left; font-size: 26px; line-height: 26px; }	
 /**player_toolbar-----------------------------------------------------**/
-#player_toolbar{width:850px;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
+#player_toolbar{width:100%;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
 
 
 
@@ -224,7 +224,7 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 
 /**mod_mainsearch-----------------------------------------------------**/
 #mod_mainsearch{width:100%;float:left;max-width:1300px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
-.header-answer{ float:left; width:850px;font-size:30px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
+.header-answer{ float:left; width:auto;padding-right:10px;font-size:30px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
 .header-form{ float:left; width:400px;}
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
 #mod_mainsearch .search_button{text-decoration:none;border:hidden;margin-left:10px;width:87px;height:26px;background-color:#9a012c;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif; cursor: pointer; }
@@ -233,8 +233,10 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 
 
 /**mod_mainsearch2-----------------------------------------------------**/
-#mod_mainsearch2{width:100%;max-width:1000px;margin:auto;color:#fff;font-size:15px;font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;background-color:#CCCCCC;position:relative;}
-#mod_mainsearch2 .search_box{padding-left:5px;padding-right:5px;padding-bottom:3px;padding-top:3px;height:20px;}
+#mainsearch2_cont{width:100%;background-color:#999999;height:30px;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}
+#mod_mainsearch2{height:30px;width:100%;max-width:1000px;margin:auto;color:#000;font-size:18px;font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;position:relative;}
+#mod_mainsearch2 .search_box{padding-left:5px;padding-right:5px;padding-bottom:3px;padding-top:3px;height:20px; text-align:left}
+#mod_mainsearch2 .search_text2{float:right; width:100px;font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase;  letter-spacing:1px;}
 #mod_mainsearch2 .search_input2{background-color:#999999;text-decoration:none;border:#000 thin solid ;float:right}
 #mod_mainsearch2 .search_button2{background-color:#999999;text-decoration:none;border:#CCCCCC thin solid ;margin-left:10px;float:right}
 
