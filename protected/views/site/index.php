@@ -178,9 +178,9 @@
 		(function($){
 			addFading("ul.boxview li .text", ".boxview li a");
 			addFading("ul.boxview3 li .text", ".boxview3 li a");
-			var tagsPage = 2;
-			var plistPage = 2;
-			var gensPage = 2;
+			var tagsPage = 1;
+			var plistPage = 1;
+			var gensPage = 1;
 			var totalTags = <?php echo Yii::app()->user->getState('countTags');?>;
 			var totalPlist = <?php echo Yii::app()->user->getState('countPlists');?>;
 			var totalGenres = <?php echo Yii::app()->user->getState('countGenres');?>;
