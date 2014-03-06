@@ -1007,7 +1007,7 @@
 			
 			function loadNextPlist(plId)
 			{
-				var plUrl = 'index-test.php?r=Songs/viewSongsPerPlist';
+				var plUrl = 'index.php?r=Songs/viewSongsPerPlist';
 				var videoJSON_G = new Object();
 				$.ajax({
 	           		//alert("ajax call");
@@ -1050,7 +1050,7 @@
 			
 			function loadNextRandomBands()
 			{
-				var	plUrl = 'index-test.php?r=Songs/viewBandsSongsPerGenres';
+				var	plUrl = 'index.php?r=Songs/viewBandsSongsPerGenres';
 				var videoJSON_G = new Object();
 				$.ajax(
 		       		{

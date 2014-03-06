@@ -256,7 +256,7 @@
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+									html += "<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
 	                                +elem.TAGID+"&amp;tagname="
 	                                +tagNameEnc+"&amp;imagePath="
 	                                +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
@@ -305,7 +305,7 @@
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='index-test.php?r=Playlists/view2&amp;id="
+									html += "<li><a href='index.php?r=Playlists/view2&amp;id="
 	                                +elem.PLID+"'><div class='tag'>" + plTitle + 
 	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                +"<img src='"
@@ -357,7 +357,6 @@
 				)
 			}
 
-            
            	function searchTag(e,search_input)
             {
            		<?php unset(Yii::app()->session['bandsIdStr']);?>
@@ -393,7 +392,7 @@
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
 	                                $("#myCarouselUl").append("<li><div class='tag'>" + elem.TAGNAME + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-	                                            +"<a href='index-test.php?r=Playlists/viewPlPerTag&amp;tagid="
+	                                            +"<a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
 	                                            +elem.TAGID+"&amp;tagname="
 	                                            +tagNameEnc+"&amp;imagePath="
 	                                            +elem.IMAGEPATH+"'><img src='"
@@ -426,7 +425,7 @@
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
 	                                $("#myCarousel-plistUl").append("<li><div class='tag'>" + elem.PLTITLE + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-	                                            +"<a href='index-test.php?r=Playlists/view2&amp;id="
+	                                            +"<a href='index.php?r=Playlists/view2&amp;id="
 	                                            +elem.PLID+"'><img src='"
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
@@ -451,7 +450,7 @@
 	                    	    	var tagNameEnc = encodeURIComponent(elem.GENRENAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-	                                $("#myCarousel-genUl").append("<li><a href='index-test.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
+	                                $("#myCarousel-genUl").append("<li><a href='index.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
 	                                            +elem.GENREID+"&amp;genImagePath="
 	                                            +elem.IMAGEPATH+"&amp;genDescription="
 	                                            +elem.descEnc+"'><img src='"
