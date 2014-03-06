@@ -294,7 +294,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 					$imagePath = "images/stai-music.jpg";
 				}
 				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($imghtml, array('Playlists/view2','id'=>$sugTag['TAGID']));
+				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$sugTag['TAGID'],'tagname'=>$sugTag['TAGNAME'],'imagePath'=>$imagePath));
 				echo CHtml::closeTag('li');
 			}
 		}

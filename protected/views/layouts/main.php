@@ -50,7 +50,7 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/page')),
+				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
                                 array('label'=>'Note', 'url'=>array('/site/page', 'view'=>'note')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
