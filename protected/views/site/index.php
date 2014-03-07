@@ -98,8 +98,8 @@
 			//{
 				echo CHtml::tag('li', array(), false,false);
 				$titleTrimmed = trim($playlist->PLTITLE);
-				if(strlen($titleTrimmed)>16){
-					$shortTitle = substr($playlist->PLTITLE, 0, 16) . " ...";
+				if(strlen($titleTrimmed)>50){
+					$shortTitle = substr($playlist->PLTITLE, 0, 50) . " ...";
 				}else{
 					$shortTitle = $titleTrimmed; 
 				}
@@ -299,8 +299,8 @@
 	                            //alert("response");
 	                            $.each(response.dataProvider.rawData, function(i, elem){
 	                                var plTitle = elem.PLTITLE;
-	                                if(elem.PLTITLE.length>16){
-	                                	plTitle = elem.PLTITLE.substring(0,16) + " ...";
+	                                if(elem.PLTITLE.length>50){
+	                                	plTitle = elem.PLTITLE.substring(0,50) + " ...";
 	                                }
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
@@ -390,12 +390,12 @@
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-	                                $("#myCarouselUl").append("<li><div class='tag'>" + elem.TAGNAME + 
-	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-	                                            +"<a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
+	                                $("#myCarouselUl").append("<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
 	                                            +elem.TAGID+"&amp;tagname="
 	                                            +tagNameEnc+"&amp;imagePath="
-	                                            +elem.IMAGEPATH+"'><img src='"
+	                                            +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
+	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                            +"<img src='"
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
 	                  			});
@@ -417,16 +417,16 @@
 			                    }
 	                    	    $.each(response.filterPlist, function(i, elem){
 		                    	    var plTitle = elem.PLTITLE;
-		                    	    if(elem.PLTITLE.length>16){
-										plTitle = elem.PLTITLE.substring(0,16) + " ...";					
+		                    	    if(elem.PLTITLE.length>50){
+										plTitle = elem.PLTITLE.substring(0,50) + " ...";					
 			                    	} 
 	                    	    	var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-	                                $("#myCarousel-plistUl").append("<li><div class='tag'>" + elem.PLTITLE + 
+	                                $("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
+	                                            +elem.PLID+"'><div class='tag'>" + elem.PLTITLE + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
-	                                            +"<a href='index.php?r=Playlists/view2&amp;id="
-	                                            +elem.PLID+"'><img src='"
+	                                            +"<img src='"
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
