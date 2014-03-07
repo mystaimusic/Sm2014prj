@@ -42,7 +42,7 @@
               <div id="menulogo"><img src="images/staimusic-logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
               <div id="payoff">Just play your sound!</div>
           </div>
-          <div id="banner-top"></div>
+          <div id="banner-top"><a href="http://www.expobrand.it" target="_blank"><img src="images/Expobrand.jpg" border="0" ></a></div>
 
 
 	</div><!-- header -->
