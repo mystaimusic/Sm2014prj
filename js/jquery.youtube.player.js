@@ -1026,7 +1026,7 @@
 	                        videoJSON_G.videos = [];
 	                        var count = 0;
 	                        var html = '';
-	                        $.each(response, function(i, data){
+	                        $.each(response.songs, function(i, data){
 	                        	//var bandIdTmp = data.BANDID;
 	                        	//$("#bandList").empty();
 	                        	//html += "<div class='palinsesto clearfix'><a class='myplaylist' id='"+bandIdTmp+"' href='#"+bandIdTmp+"'>"
