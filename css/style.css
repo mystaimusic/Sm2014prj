@@ -86,14 +86,14 @@ a:hover{color:#00B2E0;}
 #headercont{background-color:#cf043d;width:100%;margin-left:0px;height:50px;position:relative;padding-bottom:0px;padding-top:5px;color:#FFFFFF}
 
 /**Main-------------------------------------------------------**/
-.container #maincont{text-align:center;width:100%;height:100%;margin:auto;position:relative;padding:0px;}	
+.container #maincont{text-align:center;width:100%;height:100%;margin:auto;position:relative;padding:0px;;background-color:#ccc;}	
 #mainleft{color:#000;width:70%;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
-#mainleft_header{color:#000;background-color:#CCCCCC;margin-top:0px;padding:0px;padding-left:30px;padding-right:10px;text-align:center;margin:auto;position:relative;overflow:hidden;background-position:right;}
+#mainleft_header{color:#000;background-color:#e5e5e5;margin-top:0px;padding:0px;padding-left:30px;padding-right:10px;text-align:center;margin:auto;position:relative;overflow:hidden;background-position:right;}
 #mainleft_header img{height:100%;width:100%;}
 .mainleft_text{position:relative;margin-top:20px;margin-bottom:100px;padding-top:10px;float:left;padding-left:20px;}
 .mainleft_text h1{font-size:24px; font-weight: bold;font-family: "TitleExtraBold", Arial, Verdana, Helvetica, sans-serif;font-size:26px; line-height: 26px;}	
 .mainleft_text h2{font-size:18px; font-weight: bold;font-family: "TitleBold", Arial, Verdana, Helvetica, sans-serif; line-height: 26px;}		
-#mainright{float:right;background-color:#fff;width:30%;padding:0px;height:100%;}
+#mainright{float:right;background-color:#ccc;width:30%;padding:0px;height:600px;}
 
 /**Footer---------------------------------------------**/		
 .container #footercont{width:100%;margin:0auto;font-size:11px;text-align:right;padding:15px000;color:#fff;background-color:#000000}
@@ -129,25 +129,25 @@ a:hover{color:#00B2E0;}
 /** tags **/
 .jcarousel {float:left; position: relative; overflow: hidden;width: 1220px;}
 .jcarousel ul {width: 2220em;position: relative;list-style: none;margin: 0;padding: 0;}
-.jcarousel li {float: left; border:#fff solid 2px}
+.jcarousel li {float: left; border:#ccc solid 2px}
 /** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
 /** playlists **/
 .jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;height:240px}
 .jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
-.jcarousel-plist li {float: left; border:#fff solid 2px}
+.jcarousel-plist li {float: left; border:#ccc solid 2px}
 
 
 /**  genres **/
 .jcarousel-gen {float:left;position: relative;overflow: hidden;width: 1220px;}
 .jcarousel-gen ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
-.jcarousel-gen li {float: left; border:#fff solid 2px}
+.jcarousel-gen li {float: left; border:#ccc solid 2px}
 
 
 /**CSSMODULES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<**/
 
 /** suggested link-----------------------------------------------------**/
-.suggested_cont{float:left;width:98%;padding:0px;height:70px;margin:auto;position:relative;margin-top:20px;}
+.suggested_cont{float:left;width:98%;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;}
 .suggested_title{float:left;height:20px;width:100%; text-align:left; padding-top:10px;padding-bottom:3px; border-bottom:#666 solid 1px; font-size:22px;font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase;  letter-spacing:1px;}
 ul.suggested {text-decoration:none; list-style: none; 	padding: 0; margin-top:10px;float:left;}
 ul.suggested li{ float:left; background-color:#999999; margin-right:5px; margin-bottom:20px; padding:0px}
@@ -179,7 +179,7 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 /**  playlists -----------------------------------------------------**/
 .bv_maincont3{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
 ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inline;width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
-ul.boxview3 li{display:block; width:240px;height:240px; float:left; border:#fff solid 2px}
+ul.boxview3 li{display:block; width:240px;height:240px; float:left; border:#ccc solid 2px}
 ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
 ul.boxview3 .text{width:230px;height:99px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
@@ -212,7 +212,7 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 #headertitle{width: auto;height: auto;margin:auto;position:relative;margin-bottom:10px;margin-top:20px;max-width:600px;
  font-family: "TitleBold", Arial, Helvetica, sans-serif; font-size:25px;color:#000;text-align:left; font-size: 26px; line-height: 26px; }	
 /**player_toolbar-----------------------------------------------------**/
-#player_toolbar{width:100%;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}		
+#player_toolbar{width:100%;background-color:#999999;height:auto;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px; display:none}		
 
 
 
@@ -224,7 +224,7 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 
 /**mod_mainsearch-----------------------------------------------------**/
 #mod_mainsearch{width:100%;float:left;max-width:1300px;margin:0auto;padding-left:30px;color:#fff;font-size:32px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
-.header-answer{ float:left; width:auto;padding-right:10px;font-size:30px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;}
+.header-answer{ float:left; width:auto;padding-right:10px;font-size:30px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;padding-top:5px;}
 .header-form{ float:left; width:400px;}
 .search_input{text-decoration:none;background-position:bottom;border:hidden;background-image:url(../images/field-search1.png);background-repeat:no-repeat;width:195px;height:29px;padding-left:5px;padding-right:5px;color:#FFFFFF;font-weight:bold;font-size:20px;font-family:Arial,Helvetica,sans-serif;text-align:center;background-color:#cf043d}
 #mod_mainsearch .search_button{text-decoration:none;border:hidden;margin-left:10px;width:87px;height:26px;background-color:#9a012c;color:#FFFFFF;font-weight:bold;font-size:15px;font-family:Arial,Helvetica,sans-serif; cursor: pointer; }
@@ -233,7 +233,7 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 
 
 /**mod_mainsearch2-----------------------------------------------------**/
-#mainsearch2_cont{width:100%;background-color:#999999;height:30px;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:900px;float:left;height:30px}
+#mainsearch2_cont{width:100%;height:30px;margin:auto;position:relative;margin-bottom:10px;margin-top:0px;max-width:1200px;float:left;height:30px; border-top:#666 solid 1px; border-bottom:#666 solid 1px;  }
 #mod_mainsearch2{height:30px;width:100%;max-width:1000px;margin:auto;color:#000;font-size:18px;font-family: "secondaria", Arial, Verdana, Helvetica, sans-serif;position:relative;}
 #mod_mainsearch2 .search_box{padding-left:5px;padding-right:5px;padding-bottom:3px;padding-top:3px;height:20px; text-align:left}
 #mod_mainsearch2 .search_text2{float:right; width:100px;font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;text-transform:uppercase;  letter-spacing:1px;}
