@@ -42,6 +42,12 @@
               <div id="menulogo"><img src="images/staimusic-logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
               <div id="payoff">Just play your sound!</div>
           </div>
+
+ <div id="share-box">
+<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fstaimusic&amp;width=225&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=24" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:225px; height:21px;" allowTransparency="true"></iframe>
+
+</div>
+
           <div id="banner-top"><a href="http://www.expobrand.it" target="_blank"><img src="images/Expobrand.jpg" border="0" ></a></div>
 
 
