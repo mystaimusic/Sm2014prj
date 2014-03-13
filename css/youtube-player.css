@@ -44,7 +44,7 @@
 	/**margin-top: .2em;**/
 	position: relative;
 	display: none;
-	height:500px;
+	height:auto;
 
 }
 .youtube-player-playlist {
@@ -52,6 +52,7 @@
 	overflow: auto;
 	/**margin: 2px;**/
 	padding: 0;
+height:500px;
 	
 }
 .youtube-player-playlist li {
