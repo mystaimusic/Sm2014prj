@@ -48,7 +48,7 @@ class SiteController extends Controller
         			'order'=>'TAGNAME',
     			),
     			'pagination'=>array(
-        			'pageSize'=>10, // or another reasonable high value...
+        			'pageSize'=>9, // or another reasonable high value...
     			),
 			)
 		);
@@ -60,7 +60,7 @@ class SiteController extends Controller
 					'order'=>'PLID',
 				),
 				'pagination'=>array(
-        			'pageSize'=>10,
+        			'pageSize'=>9,
     			),
 			)
 		);
@@ -89,6 +89,7 @@ class SiteController extends Controller
 	//this is an ajax call
 	public function actionGetNextTag($currentPage,$type)
 	{
+		echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
 		$criteria=new CDbCriteria();
 		$count = 0;
 		if($type == "TAG"){
@@ -127,7 +128,9 @@ class SiteController extends Controller
 	        		),
 	    		),
 			));
+			
 			$output = CJSON::encode(array('dataProvider'=>$dataProvider));
+			echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
 			echo $output;
     	}
     	if($type=="GEN"){

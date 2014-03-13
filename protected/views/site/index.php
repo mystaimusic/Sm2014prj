@@ -53,9 +53,12 @@
 			<div id="myCarousel" class="jcarousel" data-jcarousel="true">
 			<!--  <div id="myCarousel" class="jcarousel" data-jcarousel="true">  -->
 				<?php
-					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false); 
+					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false);
+					echo CHtml::tag('li', array(),false,false);
+					echo CHtml::image("images/tag-musicali.jpg");
+					echo CHtml::closeTag('li');
 					foreach($dataProvider->getData() as $tag)
-					{		
+					{
 						echo CHtml::tag('li', array(), false,false);
 						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
 						$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
@@ -92,6 +95,9 @@
 	<?php 
 		
 		echo CHtml::tag('ul', array('id'=>'myCarousel-plistUl','class'=>'boxview3'),false,false);
+		echo CHtml::tag('li', array(),false,false);
+		echo CHtml::image("images/playlist-musicali.jpg");
+		echo CHtml::closeTag('li');
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
 			//if($count <= $max)
@@ -264,6 +270,8 @@
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
+	                  			//var finalHtml = html.html();
+	                  			//alert(html);
 	                            $("#myCarouselUl").append(html);
 					            // Reload carousel
 	            				myjcarousel.jcarousel('reload');
