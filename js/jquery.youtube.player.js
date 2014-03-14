@@ -65,7 +65,7 @@
 			shuffle: 0,			// shuffle the play list (boolean)
 			chromeless: 0,			// chromeless player (boolean)
 			highDef: 0,			// high definition quality or normal quality (boolean)
-			playlistHeight: 5,		// height of the playlist (integer) (N * playlist item height)
+			playlistHeight: 15,		// height of the playlist (integer) (N * playlist item height)
 			playlistBuilder: null,		// custom playlist builder function (null or function) see http://github.com/badsyntax/jquery-youtube-player/wiki/Installation-and-usage#fn9
 			playlistBuilderClickHandler: null, // custom playlist video click event handler, useful if you want to prevent default click event (null or function)
 			playlistAnimation: { 
