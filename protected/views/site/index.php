@@ -61,7 +61,7 @@
 					{
 						echo CHtml::tag('li', array(), false,false);
 						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-						$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
+						/*$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);*/
 						if(file_exists ( $tag->IMAGEPATH )){
 							$imagePath = $tag->IMAGEPATH;
 						}else{
@@ -171,6 +171,22 @@
     
     
   
+<div id="maincenter">
+Sei stanco di non sapere che musica ascoltare? Sei stufo di sentire sempre musica di basso profilo?<br />
+Scopri nuova musica e ascolta musica di qualit&agrave;; fatti trasportare in viaggi sonori attraverso il tempo e lo spazio.<br />
+Staimusic ti permette di riscoprire canzoni famose sotto una nuova luce, di ascoltare e vedere video musicali selezionati per te.<br />
+Fatti condurre alla ricerca di quello che ti piace, alla ricerca dell'orgasmo sonoro.<br />
+Segui le nostre playlist e partendo da esse esplora gruppi, generi, tematiche, idee e mode.<br />
+Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, storia, concetti, rivoluzione, una potente droga che ci stimola la vita.<br /><br />
+
+<h1>Non perdere tempo, collegati e vivi la musica!</h1>
+</div><!--maincenter-->
+
+
+
+
+
+
 
 </div><!--maincont-->
 </div><!--container-->
@@ -266,7 +282,7 @@
 	                                +elem.TAGID+"&amp;tagname="
 	                                +tagNameEnc+"&amp;imagePath="
 	                                +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
-	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                "</div> <!--<div class='text'>"+ elem.DESCRIPTION +"</div>--> "
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
@@ -402,7 +418,7 @@
 	                                            +elem.TAGID+"&amp;tagname="
 	                                            +tagNameEnc+"&amp;imagePath="
 	                                            +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
-	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
+	                                            "</div><!--<div class='text'>"+ elem.DESCRIPTION +"</div>-->"
 	                                            +"<img src='"
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
@@ -479,6 +495,9 @@
 
 	//]]>
 	</script>
+
+
+
 <!--  </body>
 </html> -->
 
