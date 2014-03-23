@@ -88,10 +88,15 @@ class PlaylistsController extends Controller
 		));
 	}
 
-	public function actionViewPlPerTag($tagid,$tagname,$imagePath)
+	public function actionViewPlPerTag($tagid/*,$tagname,$imagePath*/)
     {
+    	
     	Yii::app()->user->setState('ACTION_CLK', 'PLTAG');
         $tag=Tags::model()->findByPk($tagid);
+        $tagname=$tag->TAGNAME;
+        $imagePath = Utilities::replaceDefaultImage($tag->IMAGEPATH);
+        echo Yii::trace(CVarDumper::dumpAsString($imagePath),'vardump');
+        //$imagePath=$tag->IMAGEPATH;
         $pls=$tag->playlists;
         $genres = $tag->genres;
         $genSize = sizeof($genres);
@@ -146,7 +151,7 @@ class PlaylistsController extends Controller
 		//$randSugTags = Tags::model()->findAllBySql($sqlRandomTags, array(':tagid'=>$tagid));
 		$randSugTags = $this->getRandomSuggestedTags($tagid);
         
-		//echo Yii::trace(CVarDumper::dumpAsString($randSugTags),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
 			'genres'=>$genres,

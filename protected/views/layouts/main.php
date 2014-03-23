@@ -15,17 +15,17 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css"/>
 	<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/black-tie/jquery-ui.css" />
 	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&amp;subset=latin" />
-	<link type="text/css" rel="stylesheet" href="css/youtube-player.css" />
+	<link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/youtube-player.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
-	<script src="js/scripts.js"></script>
+	<!--  <script>window.jQuery || document.write('<script src="/js/jquery.js"><\/script>')</script>-->
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/scripts.js"></script>
 	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>  -->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
-	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.youtube.player.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.jcarousel.min.js"></script>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
        <meta name="description" content="Ascolta gratis tutta la musica che vuoi, guarda i video musicali attraverso un percorso di sensazioni e parole" /><meta name="copyright" content="Staimusic" />
@@ -39,7 +39,7 @@
 
 	<div id="header">
 	  <div id="logo">       
-              <div id="menulogo"><img src="images/staimusic-logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
+              <div id="menulogo"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/staimusic-logo.png" border="0" alt="<?php echo CHtml::encode(Yii::app()->name); ?>" ></div>
               <div id="payoff">Just play your sound!</div>
           </div>
 
@@ -48,7 +48,7 @@
 
 </div>
 
-          <div id="banner-top"><a href="http://www.expobrand.it" target="_blank"><img src="images/Expobrand.jpg" border="0" ></a></div>
+          <div id="banner-top"><a href="http://www.expobrand.it" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/Expobrand.jpg" border="0" ></a></div>
 
 
 	</div><!-- header -->
@@ -86,7 +86,7 @@
 
 	<div class="clear"></div>
 	
-	<div id="footer"><div class="footer-col"><img src="images/staimusic-logosmall.png" border="0" alt="staimusic project" height="46px" width="100px"><br/>
+	<div id="footer"><div class="footer-col"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/staimusic-logosmall.png" border="0" alt="staimusic project" height="46px" width="100px"><br/>
 		Copyright &copy; <?php echo date('Y'); ?> by Staimusic.<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?></div> 

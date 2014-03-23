@@ -68,7 +68,8 @@
 							$imagePath = "images/stai-music.jpg";
 						}
 						$imghtml = CHtml::image($imagePath);
-						echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+						echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID));
+						//echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
 						echo CHtml::closeTag('li');
 					}
 					echo CHtml::closeTag('ul');
@@ -174,8 +175,6 @@
 
 </div><!--maincont-->
 </div><!--container-->
-
-
 
 
 

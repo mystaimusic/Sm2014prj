@@ -177,11 +177,12 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			}
 			echo CHtml::tag('div',array('class'=>'tag'),$shortTitle,true);
 			
-			if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
+			$imgPath = Utilities::replaceDefaultImage($pls->IMAGEPATH);
+			/*if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
 				$imgPath = $pls->IMAGEPATH;
 			}else{
 				$imgPath = "images/stai-music.jpg";
-			}
+			}*/
 			echo CHtml::image($imgPath);
 		} 
 		else{
@@ -251,10 +252,11 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 					$genIdDB = $genre->GENREID;
 					$genDescDB = $genre->DESCRIPTION;
 				}
-				$imgGenStr = "images/stai-music.jpg";
+				/*$imgGenStr = "images/stai-music.jpg";
 				if(file_exists ( $imgPathDB )){
 					$imgGenStr = $imgPathDB;
-				}
+				}*/
+				$imgGenStr = Utilities::replaceDefaultImage($imgPathDB);
 				$imgGenHtml = CHtml::image($imgGenStr);
 				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genIdDB,'genImagePath'=>$imgGenStr,'genDescription'=>$genDescDB));
 				echo CHtml::closeTag('li');
@@ -262,10 +264,11 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 		}else if(isset($randomGenres)){
 			foreach($randomGenres as $randomGenre ){
 				echo CHtml::tag('li',array(),false,false);
-				$imgGenStr = "images/stai-music.jpg";
+				/*$imgGenStr = "images/stai-music.jpg";
 				if(file_exists ( $randomGenre['IMAGEPATH'] )){
 					$imgGenStr = $randomGenre['IMAGEPATH'];
-				}
+				}*/
+				$imgGenStr = Utilities::replaceDefaultImage($randomGenre['IMAGEPATH']);
 				$imgGenHtml = CHtml::image($imgGenStr);
 				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$randomGenre['GENREID'],'genImagePath'=>$imgGenStr,'genDescription'=>$randomGenre['DESCRIPTION']));
 				echo CHtml::closeTag('li');
@@ -288,11 +291,12 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 		if(isset($suggestedTags) && count($suggestedTags)){
 			foreach($suggestedTags as $sugTag){
 				echo CHtml::tag('li',array(),false,false);		
-				if(file_exists ( $sugTag['IMAGEPATH'] )){
+				/*if(file_exists ( $sugTag['IMAGEPATH'] )){
 					$imagePath = $sugTag['IMAGEPATH'];
 				}else{
 					$imagePath = "images/stai-music.jpg";
-				}
+				}*/
+				$imagePath = Utilities::replaceDefaultImage($sugTag['IMAGEPATH']);
 				$imghtml = CHtml::image($imagePath);
 				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$sugTag['TAGID'],'tagname'=>$sugTag['TAGNAME'],'imagePath'=>$imagePath));
 				echo CHtml::closeTag('li');
