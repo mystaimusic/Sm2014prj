@@ -61,7 +61,7 @@
 					{
 						echo CHtml::tag('li', array(), false,false);
 						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
-						/*$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);*/
+						$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
 						if(file_exists ( $tag->IMAGEPATH )){
 							$imagePath = $tag->IMAGEPATH;
 						}else{
