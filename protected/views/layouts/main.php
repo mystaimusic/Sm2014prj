@@ -28,8 +28,8 @@
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.jcarousel.min.js"></script>
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-       <meta name="description" content="Ascolta gratis tutta la musica che vuoi, guarda i video musicali attraverso un percorso di sensazioni e parole" /><meta name="copyright" content="Staimusic" />
-<meta name="keywords" content="musica, musica gratis, musica anni 80, musica anni 70, musica rock, musica dance, musica commerciale, musica elettronica,musica streaming, musica youtube, video youtube, video musicali,videogratis,canzoni famose, canzoni italiane" />
+       <meta name="description" content="Ascolta tutta la musica che vuoi, guarda i video musicali attraverso un percorso di sensazioni e parole" /><meta name="copyright" content="Staimusic" />
+<meta name="keywords" content="musica, musica youtube, musica anni 80, musica anni 70, musica rock, musica dance, musica commerciale, musica elettronica,musica streaming, musica youtube, video youtube, video musicali,videogratis,canzoni famose, canzoni italiane" />
 
 </head>
 
