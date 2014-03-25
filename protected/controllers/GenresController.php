@@ -71,16 +71,6 @@ class GenresController extends Controller
     		$count++; 
     	}
     	//echo Yii::trace(CVarDumper::dumpAsString($plArray),'vardumper');
-    	//$songs=$bands->songs;
-    	
-    	//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerGenres"),'vardump');
-    	//echo Yii::trace(CVarDumper::dumpAsString($tags),'vardump');
-    	/*foreach($bands as $band)
-    	{
-    		$bandId = $band->BANDID;
-    		$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
-        	echo Yii::trace(CVarDumper::dumpAsString($songsModel),'vardump');
-    	}*/
     	
     	$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
@@ -95,18 +85,20 @@ class GenresController extends Controller
     	//echo Yii::trace(CVarDumper::dumpAsString($songs),'vardump');        
     }
     
-    public function actionViewRandomBandsPerGenres($genid,$genImagePath,$genDescription)
+    public function actionViewRandomBandsPerGenres($id/*,$genImagePath,$genDescription*/)
     {
     	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
     	Yii::app()->user->setState('ACTION_CLK', 'GEN');
-    	Yii::app()->user->setState('SELECTED_GENID', $genid);
+    	Yii::app()->user->setState('SELECTED_GENID', $id);
     	
-    	$genre=Genres::model()->findByPk($genid);
+    	$genre=Genres::model()->findByPk($id);
+    	$genImagePathDB = $genre->IMAGEPATH;
+    	$genDescription = $genre->DESCRIPTION;
     	$genreName = $genre->GENRENAME;
     	//echo Yii::trace(CVarDumper::dumpAsString($genre),'vardump');
     	//$bandsDB=$genre->bands;
     	$tags=$genre->tags; //gets suggested tags for the genre
-    	$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. (int)$genid .' and g.bid = b.bandid ORDER BY RAND() LIMIT 0 , 15'; //the order by rand() works well form max 1000 records
+    	$sql = 'SELECT b.* FROM bands as b,bridge_genres_band g WHERE g.gid ='. (int)$id .' and g.bid = b.bandid ORDER BY RAND() LIMIT 0 , 15'; //the order by rand() works well form max 1000 records
 		$bands = Yii::app()->db->createCommand($sql)->queryAll();
 		$bandsIdStr='';
 		$i = 0;
@@ -118,8 +110,10 @@ class GenresController extends Controller
 	    		$bandsIdStr .= $tmpVar;
 	    	}
 	    	$i++;
+	    	//$band['IMAGEPATH'] = Utilities::replaceDefaultImage($band['IMAGEPATH']);
 		}
     	Yii::app()->user->setState('bandsIdStr', $bandsIdStr);
+    	
     	//echo Yii::trace(CVarDumper::dumpAsString($bandsIdStr),'vardump');
     	$plArray = array();
     	$count = 0;
@@ -134,17 +128,19 @@ class GenresController extends Controller
     			$plArray[$count] = $plists[$randomId];
     			$count++;
     		}
+    		//$tag['IMAGEPATH'] = Utilities::replaceDefaultImage($tag['IMAGEPATH']);
     	}
-    	//echo Yii::trace(CVarDumper::dumpAsString($plArray),'vardump');
+    	$genImagePathDB = Utilities::replaceDefaultImage($genImagePathDB);
+    	//echo Yii::trace(CVarDumper::dumpAsString($genImagePath),'vardump');
 		$this->render('/bands/selectedBand',array(
 			'bands'=>$bands,
     		'tags'=>$tags,
 			'plistsOut'=>$plArray,
 			'fromGenres'=>true,
-			'genImagePath'=>$genImagePath,
+			'genImagePath'=>$genImagePathDB,
     		'genDescription'=>$genDescription,
 			'genName'=>$genreName,
-    		'genreId'=>$genid,
+    		'genreId'=>$id,
 			'bandsIdStr'=>$bandsIdStr,
 		));
     }

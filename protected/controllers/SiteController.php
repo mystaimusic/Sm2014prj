@@ -52,6 +52,7 @@ class SiteController extends Controller
     			),
 			)
 		);
+		Utilities::replaceDefaultImageArray($dataProvider->getData());
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex 2"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($dataProvider->getData()),'vardump');
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
@@ -64,6 +65,7 @@ class SiteController extends Controller
     			),
 			)
 		);
+		Utilities::replaceDefaultImageArray($dataProviderPlaylist->getData());
 		
 		$dataProviderGenres = new CActiveDataProvider('Genres',
 			array(
@@ -73,11 +75,14 @@ class SiteController extends Controller
 				'pagination'=>array('pageSize'=>1000),
 			)
 		);
+		Utilities::replaceDefaultImageArray($dataProviderGenres->getData());
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'dataProviderGenres'=>$dataProviderGenres,
 			'dataProviderPlaylist'=>$dataProviderPlaylist,
 		));
+		
 		//$this->render('index');
 	}
 

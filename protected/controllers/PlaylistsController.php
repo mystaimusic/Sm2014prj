@@ -88,11 +88,10 @@ class PlaylistsController extends Controller
 		));
 	}
 
-	public function actionViewPlPerTag($tagid/*,$tagname,$imagePath*/)
+	public function actionViewPlPerTag($id/*,$tagname,$imagePath*/)
     {
-    	
     	Yii::app()->user->setState('ACTION_CLK', 'PLTAG');
-        $tag=Tags::model()->findByPk($tagid);
+        $tag=Tags::model()->findByPk($id);
         $tagname=$tag->TAGNAME;
         $imagePath = Utilities::replaceDefaultImage($tag->IMAGEPATH);
         echo Yii::trace(CVarDumper::dumpAsString($imagePath),'vardump');
@@ -125,43 +124,18 @@ class PlaylistsController extends Controller
 			$genres = array_merge($genres, $genresExtend);	
         }
         //echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewPlPerTag"),'vardump');
-		/*$plsSize = sizeof($pls);
-        if($plsSize<5){
-        	$plsIdArray = array();
-        	$limitPls = 5 - $plsSize;
-        	$countPls = 0;
-        	$sqlPls = "select * from playlists where plid not in(";
-        	foreach($pls as $pl){
-        		$plid = $pl['PLID'];
-        		if($countPls==0){
-        			$tmpVarPl = $plid;
-        		}else{
-        			$tmpVarPl = ',' . $plid;
-        		}
-        		$sqlPls =$sqlPls . $tmpVarPl;
-        		$countPls++;
-        	}
-        	$sqlPls= $sqlPls . ") LIMIT 0," . $limitPls;
-        	$plistExtend = Yii::app()->db->createCommand($sqlPls)->queryAll();
-        	$pls = array_merge($pls,$plistExtend); commentato per ora
-        }*/
-        
-        //find suggested tags randomly
-        //$sqlRandomTags = "SELECT TAGID, TAGNAME, DESCRIPTION, IMAGEPATH FROM tags WHERE TAGID NOT IN (:tagid) ORDER BY RAND() LIMIT 0, 5";
-		//$randSugTags = Tags::model()->findAllBySql($sqlRandomTags, array(':tagid'=>$tagid));
-		$randSugTags = $this->getRandomSuggestedTags($tagid);
+		$randSugTags = $this->getRandomSuggestedTags($id);
         
 		//echo Yii::trace(CVarDumper::dumpAsString($pls),'vardump');
 		$this->render('selectedTag',array(
 			'pls'=>$pls,
 			'genres'=>$genres,
 			'suggestedTags'=>$randSugTags,
-			'tagid'=>$tagid,
+			'tagid'=>$id,
 			'tagname'=>$tagname,
 			'imagePath'=>$imagePath,
 		));		
     }
-
     
     private function getRandomSuggestedTags($tagid){
     	$sqlRandomTags = "SELECT TAGID, TAGNAME, DESCRIPTION, IMAGEPATH FROM tags WHERE TAGID NOT IN (:tagid) ORDER BY RAND() LIMIT 0, 5";

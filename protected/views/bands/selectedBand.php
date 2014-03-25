@@ -1,68 +1,12 @@
-<!--  <!DOCTYPE html>
-<html>
-<head>
-<title>Website Name Here</title>
-<meta charset="UTF-8">
-
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<link rel="stylesheet" href="css/style.css">
-	<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/black-tie/jquery-ui.css" />
-	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&amp;subset=latin" />
-	<link type="text/css" rel="stylesheet" href="css/youtube-player.css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
-<script src="js/scripts.js"></script>
-</head>
-<body>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
-
--->
-
-
-<!--  <div class="container darkbg">
-  <div id="headercont">
-
-<div id="mod_mainsearch">
-<div id="search" class="header-answer">What makes your body move...and your heart beat?</div>
-<div class="header-form">
-	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
-</div>
-
-</div><br><br>
-
-  </div>
-</div>-->
-
-
-
-
-
-
 <div class="container  darkbg2">
 <div id="midcont">
 
 </div><!--midcont-->
 </div><!--container2-->
 
-
-
-
-
-
-
 <div class="container">
 
 	<div id="maincont" class="clearfix">
-	
-    
-    
-    
-    	
 
 <div id="mainleft">
 
@@ -113,32 +57,18 @@
 <input type="text" class='search_input2'/></div>
 <div class="search_text2">Ricerca libera</div>
 </div>
-
 <div id="result"></div>
 </div>
  <!--mod_mainsearch2-->
 	     </div><!--mainsearch2cont-->
-
-   
-      
-        
    </div>  <!--mainleft_header-->   
         
-        
-
-
-        
-
 <div id="mod_contlist">
 <div class="header">
 <span class="title"><h2>Searched Songs</h2></span></div>
 <div id="mainlist"></div><!--mainlist--> 
 </div>
 <!--mod_contlist--> 
-
-
- 
-
 <div class="mainleft_text">
 <h1>Radiotags: the STAIMUSIC selection of high quality music!</h1>
 <p>Are you tired of listening always the same insipid radios? Are you bored to hear low profile music?
@@ -147,18 +77,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </div><!--mainleft-->		
             
 </div><!--mainleft-->
-
-
-
-
 <div id="mainright">
 <div class="mod_playCOVER">
 <?php
 	echo CHtml::tag('div',array('class'=>'tag'),true);
 	if(file_exists ( $genImagePath )){
-		$imgPath = $genImagePath;
+		$imgPath = Yii::app()->request->baseUrl."/".$genImagePath;
 	}else{
-		$imgPath = "images/stai-music.jpg";
+		$imgPath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
 	}
 	echo CHtml::image($imgPath);
 ?>
@@ -195,6 +121,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			}else{
 				$imagePath = "images/stai-music.jpg";
 			}
+			$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 			$imghtml = CHtml::image($imagePath);
 			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
 			echo CHtml::closeTag('li');
@@ -221,6 +148,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				}else{
 					$imagePath = "images/stai-music.jpg";
 				}
+				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
 				echo CHtml::link($imghtml,array('Playlists/view2','id'=>$plist['PLID']));
 				echo CHtml::closeTag('li');

@@ -8,7 +8,15 @@ class TagsController extends Controller
 	 */
 	//public $layout='//layouts/column2';
 
-
+	const C_IL = 'il ';
+	const C_LO = 'lo ';
+	const C_LA = 'la ';
+	const C_I = 'i ';
+	const C_GLI = 'gli ';
+	const C_LE = 'le ';
+	const C_L = 'l\' ';
+	const C_L2 = 'l \'';
+	
 	/**
 	 * @return array action filters
 	 */
@@ -202,6 +210,20 @@ class TagsController extends Controller
 			//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
 			try{
 				$tagNameMatch = $_GET['tagNameMatch'];
+				$articles_it = array (TagsController::C_IL, 
+										TagsController::C_LA,
+										TagsController::C_I,
+										TagsController::C_GLI, 
+										TagsController::C_LE,
+										TagsController::C_LO,
+										TagsController::C_L,
+										TagsController::C_L2);
+				foreach($articles_it as $article){
+					$pos = strpos(strtolower($tagNameMatch),$article);
+					if($pos !== false ){
+						$tagNameMatch = substr($tagNameMatch, $pos+strlen($article));	
+					}
+				}
 				//tags
 				$qTag = new CDbCriteria();
 				$qTag->addSearchCondition('Tagname', $tagNameMatch);

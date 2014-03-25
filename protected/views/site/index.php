@@ -55,7 +55,7 @@
 				<?php
 					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false);
 					echo CHtml::tag('li', array(),false,false);
-					echo CHtml::image("images/tag-musicali.jpg");
+					echo CHtml::image(Yii::app()->request->baseUrl."/images/tag-musicali.jpg");
 					echo CHtml::closeTag('li');
 					foreach($dataProvider->getData() as $tag)
 					{
@@ -63,13 +63,15 @@
 						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
 						$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
 						if(file_exists ( $tag->IMAGEPATH )){
-							$imagePath = $tag->IMAGEPATH;
+							$imagePath = Yii::app()->request->baseUrl."/".$tag->IMAGEPATH;
 						}else{
-							$imagePath = "images/stai-music.jpg";
+							$imagePath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
 						}
 						$imghtml = CHtml::image($imagePath);
-						echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID));
-						//echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+						$tagUrl = Utilities::getTagUrl($tag->TAGNAME,$tag->TAGID);
+						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
+						echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','id'=>$tag->TAGID));
+						//echo Yii::trace(CVarDumper::dumpAsString(Yii::app()->request->baseUrl),'vardump');
 						echo CHtml::closeTag('li');
 					}
 					echo CHtml::closeTag('ul');
@@ -153,7 +155,8 @@
 			}
 			$imgGenHtml = CHtml::image($imgGenStr);
 			//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
-			echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
+			//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
+			echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
 			echo CHtml::closeTag('li');
 		}
 		echo CHtml::closeTag('ul');
