@@ -280,11 +280,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
-	                                +elem.TAGID+"&amp;tagname="
-	                                +tagNameEnc+"&amp;imagePath="
-	                                +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
-	                                "</div> <!--<div class='text'>"+ elem.DESCRIPTION +"</div>--> "
+									html += "<li><a href='index.php/Playlists/viewPlPerTag/id/"
+									//html += "<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
+	                                +elem.TAGID+"'><div class='tag'>" + elem.TAGNAME + 
+	                                "</div> <div class='text'>"+ elem.DESCRIPTION +"</div> "
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
@@ -331,7 +330,8 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='index.php?r=Playlists/view2&amp;id="
+									html += "<li><a href='index.php/Playlists/view2/id/"
+									//html += "<li><a href='index.php?r=Playlists/view2&amp;id="
 	                                +elem.PLID+"'><div class='tag'>" + plTitle + 
 	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                +"<img src='"
@@ -416,10 +416,9 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-	                                $("#myCarouselUl").append("<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
-	                                            +elem.TAGID+"&amp;tagname="
-	                                            +tagNameEnc+"&amp;imagePath="
-	                                            +elem.IMAGEPATH+"'><div class='tag'>" + elem.TAGNAME + 
+									$("#myCarouselUl").append("<li><a href='index.php/Playlists/viewPlPerTag/id/"
+	                                //$("#myCarouselUl").append("<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
+	                                            +elem.TAGID+"'><div class='tag'>" + elem.TAGNAME + 
 	                                            "</div><!--<div class='text'>"+ elem.DESCRIPTION +"</div>-->"
 	                                            +"<img src='"
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
@@ -448,8 +447,9 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			                    	} 
 	                    	    	var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
-									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-	                                $("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+									$("#myCarousel-plistUl").append("<li><a href='index.php/Playlists/view2/id/"
+	                                //$("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
 	                                            +elem.PLID+"'><div class='tag'>" + elem.PLTITLE + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                            +"<img src='"
@@ -476,10 +476,12 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                    	    	var tagNameEnc = encodeURIComponent(elem.GENRENAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
-	                                $("#myCarousel-genUl").append("<li><a href='index.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
-	                                            +elem.GENREID+"&amp;genImagePath="
-	                                            +elem.IMAGEPATH+"&amp;genDescription="
-	                                            +elem.descEnc+"'><img src='"
+									$("#myCarousel-genUl").append("<li><a href='index.php/Genres/viewRandomBandsPerGenres/id/"
+	                                //$("#myCarousel-genUl").append("<li><a href='index.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
+	                                            //+elem.GENREID+"&amp;genImagePath="
+	                                            //+elem.IMAGEPATH+"&amp;genDescription="
+	                                            //+elem.descEnc+
+	                                            +elem.GENREID+"'><img src='"
 	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
