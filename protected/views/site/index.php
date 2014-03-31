@@ -1,28 +1,3 @@
-<!-- <h1>Tags</h1> -->
-<!--  <!DOCTYPE html>
-<html>
-<head>
-<title>Website Name Here</title>
-<meta charset="UTF-8">
-<meta name="description" content="">
-<meta name="keywords" content="">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<link rel="stylesheet" href="css/style.css">
-<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/black-tie/jquery-ui.css" />
-<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans&amp;subset=latin" />
-<link type="text/css" rel="stylesheet" href="css/youtube-player.css" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
-<script src="js/scripts.js"></script> -->
-<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-<!--   </head> -->
-<!--  <body>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
-	<script type="text/javascript" src="js/jquery.youtube.player.js"></script>
--->
-
 <div class="container darkbg">
 <div id="headercont">
 
@@ -39,8 +14,6 @@
 </div>
 
 <div class="container">
-
-
 
 <div id="maincont" class="clearfix">
 	
@@ -82,12 +55,6 @@
 			<a id="jcarousel-next-btn" href="#" class="jcarousel-next" data-jcarouselcontrol="true"></a>
 		</div>
 	</div>
-
-
-
-
-
-		
 	<div class="jcarousel-plist-wrapper">
 		<!-- div playlists -->
 		<div class="jcarousel-plist-prev">
@@ -132,10 +99,7 @@
 			</a>
 		</div>
 	</div>
-    
-    
-    
-  <div class="jcarousel-gen-wrapper">
+    <div class="jcarousel-gen-wrapper">
 		<!-- div playlists -->
 		<div class="jcarousel-gen-prev">
 			<a href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">
@@ -165,15 +129,9 @@
     </div>
 		<div class="jcarousel-gen-next">
 			<a href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">
-
 			</a>
 		</div>
-		
-		
-		
 	  </div>
-    
-    
   
 <div id="maincenter">
 Sei stanco di non sapere che musica ascoltare? Sei stufo di sentire sempre musica di basso profilo?<br />
@@ -185,17 +143,8 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 
 <h1>Non perdere tempo, collegati e vivi la musica!</h1>
 </div><!--maincenter-->
-
-
-
-
-
-
-
 </div><!--maincont-->
 </div><!--container-->
-
-
 
 	<script type="text/javascript">
 	//<![CDATA[
@@ -223,7 +172,6 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 				totPlistPage++;
 			}
 			//alert(rem);
-			
 			//tags
 			var myjcarousel = $("#myCarousel")
 				/*.on('jcarousel:create jcarousel:reload', function(){
@@ -405,6 +353,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                            	$(".jcarousel-next").hide();
 	                            	$("#jcarousel-next-btn").hide();
 	                            	$("#jcarousel-prev-btn").hide();
+	                            	$("#myCarousel").append("<div>Tags non trovati</div>");
 		                        }else{
 		                        	$(".jcarousel-prev").show();
 		                        	$(".jcarousel-next").show();
@@ -434,6 +383,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 		                    	    $(".jcarousel-plist-next").hide();
 	                    	    	$("#jcarousel-plist-next-btn").hide();
 	                    	    	$("#jcarousel-plist-prev-btn").hide();
+	                    	    	$("#myCarousel-plist").append("<div>Playlists non trovate</div>");
 		                    	}else{
 		                    		$(".jcarousel-plist-prev").show();
 		                    	    $(".jcarousel-plist-next").show();
@@ -466,6 +416,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 		                    	    $(".jcarousel-gen-next").hide();
 	                    	    	$("#jcarousel-gen-next-btn").hide();
 	                    	    	$("#jcarousel-gen-prev-btn").hide();
+	                    	    	$("#myCarousel-gen").append("<div>Generi non trovati</div>");
 		                    	}else{
 		                    		$(".jcarousel-gen-prev").show();
 		                    	    $(".jcarousel-gen-next").show();
