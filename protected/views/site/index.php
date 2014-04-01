@@ -100,38 +100,34 @@
 		</div>
 	</div>
     <div class="jcarousel-gen-wrapper">
-		<!-- div playlists -->
+		<!-- div genres -->
 		<div class="jcarousel-gen-prev">
-			<a href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">
-
+			<a id="jcarousel-gen-prev-btn" href="#" class="jcarousel-gen-prev" data-jcarouselcontrol="true">
 			</a>
 		</div>
-	<!-- <div id="req_res" class="bv_maincont"> -->
-	<div id="myCarousel-gen" class="jcarousel-gen" data-jcarousel="true">
-    
-    <?php
-		echo CHtml::tag('ul', array('id'=>'myCarousel-genUl','class'=>'boxview2'),false,false);
-		foreach($dataProviderGenres->getData() as $genre){
-			echo CHtml::tag('li',array(),false,false);
-			$imgGenStr = "images/stai-music.jpg";
-			if(file_exists ( $genre->IMAGEPATH )){
-				$imgGenStr = $genre->IMAGEPATH;	
-			}
-			$imgGenHtml = CHtml::image($imgGenStr);
-			//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
-			//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
-			echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
-			echo CHtml::closeTag('li');
-		}
-		echo CHtml::closeTag('ul');
-	?>
-    
-    </div>
+		<div id="myCarousel-gen" class="jcarousel-gen" data-jcarousel="true">
+    		<?php
+				echo CHtml::tag('ul', array('id'=>'myCarousel-genUl','class'=>'boxview2'),false,false);
+				foreach($dataProviderGenres->getData() as $genre){
+					echo CHtml::tag('li',array(),false,false);
+					$imgGenStr = "images/stai-music.jpg";
+					if(file_exists ( $genre->IMAGEPATH )){
+						$imgGenStr = $genre->IMAGEPATH;	
+					}
+					$imgGenHtml = CHtml::image($imgGenStr);
+					//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
+					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
+					echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
+					echo CHtml::closeTag('li');
+				}
+				echo CHtml::closeTag('ul');
+			?>
+    	</div>
 		<div class="jcarousel-gen-next">
-			<a href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">
+			<a id="jcarousel-gen-next-btn" href="#" class="jcarousel-gen-next" data-jcarouselcontrol="true">
 			</a>
 		</div>
-	  </div>
+	</div>
   
 <div id="maincenter">
 Sei stanco di non sapere che musica ascoltare? Sei stufo di sentire sempre musica di basso profilo?<br />
@@ -171,6 +167,12 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			if(remPlist>0){
 				totPlistPage++;
 			}
+
+			var totGenPage = Math.floor(totalGenres/9);
+			var remGen = totGenPage % 9;
+			if(remGen>0){
+				totGenPage++;
+			} 
 			//alert(rem);
 			//tags
 			var myjcarousel = $("#myCarousel")
@@ -197,13 +199,14 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			//	target: '+=5'
 			//});
 			//gens
-			$('.jcarousel-gen').jcarousel({ wrap: 'circular'});
+			//$('.jcarousel-gen').jcarousel({ wrap: 'circular'});
+			var myjcarouselGen = $("#myCarousel-gen").jcarousel({ wrap: 'circular'});
 			$('.jcarousel-gen-prev').jcarouselControl({
-				target: '-=5'
+				target: '-=9'
 			});
-			$('.jcarousel-gen-next').jcarouselControl({
-				target: '+=5'
-			});
+			//$('.jcarousel-gen-next').jcarouselControl({
+			//	target: '+=5'
+			//});
 			
 			$("#jcarousel-next-btn").click(function(e)
 			{
@@ -298,6 +301,48 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                });
 				}
 			});
+
+			$("#jcarousel-gen-next-btn").click(function(e)
+			{
+				if(plistPage<totPlistPage-1){
+					plistPage++;
+					$('.jcarousel-gen-next').jcarouselControl({
+						target: '+=9'
+					});
+					//alert(totPlistPage +' ' +plistPage);
+					$.ajax({
+	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
+	                    type: "GET",
+	                    data: {currentPage: plistPage, type: "GEN"},
+	                  	dataType: "json",
+	                    async: false,
+	                   	success: function(response,status, jqXHR)
+	                    {
+	                    	if(response){
+	                            var html='';
+	                            //alert("response");
+	                            $.each(response.dataProvider.rawData, function(i, elem){
+	                                var genName = elem.GENRENAME;
+									var tagNameEnc = encodeURIComponent(genName);
+									html += "<li><a href='index.php/Genres/viewRandomBandsPerGenres/id/"
+									//html += "<li><a href='index.php?r=Playlists/view2&amp;id="
+	                                +elem.GENREID+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
+	                  			});
+	                  			//alert(html);
+	                            $("#myCarousel-genUl").append(html);
+					            // Reload carousel
+	            				myjcarouselPlist.jcarousel('reload');
+	            				addFading("ul.boxview3 li .text", ".boxview3 li a");
+	                    	}
+	             		},
+	                    error: function(data)
+	                    {
+	                    	alert("error!!!! "+data);
+	                   	}
+	                });
+				}
+			});
+
 			
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)

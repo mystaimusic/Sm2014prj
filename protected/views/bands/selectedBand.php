@@ -123,7 +123,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			}
 			$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 			$imghtml = CHtml::image($imagePath);
-			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$tag->TAGID,'tagname'=>trim($tag->TAGNAME),'imagePath'=>$imagePath));
+			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$tag->TAGID));
 			echo CHtml::closeTag('li');
 		}
 	?>

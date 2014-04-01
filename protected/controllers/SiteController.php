@@ -72,7 +72,7 @@ class SiteController extends Controller
 				'criteria'=>array(
 					'order'=>'GENREID',	
 				),
-				'pagination'=>array('pageSize'=>1000),
+				'pagination'=>array('pageSize'=>18),
 			)
 		);
 		Utilities::replaceDefaultImageArray($dataProviderGenres->getData());
@@ -114,6 +114,9 @@ class SiteController extends Controller
 		}
     	$pages=new CPagination($count);
     	$pages->pageSize=5;
+    	if($type == "GEN"){
+    		$pages->pageSize=9;
+    	}
     	$pages->setCurrentPage($currentPage);
     	$pages->applyLimit($criteria);
     	if($type == "TAG"){
@@ -135,7 +138,7 @@ class SiteController extends Controller
 			));
 			
 			$output = CJSON::encode(array('dataProvider'=>$dataProvider));
-			echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
 			echo $output;
     	}
     	if($type=="GEN"){
@@ -178,7 +181,6 @@ class SiteController extends Controller
 			$output = CJSON::encode(array('dataProvider'=>$dataProvider));
 			echo $output;
     	}
-    	
 	}
 	
 	/**

@@ -186,7 +186,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imgGenStr = Utilities::replaceDefaultImage($imgPathDB);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genIdDB,'genImagePath'=>$imgGenStr,'genDescription'=>$genDescDB));
+				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genIdDB));
 				echo CHtml::closeTag('li');
 			}
 		}else if(isset($randomGenres)){
@@ -199,7 +199,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imgGenStr = Utilities::replaceDefaultImage($randomGenre['IMAGEPATH']);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$randomGenre['GENREID'],'genImagePath'=>$imgGenStr,'genDescription'=>$randomGenre['DESCRIPTION']));
+				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$randomGenre['GENREID']));
 				echo CHtml::closeTag('li');
 			}
 			
@@ -223,7 +223,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imagePath = Utilities::replaceDefaultImage($sugTag['IMAGEPATH']);
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','tagid'=>$sugTag['TAGID'],'tagname'=>$sugTag['TAGNAME'],'imagePath'=>$imagePath));
+				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$sugTag['TAGID']));
 				echo CHtml::closeTag('li');
 			}
 		}
