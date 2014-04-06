@@ -16,6 +16,7 @@ class TagsController extends Controller
 	const C_LE = 'le ';
 	const C_L = 'l\' ';
 	const C_L2 = 'l \'';
+	const C_L3 = 'l\'';
 	
 	/**
 	 * @return array action filters
@@ -217,7 +218,8 @@ class TagsController extends Controller
 										TagsController::C_LE,
 										TagsController::C_LO,
 										TagsController::C_L,
-										TagsController::C_L2);
+										TagsController::C_L2,
+										TagsController::C_L3);
 				foreach($articles_it as $article){
 					$pos = strpos(strtolower($tagNameMatch),$article);
 					if($pos !== false ){

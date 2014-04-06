@@ -19,7 +19,7 @@
 	
 	<div class="jcarousel-wrapper">
 		<!-- div tags -->		
-		<div class="jcarousel-prev">
+		<div id="jcarousel-prev-div" class="jcarousel-prev">
 			<a id="jcarousel-prev-btn" href="#" class="jcarousel-prev" data-jcarouselcontrol="true"></a>
 		</div>
 		<!-- <div class="bv_maincont3" class="clearfix" >  -->
@@ -51,7 +51,7 @@
 				?>
 			</div>
 
-		<div class="jcarousel-next">
+		<div id="jcarousel-next-div" class="jcarousel-next">
 			<a id="jcarousel-next-btn" href="#" class="jcarousel-next" data-jcarouselcontrol="true"></a>
 		</div>
 	</div>
@@ -145,6 +145,9 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
+			var htmlJcarouselPrev = "<div id='jcarousel-prev-div' class='jcarousel-prev'><a id='jcarousel-prev-btn' href='#' class='jcarousel-prev' data-jcarouselcontrol='true'></a></div>";
+			var htmlJcarouselNext = "<div id='jcarousel-next-div' class='jcarousel-next'><a id='jcarousel-next-btn' href='#' class='jcarousel-next' data-jcarouselcontrol='true'></a></div>";
+			
 			addFading("ul.boxview li .text", ".boxview li a");
 			addFading("ul.boxview3 li .text", ".boxview3 li a");
 			var tagsPage = 1;
@@ -398,7 +401,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                            	$(".jcarousel-next").hide();
 	                            	$("#jcarousel-next-btn").hide();
 	                            	$("#jcarousel-prev-btn").hide();
-	                            	$("#myCarousel").append("<div>Tags non trovati</div>");
+	                            	$("#myCarousel").append("<div class='NON TROVATI'>Tags non trovati</div>");
 		                        }else{
 		                        	$(".jcarousel-prev").show();
 		                        	$(".jcarousel-next").show();
