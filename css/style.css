@@ -106,9 +106,9 @@ a:hover{color:#00B2E0;}
 
 
 /** jcarousel SLIDE IN HOMEPAGE------------------------------------------------------ **/
-.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:240px; margin-top:10px}
-.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:240px;margin-top:10px}
-.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:140px; margin-top:10px}
+.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:auto; margin-top:10px;overflow:hidden}
+.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:auto;margin-top:10px;overflow:hidden}
+.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:auto; margin-top:10px;overflow:hidden}
 
 .jcarousel-prev{float:left;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
 .jcarousel-prev a:hover{background-image:url(../images/button-prevACT.png);}
@@ -135,7 +135,7 @@ a:hover{color:#00B2E0;}
 /** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
 /** playlists **/
-.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;height:240px}
+.jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
 .jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel-plist li {float: left; border:#ccc solid 2px}
 
@@ -162,7 +162,7 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 
 /** tags -----------------------------------------------------**/
 .bv_maincont{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
-.boxview {float:left;margin:0px;padding:0px;width:240px;height:240px;display:inline;}
+.boxview {float:left;margin:0px;padding:0px;width:240px;height:auto;display:inline;}
 .boxview ul{text-decoration:none;}
 .boxview li{display:block}
 .boxview img{width:240px; height:240px;  z-index:2}			
@@ -171,7 +171,7 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 .boxview .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 /** genres-----------------------------------------------------**/
 .bv_maincont2{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
-.boxview2 {float:left;margin:0px;padding:0px;width:134px;height:132px;display:inline;}
+.boxview2 {float:left;margin:0px;padding:0px;width:134px;height:auto;display:inline;}
 .boxview2 ul{text-decoration:none;}
 .boxview2 li{display:block}
 .boxview2 img{width:132px; height:132px;  z-index:2}			
@@ -180,8 +180,8 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 .boxview2 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 /**  playlists -----------------------------------------------------**/
 .bv_maincont3{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
-ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inline;width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
-ul.boxview3 li{display:block; width:240px;height:240px; float:left; border:#ccc solid 2px}
+ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inline;width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;height:auto;}
+ul.boxview3 li{display:block; width:240px;height:auto; float:left; border:#ccc solid 2px}
 ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
 ul.boxview3 .text{z-index:1;width:220px;height:240px;position:absolute;background:#000000;filter:alpha(opacity=70);
