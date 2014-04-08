@@ -184,7 +184,7 @@ ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inli
 ul.boxview3 li{display:block; width:240px;height:auto; float:left; border:#ccc solid 2px}
 ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
-ul.boxview3 .text{z-index:1;width:220px;height:240px;position:absolute;background:#000000;filter:alpha(opacity=70);
+ul.boxview3 .text{z-index:1;width:220px;height:165px;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:0px;font-size:12px;line-height:15px;padding-left:10px;padding-right:10px;text-align:left;color:#cccccc; padding-top:75px;}	
 ul.boxview3 .tag{z-index:3;text-align:left;max-width:200px;height:auto;position:absolute;background:#0895ee;color:#fff;margin-top:20px;font-family:"TitleBold",Arial,Verdana,Helvetica,sans-serif;font-size:14px;padding:5px; line-height:16px;}
 
