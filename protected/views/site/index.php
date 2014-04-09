@@ -66,7 +66,7 @@
 		
 		echo CHtml::tag('ul', array('id'=>'myCarousel-plistUl','class'=>'boxview3'),false,false);
 		echo CHtml::tag('li', array(),false,false);
-		echo CHtml::image("images/playlist-musicali.jpg");
+		echo CHtml::image(Yii::app()->request->baseUrl."/images/playlist-musicali.jpg");
 		echo CHtml::closeTag('li');
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
@@ -81,11 +81,12 @@
 				}
 				$divtag = CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
 				$divtext = CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
-				if(file_exists ( $playlist->IMAGEPATH )){
+				/*if(file_exists ( $playlist->IMAGEPATH )){
 					$imagePath = $playlist->IMAGEPATH;
 				}else{
 					$imagePath = "images/stai-music.jpg";
-				}
+				}*/
+				$imagePath = Utilities::replaceDefaultImage($imagePath);
 				$imghtml = CHtml::image($imagePath);
 				echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/view2','id'=>$playlist->PLID));
 				echo CHtml::closeTag('li');
@@ -110,10 +111,12 @@
 				echo CHtml::tag('ul', array('id'=>'myCarousel-genUl','class'=>'boxview2'),false,false);
 				foreach($dataProviderGenres->getData() as $genre){
 					echo CHtml::tag('li',array(),false,false);
-					$imgGenStr = "images/stai-music.jpg";
+					/*$imgGenStr = "images/stai-music.jpg";
 					if(file_exists ( $genre->IMAGEPATH )){
 						$imgGenStr = $genre->IMAGEPATH;	
 					}
+					$imgGenHtml = CHtml::image($imgGenStr);*/
+					$imgGenStr = Utilities::replaceDefaultImage($genre->IMAGEPATH);
 					$imgGenHtml = CHtml::image($imgGenStr);
 					//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));

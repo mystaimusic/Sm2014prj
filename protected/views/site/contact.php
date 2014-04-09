@@ -41,7 +41,7 @@ Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni
 <strong>Contatto Italia: <a href="mailto:milano@staimusic.com">milano@staimusic.com</a></strong><br />-->
 <strong>Contattaci: <a href="mailto:info@staimusic.com">info@staimusic.com</a></strong><br />
 </p>
-<img src="images/mappa.gif" border="0" alt="Staimusic" width="700px" height="auto">
+<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mappa.gif" border="0" alt="Staimusic" width="700px" height="auto">
 
 
 

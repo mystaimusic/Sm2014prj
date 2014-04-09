@@ -103,18 +103,19 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			$shortTitle = $pls->PLTITLE;
 		}
 		echo CHtml::tag('div',array('class'=>'tag'),$shortTitle,true);
-		//$imgPath = Utilities::replaceDefaultImage($pls->IMAGEPATH);
-		if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
+		$imgPath = Utilities::replaceDefaultImage($pls->IMAGEPATH);
+		/*if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
 			$imgPath = $pls->IMAGEPATH;
 		}else{
 			$imgPath = "images/stai-music.jpg";
 		}
-		$imgPath = Yii::app()->request->baseUrl."/".$imgPath;
+		$imgPath = Yii::app()->request->baseUrl."/".$imgPath;*/
 		echo CHtml::image($imgPath);
 	} 
 	else{
 		echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
-		$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
+		//$imgPath = Utilities::replaceDefaultImage($pls->IMAGEPATH);
+		//$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 		echo CHtml::image($imagePath);
 	}
 	

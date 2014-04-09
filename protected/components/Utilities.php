@@ -12,7 +12,7 @@ class Utilities{
 		$imagePath2 = Yii::app()->request->baseUrl."/".$imagePath;
 		//echo Yii::trace(CVarDumper::dumpAsString($imagePath2),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString(Yii::app()->request->baseUrl),'vardump');
-		return $imagePath;
+		return $imagePath2;
 	}
 	
 	public static function replaceDefaultImageArray($_imgInputArray)

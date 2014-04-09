@@ -30,11 +30,9 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		/*
-		echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
-		echo Yii::trace(CVarDumper::dumpAsString($models),'vardump');*/
 		
-		//TODO: mettere in sessione il contatore del numero di tags. playlists e generi totali
+		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
+		
 		$countTags = Tags::model()->count();
 		$countPlists = Playlists::model()->count();
 		$countGenres = Genres::model()->count();
@@ -65,6 +63,7 @@ class SiteController extends Controller
     			),
 			)
 		);
+		//echo Yii::trace(CVarDumper::dumpAsString($dataProviderPlaylist->getData()),'vardump');
 		Utilities::replaceDefaultImageArray($dataProviderPlaylist->getData());
 		
 		$dataProviderGenres = new CActiveDataProvider('Genres',
@@ -82,8 +81,6 @@ class SiteController extends Controller
 			'dataProviderGenres'=>$dataProviderGenres,
 			'dataProviderPlaylist'=>$dataProviderPlaylist,
 		));
-		
-		//$this->render('index');
 	}
 
 	public function actionSearch($queryString)
@@ -94,7 +91,7 @@ class SiteController extends Controller
 	//this is an ajax call
 	public function actionGetNextTag($currentPage,$type)
 	{
-		echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
 		$criteria=new CDbCriteria();
 		$count = 0;
 		if($type == "TAG"){
