@@ -130,7 +130,7 @@ a:hover{color:#00B2E0;}
 
 /** tags **/
 .jcarousel {float:left; position: relative; overflow: hidden;width: 1220px;}
-.jcarousel ul {width: 2220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel li {float: left; border:#ccc solid 2px}
 /** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
