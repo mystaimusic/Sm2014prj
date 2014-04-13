@@ -82,11 +82,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <?php
 	echo CHtml::tag('div',array('class'=>'tag'),true);
 	if(file_exists ( $genImagePath )){
-		$imgPath = Yii::app()->request->baseUrl."/".$genImagePath;
+		//$imgPath = Yii::app()->request->baseUrl."/".$genImagePath;
+		$imgPath = $genImagePath;
 	}else{
 		$imgPath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
 	}
-	echo CHtml::image($imgPath);
+	//echo Yii::trace(CVarDumper::dumpAsString($genImagePath),'vardump');
+	echo CHtml::image($genImagePath);
 ?>
 <!--  <div class="tag">Rebellion</div><img src="images/rebellion2.jpg" alt="playlist1"></div>  -->
 </div><!--mod_playCOVER-->	

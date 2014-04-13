@@ -29,8 +29,7 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		
+		// using the default layout 'protected/views/layouts/main.php'		
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
 		
 		$countTags = Tags::model()->count();
@@ -65,6 +64,7 @@ class SiteController extends Controller
 		);
 		//echo Yii::trace(CVarDumper::dumpAsString($dataProviderPlaylist->getData()),'vardump');
 		Utilities::replaceDefaultImageArray($dataProviderPlaylist->getData());
+		//echo Yii::trace(CVarDumper::dumpAsString($dataProviderPlaylist->getData()),'vardump');
 		
 		$dataProviderGenres = new CActiveDataProvider('Genres',
 			array(

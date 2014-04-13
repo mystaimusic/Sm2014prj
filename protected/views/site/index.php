@@ -86,7 +86,12 @@
 				}else{
 					$imagePath = "images/stai-music.jpg";
 				}*/
-				$imagePath = Utilities::replaceDefaultImage($imagePath);
+				if(file_exists ( $playlist->IMAGEPATH )){
+					$imagePath = Yii::app()->request->baseUrl."/".$playlist->IMAGEPATH;
+				}else{
+					$imagePath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
+				}
+				//$imagePath = Utilities::replaceDefaultImage($imagePath);
 				$imghtml = CHtml::image($imagePath);
 				echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/view2','id'=>$playlist->PLID));
 				echo CHtml::closeTag('li');
