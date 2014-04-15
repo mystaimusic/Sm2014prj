@@ -315,8 +315,8 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 
 			$("#jcarousel-gen-next-btn").click(function(e)
 			{
-				if(plistPage<totPlistPage-1){
-					plistPage++;
+				if(gensPage<totGenPage-1){
+					gensPage++;
 					$('.jcarousel-gen-next').jcarouselControl({
 						target: '+=9'
 					});
@@ -324,7 +324,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 					$.ajax({
 	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
 	                    type: "GET",
-	                    data: {currentPage: plistPage, type: "GEN"},
+	                    data: {currentPage: gensPage, type: "GEN"},
 	                  	dataType: "json",
 	                    async: false,
 	                   	success: function(response,status, jqXHR)
@@ -342,7 +342,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                  			//alert(html);
 	                            $("#myCarousel-genUl").append(html);
 					            // Reload carousel
-	            				myjcarouselPlist.jcarousel('reload');
+	            				myjcarouselGen.jcarousel('reload');
 	            				addFading("ul.boxview3 li .text", ".boxview3 li a");
 	                    	}
 	             		},

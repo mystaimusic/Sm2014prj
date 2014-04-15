@@ -136,13 +136,13 @@ a:hover{color:#00B2E0;}
 
 /** playlists **/
 .jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
-.jcarousel-plist ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel-plist ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel-plist li {float: left; border:#ccc solid 2px}
 
 
 /**  genres **/
 .jcarousel-gen {float:left;position: relative;overflow: hidden;width: 1220px;}
-.jcarousel-gen ul {width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel-gen ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0;}
 .jcarousel-gen li {float: left; border:#ccc solid 2px}
 
 
