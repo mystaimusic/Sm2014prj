@@ -91,7 +91,7 @@ class SiteController extends Controller
 	//this is an ajax call
 	public function actionGetNextTag($currentPage,$type)
 	{
-		//echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionGetNextTag"),'vardump');
 		$criteria=new CDbCriteria();
 		$count = 0;
 		if($type == "TAG"){
@@ -120,10 +120,7 @@ class SiteController extends Controller
     		$models=Tags::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
-	    		$imgGenStr = "images/stai-music.jpg";
-				if(!file_exists ( $model->IMAGEPATH )){
-					$model->IMAGEPATH = $imgGenStr;	
-				}
+	    		$model->IMAGEPATH = Utilities::replaceDefaultImage($model->IMAGEPATH);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
 				'id'=>'TAGID',
@@ -142,10 +139,7 @@ class SiteController extends Controller
     		$models=Genres::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
-	    		$imgGenStr = "images/stai-music.jpg";
-				if(!file_exists ( $model->IMAGEPATH )){
-					$model->IMAGEPATH = $imgGenStr;	
-				}
+	    		$model->IMAGEPATH = Utilities::replaceDefaultImage($model->IMAGEPATH);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
 				'id'=>'GENREID',
@@ -159,13 +153,16 @@ class SiteController extends Controller
 			echo $output;
     	}
     	if($type=="PL"){
+    		echo Yii::trace(CVarDumper::dumpAsString("--------> getNextTag PL"),'vardump');
     		$models=Playlists::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
-	    		$imgGenStr = "images/stai-music.jpg";
+	    		/*$imgGenStr = "images/stai-music.jpg";
 				if(!file_exists ( $model->IMAGEPATH )){
-					$model->IMAGEPATH = $imgGenStr;	
-				}
+					$model->IMAGEPATH = Yii::app()->request->baseUrl."/".$imgGenStr;	
+				}*/
+	    		$model->IMAGEPATH = Utilities::replaceDefaultImage($model->IMAGEPATH);
+	    		//echo Yii::trace(CVarDumper::dumpAsString($model->IMAGEPATH),'vardump');
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
 				'id'=>'PID',
