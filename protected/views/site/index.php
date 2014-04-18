@@ -242,9 +242,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='index.php/Playlists/viewPlPerTag/id/"
-									//html += "<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
-	                                +elem.TAGID+"'><div class='tag'>" + elem.TAGNAME + 
+									var tagId = elem.TAGID;
+									var url = "<?php echo Yii::app()->createUrl('Playlists/viewPlPerTag')?>";
+									var urlComplete = url + "/id/"+tagId;
+									//html += "<li><a href='index.php/Playlists/viewPlPerTag/id/"
+									html += "<li><a href='"+urlComplete+"'><div class='tag'>" + elem.TAGNAME + 
 	                                "</div> <div class='text'>"+ elem.DESCRIPTION +"</div> "
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
@@ -286,15 +288,16 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                            //alert("response");
 	                            $.each(response.dataProvider.rawData, function(i, elem){
 	                                var plTitle = elem.PLTITLE;
+	                                var plId = elem.PLID;
+	                                var url = "<?php echo Yii::app()->createUrl('Playlists/view2')?>";
+	                                var urlComplete = url + "/id/"+ plId; 
 	                                if(elem.PLTITLE.length>50){
 	                                	plTitle = elem.PLTITLE.substring(0,50) + " ...";
 	                                }
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='index.php/Playlists/view2/id/"
-									//html += "<li><a href='index.php?r=Playlists/view2&amp;id="
-	                                +elem.PLID+"'><div class='tag'>" + plTitle + 
+									html += "<li><a href='"+urlComplete+"'><div class='tag'>" + plTitle + 
 	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
@@ -335,11 +338,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                            $.each(response.dataProvider.rawData, function(i, elem){
 	                                var genName = elem.GENRENAME;
 									var tagNameEnc = encodeURIComponent(genName);
-									html += "<li><a href='index.php/Genres/viewRandomBandsPerGenres/id/"
-									//html += "<li><a href='index.php?r=Playlists/view2&amp;id="
-	                                +elem.GENREID+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
+									var genId = elem.GENREID;
+									var url = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
+									var urlComplete = url + "/id/"+genId;
+									html += "<li><a href='"+urlComplete+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
-	                  			//alert(html);
 	                            $("#myCarousel-genUl").append(html);
 					            // Reload carousel
 	            				myjcarouselGen.jcarousel('reload');
