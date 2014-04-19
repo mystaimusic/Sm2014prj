@@ -180,13 +180,20 @@ ul.suggested img{width: 100%; height: auto;  z-index:2}
 .boxview2 .tag{height:20px;z-index:10;position:absolute;background:#e60544;color:#fff;margin-top:20px;font-family:"TitleExtraBold",Arial,Verdana,Helvetica,sans-serif;font-size:15px;padding:5px}
 /**  playlists -----------------------------------------------------**/
 .bv_maincont3{float:left;width:auto;padding:0px;height:auto;margin:auto;position:relative;margin-top:20px;margin-left:30px}
-ul.boxview3 {text-decoration:none;float:left;margin:0px;padding:0px;display:inline;width: 1220em;position: relative;list-style: none;margin: 0;padding: 0;height:auto;}
-ul.boxview3 li{display:block; width:240px;height:auto; float:left; border:#ccc solid 2px}
+.boxview3 {float:left;margin:0px;padding:0px;width:240px;height:auto;display:inline;}
+.boxview3 ul{text-decoration:none;}
+.boxview3 li{display:block}
+.boxview3 img{width:240px; height:240px;  z-index:2}			
+.boxview3 .text{width:236px;height:76px;z-index:10;position:absolute;background:#000000;filter:alpha(opacity=70);
+-moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:0px;font-size:12px;line-height:15px;padding-left:10px;padding-right:10px;text-align:left;color:#cccccc; padding-top:75px;}
+.boxview3 .tag{z-index:3;text-align:left;max-width:200px;height:auto;position:absolute;background:#0895ee;color:#fff;margin-top:20px;font-family:"TitleBold",Arial,Verdana,Helvetica,sans-serif;font-size:14px;padding:5px; line-height:16px;}
+/**ul.boxview3 li{display:block; width:240px;height:auto; float:left; border:#ccc solid 2px}
 ul.boxview3 li a {display:block;}
 ul.boxview3 img{width:240px; height:240px;  z-index:2}			
 ul.boxview3 .text{z-index:1;width:220px;height:165px;position:absolute;background:#000000;filter:alpha(opacity=70);
 -moz-opacity:.70;opacity:.70;color:#FFFFFF;margin-top:0px;font-size:12px;line-height:15px;padding-left:10px;padding-right:10px;text-align:left;color:#cccccc; padding-top:75px;}	
 ul.boxview3 .tag{z-index:3;text-align:left;max-width:200px;height:auto;position:absolute;background:#0895ee;color:#fff;margin-top:20px;font-family:"TitleBold",Arial,Verdana,Helvetica,sans-serif;font-size:14px;padding:5px; line-height:16px;}
+*/
 
 
 /**headervideo-----------------------------------------------------**/
