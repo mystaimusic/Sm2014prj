@@ -159,11 +159,14 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			addFading("ul.boxview li .text", ".boxview li a");
 			addFading("ul.boxview3 li .text", ".boxview3 li a");
 			var tagsPage = 1;
+			var currentTagsPage = 1;
 			var plistPage = 1;
 			var gensPage = 1;
 			var totalTags = <?php echo Yii::app()->user->getState('countTags');?>;
 			var totalPlist = <?php echo Yii::app()->user->getState('countPlists');?>;
 			var totalGenres = <?php echo Yii::app()->user->getState('countGenres');?>;
+			//$("#jcarousel-prev-div").css('visibility','hidden');
+			//$("#jcarousel-prev-btn").css('visibility','hidden');
 
 			var totTagPages = Math.floor(totalTags/5);
 			var remTags = totalTags % 5;
@@ -222,11 +225,16 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			$("#jcarousel-next-btn").click(function(e)
 			{
 				if(tagsPage<totTagPages-1){
+					//$("#jcarousel-prev-div").css('visibility','visible');
+					//$("#jcarousel-prev-btn").css('visibility','visible');
 					tagsPage++;
+					currentTagsPage++;
+					//alert(currentTagsPage);
 					//myjcarousel.jcarousel('scroll','+=5');
 					$('.jcarousel-next').jcarouselControl({
         				target: '+=5'
     				});
+					//$("#jcarousel-prev-btn").show();
     				//alert(totTagPages +' ' +tagsPage);
 					$.ajax({
 	                	url: '<?php echo Yii::app()->createUrl('Site/getNextTag')?>',
@@ -266,6 +274,16 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                });
 				}
             });
+
+			$("#jcarousel-prev-btn").click(function(e)
+			{
+				currentTagsPage--;
+				//alert(currentTagsPage);
+				//if(currentTagsPage<2){
+				//	$("#jcarousel-prev-div").css('visibility','hidden');
+				//	$("#jcarousel-prev-btn").css('visibility','hidden');
+				//}
+			});
 
 			$("#jcarousel-plist-next-btn").click(function(e)
 			{
@@ -393,7 +411,8 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
            	function searchTag(e,search_input)
             {
            		<?php unset(Yii::app()->session['bandsIdStr']);?>
-            	var rawData;    
+            	var rawData;
+            	var imgPathPref = '<?php echo Yii::app()->request->baseUrl ?>';    
                 $.ajax({
                 	url: '<?php echo Yii::app()->createUrl('Tags/parallelSearch')?>',
                     type: "GET",
@@ -419,19 +438,20 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 		                        	$("#jcarousel-next-btn").show();
 	                            	$("#jcarousel-prev-btn").show();
 			                    }
+	                          //$.each(response.dataProvider.rawData, function(i, elem){
 	                            $.each(response.filterTags, function(i, elem){
-	                            //$.each(response.dataProvider.rawData, function(i, elem){
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
-									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;       
 									$("#myCarouselUl").append("<li><a href='index.php/Playlists/viewPlPerTag/id/"
-	                                //$("#myCarouselUl").append("<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
 	                                            +elem.TAGID+"'><div class='tag'>" + elem.TAGNAME + 
-	                                            "</div><!--<div class='text'>"+ elem.DESCRIPTION +"</div>-->"
+	                                            "</div>"
 	                                            +"<img src='"
-	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+	                                            +imgPath+"' alt='' /></a></li>");
 	                                count++;
 	                  			});
+	                  			//$("#myCarouselUl").append("<li><a href='index.php?r=Playlists/viewPlPerTag&amp;tagid="
 	                  			addFading("ul.boxview li .text", ".boxview li a");
 	                    	//}
 	                    	//if(response.type=='PL'){
@@ -457,12 +477,13 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                    	    	var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
+									//$("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
 									$("#myCarousel-plistUl").append("<li><a href='index.php/Playlists/view2/id/"
-	                                //$("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
 	                                            +elem.PLID+"'><div class='tag'>" + elem.PLTITLE + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                            +"<img src='"
-	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+	                                            +imgPath+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
 	                    	    addFading("ul.boxview3 li .text", ".boxview3 li a");
@@ -485,14 +506,15 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                    	    $.each(response.filterGen, function(i, elem){
 	                    	    	var tagNameEnc = encodeURIComponent(elem.GENRENAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
-									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);                    
+									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
+									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
 									$("#myCarousel-genUl").append("<li><a href='index.php/Genres/viewRandomBandsPerGenres/id/"
 	                                //$("#myCarousel-genUl").append("<li><a href='index.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
 	                                            //+elem.GENREID+"&amp;genImagePath="
 	                                            //+elem.IMAGEPATH+"&amp;genDescription="
 	                                            //+elem.descEnc+
 	                                            +elem.GENREID+"'><img src='"
-	                                            +elem.IMAGEPATH+"' alt='' /></a></li>");
+	                                            +imgPath+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
 				            //}

@@ -208,7 +208,7 @@ class TagsController extends Controller
 	{
 		$output='';
 		if(isset($_GET['tagNameMatch'])){
-			//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
+			echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
 			try{
 				$tagNameMatch = $_GET['tagNameMatch'];
 				$articles_it = array (TagsController::C_IL, 
@@ -246,6 +246,7 @@ class TagsController extends Controller
 					));
 					$filterTags = array_merge($filterTags, $otherTags);
 				}
+				//echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
 				$this->replaceDefaultImage($filterTags);
 				//playlists
 				$qPlist = new CDbCriteria();
@@ -266,7 +267,7 @@ class TagsController extends Controller
 					//echo Yii::trace(CVarDumper::dumpAsString($otherPlists),'vardump');
 					$filterPlist = array_merge($filterPlist, $otherPlists);
 				}
-				$this->replaceDefaultImage($filterPlist);
+				//$this->replaceDefaultImage($filterPlist);
 				$this->shortPlistTitle($filterPlist);
 				//genres
 				$qGen = new CDbCriteria();
@@ -286,8 +287,9 @@ class TagsController extends Controller
 					));
 					$filterGen = array_merge($filterGen, $otherGenres);
 				}
-				$this->replaceDefaultImage($filterGen);
+				//$this->replaceDefaultImage($filterGen);
 				
+				echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
 				$output = CJSON::encode(array('filterTags'=>$filterTags,
 											'filterPlist'=>$filterPlist,
 											'filterGen'=>$filterGen));
