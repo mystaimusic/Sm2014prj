@@ -443,9 +443,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var tagNameEnc = encodeURIComponent(elem.TAGNAME);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;       
-									$("#myCarouselUl").append("<li><a href='index.php/Playlists/viewPlPerTag/id/"
-	                                            +elem.TAGID+"'><div class='tag'>" + elem.TAGNAME + 
+									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
+									var tagId = elem.TAGID;
+									var url = "<?php echo Yii::app()->createUrl('Playlists/viewPlPerTag')?>";
+									var urlComplete = url + "/id/"+tagId;
+									$("#myCarouselUl").append("<li><a href='"+urlComplete+"'><div class='tag'>" + elem.TAGNAME + 
 	                                            "</div>"
 	                                            +"<img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
@@ -478,9 +480,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
+									var plId = elem.PLID;
+	                                var url = "<?php echo Yii::app()->createUrl('Playlists/view2')?>";
+	                                var urlComplete = url + "/id/"+ plId;
 									//$("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
-									$("#myCarousel-plistUl").append("<li><a href='index.php/Playlists/view2/id/"
-	                                            +elem.PLID+"'><div class='tag'>" + elem.PLTITLE + 
+									$("#myCarousel-plistUl").append("<li><a href='"+urlComplete+"'><div class='tag'>" + elem.PLTITLE + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                            +"<img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
@@ -508,12 +512,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
-									$("#myCarousel-genUl").append("<li><a href='index.php/Genres/viewRandomBandsPerGenres/id/"
-	                                //$("#myCarousel-genUl").append("<li><a href='index.php?r=Genres/viewRandomBandsPerGenres&amp;genid="
-	                                            //+elem.GENREID+"&amp;genImagePath="
-	                                            //+elem.IMAGEPATH+"&amp;genDescription="
-	                                            //+elem.descEnc+
-	                                            +elem.GENREID+"'><img src='"
+									var genId = elem.GENREID;
+									var url = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
+									var urlComplete = url + "/id/"+genId;
+									$("#myCarousel-genUl").append("<li><a href='"+urlComplete+"'><img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
 	                                count++;
 		                    	});
