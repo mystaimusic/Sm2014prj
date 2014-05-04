@@ -30,8 +30,22 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'		
-		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex"),'vardump');
-		
+		$orderByTag = 'RAND()';
+		$orderByPl = 'RAND()';
+		$orderByGen = 'RAND()';
+		//echo Yii::trace(CVarDumper::dumpAsString($_GET['order']),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($_PUT['order']),'vardump');
+		//$orderByClause = Yii::app()->user->getState('orderByClause');
+		if(isset($_REQUEST['flagType'])){
+			$orderByClause = $_REQUEST['flagType']; 
+			Yii::app()->user->setState('flagType', $orderByClause);
+			if($orderByClause == 'A'){
+				$orderByTag = 'TAGNAME';
+				$orderByPl = 'PLTITLE';
+				$orderByGen = 'GENRENAME';
+				
+			}
+		}
 		$countTags = Tags::model()->count();
 		$countPlists = Playlists::model()->count();
 		$countGenres = Genres::model()->count();
@@ -42,7 +56,8 @@ class SiteController extends Controller
 		$dataProvider=new CActiveDataProvider('Tags',
 			array(
 				'criteria'=>array(
-        			'order'=>'TAGNAME',
+        			//'order'=>'TAGNAME',
+        			'order'=>$orderByTag,
     			),
     			'pagination'=>array(
         			'pageSize'=>9, // or another reasonable high value...
@@ -50,12 +65,16 @@ class SiteController extends Controller
 			)
 		);
 		Utilities::replaceDefaultImageArray($dataProvider->getData());
+		//$tagsList = $dataProvider->getData(); 
+		//shuffle($tagsList);
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex 2"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($dataProvider->getData()),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($tagsList),'vardump');
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
 			array(
 				'criteria'=>array(
-					'order'=>'PLID',
+					//'order'=>'PLID',
+					'order'=>$orderByPl,
 				),
 				'pagination'=>array(
         			'pageSize'=>9,
@@ -69,7 +88,8 @@ class SiteController extends Controller
 		$dataProviderGenres = new CActiveDataProvider('Genres',
 			array(
 				'criteria'=>array(
-					'order'=>'GENREID',	
+					//'order'=>'GENREID',
+					'order'=>$orderByGen,	
 				),
 				'pagination'=>array('pageSize'=>18),
 			)
@@ -92,21 +112,30 @@ class SiteController extends Controller
 	public function actionGetNextTag($currentPage,$type)
 	{
 		//echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionGetNextTag"),'vardump');
+		$orderByTag = 'RAND()';
+		$orderByPl = 'RAND()';
+		$orderByGen = 'RAND()';
+		$flagType = Yii::app()->user->getState('flagType');
+		if($flagType == 'A'){
+			$orderByTag = 'TAGNAME';
+			$orderByPl = 'PLTITLE';
+			$orderByGen = 'GENRENAME';
+		}
 		$criteria=new CDbCriteria();
 		$count = 0;
 		if($type == "TAG"){
-			$criteria->order='TAGNAME';
-			//$count=Tags::model()->count($criteria);
+			//$criteria->order='TAGNAME';
+			$criteria->order=$orderByTag;
 			$count= Yii::app()->user->getState('countTags');
 		}
 		if($type == "GEN"){
-			$criteria->order='GENRENAME';
-			//$count=Genres::model()->count($criteria);
+			//$criteria->order='GENRENAME';
+			$criteria->order=$orderByGen;
 			$count= Yii::app()->user->getState('countGenres');
 		}
 		if($type == "PL"){
-			$criteria->order='PLTITLE';
-			//$count=Playlists::model()->count($criteria);
+			//$criteria->order='PLTITLE';
+			$criteria->order=$orderByPl;
 			$count= Yii::app()->user->getState('countPlists');
 		}
     	$pages=new CPagination($count);

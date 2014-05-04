@@ -9,14 +9,21 @@
 </div>
 
 </div><br><br><br><br><br>
-
 </div>
+	<!--  Order by: <button id="orderByAlpha" type="button">Ordine Alfabetico</button> -->
+	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
+	Order by: 
+	<input type="hidden" name="flagType" value="A">
+	<?php echo CHtml::submitButton('Ordine Alfabetico',array('id'=>'OrdAlph','name'=>'OrdineAlfabetico'));?>
+	<?php echo CHtml::endForm();?>
+	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
+	<input type="hidden" name="flagType" value="R">
+	<?php echo CHtml::submitButton('Ordine Casuale',array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
+	<?php echo CHtml::endForm();?>
 </div>
-
 <div class="container">
 
 <div id="maincont" class="clearfix">
-	
 	<div class="jcarousel-wrapper">
 		<!-- div tags -->		
 		<div id="jcarousel-prev-div" class="jcarousel-prev">
@@ -153,6 +160,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	<script type="text/javascript">
 	//<![CDATA[
 		(function($){
+
 			var htmlJcarouselPrev = "<div id='jcarousel-prev-div' class='jcarousel-prev'><a id='jcarousel-prev-btn' href='#' class='jcarousel-prev' data-jcarouselcontrol='true'></a></div>";
 			var htmlJcarouselNext = "<div id='jcarousel-next-div' class='jcarousel-next'><a id='jcarousel-next-btn' href='#' class='jcarousel-next' data-jcarouselcontrol='true'></a></div>";
 			
@@ -374,7 +382,6 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                });
 				}
 			});
-
 			
             $(".search_input").focus();
             $(".search_input").bind("enterKeyTag",function(e)
@@ -394,6 +401,15 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
                 searchTag(e,$(".search_input").val());
             });
 
+            function setAlphOrder(){
+                alert("setAlphOrder");
+            	<?php Yii::app()->user->setState('orderByClause', 'A'); ?>
+			}
+
+            function setRandomOrder(){
+            	<?php Yii::app()->user->setState('orderByClause', 'R'); ?>
+			}
+            
 			function addFading(selector_ul, selector_a){
 				$(selector_ul).css({'opacity':'0'});
 
