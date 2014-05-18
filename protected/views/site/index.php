@@ -1,29 +1,43 @@
 <div class="container darkbg">
-<div id="headercont">
+  <div id="headercont">
+   <div id="mod_mainsearch">
+       <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
+       <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'>Go</button></div>
+   </div><!-- mod_mainsearch -->
+  </div><!-- headercont -->
+</div><!-- container -->
 
-<div id="mod_mainsearch">
 
-<div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
-<div class="header-form">
-	<input type="text" class='search_input'/><button type="button" class='search_button'>Go</button>
-</div>
 
-</div><br><br><br><br><br>
-</div>
+
+<div class="container">
+
+
+ 
+
+
+
+<div id="maincont" class="clearfix">
+
+   <div class="row_orderby">
 	<!--  Order by: <button id="orderByAlpha" type="button">Ordine Alfabetico</button> -->
 	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
-	Order by: 
-	<input type="hidden" name="flagType" value="A">
+        <div class="col">Order by: </div>
+
+	<div class="col">
+         <input type="hidden" name="flagType" value="A">
 	<?php echo CHtml::submitButton('Ordine Alfabetico',array('id'=>'OrdAlph','name'=>'OrdineAlfabetico'));?>
-	<?php echo CHtml::endForm();?>
+	<?php echo CHtml::endForm();?></div>
+
+        <div class="col">
 	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
 	<input type="hidden" name="flagType" value="R">
 	<?php echo CHtml::submitButton('Ordine Casuale',array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
-	<?php echo CHtml::endForm();?>
-</div>
-<div class="container">
+	<?php echo CHtml::endForm();?></div>
 
-<div id="maincont" class="clearfix">
+     </div><!--row_orderby -->
+
+
 	<div class="jcarousel-wrapper">
 		<!-- div tags -->		
 		<div id="jcarousel-prev-div" class="jcarousel-prev">

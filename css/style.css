@@ -85,6 +85,7 @@ a:hover{color:#00B2E0;}
 /**Header**/
 #headercont{background-color:#cf043d;width:100%;margin-left:0px;height:50px;position:relative;padding-bottom:0px;padding-top:5px;color:#FFFFFF}
 
+
 /**Main-------------------------------------------------------**/
 .container #maincont{text-align:center;width:100%;height:100%;margin:auto;position:relative;padding:0px;;background-color:#ccc;}
 #maincenter{width:1260px;padding:0px;height:auto; text-align:center; font-size:17px;margin-bottom:50px}
@@ -103,6 +104,11 @@ a:hover{color:#00B2E0;}
 .clearfix:after{content:"";display:table;}
 .clearfix:after{clear:both;}
 .clearfix{zoom:1;}
+
+
+/** ORDER BY IN HOMEPAGE------------------------------------------------------ **/
+.row_orderby{text-align:left;width:90%;height:20px;margin:auto;position:relative;padding:0px;padding-top:5px; padding-bottom:5px}
+.row_orderby .col{width:auto;float:left; margin-right:5px;}
 
 
 /** jcarousel SLIDE IN HOMEPAGE------------------------------------------------------ **/
