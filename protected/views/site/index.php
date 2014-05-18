@@ -50,8 +50,10 @@
 						$imghtml = CHtml::image($imagePath);
 						$tagUrl = Utilities::getTagUrl($tag->TAGNAME,$tag->TAGID);
 						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
-						echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/viewPlPerTag','id'=>$tag->TAGID));
-						//echo Yii::trace(CVarDumper::dumpAsString(Yii::app()->request->baseUrl),'vardump');
+						$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->TAGNAME,$tag->TAGID);
+						echo CHtml::link($divtag.$divtext.$imghtml, array($tagLink));
+						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLink"),'vardump');
+						//echo Yii::trace(CVarDumper::dumpAsString($tagLink),'vardump');
 						echo CHtml::closeTag('li');
 					}
 					echo CHtml::closeTag('ul');
@@ -77,32 +79,27 @@
 		echo CHtml::closeTag('li');
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
-			//if($count <= $max)
-			//{
-				echo CHtml::tag('li', array(), false,false);
-				$titleTrimmed = trim($playlist->PLTITLE);
-				if(strlen($titleTrimmed)>50){
-					$shortTitle = substr($playlist->PLTITLE, 0, 50) . " ...";
-				}else{
-					$shortTitle = $titleTrimmed; 
-				}
-				$divtag = CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
-				$divtext = CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
-				/*if(file_exists ( $playlist->IMAGEPATH )){
-					$imagePath = $playlist->IMAGEPATH;
-				}else{
-					$imagePath = "images/stai-music.jpg";
-				}*/
-				if(file_exists ( $playlist->IMAGEPATH )){
-					$imagePath = Yii::app()->request->baseUrl."/".$playlist->IMAGEPATH;
-				}else{
-					$imagePath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
-				}
-				//$imagePath = Utilities::replaceDefaultImage($imagePath);
-				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/view2','id'=>$playlist->PLID));
-				echo CHtml::closeTag('li');
-			//}
+			echo CHtml::tag('li', array(), false,false);
+			$titleTrimmed = trim($playlist->PLTITLE);
+			if(strlen($titleTrimmed)>50){
+				$shortTitle = substr($playlist->PLTITLE, 0, 50) . " ...";
+			}else{
+				$shortTitle = $titleTrimmed; 
+			}
+			$divtag = CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
+			$divtext = CHtml::tag('div', array('class'=>'text'),trim($playlist->DESCRIPTION),true);
+			if(file_exists ( $playlist->IMAGEPATH )){
+				$imagePath = Yii::app()->request->baseUrl."/".$playlist->IMAGEPATH;
+			}else{
+				$imagePath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
+			}
+			//$imagePath = Utilities::replaceDefaultImage($imagePath);
+			$plistLink = Utilities::buildUserFriendlyURL('playlist-musicali/',$playlist->PLTITLE,$playlist->PLID);
+			$imghtml = CHtml::image($imagePath);
+			//'playlist-musicali/<id:\d+>_<title:\w+>.html'=>'Playlists/view2/<id:\d+>'
+			echo CHtml::link($divtag.$divtext.$imghtml, array($plistLink));
+			//echo CHtml::link($divtag.$divtext.$imghtml, array('Playlists/view2','id'=>$playlist->PLID));
+			echo CHtml::closeTag('li');
 		}
 		echo CHtml::closeTag('ul');
 	?>
@@ -132,7 +129,9 @@
 					$imgGenHtml = CHtml::image($imgGenStr);
 					//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
-					echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
+					$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre->GENRENAME,$genre->GENREID);
+					echo CHtml::link($imgGenHtml, array($genLink));
+					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
 					echo CHtml::closeTag('li');
 				}
 				echo CHtml::closeTag('ul');
@@ -260,9 +259,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var tagId = elem.TAGID;
 									var url = "<?php echo Yii::app()->createUrl('Playlists/viewPlPerTag')?>";
-									var urlComplete = url + "/id/"+tagId;
+									var ouputStr = buildUserFriendlyURL("index.php/tag-musica/",elem.TAGNAME,tagId);
+									//var urlComplete = url + "/id/"+tagId;
 									//html += "<li><a href='index.php/Playlists/viewPlPerTag/id/"
-									html += "<li><a href='"+urlComplete+"'><div class='tag'>" + elem.TAGNAME + 
+									html += "<li><a href='"+ouputStr+"'><div class='tag'>" + elem.TAGNAME + 
 	                                "</div> <div class='text'>"+ elem.DESCRIPTION +"</div> "
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
@@ -315,15 +315,15 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                            $.each(response.dataProvider.rawData, function(i, elem){
 	                                var plTitle = elem.PLTITLE;
 	                                var plId = elem.PLID;
-	                                var url = "<?php echo Yii::app()->createUrl('Playlists/view2')?>";
-	                                var urlComplete = url + "/id/"+ plId; 
+	                                //var urlComplete = url + "/id/"+ plId;
+	                                var ouputStr = buildUserFriendlyURL("index.php/playlist-musicali/",plTitle,plId); 
 	                                if(elem.PLTITLE.length>50){
 	                                	plTitle = elem.PLTITLE.substring(0,50) + " ...";
 	                                }
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='"+urlComplete+"'><div class='tag'>" + plTitle + 
+									html += "<li><a href='"+ouputStr+"'><div class='tag'>" + plTitle + 
 	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
@@ -365,9 +365,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                                var genName = elem.GENRENAME;
 									var tagNameEnc = encodeURIComponent(genName);
 									var genId = elem.GENREID;
-									var url = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
-									var urlComplete = url + "/id/"+genId;
-									html += "<li><a href='"+urlComplete+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
+									var ouputStr = buildUserFriendlyURL("index.php/generi-musicali/",genName,genId);
+									//var url2 = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
+									//alert(url);
+									//var urlComplete = url + "/id/"+genId;
+									html += "<li><a href='"+url+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
 	                            $("#myCarousel-genUl").append(html);
 					            // Reload carousel
@@ -424,6 +426,21 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 				)
 			}
 
+			function buildUserFriendlyURL(prefix,inputStr,id)
+			{
+				//alert(inputStr);
+				var outputStr = inputStr;
+				var inArray = [" ","'",",",";",":","!"];
+				inArray.forEach(function( word ){
+					outputStr = outputStr.replace(new RegExp(word,'g'),'_');
+				});
+
+				var tagLink = prefix+outputStr+"/"+ id+".html";
+				return tagLink;
+				//alert(outputStr);
+				//return outputStr;
+			}
+			
            	function searchTag(e,search_input)
             {
            		<?php unset(Yii::app()->session['bandsIdStr']);?>

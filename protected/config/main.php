@@ -39,26 +39,44 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+				//'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				//'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				
+				//http://localhost/SM3/index.php/Playlists/viewPlPerTag/id/22		
+				
+				//'Playlists/viewPlPerTag/<id:\d+>' => 'musica/tag/<title:\w+>',
+				'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
+				//'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>'
+				'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				'playlist-musicali/<title:\w+>/<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				'generi-musicali/<title:\w+>/<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
 			),
 		),
-		*/
+		
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
 		// uncomment the following to use a MySQL database
 		
-		'db'=>array(
+		/*'db'=>array(
 			'connectionString' => 'mysql:host=62.149.150.98;dbname=Sql273343_2',
 			'emulatePrepare' => true,
 			'username' => 'Sql273343',
-			'password' => '873cv7109i',
+			'password' => 'rfefrefcerf43',
+			'charset' => 'utf8',
+		),*/
+		
+		'db'=>array(
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=Sql273343_3',
+			//'connectionString' => 'mysql:host=127.0.0.1;dbname=smdb',
+			'emulatePrepare' => true,
+			'username' => 'testuser',
+			'password' => 'testpass',
 			'charset' => 'utf8',
 		),
 		

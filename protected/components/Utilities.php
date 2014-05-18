@@ -22,6 +22,20 @@ class Utilities{
 		}
 	}
 	
+	public static function buildUserFriendlyURL($prefix, $title, $id)
+	{
+		$tagNameRepl = str_replace(array(' ','\'',',',';',':','.','!','?'),"_",$title);
+		$tagLink = $prefix.$tagNameRepl.'/'. $id.'.html';
+		return $tagLink; 
+	}
+	public static function buildUserFriendlyURLPlist($prefix,$title,$id)
+	{
+		$tagNameRepl = str_replace(" ","-",$title);
+		$tagNameRepl2 = str_replace("'","-",$tagNameRepl);
+		$tagLink = $prefix.$id.'-'.$tagNameRepl2 .'.html';
+		return $tagLink;
+	}
+	
 	public static function getTagUrl($title,$id)
 	{
 		$tagUrl = Utilities::getCustomUrl("musica/tag/",$title,$id);

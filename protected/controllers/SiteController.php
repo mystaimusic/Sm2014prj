@@ -182,7 +182,7 @@ class SiteController extends Controller
 			echo $output;
     	}
     	if($type=="PL"){
-    		echo Yii::trace(CVarDumper::dumpAsString("--------> getNextTag PL"),'vardump');
+    		//echo Yii::trace(CVarDumper::dumpAsString("--------> getNextTag PL"),'vardump');
     		$models=Playlists::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
