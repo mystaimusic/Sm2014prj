@@ -449,7 +449,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 					outputStr = outputStr.replace(new RegExp(word,'g'),'_');
 				});
 
-				var tagLink = prefix+outputStr+"/"+ id+".html";
+				var tagLink = prefix+outputStr+"-"+ id+".html";
 				return tagLink;
 				//alert(outputStr);
 				//return outputStr;

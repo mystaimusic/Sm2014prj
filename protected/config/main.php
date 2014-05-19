@@ -52,9 +52,9 @@ return array(
 				//'Playlists/viewPlPerTag/<id:\d+>' => 'musica/tag/<title:\w+>',
 				'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
 				//'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>'
-				'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
-				'playlist-musicali/<title:\w+>/<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
-				'generi-musicali/<title:\w+>/<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
+				'tag-musica/<title:\w+>-<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				'playlist-musicali/<title:\w+>-<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				'generi-musicali/<title:\w+>-<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
 			),
 		),
 		
