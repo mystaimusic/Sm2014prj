@@ -24,7 +24,7 @@ class Utilities{
 	
 	public static function buildUserFriendlyURL($prefix, $title, $id)
 	{
-		$tagNameRepl = str_replace(array(' ','\'',',',';',':','.','!','?'),"-",$title);
+		$tagNameRepl = str_replace(array(' ','\'',',',';',':','.','!','?'),"_",$title);
 		$tagLink = $prefix.$tagNameRepl.'-'. $id.'.html';
 		return strtolower($tagLink); 
 	}

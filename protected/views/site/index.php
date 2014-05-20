@@ -450,7 +450,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 				var outputStr = inputStr;
 				var inArray = [" ","'",",",";",":","!"];
 				inArray.forEach(function( word ){
-					outputStr = outputStr.replace(new RegExp(word,'g'),'-');
+					outputStr = outputStr.replace(new RegExp(word,'g'),'_');
 				});
 
 				var tagLink = prefix+outputStr+"-"+ id+".html";
