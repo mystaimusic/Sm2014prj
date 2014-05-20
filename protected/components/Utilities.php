@@ -24,16 +24,16 @@ class Utilities{
 	
 	public static function buildUserFriendlyURL($prefix, $title, $id)
 	{
-		$tagNameRepl = str_replace(array(' ','\'',',',';',':','.','!','?'),"_",$title);
+		$tagNameRepl = str_replace(array(' ','\'',',',';',':','.','!','?'),"-",$title);
 		$tagLink = $prefix.$tagNameRepl.'-'. $id.'.html';
-		return $tagLink; 
+		return strtolower($tagLink); 
 	}
 	public static function buildUserFriendlyURLPlist($prefix,$title,$id)
 	{
 		$tagNameRepl = str_replace(" ","-",$title);
 		$tagNameRepl2 = str_replace("'","-",$tagNameRepl);
 		$tagLink = $prefix.$id.'-'.$tagNameRepl2 .'.html';
-		return $tagLink;
+		return strtolower($tagLink);
 	}
 	
 	public static function getTagUrl($title,$id)

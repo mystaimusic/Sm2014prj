@@ -65,6 +65,9 @@
 						$tagUrl = Utilities::getTagUrl($tag->TAGNAME,$tag->TAGID);
 						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
 						$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->TAGNAME,$tag->TAGID);
+						$tagLinkTest = Yii::app()->createUrl($tagLink);
+						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLinkTest"),'vardump');
+						//echo Yii::trace(CVarDumper::dumpAsString($tagLinkTest),'vardump');
 						echo CHtml::link($divtag.$divtext.$imghtml, array($tagLink));
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLink"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLink),'vardump');
@@ -144,6 +147,7 @@
 					//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
 					$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre->GENRENAME,$genre->GENREID);
+					
 					echo CHtml::link($imgGenHtml, array($genLink));
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
 					echo CHtml::closeTag('li');
@@ -446,11 +450,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 				var outputStr = inputStr;
 				var inArray = [" ","'",",",";",":","!"];
 				inArray.forEach(function( word ){
-					outputStr = outputStr.replace(new RegExp(word,'g'),'_');
+					outputStr = outputStr.replace(new RegExp(word,'g'),'-');
 				});
 
 				var tagLink = prefix+outputStr+"-"+ id+".html";
-				return tagLink;
+				return tagLink.toLowerCase();
 				//alert(outputStr);
 				//return outputStr;
 			}
