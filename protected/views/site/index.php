@@ -68,7 +68,7 @@
 						$tagLinkTest = Yii::app()->createUrl($tagLink);
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLinkTest"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLinkTest),'vardump');
-						echo CHtml::link($divtag.$divtext.$imghtml, array($tagLink));
+						echo CHtml::link($divtag.$divtext.$imghtml, array($tagLinkTest));
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLink"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLink),'vardump');
 						echo CHtml::closeTag('li');

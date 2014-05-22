@@ -48,13 +48,17 @@ return array(
 				//'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 				
 				//http://localhost/SM3/index.php/Playlists/viewPlPerTag/id/22		
-				
+				//array(
+        		//	'class' => 'application.components.CustomTagUrlRule',
+				//),					
+		
 				//'Playlists/viewPlPerTag/<id:\d+>' => 'musica/tag/<title:\w+>',
-				'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
+				//'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
 				//'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>'
-				'tag-musica/<title:\w+>-<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
-				'playlist-musicali/<title:\w+>-<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
-				'generi-musicali/<title:\w+>-<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
+				'tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				//'tag-musica/anni-60_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				'playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
 			),
 		),
 		
