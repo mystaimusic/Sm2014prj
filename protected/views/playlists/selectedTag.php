@@ -187,7 +187,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imgGenStr = Utilities::replaceDefaultImage($imgPathDB);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genIdDB));
+				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre['GENRENAME'],$genre['GENREID']);
+				echo CHtml::link($imgGenHtml, array($genLink));
 				echo CHtml::closeTag('li');
 			}
 		}else if(isset($randomGenres)){
@@ -200,7 +201,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imgGenStr = Utilities::replaceDefaultImage($randomGenre['IMAGEPATH']);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$randomGenre['GENREID']));
+				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$randomGenre['GENRENAME'],$randomGenre['GENREID']);
+				echo CHtml::link($imgGenHtml, array($genLink));
 				echo CHtml::closeTag('li');
 			}
 			

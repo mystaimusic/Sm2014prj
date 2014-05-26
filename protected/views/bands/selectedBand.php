@@ -125,7 +125,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			}
 			$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 			$imghtml = CHtml::image($imagePath);
-			echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$tag->TAGID));
+			$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->TAGNAME,$tag->TAGID);
+			echo CHtml::link($imghtml, array($tagLink));
 			echo CHtml::closeTag('li');
 		}
 	?>
@@ -152,7 +153,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				}
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($imghtml,array('Playlists/view2','id'=>$plist['PLID']));
+				$plistLink = Utilities::buildUserFriendlyURL('playlist-musicali/',$plist['PLTITLE'],$plist['PLID']);
+				echo CHtml::link($imghtml,array($plistLink));
 				echo CHtml::closeTag('li');
 			}
 		}
