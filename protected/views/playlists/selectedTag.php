@@ -226,7 +226,9 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imagePath = Utilities::replaceDefaultImage($sugTag['IMAGEPATH']);
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$sugTag['TAGID']));
+				$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$sugTag['TAGNAME'],$sugTag['TAGID']);
+				echo CHtml::link($imghtml, array($tagLink));
+				//echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$sugTag['TAGID']));
 				echo CHtml::closeTag('li');
 			}
 		}

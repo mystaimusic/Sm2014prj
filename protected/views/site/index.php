@@ -448,8 +448,8 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			{
 				//alert(inputStr);
 				var outputStr = inputStr;
-				var inArray = [" ","'",",",";",":","!","%"];
-				//outputStr = outputStr.replace(new RegExp(" ",'g'),'-');
+				var inArray = ["'",",",";",":","!","%"];
+				outputStr = outputStr.replace(new RegExp(" ",'g'),'');
 				inArray.forEach(function( word ){
 					outputStr = outputStr.replace(new RegExp(word,'g'),'-');
 				});
