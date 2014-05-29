@@ -190,7 +190,7 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 			var totalTags = <?php echo Yii::app()->user->getState('countTags');?>;
 			var totalPlist = <?php echo Yii::app()->user->getState('countPlists');?>;
 			var totalGenres = <?php echo Yii::app()->user->getState('countGenres');?>;
-			//alert(basePath2);
+			var _baseUrl = '<?php echo Yii::app()->request->baseUrl ?>';
 			//$("#jcarousel-prev-div").css('visibility','hidden');
 			//$("#jcarousel-prev-btn").css('visibility','hidden');
 
@@ -277,11 +277,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var tagId = elem.TAGID;
-									var ouputStr = buildUserFriendlyURL("index.php/tag-musica/",elem.TAGNAME,tagId);
+									var ouputStr = buildUserFriendlyURL("/index.php/tag-musica/",elem.TAGNAME,tagId);
 									//var urlComplete = url + "/id/"+tagId;
 									//html += "<li><a href='index.php/Playlists/viewPlPerTag/id/"
 									//alert(outputStr2);
-									html += "<li><a href='"+ouputStr+"'><div class='tag'>" + elem.TAGNAME + 
+									html += "<li><a href='"+_baseUrl+ouputStr+"'><div class='tag'>" + elem.TAGNAME + 
 	                                "</div> <div class='text'>"+ elem.DESCRIPTION +"</div> "
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
@@ -335,14 +335,14 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                                var plTitle = elem.PLTITLE;
 	                                var plId = elem.PLID;
 	                                //var urlComplete = url + "/id/"+ plId;
-	                                var ouputStr = buildUserFriendlyURL("index.php/playlist-musicali/",plTitle,plId); 
+	                                var ouputStr = buildUserFriendlyURL("/index.php/playlist-musicali/",plTitle,plId); 
 	                                if(elem.PLTITLE.length>50){
 	                                	plTitle = elem.PLTITLE.substring(0,50) + " ...";
 	                                }
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.DESCRIPTION);
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
-									html += "<li><a href='"+ouputStr+"'><div class='tag'>" + plTitle + 
+									html += "<li><a href='"+_baseUrl+ouputStr+"'><div class='tag'>" + plTitle + 
 	                                "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                +"<img src='"
 	                                +elem.IMAGEPATH+"' alt='' /></a></li>";
@@ -384,10 +384,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 	                                var genName = elem.GENRENAME;
 									var tagNameEnc = encodeURIComponent(genName);
 									var genId = elem.GENREID;
-									var ouputStr = buildUserFriendlyURL("index.php/generi-musicali/",genName,genId);
+									var ouputStr = buildUserFriendlyURL("/index.php/generi-musicali/",genName,genId);
 									//alert(url);
 									//var urlComplete = url + "/id/"+genId;
-									html += "<li><a href='"+ouputStr+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
+									html += "<li><a href='"+_baseUrl+ouputStr+"'><img src='"+elem.IMAGEPATH+"' alt='' /></a></li>";
 	                  			});
 	                            $("#myCarousel-genUl").append(html);
 					            // Reload carousel
@@ -449,9 +449,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 				//alert(inputStr);
 				var outputStr = inputStr;
 				var inArray = ["'",",",";",":","!","%"];
-				outputStr = outputStr.replace(new RegExp(" ",'g'),'');
+				outputStr = outputStr.replace(new RegExp(" ",'g'),'-');
+				outputStr = outputStr.replace(new RegExp("'",'g'),'-');
 				inArray.forEach(function( word ){
-					outputStr = outputStr.replace(new RegExp(word,'g'),'-');
+					outputStr = outputStr.replace(new RegExp(word,'g'),'');
 				});
 
 				var tagLink = prefix+outputStr+"_"+ id+".html";
@@ -497,9 +498,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
 									var tagId = elem.TAGID;
-									var url = "<?php echo Yii::app()->createUrl('Playlists/viewPlPerTag')?>";
-									var urlComplete = url + "/id/"+tagId;
-									$("#myCarouselUl").append("<li><a href='"+urlComplete+"'><div class='tag'>" + elem.TAGNAME + 
+									//var url = "<?php echo Yii::app()->createUrl('Playlists/viewPlPerTag')?>";
+									//var urlComplete = url + "/id/"+tagId;
+									var ouputStr = buildUserFriendlyURL("/index.php/tag-musica/",elem.TAGNAME,tagId);
+									$("#myCarouselUl").append("<li><a href='"+imgPathPref+ouputStr+"'><div class='tag'>" + elem.TAGNAME + 
 	                                            "</div>"
 	                                            +"<img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
@@ -533,10 +535,11 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
 									var plId = elem.PLID;
-	                                var url = "<?php echo Yii::app()->createUrl('Playlists/view2')?>";
-	                                var urlComplete = url + "/id/"+ plId;
+	                                //var url = "<?php echo Yii::app()->createUrl('Playlists/view2')?>";
+	                                //var urlComplete = url + "/id/"+ plId;
+	                                var ouputStr = buildUserFriendlyURL("/index.php/playlist-musicali/",plTitle,plId);
 									//$("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
-									$("#myCarousel-plistUl").append("<li><a href='"+urlComplete+"'><div class='tag'>" + elem.PLTITLE + 
+									$("#myCarousel-plistUl").append("<li><a href='"+imgPathPref+ouputStr+"'><div class='tag'>" + elem.PLTITLE + 
 	                                            "</div><div class='text'>"+ elem.DESCRIPTION +"</div>"
 	                                            +"<img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
@@ -565,9 +568,10 @@ Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, stori
 									var imgPathEnc = encodeURIComponent(elem.IMAGEPATH);
 									var imgPath = imgPathPref + '/' +  elem.IMAGEPATH;
 									var genId = elem.GENREID;
-									var url = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
-									var urlComplete = url + "/id/"+genId;
-									$("#myCarousel-genUl").append("<li><a href='"+urlComplete+"'><img src='"
+									//var url = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
+									//var urlComplete = url + "/id/"+genId;
+									var ouputStr = buildUserFriendlyURL("/index.php/generi-musicali/",elem.GENRENAME,genId);
+									$("#myCarousel-genUl").append("<li><a href='"+imgPathPref+ouputStr+"'><img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
 	                                count++;
 		                    	});

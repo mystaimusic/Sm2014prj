@@ -56,8 +56,9 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
-				//array('label'=>'Home', 'url'=>'/site/index'),
+				array('label'=>'Home', 'url'=>Yii::app()->baseUrl),
+				//array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
+				//array('label'=>'Home', 'url'=>'/Site/index'),
 				array('label'=>'About', 'url'=>array('/Site/page', 'view'=>'about')),
                                 array('label'=>'Note', 'url'=>array('/site/page', 'view'=>'note')),
 				array('label'=>'Contact', 'url'=>array('/Site/contact')),
