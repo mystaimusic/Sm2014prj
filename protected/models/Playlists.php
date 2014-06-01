@@ -68,6 +68,10 @@ class Playlists extends CActiveRecord
 			'PLTITLE' => 'Pltitle',
 			'DESCRIPTION' => 'Description',
 			'IMAGEPATH' => 'Imagepath',
+			'PLTITLE_SP' => 'Pltitle_sp',
+			'PLTITLE_EN' => 'Pltitle_en',
+			'DESCRIPTION_SP' => 'Description_sp',
+			'DESCRIPTION_EN' => 'Description_en',
 		);
 	}
 

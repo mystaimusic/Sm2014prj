@@ -63,6 +63,8 @@ class Genres extends CActiveRecord
 			'GENRENAME' => 'Genrename',
 			'DESCRIPTION' => 'Description',
 			'IMAGEPATH' => 'Imagepath',
+			'DESCRIPTION_EN' => 'Description_en',
+			'DESCRIPTION_SP' => 'Description_sp',
 		);
 	}
 

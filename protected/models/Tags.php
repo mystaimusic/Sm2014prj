@@ -63,6 +63,8 @@ class Tags extends CActiveRecord
 			'TAGNAME' => 'Tagname',
 			'DESCRIPTION' => 'Description',
 			'IMAGEPATH' => 'Imagepath',
+			'TAGNAME_SP' => 'Tagname_sp',
+			'TAGNAME_EN' => 'Tagname_en',
 		);
 	}
 	

@@ -36,6 +36,7 @@ class SiteController extends Controller
 		//echo Yii::trace(CVarDumper::dumpAsString($_GET['order']),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($_PUT['order']),'vardump');
 		//$orderByClause = Yii::app()->user->getState('orderByClause');
+		$orderByClause = 'R';
 		if(isset($_REQUEST['flagType'])){
 			$orderByClause = $_REQUEST['flagType']; 
 			Yii::app()->user->setState('flagType', $orderByClause);
@@ -65,10 +66,24 @@ class SiteController extends Controller
 			)
 		);
 		Utilities::replaceDefaultImageArray($dataProvider->getData());
+		
+		$dataProviderDec = null;
+		if($orderByClause=='A'){
+			$dataProviderDec = new CActiveDataProvider('Tags',
+				array(
+					'criteria'=>array(
+						'order'=>$orderByTag . ' DESC',
+					),
+					'pagination'=>array(
+						'pageSize'=>5,
+					),
+				)
+			);
+		}
 		//$tagsList = $dataProvider->getData(); 
 		//shuffle($tagsList);
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in SiteController.actionIndex 2"),'vardump');
-		//echo Yii::trace(CVarDumper::dumpAsString($dataProvider->getData()),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($dataProviderDec->getData()),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($tagsList),'vardump');
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
 			array(
@@ -98,6 +113,7 @@ class SiteController extends Controller
 		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'dataProviderDec'=>$dataProviderDec,
 			'dataProviderGenres'=>$dataProviderGenres,
 			'dataProviderPlaylist'=>$dataProviderPlaylist,
 		));
