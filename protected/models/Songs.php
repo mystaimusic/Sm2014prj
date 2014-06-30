@@ -70,6 +70,8 @@ class Songs extends CActiveRecord
 			'CODE' => 'Code',
 			'TITLE' => 'Title',
 			'DESCRIPTION' => 'Description',
+			'DESCRIPTION_EN' => 'Description_en',
+			'DESCRIPTION_ES' => 'Description_es',
 		);
 	}
 

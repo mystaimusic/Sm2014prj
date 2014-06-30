@@ -29,7 +29,18 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'		
+		// using the default layout 'protected/views/layouts/main.php'
+		$countryCode = Yii::app()->user->getState('countryCode');
+		if($countryCode==null){
+			if(isset($_REQUEST['langInput'])){
+				$countryCode = $_REQUEST['langInput'];
+			}else{
+				//get it from the ip addr
+				$countryCode = 'IT';
+			}
+			
+		}
+		
 		$orderByTag = 'RAND()';
 		$orderByPl = 'RAND()';
 		$orderByGen = 'RAND()';
@@ -111,11 +122,22 @@ class SiteController extends Controller
 		);
 		Utilities::replaceDefaultImageArray($dataProviderGenres->getData());
 		
+		//get static data of the index page
+		$mainSearchTab = LabelsTable::model()->findByPk(array('LABEL_KEY'=>'MAINSEARCH','LANGUAGE'=>$countryCode)); // TEST
+		$mainsearch = $mainSearchTab->LABEL;
+		$orderByRandBtnTab = LabelsTable::model()->findByPk(array('LABEL_KEY'=>'RANDOM_ORD_BTN','LANGUAGE'=>$countryCode)); // TEST
+		$orderByRandBtn = $orderByRandBtnTab->LABEL;
+		$orderByAlphaBtnTab = LabelsTable::model()->findByPk(array('LABEL_KEY'=>'ALPHA_ORDER_BTN','LANGUAGE'=>$countryCode)); // TEST
+		$orderByAlphaBtn = $orderByAlphaBtnTab->LABEL;
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'dataProviderDec'=>$dataProviderDec,
 			'dataProviderGenres'=>$dataProviderGenres,
 			'dataProviderPlaylist'=>$dataProviderPlaylist,
+			'mainsearch'=> $mainsearch,
+			'orderbyrandbtn'=>$orderByRandBtn,
+			'orderbyalphabtn'=>$orderByAlphaBtn,
 		));
 	}
 

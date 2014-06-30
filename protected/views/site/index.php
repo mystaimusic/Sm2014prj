@@ -1,7 +1,8 @@
 <div class="container darkbg">
   <div id="headercont">
    <div id="mod_mainsearch">
-       <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div>
+   		<div id="search" class="header-answer"><?php echo $mainsearch; ?></div>
+       <!-- <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div> -->
        <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'>Go</button></div>
    </div><!-- mod_mainsearch -->
   </div><!-- headercont -->
@@ -26,13 +27,13 @@
 
 	<div class="col">
          <input type="hidden" name="flagType" value="A">
-	<?php echo CHtml::submitButton('Ordine Alfabetico',array('id'=>'OrdAlph','name'=>'OrdineAlfabetico'));?>
+	<?php echo CHtml::submitButton($orderbyalphabtn,array('id'=>'OrdAlph','name'=>'OrdineAlfabetico'));?>
 	<?php echo CHtml::endForm();?></div>
 
         <div class="col">
 	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
 	<input type="hidden" name="flagType" value="R">
-	<?php echo CHtml::submitButton('Ordine Casuale',array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
+	<?php echo CHtml::submitButton($orderbyrandbtn,array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
 	<?php echo CHtml::endForm();?></div>
 
      </div><!--row_orderby -->

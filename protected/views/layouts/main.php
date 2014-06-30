@@ -45,7 +45,12 @@
 
  <div id="share-box">
 <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fstaimusic&amp;width=225&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=true&amp;height=24" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:225px; height:21px;" allowTransparency="true"></iframe>
-
+</div>
+<div id="language">
+	<?php 
+		echo CHtml::link('IT',array('/site/index','langInput'=>'IT'), array('class'=>'languageLink1'));
+		echo CHtml::link('EN',array('/site/index','langInput'=>'EN'), array('class'=>'languageLink2'));
+	?>
 </div>
 
           <div id="banner-top"><a href="http://www.expobrand.it" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/Expobrand.jpg" border="0" ></a></div>
@@ -56,9 +61,9 @@
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
-				array('label'=>'Home', 'url'=>Yii::app()->baseUrl),
-				//array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
-				//array('label'=>'Home', 'url'=>'/Site/index'),
+				//array('label'=>'Home', 'url'=>Yii::app()->baseUrl),
+				array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
+				//array('label'=>'Home', 'url'=>array('/Site/index')),
 				array('label'=>'About', 'url'=>array('/Site/page', 'view'=>'about')),
                                 array('label'=>'Note', 'url'=>array('/site/page', 'view'=>'note')),
 				array('label'=>'Contact', 'url'=>array('/Site/contact')),

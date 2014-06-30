@@ -426,3 +426,16 @@ font-family:"Orienta",Arial,Helvetica,sans-serif;color:#000;font-size:13px;text-
 }
 
 
+.languageLink1:link
+{
+	text-decoration: none;
+	color: #757575;
+	font-weight: bold;
+}
+
+.languageLink2:link
+{
+	text-decoration: none;
+	color: #757575;
+	font-weight: bold;
+}
