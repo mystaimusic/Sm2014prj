@@ -64,19 +64,10 @@ class Bands extends CActiveRecord
 			'BANDNAME' => 'Bandname',
 			'DESCRIPTION' => 'Description',
 			'IMAGEPATH' => 'Imagepath',
-			'DESCRIPTION_EN' => 'Description_en',
-			'DESCRIPTION_SP' => 'Description_sp',
-			'IMAGEPATH_EN' => 'Imagepath_en',
-			'IMAGEPATH_SP' => 'Imagepath_sp',
-			'META_TITLE_IT' => 'Meta_title_it',
-			'META_TITLE_EN' => 'Meta_title_en',
-			'META_TITLE_SP' => 'Meta_title_sp',
-			'META_DESCRIPTION_IT' => 'Meta_description_it',
-			'META_DESCRIPTION_EN' => 'Meta_description_en',
-			'META_DESCRIPTION_SP' => 'Meta_description_sp',
-			'META_KEYWORDS_IT' => 'Meta_keywords_it',
-			'META_KEYWORDS_EN' => 'Meta_keywords_en',
-			'META_KEYWORDS_SP' => 'Meta_keywords_sp',
+			'META_TITLE' => 'MetaTitle',
+			'META_DESCRIPTION' => 'MetaDescription',
+			'META_KEYWORDS' => 'MetaKeyword',
+			'LANG' => 'lang',
 		);
 	}
 
