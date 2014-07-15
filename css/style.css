@@ -84,7 +84,9 @@ a:hover{color:#00B2E0;}
 
 /**Header**/
 #headercont{background-color:#cf043d;width:100%;margin-left:0px;height:50px;position:relative;padding-bottom:0px;padding-top:5px;color:#FFFFFF}
-
+#language{float:left; width:200px; color:#FFFFFF; background-color: #990000; font-size:18px; }
+#language a:link{float:left; width:200px; color:#FFFFFF; background-color: #990000; font-size:18px; }
+#language a:visited{float:left; width:200px; color:#FFFFFF; background-color: #990000; font-size:18px; }
 
 /**Main-------------------------------------------------------**/
 .container #maincont{text-align:center;width:100%;height:100%;margin:auto;position:relative;padding:0px;;background-color:#ccc;}
