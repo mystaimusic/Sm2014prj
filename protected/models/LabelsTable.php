@@ -31,12 +31,12 @@ class LabelsTable extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('LABEL_KEY', 'required'),
-			array('LABEL_KEY', 'length', 'max'=>32),
-			array('LABEL', 'length', 'max'=>128),
+			array('label_key', 'required'),
+			array('label_key', 'length', 'max'=>32),
+			array('label', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, CATEGORY, LABEL, LABEL_KEY, LANGUAGE', 'safe', 'on'=>'search'),
+			array('id, category, label, label_key, language', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,10 +64,10 @@ class LabelsTable extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'CATEGORY' => 'Category',
-			'LABEL' => 'Label',
-			'LABEL_KEY' => 'Label_key',
-			'LANGUAGE'=> 'Language',
+			'category' => 'Category',
+			'label' => 'Label',
+			'label_key' => 'Label_key',
+			'language'=> 'Language',
 		);
 	}
 
@@ -89,10 +89,10 @@ class LabelsTable extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('CATEGORY',$this->CATEGORY,true);
-		$criteria->compare('LABEL_KEY',$this->LABEL_KEY,true);
-		$criteria->compare('LABEL',$this->LABEL,true);
-		$criteria->compare('LANGUAGE',$this->LANGUAGE,true);
+		$criteria->compare('category',$this->category,true);
+		$criteria->compare('label_key',$this->label_key,true);
+		$criteria->compare('label',$this->label,true);
+		$criteria->compare('language',$this->language,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

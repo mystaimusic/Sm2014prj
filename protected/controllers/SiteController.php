@@ -52,9 +52,9 @@ class SiteController extends Controller
 			$orderByClause = $_REQUEST['flagType']; 
 			Yii::app()->user->setState('flagType', $orderByClause);
 			if($orderByClause == 'A'){
-				$orderByTag = 'TAGNAME';
-				$orderByPl = 'PLTITLE';
-				$orderByGen = 'GENRENAME';
+				$orderByTag = 'tagname';
+				$orderByPl = 'pltitle';
+				$orderByGen = 'genrename';
 				
 			}
 		}
@@ -99,7 +99,7 @@ class SiteController extends Controller
 		$dataProviderPlaylist = new CActiveDataProvider('Playlists',
 			array(
 				'criteria'=>array(
-					//'order'=>'PLID',
+					//'order'=>'plid',
 					'order'=>$orderByPl,
 				),
 				'pagination'=>array(
@@ -123,12 +123,12 @@ class SiteController extends Controller
 		Utilities::replaceDefaultImageArray($dataProviderGenres->getData());
 		
 		//get static data of the index page
-		$mainSearchTab = LabelsTable::model()->findByPk(array('LABEL_KEY'=>'MAINSEARCH','LANGUAGE'=>$countryCode)); // TEST
-		$mainsearch = $mainSearchTab->LABEL;
-		$orderByRandBtnTab = LabelsTable::model()->findByPk(array('LABEL_KEY'=>'RANDOM_ORD_BTN','LANGUAGE'=>$countryCode)); // TEST
-		$orderByRandBtn = $orderByRandBtnTab->LABEL;
-		$orderByAlphaBtnTab = LabelsTable::model()->findByPk(array('LABEL_KEY'=>'ALPHA_ORDER_BTN','LANGUAGE'=>$countryCode)); // TEST
-		$orderByAlphaBtn = $orderByAlphaBtnTab->LABEL;
+		$mainSearchTab = LabelsTable::model()->findByPk(array('label_key'=>'MAINSEARCH','language'=>$countryCode)); // TEST
+		$mainsearch = $mainSearchTab->label;
+		$orderByRandBtnTab = LabelsTable::model()->findByPk(array('label_key'=>'RANDOM_ORD_BTN','language'=>$countryCode)); // TEST
+		$orderByRandBtn = $orderByRandBtnTab->label;
+		$orderByAlphaBtnTab = LabelsTable::model()->findByPk(array('label_key'=>'ALPHA_ORDER_BTN','language'=>$countryCode)); // TEST
+		$orderByAlphaBtn = $orderByAlphaBtnTab->label;
 		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -155,9 +155,9 @@ class SiteController extends Controller
 		$orderByGen = 'RAND()';
 		$flagType = Yii::app()->user->getState('flagType');
 		if($flagType == 'A'){
-			$orderByTag = 'TAGNAME';
-			$orderByPl = 'PLTITLE';
-			$orderByGen = 'GENRENAME';
+			$orderByTag = 'tagname';
+			$orderByPl = 'pltitle';
+			$orderByGen = 'genrename';
 		}
 		$criteria=new CDbCriteria();
 		$count = 0;
@@ -187,13 +187,13 @@ class SiteController extends Controller
     		$models=Tags::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
-	    		$model->IMAGEPATH = Utilities::replaceDefaultImage($model->IMAGEPATH);
+	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
-				'id'=>'TAGID',
+				'id'=>'tagid',
 				'sort'=>array(
 	        		'attributes'=>array(
-	             		'TAGNAME',
+	             		'tagname',
 	        		),
 	    		),
 			));
@@ -206,13 +206,13 @@ class SiteController extends Controller
     		$models=Genres::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
-	    		$model->IMAGEPATH = Utilities::replaceDefaultImage($model->IMAGEPATH);
+	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
-				'id'=>'GENREID',
+				'id'=>'genreid',
 				'sort'=>array(
 	        		'attributes'=>array(
-	             		'GENRENAME',
+	             		'genrename',
 	        		),
 	    		),
 			));
@@ -228,14 +228,14 @@ class SiteController extends Controller
 				if(!file_exists ( $model->IMAGEPATH )){
 					$model->IMAGEPATH = Yii::app()->request->baseUrl."/".$imgGenStr;	
 				}*/
-	    		$model->IMAGEPATH = Utilities::replaceDefaultImage($model->IMAGEPATH);
+	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    		//echo Yii::trace(CVarDumper::dumpAsString($model->IMAGEPATH),'vardump');
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
-				'id'=>'PID',
+				'id'=>'pid',
 				'sort'=>array(
 	        		'attributes'=>array(
-	             		'PLTITLE',
+	             		'pltitle',
 	        		),
 	    		),
 			));

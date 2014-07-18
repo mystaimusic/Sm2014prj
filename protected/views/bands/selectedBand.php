@@ -101,7 +101,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
     		foreach($bands as $band)
     		{
     			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
-    			echo CHtml::link($band['BANDNAME'],'#'.$band['BANDID'], array('class'=>'myplaylist', 'id'=>$band['BANDID']));
+    			echo CHtml::link($band['bandname'],'#'.$band['bandid'], array('class'=>'myplaylist', 'id'=>$band['bandid']));
     			echo CHtml::closeTag('div');
     		}
     		//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in selectedBands ourbands"),'vardump');
@@ -118,14 +118,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			echo CHtml::tag('li', array(), false,false);
 			//echo CHtml::tag('div', array('class'=>'tag'),trim($tag->TAGNAME),true);
 			//echo CHtml::tag('div', array('class'=>'text'),trim($tag->DESCRIPTION),true);
-			if(file_exists ( $tag->IMAGEPATH )){
-				$imagePath = $tag->IMAGEPATH;
+			if(file_exists ( $tag->imagepath )){
+				$imagePath = $tag->imagepath;
 			}else{
 				$imagePath = "images/stai-music.jpg";
 			}
 			$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 			$imghtml = CHtml::image($imagePath);
-			$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->TAGNAME,$tag->TAGID);
+			$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->tagname,$tag->tagid);
 			echo CHtml::link($imghtml, array($tagLink));
 			echo CHtml::closeTag('li');
 		}
@@ -146,14 +146,14 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			foreach($plistsOut as $plist)
 			{
 				echo CHtml::tag('li',array(),false,false);
-				if(file_exists($plist['IMAGEPATH'])){
-					$imagePath = $plist['IMAGEPATH'];
+				if(file_exists($plist['imagepath'])){
+					$imagePath = $plist['imagepath'];
 				}else{
 					$imagePath = "images/stai-music.jpg";
 				}
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				$plistLink = Utilities::buildUserFriendlyURL('playlist-musicali/',$plist['PLTITLE'],$plist['PLID']);
+				$plistLink = Utilities::buildUserFriendlyURL('playlist-musicali/',$plist['pltitle'],$plist['plid']);
 				echo CHtml::link($imghtml,array($plistLink));
 				echo CHtml::closeTag('li');
 			}
@@ -233,8 +233,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				            videoJSON_G.videos = [];
 				            $.each(response, function(i, data){
 				            	var oneVideoJSON = new Object();
-				            	oneVideoJSON.id = data.CODE;
-				            	oneVideoJSON.title = data.TITLE;
+				            	oneVideoJSON.id = data.code;
+				            	oneVideoJSON.title = data.title;
 				            	videoJSON_G.videos.push(oneVideoJSON);
 				            	i++;
 				            });
@@ -264,8 +264,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                             $.each(response, function(i, data){
                                     	//alert("data: "+data);
                             	var oneVideoJSON = new Object();
-                            	oneVideoJSON.id = data.CODE;
-                            	oneVideoJSON.title = data.TITLE;
+                            	oneVideoJSON.id = data.code;
+                            	oneVideoJSON.title = data.title;
                             	videoJSON_G.videos.push(oneVideoJSON);
                             	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
                                 	//player.player('loadPlaylist', videoJSON);
@@ -328,8 +328,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                             var count= 0;
                                             $.each(response, function(i, data){
                                                 var oneVideoJSON = new Object();
-                                                oneVideoJSON.id = data.CODE;
-                                                oneVideoJSON.title = data.TITLE;
+                                                oneVideoJSON.id = data.code;
+                                                oneVideoJSON.title = data.title;
                                                 videoJSON.videos.push(oneVideoJSON);
                                                 count++;
                                             });

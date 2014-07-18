@@ -92,9 +92,9 @@ class GenresController extends Controller
     	Yii::app()->user->setState('SELECTED_GENID', $id);
     	
     	$genre=Genres::model()->findByPk($id);
-    	$genImagePathDB = $genre->IMAGEPATH;
-    	$genDescription = $genre->DESCRIPTION;
-    	$genreName = $genre->GENRENAME;
+    	$genImagePathDB = $genre->imagepath;
+    	$genDescription = $genre->description;
+    	$genreName = $genre->genrename;
     	//echo Yii::trace(CVarDumper::dumpAsString($genre),'vardump');
     	//$bandsDB=$genre->bands;
     	$tags=$genre->tags; //gets suggested tags for the genre
@@ -104,9 +104,9 @@ class GenresController extends Controller
 		$i = 0;
 		foreach($bands as $band) {
 			if($i==0){
-	    		$bandsIdStr .= $band['BANDID'];
+	    		$bandsIdStr .= $band['bandid'];
 	    	}else{
-	    		$tmpVar = ',' . $band['BANDID'];
+	    		$tmpVar = ',' . $band['bandid'];
 	    		$bandsIdStr .= $tmpVar;
 	    	}
 	    	$i++;
@@ -160,7 +160,7 @@ class GenresController extends Controller
 		{
 			$model->attributes=$_POST['Genres'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->GENREID));
+				$this->redirect(array('view','id'=>$model->genreid));
 		}
 
 		$this->render('create',array(
@@ -184,7 +184,7 @@ class GenresController extends Controller
 		{
 			$model->attributes=$_POST['Genres'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->GENREID));
+				$this->redirect(array('view','id'=>$model->genreid));
 		}
 
 		$this->render('update',array(

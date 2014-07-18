@@ -32,13 +32,13 @@ class Playlists extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PLREF, PLTITLE', 'required'),
-			array('PLREF', 'length', 'max'=>32),
-			array('PLTITLE, IMAGEPATH', 'length', 'max'=>64),
-			array('DESCRIPTION', 'length', 'max'=>128),
+			array('plref, pltitle', 'required'),
+			array('plref', 'length', 'max'=>32),
+			array('pltitle, imagepath', 'length', 'max'=>64),
+			array('description', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PLID, PLREF, PLTITLE, DESCRIPTION, IMAGEPATH', 'safe', 'on'=>'search'),
+			array('plid, plref, pltitle, description, imagepath', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,10 +50,10 @@ class Playlists extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'PLID'),
-			'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'PLID'),
-			'songs' => array(self::MANY_MANY,'Songs', 'bridge_pl_songs(PLID,SONGID)'),
-			'tags' => array(self::MANY_MANY, 'Tags', 'bridge_tags_pl(PLID,TAGID)'),
+			'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'plid'),
+			'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'plid'),
+			'songs' => array(self::MANY_MANY,'Songs', 'bridge_pl_songs(plid,songid)'),
+			'tags' => array(self::MANY_MANY, 'Tags', 'bridge_tags_pl(plid,tagid)'),
 		);
 	}
 
@@ -63,17 +63,17 @@ class Playlists extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'PLID' => 'Plid',
-			'PLREF' => 'Plref',
-			'PLTITLE' => 'Pltitle',
-			'DESCRIPTION' => 'Description',
-			'IMAGEPATH' => 'Imagepath',
-			'META_TITLE' => 'MetaTitle',
-			'META_DESCRIPTION' => 'MetaDescription',
-			'META_KEYWORDS' => 'MetaKeyword',
-			'LANG' => 'Lang',
-			'INSERT_DATE' => 'InsertData',
-			'FEATURED' => 'Featured',
+			'plid' => 'Plid',
+			'plref' => 'Plref',
+			'pltitle' => 'Pltitle',
+			'description' => 'Description',
+			'imagepath' => 'Imagepath',
+			'meta_title' => 'MetaTitle',
+			'meta_description' => 'MetaDescription',
+			'meta_keyword' => 'MetaKeyword',
+			'lang' => 'Lang',
+			'insert_date' => 'InsertData',
+			'featured' => 'Featured',
 		);
 	}
 
@@ -95,11 +95,11 @@ class Playlists extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('PLID',$this->PLID,true);
-		$criteria->compare('PLREF',$this->PLREF,true);
-		$criteria->compare('PLTITLE',$this->PLTITLE,true);
-		$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
-		$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
+		$criteria->compare('plid',$this->plid,true);
+		$criteria->compare('plref',$this->plref,true);
+		$criteria->compare('pltitle',$this->pltitle,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('imagepath',$this->imagepath,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

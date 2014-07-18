@@ -60,18 +60,18 @@ class SongsController extends Controller
 	{
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerPlaylist"),'vardump');
 		$playlist=Playlists::model()->findByPk($playlistId);
-		$title = $playlist->PLTITLE;
-		$description = $playlist->DESCRIPTION;
+		$title = $playlist->pltitle;
+		$description = $playlist->description;
         $songs = $playlist->songs;
 		//echo Yii::trace(CVarDumper::dumpAsString($songs),'vardump');
         foreach($songs as $song){
-        	$bandid = $song->BANDID;
+        	$bandid = $song->bandid;
         	$band = Bands::model()->findByPk($bandid);
         	//$band = $song->bands;
         	if(!is_null($band)){
-        		$bandName = $band->BANDNAME;
+        		$bandName = $band->bandname;
         		//echo Yii::trace(CVarDumper::dumpAsString($bandName),'vardump');
-        		$song->TITLE = $bandName . ' - ' . $song->TITLE; 
+        		$song->title = $bandName . ' - ' . $song->title; 
         	}
         }
         
@@ -90,12 +90,12 @@ class SongsController extends Controller
 	//this is an ajaxcall
 	public function actionViewSongsPerBand($bandId)
 	{
-		$songsModel = Songs::model()->findAllByAttributes(array('BANDID'=>$bandId));
+		$songsModel = Songs::model()->findAllByAttributes(array('bandid'=>$bandId));
 		$bandModel = Bands::model()->findByPk($bandId);
 		if(!is_null($bandModel)){
-			$bandName = $bandModel->BANDNAME;
+			$bandName = $bandModel->bandname;
 			foreach($songsModel as $song){
-				$song->TITLE = $bandName . " - " .$song->TITLE; 
+				$song->title = $bandName . " - " .$song->title; 
 			}
 		}
 		$output = CJSON::encode($songsModel);
@@ -154,11 +154,11 @@ class SongsController extends Controller
 		$songsArray = array();
 		//echo Yii::trace(CVarDumper::dumpAsString($bands),'vardump');
 		foreach($bands as $band) {
-			$bandId = $band['BANDID'];
-			$bandName = $band['BANDNAME'];
-			$songModel = Songs::model()->findByAttributes(array('BANDID'=>$bandId));
+			$bandId = $band['bandid'];
+			$bandName = $band['bandname'];
+			$songModel = Songs::model()->findByAttributes(array('bandid'=>$bandId));
 			//echo Yii::trace(CVarDumper::dumpAsString($songModel),'vardump');
-			$songModel->TITLE = $bandName . ' - ' . $songModel->TITLE;
+			$songModel->title = $bandName . ' - ' . $songModel->title;
 			//echo Yii::trace(CVarDumper::dumpAsString($songModel->TITLE),'vardump'); 
 			$songsArray[$bandName]=$songModel;
 			$tmpVar = ',' . $bandId;
@@ -182,12 +182,12 @@ class SongsController extends Controller
     	$count = 0;
     	foreach($bandsIdList as $bandId)
     	{
-    		$sqlRandomSong = "SELECT * FROM songs WHERE BANDID=" . (int)$bandId . " ORDER BY RAND() LIMIT 0, 1";
+    		$sqlRandomSong = "SELECT * FROM songs WHERE bandid=" . (int)$bandId . " ORDER BY RAND() LIMIT 0, 1";
     		$randomSong = Yii::app()->db->createCommand($sqlRandomSong)->queryAll();
     		//$songModel = Songs::model()->findByAttributes(array('BANDID'=>$bandId));
     		$bandModel = Bands::model()->findByPk($bandId);
-    		$bandName = $bandModel->BANDNAME;
-    		$randomSong[0]['TITLE'] = $bandName . ' - ' . $randomSong[0]['TITLE'];
+    		$bandName = $bandModel->bandname;
+    		$randomSong[0]['title'] = $bandName . ' - ' . $randomSong[0]['title'];
     		
     		$songsArray[$count]=$randomSong[0];
     		$count++;
@@ -213,7 +213,7 @@ class SongsController extends Controller
 		{
 			$model->attributes=$_POST['Songs'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->SONGID));
+				$this->redirect(array('view','id'=>$model->songid));
 		}
 
 		$this->render('create',array(
@@ -237,7 +237,7 @@ class SongsController extends Controller
 		{
 			$model->attributes=$_POST['Songs'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->SONGID));
+				$this->redirect(array('view','id'=>$model->songid));
 		}
 
 		$this->render('update',array(

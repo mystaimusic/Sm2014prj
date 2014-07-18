@@ -33,15 +33,15 @@ class Songs extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('BANDID, CODE, TITLE', 'required'),
-			array('WEBSITE', 'length', 'max'=>16),
-			array('BANDID', 'length', 'max'=>10),
-			array('CODE', 'length', 'max'=>32),
-			array('TITLE', 'length', 'max'=>64),
-			array('DESCRIPTION', 'length', 'max'=>128),
+			array('bandid, code, title', 'required'),
+			array('website', 'length', 'max'=>16),
+			array('bandid', 'length', 'max'=>10),
+			array('code', 'length', 'max'=>32),
+			array('title', 'length', 'max'=>64),
+			array('description', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('SONGID, WEBSITE, BANDID, CODE, TITLE, DESCRIPTION', 'safe', 'on'=>'search'),
+			array('songid, website, bandid, code, title, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,8 +53,8 @@ class Songs extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'bands' => array(self::HAS_ONE, 'Bands', 'BANDID'),
-			'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'SONGID'),
+			'bands' => array(self::HAS_ONE, 'Bands', 'bandid'),
+			'bridgePlSongs' => array(self::HAS_MANY, 'BridgePlSongs', 'songid'),
 		);
 	}
 
@@ -64,14 +64,12 @@ class Songs extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'SONGID' => 'Songid',
-			'WEBSITE' => 'Website',
-			'BANDID' => 'Bandid',
-			'CODE' => 'Code',
-			'TITLE' => 'Title',
-			'DESCRIPTION' => 'Description',
-			'DESCRIPTION_EN' => 'Description_en',
-			'DESCRIPTION_ES' => 'Description_es',
+			'songid' => 'Songid',
+			'website' => 'Website',
+			'bandid' => 'Bandid',
+			'code' => 'Code',
+			'title' => 'Title',
+			'description' => 'Description',
 		);
 	}
 
@@ -93,12 +91,12 @@ class Songs extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('SONGID',$this->SONGID,true);
-		$criteria->compare('WEBSITE',$this->WEBSITE,true);
-		$criteria->compare('BANDID',$this->BANDID,true);
-		$criteria->compare('CODE',$this->CODE,true);
-		$criteria->compare('TITLE',$this->TITLE,true);
-		$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
+		$criteria->compare('songid',$this->songid,true);
+		$criteria->compare('website',$this->website,true);
+		$criteria->compare('bandid',$this->bandid,true);
+		$criteria->compare('code',$this->code,true);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

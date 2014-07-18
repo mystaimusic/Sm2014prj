@@ -97,13 +97,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 <?php
 	//display playlists
 	if((!isset($tagname) || trim($tagname)==='')){
-		if(strlen($pls->PLTITLE)>16){
-			$shortTitle = substr($pls->PLTITLE, 0, 16) . " ...";
+		if(strlen($pls->pltitle)>16){
+			$shortTitle = substr($pls->pltitle, 0, 16) . " ...";
 		}else{
-			$shortTitle = $pls->PLTITLE;
+			$shortTitle = $pls->pltitle;
 		}
 		echo CHtml::tag('div',array('class'=>'tag'),$shortTitle,true);
-		$imgPath = Utilities::replaceDefaultImage($pls->IMAGEPATH);
+		$imgPath = Utilities::replaceDefaultImage($pls->imagepath);
 		/*if(!is_null($pls->IMAGEPATH) && !empty($pls->IMAGEPATH) && file_exists ( $pls->IMAGEPATH )){
 			$imgPath = $pls->IMAGEPATH;
 		}else{
@@ -132,7 +132,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
     			foreach($bands as $band)
     			{
     				echo CHtml::tag('div', array('class'=>'palinsesto clearfix'), false,false);
-    				echo CHtml::link($band->BANDNAME,'#'.$band->BANDID, array('class'=>'myplaylist', 'id'=>$band->BANDID));	
+    				echo CHtml::link($band->bandname,'#'.$band->bandid, array('class'=>'myplaylist', 'id'=>$band->bandid));	
     				echo CHtml::closeTag('div');
     			}	
     		}
@@ -143,12 +143,12 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 	    			foreach($pls as $pl)
 	    			{
 	    				echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-	    				echo CHtml::link($pl->PLTITLE,'#'.$pl->PLREF, array('class' => 'myplaylist', 'id' =>$pl->PLID ) );
+	    				echo CHtml::link($pl->pltitle,'#'.$pl->plref, array('class' => 'myplaylist', 'id' =>$pl->plid ) );
 	    				echo CHtml::closeTag('div');
 	    			}
 	    		}else{
 	    			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-	    			echo CHtml::link($pls->PLTITLE,'#'.$pls->PLREF, array('class' => 'myplaylist', 'id' =>$pls->PLID ) );
+	    			echo CHtml::link($pls->pltitle,'#'.$pls->plref, array('class' => 'myplaylist', 'id' =>$pls->plid ) );
 	    			echo CHtml::closeTag('div');
 	    		}
     		}
@@ -172,13 +172,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				$genIdDB = '';
 				$genDescDB = '';
 				if(is_array($genre)){
-					$imgPathDB = $genre['IMAGEPATH'];
-					$genIdDB = $genre['GENREID'];
-					$genDescDB = $genre['DESCRIPTION'];	
+					$imgPathDB = $genre['imagepath'];
+					$genIdDB = $genre['genreid'];
+					$genDescDB = $genre['description'];	
 				}else{
-					$imgPathDB = $genre->IMAGEPATH;
-					$genIdDB = $genre->GENREID;
-					$genDescDB = $genre->DESCRIPTION;
+					$imgPathDB = $genre->imagepath;
+					$genIdDB = $genre->genreid;
+					$genDescDB = $genre->description;
 				}
 				$imgGenStr = "images/stai-music.jpg";
 				if(file_exists ( $imgPathDB )){
@@ -187,7 +187,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imgGenStr = Utilities::replaceDefaultImage($imgPathDB);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre['GENRENAME'],$genre['GENREID']);
+				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre['genrename'],$genre['genreid']);
 				echo CHtml::link($imgGenHtml, array($genLink));
 				echo CHtml::closeTag('li');
 			}
@@ -195,13 +195,13 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 			foreach($randomGenres as $randomGenre ){
 				echo CHtml::tag('li',array(),false,false);
 				$imgGenStr = "images/stai-music.jpg";
-				if(file_exists ( $randomGenre['IMAGEPATH'] )){
-					$imgGenStr = $randomGenre['IMAGEPATH'];
+				if(file_exists ( $randomGenre['imagepath'] )){
+					$imgGenStr = $randomGenre['imagepath'];
 				}
 				//$imgGenStr = Utilities::replaceDefaultImage($randomGenre['IMAGEPATH']);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$randomGenre['GENRENAME'],$randomGenre['GENREID']);
+				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$randomGenre['genrename'],$randomGenre['genreid']);
 				echo CHtml::link($imgGenHtml, array($genLink));
 				echo CHtml::closeTag('li');
 			}
@@ -217,8 +217,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 		if(isset($suggestedTags) && count($suggestedTags)){
 			foreach($suggestedTags as $sugTag){
 				echo CHtml::tag('li',array(),false,false);		
-				if(file_exists ( $sugTag['IMAGEPATH'] )){
-					$imagePath = $sugTag['IMAGEPATH'];
+				if(file_exists ( $sugTag['imagepath'] )){
+					$imagePath = $sugTag['imagepath'];
 				}else{
 					$imagePath = "images/stai-music.jpg";
 				}
@@ -226,7 +226,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 				//$imagePath = Utilities::replaceDefaultImage($sugTag['IMAGEPATH']);
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$sugTag['TAGNAME'],$sugTag['TAGID']);
+				$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$sugTag['tagname'],$sugTag['tagid']);
 				echo CHtml::link($imghtml, array($tagLink));
 				//echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$sugTag['TAGID']));
 				echo CHtml::closeTag('li');
@@ -268,8 +268,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                             $.each(response.songs, function(i, data){
                                     	//alert("data: "+data);
                             	var oneVideoJSON = new Object();
-                            	oneVideoJSON.id = data.CODE;
-                            	oneVideoJSON.title = data.TITLE;
+                            	oneVideoJSON.id = data.code;
+                            	oneVideoJSON.title = data.title;
                             	videoJSON_G.videos.push(oneVideoJSON);
                             	//alert(oneVideoJSON.id + "     " +oneVideoJSON.title);
                                 	//player.player('loadPlaylist', videoJSON);
@@ -335,8 +335,8 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
                                             $.each(response.songs, function(i, data){
                                                 var oneVideoJSON = new Object();
                                                 //alert(data);
-                                                oneVideoJSON.id = data.CODE;
-                                                oneVideoJSON.title = data.TITLE;
+                                                oneVideoJSON.id = data.code;
+                                                oneVideoJSON.title = data.title;
                                                 videoJSON.videos.push(oneVideoJSON);
                                             });
                                             player.player('loadPlaylist', videoJSON);

@@ -31,12 +31,12 @@ class Bands extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('BANDNAME', 'required'),
-			array('BANDNAME', 'length', 'max'=>32),
-			array('DESCRIPTION, IMAGEPATH', 'length', 'max'=>64),
+			array('bandname', 'required'),
+			array('bandname', 'length', 'max'=>32),
+			array('description, imagepath', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('BANDID, BANDNAME, DESCRIPTION, IMAGEPATH', 'safe', 'on'=>'search'),
+			array('bandid, bandname, description, imagepath', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,8 +49,8 @@ class Bands extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			//'bAND' => array(self::BELONGS_TO, 'Songs', 'BANDID'),
-			'band' => array(self::BELONGS_TO, 'Songs', 'BANDID'),
-			'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'BID'),
+			'band' => array(self::BELONGS_TO, 'Songs', 'bandid'),
+			'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'bid'),
 		);
 	}
 
@@ -60,14 +60,14 @@ class Bands extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'BANDID' => 'Bandid',
-			'BANDNAME' => 'Bandname',
-			'DESCRIPTION' => 'Description',
-			'IMAGEPATH' => 'Imagepath',
-			'META_TITLE' => 'MetaTitle',
-			'META_DESCRIPTION' => 'MetaDescription',
-			'META_KEYWORDS' => 'MetaKeyword',
-			'LANG' => 'lang',
+			'bandid' => 'Bandid',
+			'bandname' => 'Bandname',
+			'description' => 'Description',
+			'imagepath' => 'Imagepath',
+			'meta_title' => 'MetaTitle',
+			'meta_description' => 'MetaDescription',
+			'meta_keywords' => 'MetaKeyword',
+			'lang' => 'lang',
 		);
 	}
 
@@ -89,10 +89,10 @@ class Bands extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('BANDID',$this->BANDID,true);
-		$criteria->compare('BANDNAME',$this->BANDNAME,true);
-		$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
-		$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
+		$criteria->compare('bandid',$this->bandid,true);
+		$criteria->compare('bandname',$this->bandname,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('imagepath',$this->imagepath,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

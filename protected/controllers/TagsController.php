@@ -81,7 +81,7 @@ class TagsController extends Controller
 		{
 			$model->attributes=$_POST['Tags'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->TAGID));
+				$this->redirect(array('view','id'=>$model->tagid));
 		}
 
 		$this->render('create',array(
@@ -105,7 +105,7 @@ class TagsController extends Controller
 		{
 			$model->attributes=$_POST['Tags'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->TAGID));
+				$this->redirect(array('view','id'=>$model->tagid));
 		}
 
 		$this->render('update',array(
@@ -149,17 +149,17 @@ class TagsController extends Controller
 
 			foreach($filterTags as $tag)
 			{
-				if(!file_exists ( $tag->IMAGEPATH ))
+				if(!file_exists ( $tag->imagepath ))
 				{
-					$tag->IMAGEPATH = "images/stai-music.jpg";	
+					$tag->imagepath = "images/stai-music.jpg";	
 				}
 			}
 			
 			$dataProvider=new CArrayDataProvider($filterTags, array(
-				'id'=>'TAGID',
+				'id'=>'tagid',
 				'sort'=>array(
         			'attributes'=>array(
-             			'TAGNAME',
+             			'tagname',
         			),
     			),
 			));
@@ -170,7 +170,7 @@ class TagsController extends Controller
 	
 	public function actionSearchRender()
 	{
-		echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionSearchRenderer"),'vardump');
 		//$dataProvider = commonSearch();
 		//echo Yii::trace(CVarDumper::dumpAsString($searchField),'vardump');
 		
@@ -185,8 +185,8 @@ class TagsController extends Controller
 	public function replaceDefaultImage($dbArray)
 	{
 		foreach($dbArray as $dbObj){
-			if(!file_exists ( $dbObj->IMAGEPATH )) {
-				$dbObj->IMAGEPATH = "images/stai-music.jpg";	
+			if(!file_exists ( $dbObj->imagepath )) {
+				$dbObj->imagepath = "images/stai-music.jpg";	
 			}
 		}
 	}
@@ -194,13 +194,13 @@ class TagsController extends Controller
 	public function shortPlistTitle($plists)
 	{
 		foreach($plists as $plist){
-			$titleTrimmed = trim($plist->PLTITLE);
+			$titleTrimmed = trim($plist->pltitle);
 			if(strlen($titleTrimmed)>16){
 				$shortTitle = substr($titleTrimmed, 0, 16) . " ...";
 			}else{
 				$shortTitle = $titleTrimmed; 
 			}
-			$plist->PLTITLE = $shortTitle;
+			$plist->pltitle = $shortTitle;
 		}
 	}
 	
@@ -208,7 +208,7 @@ class TagsController extends Controller
 	{
 		$output='';
 		if(isset($_GET['tagNameMatch'])){
-			echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
 			try{
 				$tagNameMatch = $_GET['tagNameMatch'];
 				$articles_it = array (TagsController::C_IL, 
@@ -235,7 +235,7 @@ class TagsController extends Controller
 				if($filterTagsLen>0 && $filterTagsLen<10){
 					$filterTagsLimit = 10 - $filterTagsLen;
 					$filterTagsLast = end($filterTags);
-					$tagname = $filterTagsLast['TAGNAME'];
+					$tagname = $filterTagsLast['tagname'];
 					//$sqlOtherTags = mysql_real_escape_string("SELECT * FROM tags WHERE tagname >  '" . $tagname . "' ORDER BY TAGNAME LIMIT 0, ".$filterTagsLimit); //todo check
 					//$otherTags =  Yii::app()->db->createCommand($sqlOtherTags)->queryAll();
 					$otherTags = Tags::model()->findAll(array(
@@ -257,7 +257,7 @@ class TagsController extends Controller
 				if($filterPlistLen>0 && $filterPlistLen<10){
 					$filterPlistLimit = 10 - $filterPlistLen;
 					$filterPlistLast = end($filterPlist);
-					$plTitle = $filterPlistLast['PLTITLE'];
+					$plTitle = $filterPlistLast['pltitle'];
 					$otherPlists = Playlists::model()->findAll(array(
 							'condition'=>'pltitle>:pltitle',
 							'params'=>array(':pltitle'=>$plTitle),
@@ -278,7 +278,7 @@ class TagsController extends Controller
 				if($filterGenLen>0 && $filterGenLen<10){
 					$filterGenLimit = 10 - $filterGenLen;
 					$filterGenLast = end($filterGen);
-					$genName = $filterGenLast['GENRENAME'];
+					$genName = $filterGenLast['genrename'];
 					$otherGenres = Genres::model()->findAll(array(
 							'condition'=>'genrename>:genrename',
 							'params'=>array(':genrename'=>$genName),
@@ -323,15 +323,15 @@ class TagsController extends Controller
 						return;
 					}else{
 						foreach($filterTags as $tag) {
-							if(!file_exists ( $tag->IMAGEPATH )) {
-								$tag->IMAGEPATH = "images/stai-music.jpg";	
+							if(!file_exists ( $tag->imagepath )) {
+								$tag->imagepath = "images/stai-music.jpg";	
 							}
 						}
 						$dataProvider=new CArrayDataProvider($filterTags, array(
-							'id'=>'GENREID',
+							'id'=>'genreid',
 							'sort'=>array(
         					'attributes'=>array(
-             					'GENRENAME',
+             					'genrename',
         						),
     						),
 						));
@@ -341,15 +341,15 @@ class TagsController extends Controller
 					}
 				}else{
 					foreach($filterTags as $tag) {
-						if(!file_exists ( $tag->IMAGEPATH )) {
-							$tag->IMAGEPATH = "images/stai-music.jpg";	
+						if(!file_exists ( $tag->imagepath )) {
+							$tag->imagepath = "images/stai-music.jpg";	
 						}
 					}
 					$dataProvider=new CArrayDataProvider($filterTags, array(
-					'id'=>'PLID',
+					'id'=>'plid',
 					'sort'=>array(
         				'attributes'=>array(
-             				'PLTITLE',
+             				'pltitle',
         					),
     					),
 					));
@@ -359,15 +359,15 @@ class TagsController extends Controller
 				}	
 			}else{
 				foreach($filterTags as $tag) {
-					if(!file_exists ( $tag->IMAGEPATH )) {
-						$tag->IMAGEPATH = "images/stai-music.jpg";	
+					if(!file_exists ( $tag->imagepath )) {
+						$tag->imagepath = "images/stai-music.jpg";	
 					}
 				}
 				$dataProvider=new CArrayDataProvider($filterTags, array(
-					'id'=>'TAGID',
+					'id'=>'tagid',
 					'sort'=>array(
         				'attributes'=>array(
-             				'TAGNAME',
+             				'tagname',
         				),
     				),
 				));

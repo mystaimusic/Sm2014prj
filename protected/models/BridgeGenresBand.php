@@ -31,12 +31,12 @@ class BridgeGenresBand extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('GID, BID', 'required'),
-			array('PERCENTAGE', 'numerical'),
-			array('GID, BID', 'length', 'max'=>11),
+			array('gid, bid', 'required'),
+			array('percentage', 'numerical'),
+			array('gid, bid', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, GID, BID, PERCENTAGE', 'safe', 'on'=>'search'),
+			array('id, gid, bid, percentage', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +48,8 @@ class BridgeGenresBand extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'b' => array(self::BELONGS_TO, 'Bands', 'BID'),
-			'g' => array(self::BELONGS_TO, 'Genres', 'GID'),
+			'b' => array(self::BELONGS_TO, 'Bands', 'bid'),
+			'g' => array(self::BELONGS_TO, 'Genres', 'gid'),
 		);
 	}
 
@@ -59,10 +59,10 @@ class BridgeGenresBand extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'GID' => 'Gid',
-			'BID' => 'Bid',
-			'PERCENTAGE' => 'Percentage',
+			'id' => 'ID',
+			'gid' => 'Gid',
+			'bid' => 'Bid',
+			'percentage' => 'Percentage',
 		);
 	}
 
@@ -84,10 +84,10 @@ class BridgeGenresBand extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID,true);
-		$criteria->compare('GID',$this->GID,true);
-		$criteria->compare('BID',$this->BID,true);
-		$criteria->compare('PERCENTAGE',$this->PERCENTAGE);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('gid',$this->gid,true);
+		$criteria->compare('bid',$this->bid,true);
+		$criteria->compare('percentage',$this->percentage);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

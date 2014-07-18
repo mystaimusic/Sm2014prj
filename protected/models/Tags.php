@@ -30,12 +30,12 @@ class Tags extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('TAGNAME', 'required'),
-			array('TAGNAME, IMAGEPATH', 'length', 'max'=>64),
-			array('DESCRIPTION', 'length', 'max'=>128),
+			array('tagname', 'required'),
+			array('tagname, IMAGEPATH', 'length', 'max'=>64),
+			array('description', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('TAGID, TAGNAME, DESCRIPTION, IMAGEPATH', 'safe', 'on'=>'search'),
+			array('tagid, tagname, description, imagepath', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +48,8 @@ class Tags extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			//'bridgeTagsPls' => array(self::HAS_MANY, 'BridgeTagsPl', 'TAGID'),
-			'playlists' => array(self::MANY_MANY, 'Playlists', 'bridge_tags_pl(TAGID,PLID)'),
-			'genres' => array(self::MANY_MANY, 'Genres', 'bridge_genres_tags(TID,GID)', 'limit'=>'5'),
+			'playlists' => array(self::MANY_MANY, 'Playlists', 'bridge_tags_pl(tagid,plid)'),
+			'genres' => array(self::MANY_MANY, 'Genres', 'bridge_genres_tags(tid,gid)', 'limit'=>'5'),
 		);
 	}
 
@@ -59,16 +59,16 @@ class Tags extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'TAGID' => 'Tagid',
-			'TAGNAME' => 'Tagname',
-			'DESCRIPTION' => 'Description',
-			'IMAGEPATH' => 'Imagepath',
-			'META_TITLE' => 'MetaTitle',
-			'META_DESCRIPTION' => 'MetaDescription',
-			'META_KEYWORDS' => 'MetaKeyword',
-			'LANG' => 'Lang',
-			'INSERT_DATE' => 'InsertData',
-			'FEATURED' => 'Featured',
+			'tagid' => 'Tagid',
+			'tagname' => 'Tagname',
+			'description' => 'Description',
+			'imagepath' => 'Imagepath',
+			'meta_title' => 'MetaTitle',
+			'meta_description' => 'MetaDescription',
+			'meta_keywords' => 'MetaKeyword',
+			'lang' => 'Lang',
+			'insert_date' => 'InsertData',
+			'featured' => 'Featured',
 		);
 	}
 	
@@ -99,7 +99,7 @@ class Tags extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		//$criteria->compare('TAGID',$this->TAGID,true);
-		$criteria->compare('TAGNAME',$this->TAGNAME,true);
+		$criteria->compare('tagname',$this->tagname,true);
 		//$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
 		//$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
 

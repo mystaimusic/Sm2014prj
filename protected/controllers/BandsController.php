@@ -71,7 +71,7 @@ class BandsController extends Controller
 		{
 			$model->attributes=$_POST['Bands'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->BANDID));
+				$this->redirect(array('view','id'=>$model->bandid));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class BandsController extends Controller
 		{
 			$model->attributes=$_POST['Bands'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->BANDID));
+				$this->redirect(array('view','id'=>$model->bandid));
 		}
 
 		$this->render('update',array(

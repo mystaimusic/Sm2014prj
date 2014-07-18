@@ -30,11 +30,11 @@ class BridgeTagsPl extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('TAGID, PLID', 'required'),
-			array('TAGID, PLID', 'length', 'max'=>11),
+			array('tagid, plid', 'required'),
+			array('tagid, plid', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('TPID, TAGID, PLID', 'safe', 'on'=>'search'),
+			array('tpid, tagid, plid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,8 +46,8 @@ class BridgeTagsPl extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tAG' => array(self::BELONGS_TO, 'Tags', 'TAGID'),
-			'pL' => array(self::BELONGS_TO, 'Playlists', 'PLID'),
+			'tAG' => array(self::BELONGS_TO, 'Tags', 'tagid'),
+			'pL' => array(self::BELONGS_TO, 'Playlists', 'plid'),
 		);
 	}
 
@@ -57,9 +57,9 @@ class BridgeTagsPl extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'TPID' => 'Tpid',
-			'TAGID' => 'Tagid',
-			'PLID' => 'Plid',
+			'tpid' => 'Tpid',
+			'tagid' => 'Tagid',
+			'plid' => 'Plid',
 		);
 	}
 
@@ -81,9 +81,9 @@ class BridgeTagsPl extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('TPID',$this->TPID,true);
-		$criteria->compare('TAGID',$this->TAGID,true);
-		$criteria->compare('PLID',$this->PLID,true);
+		$criteria->compare('tpid',$this->tpid,true);
+		$criteria->compare('tagid',$this->tagid,true);
+		$criteria->compare('plid',$this->plid,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

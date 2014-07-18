@@ -66,14 +66,14 @@ class PlaylistsController extends Controller
 		$plist = $this->loadModel($id);
 		
 		$dataProvider=new CArrayDataProvider($plist, array(
-				'id'=>'PLID',
+				'id'=>'plid',
 		));
 		$pls = $dataProvider->rawData;
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionView2"),'vardump');
 		
 		$tags = $pls->tags;
 		//echo Yii::trace(CVarDumper::dumpAsString($tags[0]->TAGID),'vardump');
-		$tagid = $tags[0]->TAGID;
+		$tagid = $tags[0]->tagid;
 		$randSugTags = $this->getRandomSuggestedTags($tagid);
 		
 		//get random genres
@@ -83,7 +83,7 @@ class PlaylistsController extends Controller
 			'pls' => $pls,
 			'suggestedTags'=>$randSugTags,
 			'randomGenres'=> $randomGenres,
-			'imagePath'=>$pls->IMAGEPATH,
+			'imagePath'=>$pls->imagepath,
 			'oneRecord'=>true,
 		));
 	}
@@ -92,8 +92,8 @@ class PlaylistsController extends Controller
     {
     	Yii::app()->user->setState('ACTION_CLK', 'PLTAG');
         $tag=Tags::model()->findByPk($id);
-        $tagname=$tag->TAGNAME;
-        $imagePath = Utilities::replaceDefaultImage($tag->IMAGEPATH);
+        $tagname=$tag->tagname;
+        $imagePath = Utilities::replaceDefaultImage($tag->imagepath);
         echo Yii::trace(CVarDumper::dumpAsString($imagePath),'vardump');
         //$imagePath=$tag->IMAGEPATH;
         $pls=$tag->playlists;
@@ -107,7 +107,7 @@ class PlaylistsController extends Controller
         	if($genSize>0){ 
 	        	$sql = $sql . " where genreid not in (";
 	        	foreach($genres as $genre){
-	        		$genid = $genre['GENREID'];
+	        		$genid = $genre['genreid'];
 	        		if($count==0){
 	        			$tmpVar = $genid;
 	        		}else{
@@ -138,7 +138,7 @@ class PlaylistsController extends Controller
     }
     
     private function getRandomSuggestedTags($tagid){
-    	$sqlRandomTags = "SELECT TAGID, TAGNAME, DESCRIPTION, IMAGEPATH FROM tags WHERE TAGID NOT IN (:tagid) ORDER BY RAND() LIMIT 0, 5";
+    	$sqlRandomTags = "SELECT tagid, tagname, description, imagepath FROM tags WHERE tagid NOT IN (:tagid) ORDER BY RAND() LIMIT 0, 5";
 		$randSugTags = Tags::model()->findAllBySql($sqlRandomTags, array(':tagid'=>$tagid));
 		return $randSugTags;
     }
@@ -165,7 +165,7 @@ class PlaylistsController extends Controller
 		{
 			$model->attributes=$_POST['Playlists'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->PLID));
+				$this->redirect(array('view','id'=>$model->plid));
 		}
 
 		$this->render('create',array(
@@ -189,7 +189,7 @@ class PlaylistsController extends Controller
 		{
 			$model->attributes=$_POST['Playlists'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->PLID));
+				$this->redirect(array('view','id'=>$model->plid));
 		}
 
 		$this->render('update',array(

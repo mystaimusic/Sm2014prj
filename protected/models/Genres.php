@@ -30,12 +30,12 @@ class Genres extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('GENRENAME', 'required'),
-			array('GENRENAME, IMAGEPATH', 'length', 'max'=>64),
-			array('DESCRIPTION', 'length', 'max'=>128),
+			array('genrename', 'required'),
+			array('genrename, imagepath', 'length', 'max'=>64),
+			array('description', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('GENREID, GENRENAME, DESCRIPTION, IMAGEPATH', 'safe', 'on'=>'search'),
+			array('genreid, genrename, description, imagepath', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +48,8 @@ class Genres extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			//'bridgeGenresBands' => array(self::HAS_MANY, 'BridgeGenresBand', 'GID'),
-			'tags' => array(self::MANY_MANY,'Tags', 'bridge_genres_tags(GID,TID)'),
-			'bands' => array(self::MANY_MANY, 'Bands', 'bridge_genres_band(GID,BID)'),
+			'tags' => array(self::MANY_MANY,'Tags', 'bridge_genres_tags(gid,tid)'),
+			'bands' => array(self::MANY_MANY, 'Bands', 'bridge_genres_band(gid,bid)'),
 		);
 	}
 
@@ -59,16 +59,16 @@ class Genres extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'GENREID' => 'Genreid',
-			'GENRENAME' => 'Genrename',
-			'DESCRIPTION' => 'Description',
-			'IMAGEPATH' => 'Imagepath',
-			'META_TITLE' => 'MetaTitle',
-			'META_DESCRIPTION' => 'MetaDescription',
-			'META_KEYWORDS' => 'MetaKeyword',
-			'LANG' => 'Lang',
-			'INSERT_DATE' => 'InsertData',
-			'FEATURED' => 'Featured',
+			'genreid' => 'Genreid',
+			'genrename' => 'Genrename',
+			'description' => 'Description',
+			'imagepath' => 'Imagepath',
+			'meta_title' => 'MetaTitle',
+			'meta_description' => 'MetaDescription',
+			'meta_keywords' => 'MetaKeyword',
+			'lang' => 'Lang',
+			'insert_date' => 'InsertData',
+			'featured' => 'Featured',
 		);
 	}
 
@@ -90,10 +90,10 @@ class Genres extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('GENREID',$this->GENREID,true);
-		$criteria->compare('GENRENAME',$this->GENRENAME,true);
-		$criteria->compare('DESCRIPTION',$this->DESCRIPTION,true);
-		$criteria->compare('IMAGEPATH',$this->IMAGEPATH,true);
+		$criteria->compare('genreid',$this->genreid,true);
+		$criteria->compare('genrename',$this->genrename,true);
+		$criteria->compare('description',$this->description,true);
+		$criteria->compare('imagepath',$this->imagepath,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

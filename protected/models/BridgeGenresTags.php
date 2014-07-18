@@ -31,11 +31,11 @@ class BridgeGenresBand extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('GID, TID', 'required'),
-			array('GID, TID', 'length', 'max'=>11),
+			array('gid, tid', 'required'),
+			array('gid, tid', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ID, GID, TID', 'safe', 'on'=>'search'),
+			array('id, gid, tid', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,9 +47,9 @@ class BridgeGenresBand extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'b' => array(self::BELONGS_TO, 'Bands', 'BID'),
-			'g' => array(self::BELONGS_TO, 'Genres', 'GID'),
-			't' => array(self::BELONGS_TO, 'Tags', 'TID'),
+			'b' => array(self::BELONGS_TO, 'Bands', 'bid'),
+			'g' => array(self::BELONGS_TO, 'Genres', 'gid'),
+			't' => array(self::BELONGS_TO, 'Tags', 'tid'),
 		);
 	}
 
@@ -59,9 +59,9 @@ class BridgeGenresBand extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ID' => 'ID',
-			'GID' => 'Gid',
-			'TID' => 'Tid',
+			'id' => 'ID',
+			'gid' => 'Gid',
+			'tid' => 'Tid',
 		);
 	}
 
@@ -83,9 +83,9 @@ class BridgeGenresBand extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ID',$this->ID,true);
-		$criteria->compare('GID',$this->GID,true);
-		$criteria->compare('TID',$this->TID,true);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('gid',$this->gid,true);
+		$criteria->compare('tid',$this->tid,true);
 		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -18,7 +18,7 @@ class Utilities{
 	public static function replaceDefaultImageArray($_imgInputArray)
 	{
 		foreach( $_imgInputArray as $_imgInput){
-			$_tmpImagePath = Utilities::replaceDefaultImage($_imgInput['IMAGEPATH']);
+			$_tmpImagePath = Utilities::replaceDefaultImage($_imgInput['imagepath']);
 		}
 	}
 	
