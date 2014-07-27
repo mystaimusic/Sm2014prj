@@ -28,18 +28,18 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$countryCode = Yii::app()->user->getState('countryCode');
-		if($countryCode==null){
-			if(isset($_REQUEST['langInput'])){
-				$countryCode = $_REQUEST['langInput'];
-			}else{
-				//get it from the ip addr
-				$countryCode = 'IT';
-			}
-			
+		$countryCode =Yii::app()->language;
+		if(Yii::app()->language=='it_it'){
+			$countryCode = 'it';
 		}
+		if(Yii::app()->language=='en_us'){
+			$countryCode = 'en';
+		}
+		if(Yii::app()->language=='es_es'){
+			$countryCode = 'es';
+		}
+		//echo Yii::trace(CVarDumper::dumpAsString("-------------> SiteController: countryCode"),'vardump');
+		//echo Yii::trace(CVarDumper::dumpAsString($countryCode),'vardump');
 		
 		$orderByTag = 'RAND()';
 		$orderByPl = 'RAND()';
@@ -129,6 +129,26 @@ class SiteController extends Controller
 		$orderByRandBtn = $orderByRandBtnTab->label;
 		$orderByAlphaBtnTab = LabelsTable::model()->findByPk(array('label_key'=>'ALPHA_ORDER_BTN','language'=>$countryCode)); // TEST
 		$orderByAlphaBtn = $orderByAlphaBtnTab->label;
+		$orderByLabelTab = LabelsTable::model()->findByPk(array('label_key'=>'ORDERBY1','language'=>$countryCode));
+		$orderByLabel = $orderByLabelTab->label;
+		
+		/*$categ = 'HOMEPAGE';
+		$labelCriteria = new CDbCriteria();
+		$labelCriteria->condition = "category='HOMEPAGE' AND language='".$countryCode."'";
+		
+		$labels = LabelsTable::model()->findAll($labelCriteria);
+		
+		$hpLabels = array();
+		foreach($labels as $label)
+		{
+			$hpLabKey = $label->label_key;
+			$hpLabels[$hpLabKey]=$label->label;
+		}
+		Yii::app()->user->setState('HPLABELS',$hpLabels);*/
+		$this->setLabelsInSession('HPLABELS', 'HOMEPAGE', $countryCode);
+		$this->setLabelsInSession('CTLABELS', 'CONTACT', $countryCode);
+		$this->setLabelsInSession('ABLABELS', 'ABOUT', $countryCode);
+		$this->setLabelsInSession('NTLABELS', 'NOTE', $countryCode);
 		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
@@ -138,6 +158,7 @@ class SiteController extends Controller
 			'mainsearch'=> $mainsearch,
 			'orderbyrandbtn'=>$orderByRandBtn,
 			'orderbyalphabtn'=>$orderByAlphaBtn,
+			'orderByLabel'=>$orderByLabel,
 		));
 	}
 
@@ -145,6 +166,23 @@ class SiteController extends Controller
 	{
 		
 	}
+	
+	public function setLabelsInSession($sessionKey, $category, $countryCode)
+	{
+		$labelCriteria = new CDbCriteria();
+		$labelCriteria->condition = "category='".$category."' AND language='".$countryCode."'";
+		
+		$labels = LabelsTable::model()->findAll($labelCriteria);
+		
+		$hpLabels = array();
+		foreach($labels as $label)
+		{
+			$hpLabKey = $label->label_key;
+			$hpLabels[$hpLabKey]=$label->label;
+		}
+		Yii::app()->user->setState($sessionKey,$hpLabels);
+	}
+	
 	
 	//this is an ajax call
 	public function actionGetNextTag($currentPage,$type)

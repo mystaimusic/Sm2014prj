@@ -2,13 +2,14 @@
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
-
+//Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Staimusic',
 
+	
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -20,7 +21,16 @@ return array(
 
 	'defaultController'=>'Site',
 
-	'modules'=>array(
+	'sourceLanguage' => 'it_it',
+	
+	'behaviors'=>array(
+		'onBeginRequest' => array(
+			'class' => 'application.components.behaviors.BeginRequest'
+		),
+	),
+		
+		
+	/*'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
 		'gii'=>array(
@@ -30,7 +40,13 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		
-	),
+	),*/
+		
+		
+	/*'messages' => array(
+			
+			'class' => 'CPhpMessageSource'
+		),*/
 
 	// application components
 	'components'=>array(
@@ -38,14 +54,26 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		
+		/*'bootstrap'=>array(
+			'class'=>'bootstrap.components.Bootstrap',
+		),*/
 		// uncomment the following to enable URLs in path-format
 		
+		/*'request'=>array(
+				'enableCookieValidation'=>true,
+				'enableCsrfValidation'=>true,
+		),*/
+		
 		'urlManager'=>array(
+			//'class'=>'application.components.UrlManager',
 			'urlFormat'=>'path',
+			//'showScriptName'=>false,
 			'rules'=>array(
 				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				//'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				//'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+				
 				
 				//http://localhost/SM3/index.php/Playlists/viewPlPerTag/id/22		
 				//array(
@@ -55,10 +83,11 @@ return array(
 				//'Playlists/viewPlPerTag/<id:\d+>' => 'musica/tag/<title:\w+>',
 				//'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
 				//'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>'
+				'/www.staimusic.com/index.php'=>'Site/index',
 				'tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
-				//'tag-musica/anni-60_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
 				'playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
 				'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
+				
 			),
 		),
 		
@@ -76,7 +105,7 @@ return array(
 		),*/
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=127.0.0.1;dbname=Sql273343_3',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=sql406570_1',
 			//'connectionString' => 'mysql:host=127.0.0.1;dbname=smdb',
 			'emulatePrepare' => true,
 			'username' => 'testuser',
@@ -114,5 +143,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'languages'=>array('it_it'=>'Italiano', 'en_us'=>'English', 'es_es'=>'Espagnol'),
 	),
 );

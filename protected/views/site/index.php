@@ -1,7 +1,10 @@
 <div class="container darkbg">
   <div id="headercont">
+  
    <div id="mod_mainsearch">
-   		<div id="search" class="header-answer"><?php echo $mainsearch; ?></div>
+   		<div id="search" class="header-answer"><?php 
+   		$transl = Yii::t('msg','Cosa ti fa ballare e battere il cuore?');
+   		echo $transl; ?></div>
        <!-- <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div> -->
        <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'>Go</button></div>
    </div><!-- mod_mainsearch -->
@@ -163,7 +166,7 @@
 	</div>
   
 <div id="maincenter">
-Sei stanco di non sapere che musica ascoltare? Sei stufo di sentire sempre musica di basso profilo?<br />
+  Sei stanco di non sapere che musica ascoltare? Sei stufo di sentire sempre musica di basso profilo?<br />
 Scopri nuova musica e ascolta musica di qualit&agrave;; fatti trasportare in viaggi sonori attraverso il tempo e lo spazio.<br />
 Staimusic ti permette di riscoprire canzoni famose sotto una nuova luce, di ascoltare e vedere video musicali selezionati per te.<br />
 Fatti condurre alla ricerca di quello che ti piace, alla ricerca dell'orgasmo sonoro.<br />
@@ -171,6 +174,7 @@ Segui le nostre playlist e partendo da esse esplora gruppi, generi, tematiche, i
 Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, storia, concetti, rivoluzione, una potente droga che ci stimola la vita.<br /><br />
 
 <h1>Non perdere tempo, collegati e vivi la musica!</h1>
+
 </div><!--maincenter-->
 </div><!--maincont-->
 </div><!--container-->

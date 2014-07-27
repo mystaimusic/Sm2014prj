@@ -91,6 +91,7 @@ class PlaylistsController extends Controller
 	public function actionViewPlPerTag($id/*,$tagname,$imagePath*/)
     {
     	Yii::app()->user->setState('ACTION_CLK', 'PLTAG');
+    	
         $tag=Tags::model()->findByPk($id);
         $tagname=$tag->tagname;
         $imagePath = Utilities::replaceDefaultImage($tag->imagepath);
