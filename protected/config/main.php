@@ -21,7 +21,7 @@ return array(
 
 	'defaultController'=>'Site',
 
-	'sourceLanguage' => 'it_it',
+	'sourceLanguage' => 'en_us',
 	
 	'behaviors'=>array(
 		'onBeginRequest' => array(
@@ -143,6 +143,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-		'languages'=>array('it_it'=>'Italiano', 'en_us'=>'English', 'es_es'=>'Espagnol'),
+		'languages'=>array('it_it'=>'Italian', 'en_us'=>'English', 'es_es'=>'Spanish'),
 	),
 );
