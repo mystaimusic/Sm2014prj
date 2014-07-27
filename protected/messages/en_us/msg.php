@@ -5,7 +5,7 @@
 		'NOTE' => 'NOTE',
 		'LOGIN' => 'LOGIN',
 		'CONTACT' => 'CONTACT',
-		'Cosa ti fa ballare e battere il cuore?' => 'What makes you dance and your heart beat?',
+		'What makes you dance and your heart beat?' => 'What makes you dance and your heart beat?',
 		'Contattaci' => 'Contact us',
 		'Inviaci una mail attraverso la form' => 'Send us an email through the form',
 		'Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi'=>'Our staff is deployed in several countries, contact us for information and if you want to collaborate with us',
