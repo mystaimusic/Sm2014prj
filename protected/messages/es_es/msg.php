@@ -1,10 +1,10 @@
 <?php
 	return array(
 		'HOME' => 'INCIO',
-		'ABOUT' => 'ABOUT',
-		'NOTE' => 'NOTE',
+		'ABOUT' => 'ACERCA DE',
+		'NOTE' => 'LEGAL',
 		'LOGIN' => 'LOGIN',
-		'CONTACT' => 'CONTACT',
+		'CONTACT' => 'CONTACTENOS',
 		'Cosa ti fa ballare e battere il cuore?' => 'Que te hace bailar y batir el corazón?',
 		'Contattaci' => 'Contáctenos',
 		'Inviaci una mail attraverso la form' => 'Envíenos un correo electrónico a través del formulario',
