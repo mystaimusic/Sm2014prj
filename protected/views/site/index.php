@@ -6,7 +6,9 @@
    		$transl = Yii::t('msg','What makes you dance and your heart beat?');
    		echo $transl; ?></div>
        <!-- <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div> -->
-       <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'>Go</button></div>
+       <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'><?php 
+   		$transl = Yii::t('msg','Go!');
+   		echo $transl; ?></button></div>
    </div><!-- mod_mainsearch -->
   </div><!-- headercont -->
 </div><!-- container -->
@@ -175,7 +177,7 @@ Fatti condurre alla ricerca di quello che ti piace, alla ricerca dell'orgasmo so
 Segui le nostre playlist e partendo da esse esplora gruppi, generi, tematiche, idee e mode.<br />
 Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, storia, concetti, rivoluzione, una potente droga che ci stimola la vita.<br /><br />
 
-<h1>Non perdere tempo, collegati e vivi la musica!</h1>
+<h1><?php echo Yii::t('msg','Homepage slogan')?></h1>
 
 </div><!--maincenter-->
 </div><!--maincont-->
