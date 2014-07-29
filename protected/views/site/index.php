@@ -170,13 +170,7 @@
 	</div>
   
 <div id="maincenter">
-  Sei stanco di non sapere che musica ascoltare? Sei stufo di sentire sempre musica di basso profilo?<br />
-Scopri nuova musica e ascolta musica di qualit&agrave;; fatti trasportare in viaggi sonori attraverso il tempo e lo spazio.<br />
-Staimusic ti permette di riscoprire canzoni famose sotto una nuova luce, di ascoltare e vedere video musicali selezionati per te.<br />
-Fatti condurre alla ricerca di quello che ti piace, alla ricerca dell'orgasmo sonoro.<br />
-Segui le nostre playlist e partendo da esse esplora gruppi, generi, tematiche, idee e mode.<br />
-Perch&egrave; la musica non &egrave; solo puro ascolto, &egrave; pensiero, storia, concetti, rivoluzione, una potente droga che ci stimola la vita.<br /><br />
-
+  <?php echo Yii::t('msg','Homepage text')?>
 <h1><?php echo Yii::t('msg','Homepage slogan')?></h1>
 
 </div><!--maincenter-->
