@@ -8,6 +8,7 @@
 		'What makes you dance and your heart beat?' => 'What makes you dance and your heart beat?',
 		'Select:' => 'Select:',
 		'Go!' => 'Find',
+		'Homepage text' => 'Are you tired of listening always the same insipid radios? Are you bored to hear low profile music? Discover new music, listen selected sounds, get the music to travel you through years and fantastic worlds, get Staimusic to lead you to in the difficult research of your passions. Follow our playlists and starting from them explore groups, genres, themes, ideas and fashions. The music is not just a pure listening, it’s thinking, it’s history, it’s concepts, it\'s revolution, it’s a powerful drug that stimulates us in everyday life: enjoy it!.',
 		'Homepage slogan' => 'Do not waste time, connect and live the music!',
 		'Contact us' => 'Contact us',
 		'Inviaci una mail attraverso la form' => 'Send us an email through the form',
