@@ -8,6 +8,7 @@
 		'What makes you dance and your heart beat?' => 'Que te hace bailar y batir el corazón?',
 		'Select:' => 'Explora:',
 		'Go!' => 'Busca',
+		'Homepage text' => '¿Está cansado de no saber qué música escuchar? ¿Estás harto de escuchar música de bajo perfil? Descubre nueva música y escucha música de calidad; dejate llevar en viajes sonoros a través del tiempo y del espacio. Staimusic te permite redescubrir canciones famosas bajo una nueva luz, escuchar y ver videos seleccionados para ti. Dejate conducir a la búsqueda de lo que te gusta, en busca del orgasmo sonoro. Sigue nuestra lista de reproducción y comenza a explorar grupos, géneros, temas, ideas y modas. Porque la música no es sólo pura audición, es pensiero, historia, conceptos, revolución, una poderosa droga que te estimula la vida.',
 		'Homepage slogan' => 'No perder el tiempo, conectate y vive la música!',
 		'Contattaci' => 'Contáctenos',
 		'Inviaci una mail attraverso la form' => 'Envíenos un correo electrónico a través del formulario',
