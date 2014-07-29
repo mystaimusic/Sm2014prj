@@ -26,7 +26,9 @@
    <div class="row_orderby">
 	<!--  Order by: <button id="orderByAlpha" type="button">Ordine Alfabetico</button> -->
 	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
-        <div class="col">Order by: </div>
+        <div class="col"><?php 
+   		$transl = Yii::t('msg','Select:');
+   		echo $transl; ?></div>
 
 	<div class="col">
          <input type="hidden" name="flagType" value="A">
