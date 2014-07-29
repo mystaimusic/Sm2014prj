@@ -3,7 +3,7 @@
   
    <div id="mod_mainsearch">
    		<div id="search" class="header-answer"><?php 
-   		$transl = Yii::t('msg','Cosa ti fa ballare e battere il cuore?');
+   		$transl = Yii::t('msg','What makes you dance and your heart beat?');
    		echo $transl; ?></div>
        <!-- <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div> -->
        <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'>Go</button></div>
