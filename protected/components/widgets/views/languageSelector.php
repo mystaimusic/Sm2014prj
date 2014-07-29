@@ -28,7 +28,7 @@
             ); 
         }
         //echo CHtml::dropDownList('_lang', $currentLang, array(
-        //		'it_it' => 'Italiano', 'en_us' => 'English', 'es_es' => 'Espagnol'), array('submit' => ''));
+        //		'it_it' => 'Italian', 'en_us' => 'English', 'es_es' => 'Spanish'), array('submit' => ''));
         ?>
     </div>
 <?php echo CHtml::endForm(); ?>
