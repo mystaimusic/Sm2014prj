@@ -143,6 +143,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-		'languages'=>array('en_us'=>'English','it_it'=>'Italian','es_es'=>'Spanish'),
+		'languages'=>array('en_us'=>'English','es_es'=>'Spanish','it_it'=>'Italian'),
 	),
 );
