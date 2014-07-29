@@ -7,6 +7,8 @@
 		'CONTACT' => 'CONTACT',
 		'What makes you dance and your heart beat?' => 'What makes you dance and your heart beat?',
 		'Select:' => 'Select:',
+		'Go!' => 'Find',
+		'Homepage slogan' => 'Do not waste time, connect and live the music!',
 		'Contact us' => 'Contact us',
 		'Inviaci una mail attraverso la form' => 'Send us an email through the form',
 		'Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi'=>'Our staff is deployed in several countries, contact us for information and if you want to collaborate with us',
