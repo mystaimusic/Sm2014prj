@@ -7,6 +7,8 @@
 		'CONTACT' => 'CONTÁCTENOS',
 		'What makes you dance and your heart beat?' => 'Que te hace bailar y batir el corazón?',
 		'Select:' => 'Explora:',
+		'Go!' => 'Busca',
+		'Homepage slogan' => 'No perder el tiempo, conectate y vive la música!',
 		'Contattaci' => 'Contáctenos',
 		'Inviaci una mail attraverso la form' => 'Envíenos un correo electrónico a través del formulario',
 		'Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi'=>'Nuestro personal está desplegado en varios países, póngase en contacto con nosotros para obtener información y si quieres colabo',
