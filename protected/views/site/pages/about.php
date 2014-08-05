@@ -20,7 +20,7 @@
     
 <div id="mainleft">
 <div class="mainleft_text">
-<p> <?php $transl = Yii::t('msg',Ozzy Osbourne: If it\'s too loud, you\'re too old');echo $transl; ?></div></p>
+<p> <?php $transl = Yii::t('msg','Ozzy Osbourne: If it\'s too loud, you\'re too old');echo $transl; ?></div></p>
 <h2><?php $transl = Yii::t('msg','STAIMUSIC is a streaming music service that want to give you the opportunity to listen, to watch and to discover the music.');echo $transl; ?></div></h2><br />
 <p><?php $transl = Yii::t('msg','It’s a project born in Milan (Italy) 2013; his main goal is to try to make a sound selection focused on the songs quality, based on the words power and founded on the refinement of the collections');echo $transl; ?></div> 
 </p><br />
