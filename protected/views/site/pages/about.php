@@ -20,24 +20,24 @@
     
 <div id="mainleft">
 <div class="mainleft_text">
-<h1>About</h1>
-<h2>STAIMUSIC &egrave; un servizio di musica e video musicali in streaming.</h2>
-<!-- <p>E' un progetto nato nel 2013 per cercare di fare una selezione sonora puntando sulla  qualit&agrave; delle canzoni, sulla potenza delle parole e sulla ricercatezza delle raccolte.  -->
-<p><?php echo Yii::t('msg','E` un progetto nato nel 2013 per cercare di fare una selezione sonora puntando sulla qualità delle canzoni, sulla potenza delle parole e sulla ricercatezza delle raccolte');?> 
+<p> <?php Yii::t('msg','Ozzy Osbourne: If it\'s too loud, you\'re too old');<br /></p>
+<h2><?php Yii::t('msg','STAIMUSIC is a streaming music service that want to give you the opportunity to listen, to watch and to discover the music.'); ></h2><br />
+<p><?php Yii::t('msg','Itâ€™s a project born in Milan (Italy) 2013; his main goal is to try to make a sound selection focused on the songs quality, based on the words power and founded on the refinement of the collections');?> 
 </p><br />
-
-<h2>L'immersione in STAIMUSIC &egrave;:</h2>
+<h2><?php Yii::t('msg','Diving in STAIMUSIC is:')></h2><br />
 <p>
-- <?php Yii::t('msg','ritrovare una via musicale personalizzata'); ?><br />
-- <?php Yii::t('msg','scoprire generi e epoche');?><br />
-- <?php Yii::t('msg','trovare il proprio gusto musicale');?><br />
-- <?php Yii::t('msg','ascoltare musica che fa vibrare corpi');?><br />
-- <?php Yii::t('msg','godersi abbinamenti musicali rari');?><br />
-- <?php Yii::t('msg','entrare nell`essenza della musica');?><br />
-- <?php Yii::t('msg','lasciarsi trasportare attraverso storie, citt&agrave; concetti, illusioni vecchie e d`avanguardia');?><br />
-<br /><br />
+- <?php Yii::t('msg','
+- to find a personalized way/r/n
+- to discover genres and ages
+- to discover your personal music taste
+- to listen to the music makes your body vibrate
+- to enjoy strange music combinations
+- to enter in the real musical essence 
+- to get you carry through stories, cities, concepts, old and avant-garde illusions 
+');?><br />
 
-Ozzy Osborne: &quot;Se la musica &egrave; troppo alta, tu sei troppo vecchio&quot;</p>
+<br /><br />
+</p>
 <br />
 
 
