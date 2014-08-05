@@ -7,7 +7,7 @@
    		echo $transl; ?></div>
        <!-- <div id="search" class="header-answer">Cosa ti fa ballare e battere il cuore?</div> -->
        <div class="header-form"><input type="text" class='search_input'/><button type="button" class='search_button'><?php 
-   		$transl = Yii::t('msg','Go!');
+   		$transl = Yii::t('msg','Find');
    		echo $transl; ?></button></div>
    </div><!-- mod_mainsearch -->
   </div><!-- headercont -->
@@ -170,8 +170,8 @@
 	</div>
   
 <div id="maincenter">
-  <?php echo Yii::t('msg','Homepage text')?>
-<h1><?php echo Yii::t('msg','Homepage slogan')?></h1>
+  <?php echo Yii::t('msg','Are you tired of listening always the same insipid radios? Are you bored to hear low profile music? Discover new music, listen selected sounds, get the music to travel you through years and fantastic worlds, get Staimusic to lead you to in the difficult research of your passions. Follow our playlists and starting from them explore groups, genres, themes, ideas and fashions. The music is not just a pure listening, it’s thinking, it’s history, it’s concepts, it\'s revolution, it’s a powerful drug that stimulates us in everyday life: enjoy it!.')?>
+<h1><?php echo Yii::t('msg','Do not waste time, connect and live the music!')?></h1>
 
 </div><!--maincenter-->
 </div><!--maincont-->
