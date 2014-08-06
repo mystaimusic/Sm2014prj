@@ -53,9 +53,9 @@
 
 <div class="search_box"> 
 <div id="search">
-<button type="button" class='search_button2'>Go</button>
+<button type="button" class='search_button2'><?php echo Yii::t('msg','Find')?></button>
 <input type="text" class='search_input2'/></div>
-<div class="search_text2">Ricerca libera</div>
+<div class="search_text2"><?php echo Yii::t('msg','WHICH IS YOUR FAVORITE BAND?')?></div>
 </div>
 <div id="result"></div>
 </div>
@@ -65,15 +65,16 @@
         
 <div id="mod_contlist">
 <div class="header">
-<span class="title"><h2>Searched Songs</h2></span></div>
-<div id="mainlist"></div><!--mainlist--> 
+<span class="title"><h2><?php echo Yii::t('msg','ON AIR - PROGRAMMING')?></h2></span></div>
+<div id="mainlist"></div><!--mainlist-->
 </div>
 <!--mod_contlist--> 
 <div class="mainleft_text">
-<h1>Radiotags: the STAIMUSIC selection of high quality music!</h1>
-<p>Are you tired of listening always the same insipid radios? Are you bored to hear low profile music?
-Discover new music, listen selected sounds, get the music to travel you through years and fantastic worlds, get Staimusic to lead you to in the difficult research of your passions.
-Follow our playlists and starting from them explore groups, genres, themes, ideas and fashions. The music is not just a pure listening, it’s thinking, it’s history, it’s concepts, it's revolution, it’s a powerful drug that stimulates us in everyday life: enjoy it!.</p>
+<h1><?php echo Yii::t('msg','STAIMUSIC, an easy way to discover music:')?></h1>
+<p>- <?php echo Yii::t('msg','You can click on a TAG to generate a continuos flux of related music')?></p>
+<p>- <?php echo Yii::t('msg','You can click on a PLAYLIST to find out a particolar point of view over the music evolution')?></p>
+<p>- <?php echo Yii::t('msg','You can click on a GENRE to listen to the most important songs that have conditioned that genre')?></p>
+<p>- <?php echo Yii::t('msg','If you have any suggestions about our musical choices, if you want to correct some errors, if you want to discuss about music, if you want to propose us a new playlist, please contact us!')?></p>
 </div><!--mainleft-->		
             
 </div><!--mainleft-->
@@ -94,7 +95,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </div><!--mod_playCOVER-->	
 <div class="mod_playlists">
 <div class="header">
-<span class="title"><h2>Our Bands</h2></span></div>
+<span class="title"><h2><?php echo Yii::t('msg','THE BANDS')?></h2></span></div>
 <div id="bandList" class="cont">
     	<?php
     		
@@ -110,7 +111,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </div><!--mod_playlists-->	
 
 <div class="suggested_cont">
-<div class="suggested_title">Tag suggeriti</div>
+<div class="suggested_title"><?php echo Yii::t('msg','DISCOVER RADIOTAG')?></div>
 <ul class="suggested">
 	<?php 
 		foreach($tags as $tag)
@@ -139,7 +140,7 @@ Follow our playlists and starting from them explore groups, genres, themes, idea
 </ul>  <br /><br /><br /><br />
 
 
- <div class="suggested_title">Playlist suggerite</div>
+ <div class="suggested_title"><?php echo Yii::t('msg','SUGGESTED PLAYLISTS')?></div>
 <ul class="suggested">
 	<?php
 		if(isset($plistsOut)){
