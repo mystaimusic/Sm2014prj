@@ -38,11 +38,18 @@
 		'SUGGESTED PLAYLISTS'=>'PLAYLISTS SUGERIDAS',
 		'LISTEN TO THE RELATED GENRES'=> 'ESCUCHA LOS GENEROS RELACIONADOS',
 		'DISCOVER RADIOTAG'=> 'DESCUBRE RADIOTAG',
-		'THE BANDS'=.'LOS GRUPOS',
-		'Contattaci' => 'Contáctenos',
-		'Inviaci una mail attraverso la form' => 'Envíenos un correo electrónico a través del formulario',
-		'Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi'=>'Nuestro personal está desplegado en varios países, póngase en contacto con nosotros para obtener información y si quieres colabo',
-		'Scrivici' => 'Email',
+		'THE BANDS'=>'LOS GRUPOS',
+		'Our staff is deployed in several countries, contact us for information and if you want to collaborate with us'=>'Nuestro personal está desplegado en varios países, póngase en contacto con nosotros para obtener información y si quieres colaborar con nosotros',
+		'Write us'=>'Email',
+		'For any further information please don\'t hesitate to contact us using the following form'=>'Para cualquiera duda o pregunta escríbenos a través de este formulario',
+		'Fields with'=>'Los campos con',
+		'are required'=>'son necesarios',
+		'name'=>'nombre',
+		'Verification code'=>'Código de verificación',
+		'Get a new code'=>'Elige otro codigo',
+		'Please enter the letters as they are shown in the image above.'=>'Por favor introduzca las letras como en la imagen',
+		'Letters are not case-sensitive.'=>'Las letras son sensibles a mayúsculas.',
+		
 	)
 
 ?>
