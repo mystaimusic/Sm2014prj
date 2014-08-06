@@ -38,7 +38,7 @@
 		'SUGGESTED PLAYLISTS'=>'PLAYLIST SUGGERITE',
 		'LISTEN TO THE RELATED GENRES'=> 'ASCOLTA I GENERI COLLEGATI',
 		'DISCOVER RADIOTAG'=> 'SCOPRI RADIOTAG',
-		'THE BANDS'=>'I GRUPPI',
+		'SELECTED BANDS'=>'I GRUPPI SELEZIONATI',
 		'Our staff is deployed in several countries, contact us for information and if you want to collaborate with us'=>'Il nostro staff è dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi',
 		'Write us'=>'Scrivici',
 		'For any further information please don\'t hesitate to contact us using the following form'=>'Per qualsiasi domanda o informazione non dubitare a contattarci',
