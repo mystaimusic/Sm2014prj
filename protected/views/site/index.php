@@ -57,7 +57,8 @@
 				<?php
 					echo CHtml::tag('ul', array('id'=>'myCarouselUl', 'class'=>'boxview'),false,false);
 					echo CHtml::tag('li', array(),false,false);
-					echo CHtml::image(Yii::app()->request->baseUrl."/images/tag-musicali.jpg");
+					$currLang = Yii::app()->language;
+					echo CHtml::image(Yii::app()->request->baseUrl."/images/tag_".$currLang.".jpg");
 					echo CHtml::closeTag('li');
 					foreach($dataProvider->getData() as $tag)
 					{
@@ -100,7 +101,7 @@
 		
 		echo CHtml::tag('ul', array('id'=>'myCarousel-plistUl','class'=>'boxview3'),false,false);
 		echo CHtml::tag('li', array(),false,false);
-		echo CHtml::image(Yii::app()->request->baseUrl."/images/playlist-musicali.jpg");
+		echo CHtml::image(Yii::app()->request->baseUrl."/images/playlist_".$currLang.".jpg");
 		echo CHtml::closeTag('li');
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
