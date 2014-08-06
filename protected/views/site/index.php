@@ -170,8 +170,8 @@
 	</div>
   
 <div id="maincenter">
-  <?php echo Yii::t('msg','Are you tired of listening always the same insipid radios? Are you bored to hear low profile music? Discover new music, listen selected sounds, get the music to travel you through years and fantastic worlds, get Staimusic to lead you to in the difficult research of your passions. Follow our playlists and starting from them explore groups, genres, themes, ideas and fashions. The music is not just a pure listening, it’s thinking, it’s history, it’s concepts, it\'s revolution, it’s a powerful drug that stimulates us in everyday life: enjoy it!.')?>
-<h1><?php echo Yii::t('msg','Do not waste time, connect and live the music!')?></h1>
+  <?php echo Yii::t('msg','Are you tired of listening always the same insipid radios? Are you bored to hear low profile music? Discover new music, listen selected sounds, get the music to travel you through years and fantastic worlds, get Staimusic to lead you to in the difficult research of your passions. Follow our playlists and starting from them explore groups, genres, themes, ideas and fashions. The music is not just a pure listening, it\'s thinking, it\'s history, it\'s concepts, it\'s revolution, it\'s a powerful drug that stimulates us in everyday life: enjoy it!.')?>
+<h1><?php echo Yii::t('msg','DON\'T WASTE YOUR TIME, LIVE THE MUSIC!')?></h1>
 
 </div><!--maincenter-->
 </div><!--maincont-->
@@ -487,7 +487,7 @@
 	                            	$(".jcarousel-next").hide();
 	                            	$("#jcarousel-next-btn").hide();
 	                            	$("#jcarousel-prev-btn").hide();
-	                            	$("#myCarousel").append("<div class='NON TROVATI'>Tags non trovati</div>");
+	                            	$("#myCarousel").append("<div class='NON TROVATI'><?php echo Yii::t('msg','not found')?></div>");
 		                        }else{
 		                        	$(".jcarousel-prev").show();
 		                        	$(".jcarousel-next").show();
@@ -521,7 +521,7 @@
 		                    	    $(".jcarousel-plist-next").hide();
 	                    	    	$("#jcarousel-plist-next-btn").hide();
 	                    	    	$("#jcarousel-plist-prev-btn").hide();
-	                    	    	$("#myCarousel-plist").append("<div>Playlists non trovate</div>");
+	                    	    	$("#myCarousel-plist").append("<div><?php echo Yii::t('msg','not found')?></div>");
 		                    	}else{
 		                    		$(".jcarousel-plist-prev").show();
 		                    	    $(".jcarousel-plist-next").show();
