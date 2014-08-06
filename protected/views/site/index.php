@@ -487,7 +487,7 @@
 	                            	$(".jcarousel-next").hide();
 	                            	$("#jcarousel-next-btn").hide();
 	                            	$("#jcarousel-prev-btn").hide();
-	                            	$("#myCarousel").append("<div class='NON TROVATI'><?php echo Yii::t('msg','not found')?></div>");
+	                            	$("#myCarousel").append("<div class='NON TROVATI'><?php echo Yii::t('msg','Tag not found')?></div>");
 		                        }else{
 		                        	$(".jcarousel-prev").show();
 		                        	$(".jcarousel-next").show();
@@ -521,7 +521,7 @@
 		                    	    $(".jcarousel-plist-next").hide();
 	                    	    	$("#jcarousel-plist-next-btn").hide();
 	                    	    	$("#jcarousel-plist-prev-btn").hide();
-	                    	    	$("#myCarousel-plist").append("<div><?php echo Yii::t('msg','not found')?></div>");
+	                    	    	$("#myCarousel-plist").append("<div><?php echo Yii::t('msg','Playlist not found')?></div>");
 		                    	}else{
 		                    		$(".jcarousel-plist-prev").show();
 		                    	    $(".jcarousel-plist-next").show();
@@ -558,7 +558,7 @@
 		                    	    $(".jcarousel-gen-next").hide();
 	                    	    	$("#jcarousel-gen-next-btn").hide();
 	                    	    	$("#jcarousel-gen-prev-btn").hide();
-	                    	    	$("#myCarousel-gen").append("<div>Generi non trovati</div>");
+	                    	    	$("#myCarousel-gen").append("<div><?php echo Yii::t('msg','Genre not found')?></div>");
 		                    	}else{
 		                    		$(".jcarousel-gen-prev").show();
 		                    	    $(".jcarousel-gen-next").show();
