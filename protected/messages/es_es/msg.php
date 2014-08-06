@@ -49,6 +49,7 @@
 		'Get a new code'=>'Elige otro codigo',
 		'Please enter the letters as they are shown in the image above.'=>'Por favor introduzca las letras como en la imagen',
 		'Letters are not case-sensitive.'=>'Las letras son sensibles a mayúsculas.',
+		'Please fill out the following form with your login credentials'=>'Por favor introduzca tus credenciales para efectuar el login',
 		
 	)
 
