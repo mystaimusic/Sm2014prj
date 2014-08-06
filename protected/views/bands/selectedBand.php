@@ -95,7 +95,7 @@
 </div><!--mod_playCOVER-->	
 <div class="mod_playlists">
 <div class="header">
-<span class="title"><h2><?php echo Yii::t('msg','THE BANDS')?></h2></span></div>
+<span class="title"><h2><?php echo Yii::t('msg','SELECTED BANDS')?></h2></span></div>
 <div id="bandList" class="cont">
     	<?php
     		
