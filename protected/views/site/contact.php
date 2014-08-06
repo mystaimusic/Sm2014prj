@@ -34,15 +34,15 @@
 <div id="mainleft">
 <div class="mainleft_text">
 <!-- <h1>Contattaci</h1>  -->
-<h1><?php echo Yii::t('msg','Contattaci')?></h1>
+<!-- <h1><?php echo Yii::t('msg','Contattaci')?></h1> -->
 <p>
-<?php echo Yii::t('msg','Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi');?>
+<?php echo Yii::t('msg','Our staff is deployed in several countries, contact us for information and if you want to collaborate with us');?>
 <br>
 <!-- Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi<br />  -->
 <!--<strong>Contatto Spagna: <a href="mailto:barcelona@staimusic.com">barcelona@staimusic.com</a></strong><br />
 <strong>Contatto Belgio: <a href="mailto:bruxelles@staimusic.com">bruxelles@staimusic.com</a></strong><br />
 <strong>Contatto Italia: <a href="mailto:milano@staimusic.com">milano@staimusic.com</a></strong><br />-->
-<strong><?php echo Yii::t('msg','Scrivici')?>: <a href="mailto:info@staimusic.com">info@staimusic.com</a></strong><br />
+<strong><?php echo Yii::t('msg','Write us')?>: <a href="mailto:info@staimusic.com">info@staimusic.com</a></strong><br />
 </p>
 <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/mappa.gif" border="0" alt="Staimusic" width="700px" height="auto">
 
@@ -52,7 +52,7 @@
 
 <hr>
 
-<h2><?php echo Yii::t('msg','Inviaci una mail attraverso la form')?></h2>
+<p><?php echo Yii::t('msg','For any further information please don\'t hesitate to contact us using the following form')?></p>
 <!--   <h2>Inviaci una mail attraverso la form</h2> -->
 <p>
 
@@ -65,9 +65,6 @@
 
 <?php else: ?>
 
-<p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-</p>
 
 <div class="form">
 
@@ -79,7 +76,7 @@ If you have business inquiries or other questions, please fill out the following
 	),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('msg','Fields with')?><span class="required">*</span><?php echo Yii::t('msg','are required')?></p>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -114,8 +111,8 @@ If you have business inquiries or other questions, please fill out the following
 		<?php $this->widget('CCaptcha'); ?>
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
-		<div class="hint">Please enter the letters as they are shown in the image above.
-		<br/>Letters are not case-sensitive.</div>
+		<div class="hint"><?php echo Yii::t('msg','Please enter the letters as they are shown in the image above.')?>
+		<br/><?php echo Yii::t('msg','Letters are not case-sensitive.')?></div>
 		<?php echo $form->error($model,'verifyCode'); ?>
 	</div>
 	<?php endif; ?>
