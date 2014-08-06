@@ -35,6 +35,7 @@
 		'SUGGESTED PLAYLISTS'=>'PLAYLISTS SUGERIDAS',
 		'LISTEN TO THE RELATED GENRES'=> 'ESCUCHA LOS GENEROS RELACIONADOS',
 		'DISCOVER RADIOTAG'=> 'DESCUBRE RADIOTAG',
+		'THE BANDS'=.'LOS GRUPOS',
 		'Contattaci' => 'Contáctenos',
 		'Inviaci una mail attraverso la form' => 'Envíenos un correo electrónico a través del formulario',
 		'Il nostro staff &egrave; dislocato in diversi paesi, contattaci per informazioni e se vuoi collaborare con noi'=>'Nuestro personal está desplegado en varios países, póngase en contacto con nosotros para obtener información y si quieres colabo',
