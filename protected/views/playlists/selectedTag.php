@@ -75,14 +75,18 @@
    </div>  <!--mainleft_header-->   
 <div id="mod_contlist">
 <div class="header">
-<span class="title"><h2><?php echo Yii::t('msg','ON AIR')?></h2></span></div>
+<span class="title"><h2><?php echo Yii::t('msg','ON AIR - PROGRAMMING')?></h2></span></div>
 <div id="mainlist"></div><!--mainlist--> 
 </div>
 <!--mod_contlist--> 
 
 <div class="mainleft_text">
-<h1><?php echo Yii::t('msg','You are listening to RADIOTAG')?></h1>
-<p><?php echo Yii::t('msg','You have generate a continuos musical flux, enjoy the tag\'s related music. If you have any suggestion about our musical choice please contact us!')?></p>
+<h1><?php echo Yii::t('msg','STAIMUSIC, an easy way to discover music:')?></h1>
+<p>- <?php echo Yii::t('msg','You can click on a TAG to generate a continuos flux of related music')?></p>
+<p>- <?php echo Yii::t('msg','You can click on a PLAYLIST to find out a particolar point of view over the music evolution')?></p>
+<p>- <?php echo Yii::t('msg','You can click on a GENRE to listen to the most important songs that have conditioned that genre')?></p>
+<p>- <?php echo Yii::t('msg','If you have any suggestions about our musical choices, if you want to correct some errors, if you want to discuss about music, if you want to propose us a new playlist, please contact us!')?></p>
+
 </div><!--mainleft-->		
             
 </div><!--mainleft-->
@@ -159,7 +163,7 @@
 </div><!--mod_playlists-->	
 
 <div class="suggested_cont">
-<div class="suggested_title"><?php echo Yii::t('msg','LISTEN THE RELATED GENRES')?></div>
+<div class="suggested_title"><?php echo Yii::t('msg','LISTEN TO THE RELATED GENRES')?></div>
 <ul class="suggested">
 	<?php 
 		if(isset($genres)){
