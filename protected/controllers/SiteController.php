@@ -29,7 +29,7 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		$countryCode =Yii::app()->language;
-		if(Yii::app()->language=='it_it'){
+		/*if(Yii::app()->language=='it_it'){
 			$countryCode = 'it';
 		}
 		if(Yii::app()->language=='en_us'){
@@ -37,7 +37,7 @@ class SiteController extends Controller
 		}
 		if(Yii::app()->language=='es_es'){
 			$countryCode = 'es';
-		}
+		}*/
 		//echo Yii::trace(CVarDumper::dumpAsString("-------------> SiteController: countryCode"),'vardump');
 		//echo Yii::trace(CVarDumper::dumpAsString($countryCode),'vardump');
 		
@@ -123,14 +123,14 @@ class SiteController extends Controller
 		Utilities::replaceDefaultImageArray($dataProviderGenres->getData());
 		
 		//get static data of the index page
-		$mainSearchTab = LabelsTable::model()->findByPk(array('label_key'=>'MAINSEARCH','language'=>$countryCode)); // TEST
+		/*$mainSearchTab = LabelsTable::model()->findByPk(array('label_key'=>'MAINSEARCH','language'=>$countryCode)); // TEST
 		$mainsearch = $mainSearchTab->label;
 		$orderByRandBtnTab = LabelsTable::model()->findByPk(array('label_key'=>'RANDOM_ORD_BTN','language'=>$countryCode)); // TEST
 		$orderByRandBtn = $orderByRandBtnTab->label;
 		$orderByAlphaBtnTab = LabelsTable::model()->findByPk(array('label_key'=>'ALPHA_ORDER_BTN','language'=>$countryCode)); // TEST
 		$orderByAlphaBtn = $orderByAlphaBtnTab->label;
 		$orderByLabelTab = LabelsTable::model()->findByPk(array('label_key'=>'ORDERBY1','language'=>$countryCode));
-		$orderByLabel = $orderByLabelTab->label;
+		$orderByLabel = $orderByLabelTab->label;*/
 		
 		/*$categ = 'HOMEPAGE';
 		$labelCriteria = new CDbCriteria();
@@ -155,10 +155,10 @@ class SiteController extends Controller
 			'dataProviderDec'=>$dataProviderDec,
 			'dataProviderGenres'=>$dataProviderGenres,
 			'dataProviderPlaylist'=>$dataProviderPlaylist,
-			'mainsearch'=> $mainsearch,
-			'orderbyrandbtn'=>$orderByRandBtn,
-			'orderbyalphabtn'=>$orderByAlphaBtn,
-			'orderByLabel'=>$orderByLabel,
+			//'mainsearch'=> $mainsearch,
+			//'orderbyrandbtn'=>$orderByRandBtn,
+			//'orderbyalphabtn'=>$orderByAlphaBtn,
+			//'orderByLabel'=>$orderByLabel,
 		));
 	}
 

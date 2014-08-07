@@ -34,13 +34,13 @@
 
 	<div class="col">
          <input type="hidden" name="flagType" value="A">
-	<?php echo CHtml::submitButton($orderbyalphabtn,array('id'=>'OrdAlph','name'=>'OrdineAlfabetico'));?>
+	<?php echo CHtml::submitButton("alphabetic order",array('id'=>'OrdAlph','name'=>'OrdineAlfabetico'));?>
 	<?php echo CHtml::endForm();?></div>
 
         <div class="col">
 	<?php echo CHtml::beginForm(Yii::app()->createUrl('Site/index'),'request');?>
 	<input type="hidden" name="flagType" value="R">
-	<?php echo CHtml::submitButton($orderbyrandbtn,array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
+	<?php echo CHtml::submitButton("random order",array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
 	<?php echo CHtml::endForm();?></div>
 
      </div><!--row_orderby -->
@@ -63,8 +63,16 @@
 					foreach($dataProvider->getData() as $tag)
 					{
 						echo CHtml::tag('li', array(), false,false);
-						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($tag->tagname),true);
-						$divtext = CHtml::tag('div', array('class'=>'text'),trim($tag->description),true);
+						$title = $tag->tagname;
+						$description = $tag->description;
+						if($currLang!="en_us"){
+							$traslation=TopicTranslations::model()->findByPk(array('id'=>$tag->tagid,'lang'=>$currLang,'topic'=>'tag'));
+							$title = $traslation->title;
+							$description = $traslation->description;
+						}
+						
+						$divtag = CHtml::tag('div', array('class'=>'tag'),trim($title),true);
+						$divtext = CHtml::tag('div', array('class'=>'text'),trim($description),true);
 						if(file_exists ( $tag->imagepath )){
 							$imagePath = Yii::app()->request->baseUrl."/".$tag->imagepath;
 						}else{
@@ -106,14 +114,22 @@
 		foreach($dataProviderPlaylist->getData() as $playlist)
 		{
 			echo CHtml::tag('li', array(), false,false);
-			$titleTrimmed = trim($playlist->pltitle);
+			$title = $playlist->pltitle;
+			$description = $playlist->description;
+			if($currLang!="en_us"){
+				$traslation=TopicTranslations::model()->findByPk(array('id'=>$playlist->plid,'lang'=>$currLang,'topic'=>'playlist'));
+				$title = $traslation->title;
+				$description = $traslation->description;
+			}
+
+			$titleTrimmed = trim($title);
 			if(strlen($titleTrimmed)>50){
-				$shortTitle = substr($playlist->pltitle, 0, 50) . " ...";
+				$shortTitle = substr($title, 0, 50) . " ...";
 			}else{
 				$shortTitle = $titleTrimmed; 
 			}
 			$divtag = CHtml::tag('div', array('class'=>'tag'),$shortTitle,true);
-			$divtext = CHtml::tag('div', array('class'=>'text'),trim($playlist->description),true);
+			$divtext = CHtml::tag('div', array('class'=>'text'),trim($description),true);
 			if(file_exists ( $playlist->imagepath )){
 				$imagePath = Yii::app()->request->baseUrl."/".$playlist->imagepath;
 			}else{
