@@ -98,11 +98,20 @@
 <div class="mod_playCOVER">
 <?php
 	//display playlists
+	$currLang = Yii::app()->language;
 	if((!isset($tagname) || trim($tagname)==='')){
-		if(strlen($pls->pltitle)>16){
-			$shortTitle = substr($pls->pltitle, 0, 16) . " ...";
+		$title = $pls->pltitle;
+		$description = $pls->description;
+		if($currLang!="en_us"){
+			$traslation=TopicTranslations::model()->findByPk(array('id'=>$pls->plid,'lang'=>$currLang,'topic'=>'playlist'));
+			$title = $traslation->title;
+			$description = $traslation->description;
+		}
+
+		if(strlen($title)>16){
+			$shortTitle = substr($title, 0, 16) . " ...";
 		}else{
-			$shortTitle = $pls->pltitle;
+			$shortTitle = $title;
 		}
 		echo CHtml::tag('div',array('class'=>'tag'),$shortTitle,true);
 		$imgPath = Utilities::replaceDefaultImage($pls->imagepath);
@@ -115,7 +124,12 @@
 		echo CHtml::image($imgPath);
 	} 
 	else{
-		echo CHtml::tag('div',array('class'=>'tag'),$tagname,true);
+		$title = $tagname;
+		if($currLang!="en_us"){
+			$traslation=TopicTranslations::model()->findByPk(array('id'=>$tagid,'lang'=>$currLang,'topic'=>'tag'));
+			$title = $traslation->title;
+		}
+		echo CHtml::tag('div',array('class'=>'tag'),$title,true);
 		//$imgPath = Utilities::replaceDefaultImage($pls->IMAGEPATH);
 		//$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 		echo CHtml::image($imagePath);
