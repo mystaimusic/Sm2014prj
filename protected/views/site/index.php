@@ -72,7 +72,7 @@
 						$tagUrl = Utilities::getTagUrl($tag->tagname,$tag->tagid);
 						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
 						$urlPrefixTag = Utilities::getUrlPrefixByLang($currLang, "tag");
-						$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,$tag->tagname,$tag->tagid);
+						$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,/*$tag->tagname*/$title,$tag->tagid);
 						$tagLinkTest = Yii::app()->createUrl($tagLink);
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLinkTest"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLinkTest),'vardump');
@@ -128,7 +128,7 @@
 			}
 			//$imagePath = Utilities::replaceDefaultImage($imagePath);
 			$urlPrefixPlaylist = Utilities::getUrlPrefixByLang($currLang, "playlist");
-			$plistLink = Utilities::buildUserFriendlyURL($urlPrefixPlaylist,$playlist->pltitle,$playlist->plid);
+			$plistLink = Utilities::buildUserFriendlyURL($urlPrefixPlaylist,/*$playlist->pltitle*/$title,$playlist->plid);
 			$imghtml = CHtml::image($imagePath);
 			//'playlist-musicali/<id:\d+>_<title:\w+>.html'=>'Playlists/view2/<id:\d+>'
 			echo CHtml::link($divtag.$divtext.$imghtml, array($plistLink));
@@ -164,7 +164,12 @@
 					//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
 					$urlPrefixGenre = Utilities::getUrlPrefixByLang($currLang, "genre");
-					$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenre,$genre->genrename,$genre->genreid);
+					$title = $genre->genrename;
+					if($currLang!="en_us"){
+						$traslation=TopicTranslations::model()->findByPk(array('id'=>$genre->genreid,'lang'=>$currLang,'topic'=>'playlist'));
+						$title = $traslation->title;
+					}
+					$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenre,$title,$genre->genreid);
 					
 					echo CHtml::link($imgGenHtml, array($genLink));
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
