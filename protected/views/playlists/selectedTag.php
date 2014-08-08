@@ -142,7 +142,7 @@
 <span class="title"><h2><?php echo Yii::t('msg','SUGGESTED PLAYLISTS')?></h2></span></div>
 <div class="cont">
     	<?php 
-    		
+    		$currLang = Yii::app()->language;
     		if(isset($fromGenres) && $fromGenres==true)
     		{//display bands
     			foreach($bands as $band)
@@ -158,13 +158,23 @@
 	    		{
 	    			foreach($pls as $pl)
 	    			{
+	    				$title = $pl->pltitle;
+	    				if($currLang!="en_us"){
+	    					$traslation=TopicTranslations::model()->findByPk(array('id'=>$pl->plid,'lang'=>$currLang,'topic'=>'playlist'));
+	    					$title = $traslation->title;
+	    				}
 	    				echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-	    				echo CHtml::link($pl->pltitle,'#'.$pl->plref, array('class' => 'myplaylist', 'id' =>$pl->plid ) );
+	    				echo CHtml::link($title,'#'.$pl->plref, array('class' => 'myplaylist', 'id' =>$pl->plid ) );
 	    				echo CHtml::closeTag('div');
 	    			}
 	    		}else{
+					$title = $pls->pltitle;
+					if($currLang!="en_us"){
+						$traslation=TopicTranslations::model()->findByPk(array('id'=>$pls->plid,'lang'=>$currLang,'topic'=>'playlist'));
+						$title = $traslation->title;
+					}
 	    			echo CHtml::tag('div', array('class'=>'palinsesto clearfix'),false,false);	
-	    			echo CHtml::link($pls->pltitle,'#'.$pls->plref, array('class' => 'myplaylist', 'id' =>$pls->plid ) );
+	    			echo CHtml::link($title,'#'.$pls->plref, array('class' => 'myplaylist', 'id' =>$pls->plid ) );
 	    			echo CHtml::closeTag('div');
 	    		}
     		}
@@ -179,7 +189,8 @@
 <div class="suggested_cont">
 <div class="suggested_title"><?php echo Yii::t('msg','LISTEN TO THE RELATED GENRES')?></div>
 <ul class="suggested">
-	<?php 
+	<?php
+		$urlPrefixGenres = Utilities::getUrlPrefixByLang($currLang, "genre");
 		if(isset($genres)){
 			foreach($genres as $genre)
 			{
@@ -203,7 +214,8 @@
 				//$imgGenStr = Utilities::replaceDefaultImage($imgPathDB);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre['genrename'],$genre['genreid']);
+				
+				$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenres,$genre['genrename'],$genre['genreid']);
 				echo CHtml::link($imgGenHtml, array($genLink));
 				echo CHtml::closeTag('li');
 			}
@@ -217,7 +229,7 @@
 				//$imgGenStr = Utilities::replaceDefaultImage($randomGenre['IMAGEPATH']);
 				$imgGenStr = Yii::app()->request->baseUrl."/".$imgGenStr;
 				$imgGenHtml = CHtml::image($imgGenStr);
-				$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$randomGenre['genrename'],$randomGenre['genreid']);
+				$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenres,$randomGenre['genrename'],$randomGenre['genreid']);
 				echo CHtml::link($imgGenHtml, array($genLink));
 				echo CHtml::closeTag('li');
 			}
@@ -242,7 +254,8 @@
 				//$imagePath = Utilities::replaceDefaultImage($sugTag['IMAGEPATH']);
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$sugTag['tagname'],$sugTag['tagid']);
+				$urlPrefixTag = Utilities::getUrlPrefixByLang($currLang, "tag");
+				$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,$sugTag['tagname'],$sugTag['tagid']);
 				echo CHtml::link($imghtml, array($tagLink));
 				//echo CHtml::link($imghtml, array('Playlists/viewPlPerTag','id'=>$sugTag['TAGID']));
 				echo CHtml::closeTag('li');

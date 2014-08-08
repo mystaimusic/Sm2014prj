@@ -75,7 +75,7 @@ class Utilities{
 		}else if(($langPrefix=="en" || $langPrefix=="es") && $topic=="playlist"){
 			return $langPrefix."/playlists/";
 		}else if($langPrefix=="en" && $topic=="genre"){
-			return "en/music-genre/";
+			return "en/music-genres/";
 		}else if($langPrefix=="es" && $topic=="genre"){
 			return "es/genreros-musicales/";
 		}else return null;
