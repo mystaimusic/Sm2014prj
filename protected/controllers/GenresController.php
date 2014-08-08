@@ -87,7 +87,8 @@ class GenresController extends Controller
     
     public function actionViewRandomBandsPerGenres($id/*,$genImagePath,$genDescription*/)
     {
-    	echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	//echo Yii::trace(CVarDumper::dumpAsString("----------> sono in actionViewRandomBandsPerGenres"),'vardump');
+    	$currLang = Yii::app()->language;
     	Yii::app()->user->setState('ACTION_CLK', 'GEN');
     	Yii::app()->user->setState('SELECTED_GENID', $id);
     	
@@ -95,6 +96,12 @@ class GenresController extends Controller
     	$genImagePathDB = $genre->imagepath;
     	$genDescription = $genre->description;
     	$genreName = $genre->genrename;
+    	if($currLang != "en_us"){
+    		$traslation=TopicTranslations::model()->findByPk(array('id'=>$id,'lang'=>$currLang,'topic'=>'genre'));
+    		$genreName = $traslation->title;
+    		$genDescription = $traslation->description;
+    	}
+    	
     	//echo Yii::trace(CVarDumper::dumpAsString($genre),'vardump');
     	//$bandsDB=$genre->bands;
     	$tags=$genre->tags; //gets suggested tags for the genre

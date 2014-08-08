@@ -188,6 +188,7 @@ class SiteController extends Controller
 	public function actionGetNextTag($currentPage,$type)
 	{
 		//echo Yii::trace(CVarDumper::dumpAsString("------------> I am in actionGetNextTag"),'vardump');
+		$currLang =Yii::app()->language;
 		$orderByTag = 'RAND()';
 		$orderByPl = 'RAND()';
 		$orderByGen = 'RAND()';
@@ -225,6 +226,13 @@ class SiteController extends Controller
     		$models=Tags::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
+	    		//translate
+	    		if($currLang != "en_us"){
+	    			$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->tagid,'lang'=>$currLang,'topic'=>'tag'));
+	    			$model->tagname = $traslation->title;
+	    			$model->description = $traslation->description;
+	    		}
+	    		
 	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
@@ -244,6 +252,12 @@ class SiteController extends Controller
     		$models=Genres::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
+	    		if($currLang != "en_us"){
+	    			$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->genreid,'lang'=>$currLang,'topic'=>'genre'));
+	    			$model->genrename = $traslation->title;
+	    			$model->description = $traslation->description;
+	    		}
+	    		
 	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
@@ -266,6 +280,11 @@ class SiteController extends Controller
 				if(!file_exists ( $model->IMAGEPATH )){
 					$model->IMAGEPATH = Yii::app()->request->baseUrl."/".$imgGenStr;	
 				}*/
+	    		if($currLang != "en_us"){
+	    			$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->plid,'lang'=>$currLang,'topic'=>'playlist'));
+	    			$model->pltitle = $traslation->title;
+	    			$model->description = $traslation->description;
+	    		}
 	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    		//echo Yii::trace(CVarDumper::dumpAsString($model->IMAGEPATH),'vardump');
 	    	}

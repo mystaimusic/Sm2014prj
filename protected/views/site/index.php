@@ -13,15 +13,7 @@
   </div><!-- headercont -->
 </div><!-- container -->
 
-
-
-
 <div class="container">
-
-
- 
-
-
 
 <div id="maincont" class="clearfix">
 
@@ -43,9 +35,7 @@
 	<?php echo CHtml::submitButton("random order",array('id'=>'OrdRand','name'=>'OrdineCasuale'));?>
 	<?php echo CHtml::endForm();?></div>
 
-     </div><!--row_orderby -->
-
-
+    </div><!--row_orderby -->
 	<div class="jcarousel-wrapper">
 		<!-- div tags -->		
 		<div id="jcarousel-prev-div" class="jcarousel-prev">
