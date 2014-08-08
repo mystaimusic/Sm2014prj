@@ -71,7 +71,8 @@
 						$imghtml = CHtml::image($imagePath);
 						$tagUrl = Utilities::getTagUrl($tag->tagname,$tag->tagid);
 						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
-						$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->tagname,$tag->tagid);
+						$urlPrefixTag = Utilities::getUrlPrefixByLang($currLang, "tag");
+						$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,$tag->tagname,$tag->tagid);
 						$tagLinkTest = Yii::app()->createUrl($tagLink);
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLinkTest"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLinkTest),'vardump');
@@ -126,7 +127,8 @@
 				$imagePath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
 			}
 			//$imagePath = Utilities::replaceDefaultImage($imagePath);
-			$plistLink = Utilities::buildUserFriendlyURL('playlist-musicali/',$playlist->pltitle,$playlist->plid);
+			$urlPrefixPlaylist = Utilities::getUrlPrefixByLang($currLang, "playlist");
+			$plistLink = Utilities::buildUserFriendlyURL($urlPrefixPlaylist,$playlist->pltitle,$playlist->plid);
 			$imghtml = CHtml::image($imagePath);
 			//'playlist-musicali/<id:\d+>_<title:\w+>.html'=>'Playlists/view2/<id:\d+>'
 			echo CHtml::link($divtag.$divtext.$imghtml, array($plistLink));
@@ -161,7 +163,8 @@
 					$imgGenHtml = CHtml::image($imgGenStr);
 					//echo Yii::trace(CVarDumper::dumpAsString($imgGenHtml),'vardump');
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','genid'=>$genre->GENREID,'genImagePath'=>$genre->IMAGEPATH,'genDescription'=>$genre->DESCRIPTION));
-					$genLink = Utilities::buildUserFriendlyURL('generi-musicali/',$genre->genrename,$genre->genreid);
+					$urlPrefixGenre = Utilities::getUrlPrefixByLang($currLang, "genre");
+					$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenre,$genre->genrename,$genre->genreid);
 					
 					echo CHtml::link($imgGenHtml, array($genLink));
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));

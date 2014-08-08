@@ -61,11 +61,13 @@ class SongsController extends Controller
 		//echo Yii::trace(CVarDumper::dumpAsString("--------> sono in actionViewSongsPerPlaylist"),'vardump');
 		$currLang = Yii::app()->language;
 		$playlist=Playlists::model()->findByPk($playlistId);
-		$traslation = TopicTranslations::model()->findByPk(array('id'=>$playlist->plid,'lang'=>$currLang,'topic'=>'playlist'));
-		$title = $traslation->title;
-		$description = $traslation->description;
-		//$title = $playlist->pltitle;
-		//$description = $playlist->description;
+		$title = $playlist->pltitle;
+		$description = $playlist->description;
+		if($currLang!='en_us'){
+			$traslation = TopicTranslations::model()->findByPk(array('id'=>$playlist->plid,'lang'=>$currLang,'topic'=>'playlist'));
+			$title = $traslation->title;
+			$description = $traslation->description;
+		}
         $songs = $playlist->songs;
 		//echo Yii::trace(CVarDumper::dumpAsString($songs),'vardump');
         foreach($songs as $song){

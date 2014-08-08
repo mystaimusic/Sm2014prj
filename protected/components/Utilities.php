@@ -55,5 +55,30 @@ class Utilities{
 		//echo Yii::trace(CVarDumper::dumpAsString($customTag),'vardump');
 		return $customTag;
 	}
+	
+	public static function getLanguagePrefix($currLang)
+	{
+		return substr($currLang, 0,2);
+	}
+	
+	public static function getUrlPrefixByLang($currLang,$topic)
+	{
+		$langPrefix = Utilities::getLanguagePrefix($currLang);
+		if($langPrefix=="it" && $topic=="tag"){
+			return "it/tag-musica/";
+		}else if($langPrefix=="it" && $topic=="playlist"){
+			return "it/playlist-musicali/";
+		}else if($langPrefix=="it" && $topic=="genre"){
+			return "it/generi-musicali/";
+		}else if(($langPrefix=="en" || $langPrefix=="es") && $topic=="tag"){
+			return $langPrefix."/tags/";
+		}else if(($langPrefix=="en" || $langPrefix=="es") && $topic=="playlist"){
+			return $langPrefix."/playlists/";
+		}else if($langPrefix=="en" && $topic=="genre"){
+			return "en/music-genre/";
+		}else if($langPrefix=="es" && $topic=="genre"){
+			return "es/genreros-musicales/";
+		}else return null;
+	}
 
 }

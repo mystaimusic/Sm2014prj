@@ -86,7 +86,19 @@ return array(
 				'/www.staimusic.com/index.php'=>'Site/index',
 				'tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
 				'playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
-				'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>'
+				'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
+				
+				'it/tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				'it/playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				'it/generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
+
+				'en/tags/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				'en/playlists/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				'en/music-genres/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
+				
+				'es/tags/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				'es/playlists/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				'es/genreros-musicales/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
 				
 			),
 		),
