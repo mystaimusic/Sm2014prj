@@ -12,11 +12,22 @@ class BeginRequest extends CBehavior {
 
 		if (isset($_POST['_lang']))
 		{
+			//$currentUrl = Yii::app()->request->url;
+			//$basePath = Yii::app()->basePath;
+			if($app->user->hasState('_lang')){
+				$oldLang = $app->user->getState('_lang');
+				Yii::app()->user->setState('oldLang', $oldLang);
+			}
 			$app->language = $_POST['_lang'];
 			$app->user->setState('_lang', $_POST['_lang']);
 			$cookie = new CHttpCookie('_lang', $_POST['_lang']);
 			$cookie->expire = time() + (60*60*24*365); // (1 year)
 			Yii::app()->request->cookies['_lang'] = $cookie;
+			
+// 			$newUrl = Utilities::translateUrl($currentUrl, $oldLang);
+// 			if($newUrl!=null){
+// 				$this->redirect($newUrl);
+// 			}
 		}
 		else if ($app->user->hasState('_lang'))
 			$app->language = $app->user->getState('_lang');

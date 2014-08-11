@@ -37,6 +37,14 @@ class Utilities{
 		return strtolower($tagLink);
 	}
 	
+	public static function replaceWithDashes($title){
+		$tagNameRepl = str_replace(" ","-",$title);
+		$tagNameRepl2 = str_replace("'","-",$tagNameRepl);
+		$tagNameRepl3 = str_replace(array(' ','\''),"-",$tagNameRepl2);
+		$tagNameRepl4 = str_replace(array(',',';',':','.','!','?','%'),"",$tagNameRepl3);
+		return $tagNameRepl4;
+	}
+	
 	public static function getTagUrl($title,$id)
 	{
 		$tagUrl = Utilities::getCustomUrl("musica/tag/",$title,$id);
@@ -80,5 +88,91 @@ class Utilities{
 			return "es/genreros-musicales/";
 		}else return null;
 	}
-
+	
+	public static function translateUrl($url, $oldLang)
+	{
+		$oldLangPrefix = Utilities::getLanguagePrefix($oldLang);
+		if(!strpos($url,$oldLangPrefix)){
+			return null;
+		}
+		$urlPrefix = current(explode("/".$oldLangPrefix."/",$url));
+		
+		$currLang = Yii::app()->language;
+		//$currLangPrefix = getLanguagePrefix($currLang);
+		$usArray = explode("_",$url);
+		$idToken = $usArray[1];
+		$id = current(explode(".",$idToken));
+		
+		$topic = null;
+		if($oldLang=="en_us" || $oldLang=="es_es")
+		{
+			$topicPos = strpos($url,"tag");
+			if(!$topicPos){
+				$topicPos = strpos($url,"playlists");
+				if(!$topicPos){
+					if($oldLang=="en_us"){
+						$topicPos = strpos($url,"music-genres");
+					}else{
+						$topicPos = strpos($url,"genreros-musicales");
+					}
+					if($topicPos){
+						$topic = "genre";
+					}
+				}else{
+					$topic = "playlist";
+				}
+			}else{
+				$topic = "tag";
+			}
+		}else{
+			$topicPos = strpos($url,"tag-musica");
+			if(!$topicPos){
+				$topicPos = strpos($url,"playlist-musicali");
+				if(!$topicPos){
+					$topicPos = strpos($url,"generi-musicali");
+					if($topicPos){
+						$topic = "genre";
+					}
+				}else{
+					$topic = "playlist";
+				}
+			}else{
+				$topic = "tag";
+			}
+		}
+		$newUrl = null;
+		$title = null;
+		if($currLang!="en_us"){
+			$traslation=TopicTranslations::model()->findByPk(array('id'=>$id,'lang'=>$currLang,'topic'=>$topic));
+			if($traslation!=null){
+				$title = $traslation->title;
+			}
+		}else{
+			if($topic=="tag"){
+				$tagModel = Tags::model()->findByPk($id);
+				if($tagModel!=null){
+					$title = $tagModel->tagname;
+				}
+			}else if($topic=="playlist"){
+				$plistModel = Playlists::model()->findByPk($id);
+				if($plistModel!=null){
+					$title = $plistModel->pltitle;
+				}
+			}else if($topic=="genre"){
+				$genreModel = Genres::model()->findByPk($id);
+				if($genreModel!=null){
+					$title = $genreModel->genrename;
+				}
+			}
+		}
+		if($title!=null){
+			$titleUrlLike = Utilities::replaceWithDashes($title);
+			$prefix = Utilities::getUrlPrefixByLang($currLang,$topic);
+			$newUrlPostFix = $prefix.$titleUrlLike."_".$id.".html";
+			$newUrl = $urlPrefix."/".$newUrlPostFix;
+			return $newUrl;
+		}else{
+			return null;
+		}
+	}
 }

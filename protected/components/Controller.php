@@ -20,4 +20,23 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+	
+	public function __construct($id,$module=null){
+		parent::__construct($id,$module);
+		if (isset($_POST['_lang']))
+		{
+			$app = Yii::app();
+			$user = $app->user;
+			if($app->user->hasState('oldLang')){
+				$oldLang = $app->user->getState('oldLang');
+			}else{
+				$oldLang = "en_us";
+			}
+			$currentUrl = $app->request->url;
+			$newUrl = Utilities::translateUrl($currentUrl, $oldLang);
+			if($newUrl!=null){
+				$this->redirect($newUrl);
+			}
+		}
+	}
 }

@@ -166,7 +166,7 @@
 					$urlPrefixGenre = Utilities::getUrlPrefixByLang($currLang, "genre");
 					$title = $genre->genrename;
 					if($currLang!="en_us"){
-						$traslation=TopicTranslations::model()->findByPk(array('id'=>$genre->genreid,'lang'=>$currLang,'topic'=>'playlist'));
+						$traslation=TopicTranslations::model()->findByPk(array('id'=>$genre->genreid,'lang'=>$currLang,'topic'=>'genre'));
 						$title = $traslation->title;
 					}
 					$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenre,$title,$genre->genreid);
