@@ -66,9 +66,9 @@ return array(
 		),*/
 		
 		'urlManager'=>array(
-			//'class'=>'application.components.UrlManager',
+			'class'=>'application.components.UrlManager',
 			'urlFormat'=>'path',
-			//'showScriptName'=>false,
+			'showScriptName'=>false,
 			'rules'=>array(
 				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				//'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
@@ -83,10 +83,10 @@ return array(
 				//'Playlists/viewPlPerTag/<id:\d+>' => 'musica/tag/<title:\w+>',
 				//'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
 				//'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>'
-				'/www.staimusic.com/index.php'=>'Site/index',
-				'tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
-				'playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
-				'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
+				'<language:(en|es|it)>'=>'Site/index',
+				//'tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
+				//'playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
+				//'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
 				
 				'it/tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
 				'it/playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',

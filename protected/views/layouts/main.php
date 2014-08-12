@@ -68,8 +68,8 @@
 			'items'=>array(
 				//array('label'=>'Home', 'url'=>Yii::app()->baseUrl),
 				//array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
-				//array('label'=>'Home', 'url'=>array('/Site/index')),
-				array('label'=>Yii::t('msg','HOME'), 'url'=>Yii::app()->createUrl('/Site/index')),
+				array('label'=>Yii::t('msg','HOME'), 'url'=>array(Yii::app()->createUrl('/'))),
+				//array('label'=>Yii::t('msg','HOME'), 'url'=>Yii::app()->createUrl('/Site/index')),
 				array('label'=>Yii::t('msg','ABOUT'), 'url'=>array('/Site/page', 'view'=>'about')),
                 array('label'=>Yii::t('msg','NOTE'), 'url'=>array('/site/page', 'view'=>'note')),
 				array('label'=>Yii::t('msg','CONTACT'), 'url'=>array('/Site/contact')),

@@ -39,4 +39,14 @@ class Controller extends CController
 			}
 		}
 	}
+	
+	public function createMultilanguageReturnUrl($lang='en'){
+		if (count($_GET)>0){
+			$arr = $_GET;
+			$arr['_lang']= $lang;
+		}
+		else
+			$arr = array('_lang'=>$lang);
+		return $this->createUrl('', $arr);
+	}
 }
