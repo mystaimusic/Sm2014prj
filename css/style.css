@@ -114,43 +114,43 @@ a:hover{color:#00B2E0;}
 
 
 /** jcarousel SLIDE IN HOMEPAGE------------------------------------------------------ **/
-.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:auto; margin-top:10px;overflow:hidden}
-.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:auto;margin-top:10px;overflow:hidden}
-.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1260px; height:auto; margin-top:10px;overflow:hidden}
+.jcarousel-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:auto; margin-top:10px;overflow:hidden}
+.jcarousel-plist-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:auto;margin-top:10px;overflow:hidden}
+.jcarousel-gen-wrapper {position: relative;text-align: center;margin:auto;width:1300px; height:auto; margin-top:10px;overflow:hidden}
 
-.jcarousel-prev{float:left;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
-.jcarousel-prev a:hover{background-image:url(../images/button-prevACT.png);}
-.jcarousel-next{float:right;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat; background-position:right}
-.jcarousel-next a:hover{background-image:url(../images/button-prevACT.png);}
+.jcarousel-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png)}
+.jcarousel-prev a:hover{background-image:url(../images/button-prevACT.png)}
+.jcarousel-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png)}
+.jcarousel-next a:hover{background-image:url(../images/button-nextACT.png)}
 
-.jcarousel-plist-prev{float:left;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png);background-repeat:no-repeat;}
-.jcarousel-plist-prev a:hover{background-image:url(../images/button-prevACT.png);}
-.jcarousel-plist-next{float:right;width: 20px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png);background-repeat:no-repeat; background-position:right}
-.jcarousel-plist-next a:hover{background-image:url(../images/button-prevACT.png);}
+.jcarousel-plist-prev{float:left;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-prev.png)}
+.jcarousel-plist-prev a:hover{background-image:url(../images/button-prevACT.png)}
+.jcarousel-plist-next{float:right;width: 40px;height:240px;margin:auto;position:relative;background-image:url(../images/button-next.png)}
+.jcarousel-plist-next a:hover{background-image:url(../images/button-nextACT.png)}
 
 
-.jcarousel-gen-prev{float:left;width: 20px;height:140px;margin:auto;position:relative;background-image:url(../images/button-prev-small.png);background-repeat:no-repeat;}
+.jcarousel-gen-prev{float:left;width: 40px;height:133px;margin:auto;position:relative;background-image:url(../images/button-prev-small.png);background-repeat:no-repeat;}
 .jcarousel-gen-prev a:hover{background-image:url(../images/button-prevACT-small.png);}
-.jcarousel-gen-next{float:right;width: 20px;height:140px;margin:auto;position:relative;background-image:url(../images/button-next-small.png);background-repeat:no-repeat;background-position:right }
-.jcarousel-gen-next a:hover{background-image:url(../images/button-prevACT-small.png);}
+.jcarousel-gen-next{float:right;width: 40px;height:133px;margin:auto;position:relative;background-image:url(../images/button-next-small.png);background-repeat:no-repeat;background-position:right }
+.jcarousel-gen-next a:hover{background-image:url(../images/button-nextACT-small.png);}
 
 
 
 /** tags **/
 .jcarousel {float:left; position: relative; overflow: hidden;width: 1220px;}
-.jcarousel ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0; margin-top:-1px}
 .jcarousel li {float: left; border:#ccc solid 2px}
 /** .jcarousel img {display: block; max-width: 100%; height: auto !important; } **/
 
 /** playlists **/
 .jcarousel-plist {float:left;position: relative;overflow: hidden;width: 1220px;}
-.jcarousel-plist ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel-plist ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0; margin-top:-1px}
 .jcarousel-plist li {float: left; border:#ccc solid 2px}
 
 
 /**  genres **/
 .jcarousel-gen {float:left;position: relative;overflow: hidden;width: 1220px;}
-.jcarousel-gen ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0;}
+.jcarousel-gen ul {width: 3220em;position: relative;list-style: none;margin: 0;padding: 0; margin-top:-1px}
 .jcarousel-gen li {float: left; border:#ccc solid 2px}
 
 
