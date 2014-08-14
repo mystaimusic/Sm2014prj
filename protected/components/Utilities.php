@@ -89,7 +89,7 @@ class Utilities{
 		}else return null;
 	}
 	
-	function endsWith($haystack, $needle)
+	function static endsWith($haystack, $needle)
 	{
 		if($needle == "" || substr($haystack, -strlen($needle)) == $needle)
 		{
