@@ -10,9 +10,13 @@
 
 #sidebar{padding: 20px 20px 20px 0;}
 
-#footer{ width:100%;padding: 0px;margin:0px;font-size: 0.8em;text-align: center;background-color:#000000;border-top: 1px solid #C9E0ED;height: 199px;clear: both;overflow: hidden;}
-#footer .footer-col{ width:300px;background-color: #000000;margin-top:10px;border-right: solid thin #333333;height: 180px;float:left;text-align: left;color:#999999;padding-left:25px;}
-
+#footer{ width:100%;padding: 0px;margin:0px;text-align: center;background-color:#000000;border-top: 1px solid #C9E0ED;height: 199px;clear: both;overflow: hidden; font-variant:normal}
+#footer .footer-col{ font-size: 0.8em; width:300px;background-color: #000000;margin-top:10px;border-right: solid thin #333333;height: 180px;float:left;text-align: left;color:#999999;padding-left:25px;line-height:15px; color:#666}
+#footer .footer-col2{ width:300px;background-color: #000000;margin-top:10px;height: 180px;float:left;text-align: left;color:#999999;padding-left:25px;}
+.footer-col2 li{font-size:18px;letter-spacing:1px;font-variant:normal;  margin-bottom:5px; margin-top:5px; font-family: "Subtitle", Arial, Verdana, Helvetica, sans-serif;}
+.footer-col2 li a{color:#333;}
+.footer-col2 li a:hover{color:#fff;}
+#footer .footer-col3{ width:300px;background-color: #000000;margin-top:10px;height: 180px;float:left;text-align: left;color:#999999;padding-left:25px;}
 
 #logo{padding-left:20px;width:267px;height:92px; float:left}
 #menulogo{width:267px;height:72px;margin:auto;float:left;padding-top:4px}
