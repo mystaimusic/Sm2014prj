@@ -102,9 +102,27 @@
 	<div id="footer"><div class="footer-col"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/staimusic-logosmall.png" border="0" alt="staimusic project" height="46px" width="100px"><br/>
 		Copyright &copy; <?php echo date('Y'); ?> by Staimusic.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?></div> 
-                <div class="footer-col"></div> 
-                        <div class="footer-col"></div> 
+		<!--<?php echo Yii::powered(); ?>--></div> 
+                <div class="footer-col2">
+		<?php $this->widget('zii.widgets.CMenu',array(
+			'items'=>array(
+				//array('label'=>'Home', 'url'=>Yii::app()->baseUrl),
+				//array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
+				array('label'=>Yii::t('msg','HOME'), 'url'=>array(Yii::app()->createUrl('/'))),
+				//array('label'=>Yii::t('msg','HOME'), 'url'=>Yii::app()->createUrl('/Site/index')),
+				array('label'=>Yii::t('msg','ABOUT'), 'url'=>array('/Site/page', 'view'=>'about')),
+                array('label'=>Yii::t('msg','NOTE'), 'url'=>array('/site/page', 'view'=>'note')),
+				array('label'=>Yii::t('msg','CONTACT'), 'url'=>array('/Site/contact')),
+				array('label'=>Yii::t('msg','LOGIN'), 'url'=>array('/Site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/Site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+			),
+		)); ?>
+               </div> 
+                        <div class="footer-col3">
+
+
+
+               </div> 
                                 <div class="footer-col"></div> 
 	</div><!-- footer -->
 
