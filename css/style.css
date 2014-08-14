@@ -90,8 +90,9 @@ a:hover{color:#00B2E0;}
 
 /**Main-------------------------------------------------------**/
 .container #maincont{text-align:center;width:100%;height:100%;margin:auto;position:relative;padding:0px;;background-color:#ccc;}
-#maincenter{width:1260px;padding:0px;height:auto; text-align:center; font-size:17px;margin-bottom:50px}
-#maincenter h1{font-size:24px; font-weight: bold;font-family: "TitleExtraBold", Arial, Verdana, Helvetica, sans-serif;font-size:26px; line-height: 26px;}
+#maincenter{text-align:center; font-size:17px; margin: 10px auto 50px auto; width: 1300px; height: auto; overflow: hidden;}
+
+#maincenter h1{font-size:24px; font-weight: bold;font-family: "TitleExtraBold", Arial, Verdana, Helvetica, sans-serif;font-size:26px; line-height: 32px;}
 #mainleft{color:#000;width:70%;background-color:#e5e5e5;height:100%;margin:auto;padding:0px;float:left;text-align:left;position:relative;overflow:hidden}
 #mainleft_header{color:#000;background-color:#e5e5e5;margin-top:0px;padding:0px;padding-left:30px;padding-right:10px;text-align:center;margin:auto;position:relative;overflow:hidden;background-position:right;}
 #mainleft_header img{height:100%;width:100%;}
