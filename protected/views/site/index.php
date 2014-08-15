@@ -73,7 +73,7 @@
 						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
 						$urlPrefixTag = Utilities::getUrlPrefixByLang($currLang, "tag");
 						$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,/*$tag->tagname*/$title,$tag->tagid);
-						$tagLinkTest = Yii::app()->createUrl($tagLink);
+						//$tagLinkTest = Yii::app()->createUrl($tagLink);
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLinkTest"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLinkTest),'vardump');
 						echo CHtml::link($divtag.$divtext.$imghtml, array($tagLink));

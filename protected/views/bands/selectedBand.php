@@ -114,6 +114,8 @@
 <div class="suggested_title"><?php echo Yii::t('msg','DISCOVER RADIOTAG')?></div>
 <ul class="suggested">
 	<?php 
+		$currLang = Yii::app()->language;
+		$urlPrefixTag = Utilities::getUrlPrefixByLang($currLang, "tag");
 		foreach($tags as $tag)
 		{
 			echo CHtml::tag('li', array(), false,false);
@@ -124,9 +126,14 @@
 			}else{
 				$imagePath = "images/stai-music.jpg";
 			}
+			$title = $tag->tagname;
+			if($currLang!="en_us"){
+				$traslation=TopicTranslations::model()->findByPk(array('id'=>$tag->tagid,'lang'=>$currLang,'topic'=>'tag'));
+				$title = $traslation->title;
+			}
 			$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 			$imghtml = CHtml::image($imagePath);
-			$tagLink = Utilities::buildUserFriendlyURL('tag-musica/',$tag->tagname,$tag->tagid);
+			$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,$title,$tag->tagid);
 			echo CHtml::link($imghtml, array($tagLink));
 			echo CHtml::closeTag('li');
 		}
@@ -154,7 +161,13 @@
 				}
 				$imagePath = Yii::app()->request->baseUrl."/".$imagePath;
 				$imghtml = CHtml::image($imagePath);
-				$plistLink = Utilities::buildUserFriendlyURL('playlist-musicali/',$plist['pltitle'],$plist['plid']);
+				$urlPrefixPlist = Utilities::getUrlPrefixByLang($currLang, "playlist");
+				$title = $plist['pltitle'];
+				if($currLang!="en_us"){
+					$traslation=TopicTranslations::model()->findByPk(array('id'=>$plist['plid'],'lang'=>$currLang,'topic'=>'playlist'));
+					$title = $traslation->title;
+				}
+				$plistLink = Utilities::buildUserFriendlyURL($urlPrefixPlist,$title,$plist['plid']);
 				echo CHtml::link($imghtml,array($plistLink));
 				echo CHtml::closeTag('li');
 			}
