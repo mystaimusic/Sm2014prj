@@ -189,7 +189,7 @@ class TagsController extends Controller
 				$dbObj->imagepath = "images/stai-music.jpg";	
 			}
 		}
-	}
+	}	
 	
 	public function shortPlistTitle($plists)
 	{
@@ -208,6 +208,8 @@ class TagsController extends Controller
 	{
 		$output='';
 		if(isset($_GET['tagNameMatch'])){
+			$currLang =Yii::app()->language;
+			$langPrefix = Utilities::getLanguagePrefix($currLang);
 			//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in TagsController->actionParallelSearch()"),'vardump');
 			try{
 				$tagNameMatch = $_GET['tagNameMatch'];
@@ -248,6 +250,17 @@ class TagsController extends Controller
 				}
 				//echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
 				$this->replaceDefaultImage($filterTags);
+				//translate
+				$tagPrefix = Utilities::getUrlPrefixByLang($currLang,"tag");
+				foreach($filterTags as $model){
+					$model->tagname = "/".$tagPrefix.$model->tagname;
+					if($currLang != "en_us"){
+						$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->tagid,'lang'=>$currLang,'topic'=>'tag'));
+						$model->tagname = "/".$tagPrefix.$traslation->title;
+						$model->description = $traslation->description;
+					}
+				}
+				
 				//playlists
 				$qPlist = new CDbCriteria();
 				$qPlist->addSearchCondition('Pltitle',$tagNameMatch);
@@ -268,7 +281,16 @@ class TagsController extends Controller
 					$filterPlist = array_merge($filterPlist, $otherPlists);
 				}
 				//$this->replaceDefaultImage($filterPlist);
-				$this->shortPlistTitle($filterPlist);
+				//$this->shortPlistTitle($filterPlist);
+				$plPrefix = Utilities::getUrlPrefixByLang($currLang,"playlist");
+				foreach($filterPlist as $model){
+					$model->pltitle = "/".$plPrefix.$model->pltitle;
+					if($currLang != "en_us"){
+						$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->plid,'lang'=>$currLang,'topic'=>'playlist'));
+						$model->pltitle = "/".$tagPrefix.$traslation->title;
+						$model->description = $traslation->description;
+					}
+				}
 				//genres
 				$qGen = new CDbCriteria();
 				$qGen->addSearchCondition('Genrename',$tagNameMatch);
@@ -288,6 +310,15 @@ class TagsController extends Controller
 					$filterGen = array_merge($filterGen, $otherGenres);
 				}
 				//$this->replaceDefaultImage($filterGen);
+				$genPrefix = Utilities::getUrlPrefixByLang($currLang,"genre");
+				foreach($filterGen as $model){
+					$model->genrename = "/".$genPrefix.$model->genrename;
+					if($currLang != "en_us"){
+						$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->genid,'lang'=>$currLang,'topic'=>'genre'));
+						$model->genrename = "/".$tagPrefix.$traslation->title;
+						$model->description = $traslation->description;
+					}
+				}
 				
 				echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
 				$output = CJSON::encode(array('filterTags'=>$filterTags,

@@ -291,15 +291,17 @@
 	                    	if(response){
 	                            var html='';
 	                            $.each(response.dataProvider.rawData, function(i, elem){                               
-									var tagNameEnc = encodeURIComponent(elem.tagname);
+									//var tagNameEnc = encodeURIComponent(elem.tagname);
 									var descEnc = encodeURIComponent(elem.description);
 									var imgPathEnc = encodeURIComponent(elem.imagepath);
 									var tagId = elem.tagid;
-									var ouputStr = buildUserFriendlyURL("/index.php/tag-musica/",elem.tagname,tagId);
+									var ouputStr = buildUserFriendlyURL("",elem.tagname,tagId);
 									//var urlComplete = url + "/id/"+tagId;
 									//html += "<li><a href='index.php/Playlists/viewPlPerTag/id/"
 									//alert(outputStr2);
-									html += "<li><a href='"+_baseUrl+ouputStr+"'><div class='tag'>" + elem.tagname + 
+									var arrTagName = elem.tagname.split('/');
+									var len = arrTagName.length;
+									html += "<li><a href='"+_baseUrl+ouputStr+"'><div class='tag'>" + arrTagName[len-1] + 
 	                                "</div> <div class='text'>"+ elem.description +"</div> "
 	                                +"<img src='"
 	                                +elem.imagepath+"' alt='' /></a></li>";
@@ -350,12 +352,15 @@
 	                            var html='';
 	                            //alert("response");
 	                            $.each(response.dataProvider.rawData, function(i, elem){
-	                                var plTitle = elem.pltitle;
+	                            	var arrTagName = elem.pltitle.split('/');
+									var len = arrTagName.length;
+									var plTitle = arrTagName[len-1];
+	                                //var plTitle = elem.pltitle;
 	                                var plId = elem.plid;
 	                                //var urlComplete = url + "/id/"+ plId;
-	                                var ouputStr = buildUserFriendlyURL("/index.php/playlist-musicali/",plTitle,plId); 
-	                                if(elem.pltitle.length>50){
-	                                	plTitle = elem.pltitle.substring(0,50) + " ...";
+	                                var ouputStr = buildUserFriendlyURL("",elem.pltitle,plId); 
+	                                if(plTitle.length>50){
+	                                	plTitle = plTitle.substring(0,50) + " ...";
 	                                }
 									var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.description);
@@ -402,7 +407,7 @@
 	                                var genName = elem.genrename;
 									var tagNameEnc = encodeURIComponent(genName);
 									var genId = elem.genreid;
-									var ouputStr = buildUserFriendlyURL("/index.php/generi-musicali/",genName,genId);
+									var ouputStr = buildUserFriendlyURL("",genName,genId);
 									//alert(url);
 									//var urlComplete = url + "/id/"+genId;
 									html += "<li><a href='"+_baseUrl+ouputStr+"'><img src='"+elem.imagepath+"' alt='' /></a></li>";
@@ -518,8 +523,10 @@
 									var tagId = elem.tagid;
 									//var url = "<?php echo Yii::app()->createUrl('Playlists/viewPlPerTag')?>";
 									//var urlComplete = url + "/id/"+tagId;
-									var ouputStr = buildUserFriendlyURL("/index.php/tag-musica/",elem.tagname,tagId);
-									$("#myCarouselUl").append("<li><a href='"+imgPathPref+ouputStr+"'><div class='tag'>" + elem.tagname + 
+									var ouputStr = buildUserFriendlyURL("",elem.tagname,tagId);
+									var arrTagName = elem.tagname.split('/');
+									var len = arrTagName.length;
+									$("#myCarouselUl").append("<li><a href='"+imgPathPref+ouputStr+"'><div class='tag'>" + arrTagName[len-1] + 
 	                                            "</div>"
 	                                            +"<img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
@@ -544,20 +551,25 @@
 	                    	    	$("#jcarousel-plist-prev-btn").show();
 			                    }
 	                    	    $.each(response.filterPlist, function(i, elem){
-		                    	    var plTitle = elem.pltitle;
-		                    	    if(elem.pltitle.length>50){
-										plTitle = elem.pltitle.substring(0,50) + " ...";					
+	                    	    	var plId = elem.plid;
+		                    	    var ouputStr = buildUserFriendlyURL("",elem.pltitle,plId);
+		                    	    var arrPlName = elem.pltitle.split('/');
+									var len = arrPlName.length;
+									plTitle = arrPlName[len-1];
+		                    	    if(plTitle.length>16){
+										plTitle = plTitle.substring(0,16) + " ...";					
 			                    	} 
 	                    	    	var tagNameEnc = encodeURIComponent(plTitle);
 									var descEnc = encodeURIComponent(elem.description);
 									var imgPathEnc = encodeURIComponent(elem.imagepath);
 									var imgPath = imgPathPref + '/' +  elem.imagepath;
-									var plId = elem.plid;
+									
 	                                //var url = "<?php echo Yii::app()->createUrl('Playlists/view2')?>";
 	                                //var urlComplete = url + "/id/"+ plId;
-	                                var ouputStr = buildUserFriendlyURL("/index.php/playlist-musicali/",plTitle,plId);
+	                                
+	                                
 									//$("#myCarousel-plistUl").append("<li><a href='index.php?r=Playlists/view2&amp;id="
-									$("#myCarousel-plistUl").append("<li><a href='"+imgPathPref+ouputStr+"'><div class='tag'>" + elem.pltitle + 
+									$("#myCarousel-plistUl").append("<li><a href='"+imgPathPref+ouputStr+"'><div class='tag'>" + plTitle + 
 	                                            "</div><div class='text'>"+ elem.description +"</div>"
 	                                            +"<img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
@@ -588,7 +600,7 @@
 									var genId = elem.genreid;
 									//var url = "<?php echo Yii::app()->createUrl('Genres/viewRandomBandsPerGenres')?>";
 									//var urlComplete = url + "/id/"+genId;
-									var ouputStr = buildUserFriendlyURL("/index.php/generi-musicali/",elem.genrename,genId);
+									var ouputStr = buildUserFriendlyURL("",elem.genrename,genId);
 									$("#myCarousel-genUl").append("<li><a href='"+imgPathPref+ouputStr+"'><img src='"
 	                                            +imgPath+"' alt='' /></a></li>");
 	                                count++;

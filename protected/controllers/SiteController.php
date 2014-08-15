@@ -227,12 +227,14 @@ class SiteController extends Controller
     		foreach($models as $model)
 	    	{
 	    		//translate
+	    		$tagPrefix = Utilities::getUrlPrefixByLang($currLang,"tag");
+	    		$langPrefix = Utilities::getLanguagePrefix($currLang);
+	    		$model->tagname = "/".$tagPrefix.$model->tagname;
 	    		if($currLang != "en_us"){
 	    			$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->tagid,'lang'=>$currLang,'topic'=>'tag'));
-	    			$model->tagname = $traslation->title;
+	    			$model->tagname = "/".$tagPrefix.$traslation->title;
 	    			$model->description = $traslation->description;
 	    		}
-	    		
 	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
 	    	}
 			$dataProvider=new CArrayDataProvider($models, array(
@@ -252,9 +254,12 @@ class SiteController extends Controller
     		$models=Genres::model()->findAll($criteria);
     		foreach($models as $model)
 	    	{
+	    		$genPrefix = Utilities::getUrlPrefixByLang($currLang,"genre");
+	    		$langPrefix = Utilities::getLanguagePrefix($currLang);
+	    		$model->genrename = "/".$genPrefix.$model->genrename;
 	    		if($currLang != "en_us"){
 	    			$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->genreid,'lang'=>$currLang,'topic'=>'genre'));
-	    			$model->genrename = $traslation->title;
+	    			$model->genrename = "/".$genPrefix.$traslation->title;
 	    			$model->description = $traslation->description;
 	    		}
 	    		
@@ -280,9 +285,12 @@ class SiteController extends Controller
 				if(!file_exists ( $model->IMAGEPATH )){
 					$model->IMAGEPATH = Yii::app()->request->baseUrl."/".$imgGenStr;	
 				}*/
+	    		$plistPrefix = Utilities::getUrlPrefixByLang($currLang,"playlist");
+	    		$langPrefix = Utilities::getLanguagePrefix($currLang);
+	    		$model->pltitle = "/".$plistPrefix.$model->pltitle;
 	    		if($currLang != "en_us"){
 	    			$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->plid,'lang'=>$currLang,'topic'=>'playlist'));
-	    			$model->pltitle = $traslation->title;
+	    			$model->pltitle = "/".$plistPrefix.$traslation->title;
 	    			$model->description = $traslation->description;
 	    		}
 	    		$model->imagepath = Utilities::replaceDefaultImage($model->imagepath);
