@@ -228,6 +228,9 @@ class TagsController extends Controller
 						$tagNameMatch = substr($tagNameMatch, $pos+strlen($article));	
 					}
 				}
+				
+				$filterTransTag = $this->searchFromTranslationsByTitle($tagMatch,$currLang,"tag");
+				
 				//tags
 				$qTag = new CDbCriteria();
 				$qTag->addSearchCondition('Tagname', $tagNameMatch);
@@ -319,6 +322,7 @@ class TagsController extends Controller
 						$model->description = $traslation->description;
 					}
 				}
+				
 				
 				echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
 				$output = CJSON::encode(array('filterTags'=>$filterTags,
@@ -414,6 +418,21 @@ class TagsController extends Controller
 		}
 	}
 	
+	
+	public function searchFromTranslationsByTitle($tagMatch,$currLang,$topic)
+	{
+		if($currLang != "en_en")
+		{
+			$qTrans = new CDbCriteria();
+			$qTrans->addSearchCondition('Title',$tagNameMatch);
+			$qTrans->addSearchCondition('Lang',$currLang);
+			$qTrans->addSearchCondition('Topic',$topic);
+			$qTrans->order='title';
+			$filterTrans = TopicTranslations::model()->findAll($qTrans);
+			return $filterTrans;
+		}
+		return null;
+	}
 	
 	
 	/**

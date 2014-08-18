@@ -10,9 +10,9 @@ class UrlManager extends CUrlManager
 // 				Yii::app()->language = Yii::app()->request->cookies['_lang']->value;
 // 			$params['_lang']=Yii::app()->language;
 // 		}
-		if($route=='/'){
-			$route=$route.substr(Yii::app()->language,0,2);
-		}
+// 		if($route=='/'){
+// 			$route=$route.substr(Yii::app()->language,0,2);
+// 		}
 		return parent::createUrl($route, $params, $ampersand);
 	}
 }

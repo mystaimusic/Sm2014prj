@@ -22,7 +22,7 @@ class Controller extends CController
 	public $breadcrumbs=array();
 	
 	public function __construct($id,$module=null){
-		parent::__construct($id,$module);
+		parent::__construct($id,$module); 
 		if (isset($_POST['_lang']))
 		{
 			$app = Yii::app();
@@ -36,6 +36,17 @@ class Controller extends CController
 			$newUrl = Utilities::translateUrl($currentUrl, $oldLang);
 			if($newUrl!=null){
 				$this->redirect($newUrl);
+			}
+		}else{
+			$onurl = Yii::app()->request->url;
+			$baseUrl = Yii::app()->request->baseUrl;
+			//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in Controller"),'vardump');
+			//echo Yii::trace(CVarDumper::dumpAsString($baseUrl),'vardump');
+			if($onurl=="/"){
+			//if(Utilities::endsWith($onurl,"index.php")){
+				//echo Yii::trace(CVarDumper::dumpAsString("-----------> sono in Controller if statement"),'vardump');
+				$langPref = Utilities::getLanguagePrefix(Yii::app()->language);
+				$this->redirect(Yii::app()->getBaseUrl(true)."/".$langPref);
 			}
 		}
 	}
