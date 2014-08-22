@@ -83,11 +83,13 @@ return array(
 				//'Playlists/viewPlPerTag/<id:\d+>' => 'musica/tag/<title:\w+>',
 				//'Playlists/view2/<id:\d+>'=>'musica/playlist/<title:\w+>/<id:\d+>',
 				//'tag-musica/<title:\w+>/<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>'
-				'<language:(en|es|it)>'=>'Site/index',
+				//
+				//'<language:(en|es|it)>'=>'/',
 				//'tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
 				//'playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
 				//'generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
-				
+				'<language:(en|es|it)>'=>'Site/index',
+		
 				'it/tag-musica/<title>_<id:\d+>.html'=>'Playlists/viewPlPerTag/<id:\d+>',
 				'it/playlist-musicali/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
 				'it/generi-musicali/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',

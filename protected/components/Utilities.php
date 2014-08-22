@@ -101,7 +101,7 @@ class Utilities{
 				return "en/contact";
 			}else if($staticPageName=="login"){
 				return "en/login";
-			}else return null;
+			}else return "en";
 		}else if($langPrefix=="it"){
 			if($staticPageName=="about"){
 				return "it/chi-siamo";
@@ -111,7 +111,7 @@ class Utilities{
 				return "it/contatti";
 			}else if($staticPageName=="login"){
 				return "it/login";
-			}else return null;
+			}else return "it";
 		}else if($langPrefix=="es"){
 			if($staticPageName=="about"){
 				return "es/acerca-de";
@@ -121,7 +121,7 @@ class Utilities{
 				return "es/contactenos";
 			}else if($staticPageName=="login"){
 				return "es/iniciar-sesion";
-			}else return null;
+			}else return "es";
 		}else return null;
 	}
 	
