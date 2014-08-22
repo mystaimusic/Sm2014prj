@@ -64,16 +64,26 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
+		<?php 
+			$currLang = Yii::app()->language;
+			$this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				//array('label'=>'Home', 'url'=>Yii::app()->baseUrl),
 				//array('label'=>'Home', 'url'=>Yii::app()->createUrl('/Site/index')),
-				array('label'=>Yii::t('msg','HOME'), 'url'=>array(Yii::app()->createUrl('/'))),
 				//array('label'=>Yii::t('msg','HOME'), 'url'=>Yii::app()->createUrl('/Site/index')),
-				array('label'=>Yii::t('msg','ABOUT'), 'url'=>array('/Site/page', 'view'=>'about')),
-                array('label'=>Yii::t('msg','NOTE'), 'url'=>array('/site/page', 'view'=>'note')),
-				array('label'=>Yii::t('msg','CONTACT'), 'url'=>array('/Site/contact')),
-				array('label'=>Yii::t('msg','LOGIN'), 'url'=>array('/Site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>Yii::t('msg','HOME'), 'url'=>array(Yii::app()->createUrl('/'))),
+
+// 				array('label'=>Yii::t('msg','ABOUT'), 'url'=>array('/Site/page', 'view'=>'about')),
+//              array('label'=>Yii::t('msg','NOTE'), 'url'=>array('/site/page', 'view'=>'note')),
+// 				array('label'=>Yii::t('msg','CONTACT'), 'url'=>array('/Site/contact')),
+// 				array('label'=>Yii::t('msg','LOGIN'), 'url'=>array('/Site/login'), 'visible'=>Yii::app()->user->isGuest),
+				
+				array('label'=>Yii::t('msg','ABOUT'), 'url'=>array(Utilities::getStaticUrls($currLang, 'about'))),
+				array('label'=>Yii::t('msg','NOTE'), 'url'=>array(Utilities::getStaticUrls($currLang, 'note'))),
+				array('label'=>Yii::t('msg','CONTACT'), 'url'=>array(Utilities::getStaticUrls($currLang, 'contact'))),
+				array('label'=>Yii::t('msg','LOGIN'), 'url'=>array(Utilities::getStaticUrls($currLang, 'login')), 'visible'=>Yii::app()->user->isGuest),
+
+
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/Site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>

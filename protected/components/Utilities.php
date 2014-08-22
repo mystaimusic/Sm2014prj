@@ -89,6 +89,42 @@ class Utilities{
 		}else return null;
 	}
 	
+	public static function getStaticUrls($currLang,$staticPageName)
+	{
+		$langPrefix = Utilities::getLanguagePrefix($currLang);
+		if($langPrefix=="en"){
+			if($staticPageName=="about"){
+				return "en/about";
+			}else if($staticPageName=="note"){
+				return "en/note";
+			}else if($staticPageName=="contact"){
+				return "en/contact";
+			}else if($staticPageName=="login"){
+				return "en/login";
+			}else return null;
+		}else if($langPrefix=="it"){
+			if($staticPageName=="about"){
+				return "it/chi-siamo";
+			}else if($staticPageName=="note"){
+				return "it/note-legali";
+			}else if($staticPageName=="contact"){
+				return "it/contatti";
+			}else if($staticPageName=="login"){
+				return "it/login";
+			}else return null;
+		}else if($langPrefix=="es"){
+			if($staticPageName=="about"){
+				return "es/acerca-de";
+			}else if($staticPageName=="note"){
+				return "es/legal";
+			}else if($staticPageName=="contact"){
+				return "es/contactenos";
+			}else if($staticPageName=="login"){
+				return "es/iniciar-sesion";
+			}else return null;
+		}else return null;
+	}
+	
 	public static function endsWith($haystack, $needle)
 	{
 		if($needle == "" || substr($haystack, -strlen($needle)) == $needle)

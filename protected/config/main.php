@@ -100,6 +100,26 @@ return array(
 				'es/playlists/<title>_<id:\d+>.html'=>'Playlists/view2/<id:\d+>',
 				'es/genreros-musicales/<title>_<id:\d+>.html'=>'Genres/viewRandomBandsPerGenres/<id:\d+>',
 				
+				
+				'en/about'=>'Site/page/view/about',
+				'en/note'=>'Site/page/view/note',
+				'en/contact'=>'Site/contact',
+				'en/login'=>'Site/login',
+				
+				
+				'it/chi-siamo'=>'Site/page/view/about',
+				'it/note-legali'=>'Site/page/view/note',
+				'it/contatti'=>'Site/contact',
+				'it/login'=>'Site/login',
+				
+				
+				'es/acerca-de'=>'Site/page/view/about',
+				'es/legal'=>'Site/page/view/note',
+				'es/contactenos'=>'Site/contact',
+				'es/iniciar-sesion'=>'Site/login',
+				
+				
+				
 			),
 		),
 		
