@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	return array(
 		'HOME' => 'HOME',
 		'ABOUT' => 'CHI SIAMO',
@@ -51,7 +51,7 @@
 		'Letters are not case-sensitive.'=>'Le lettere sono sensibili alle minuscole/maiuscole',
 		'Please fill out the following form with your login credentials'=>'Per favore introduci le tue credenziali per effettuare l\'accesso',
 
-		
+
 	)
 
 ?>

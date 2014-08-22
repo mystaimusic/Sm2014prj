@@ -229,6 +229,15 @@ class Utilities{
 			$newUrlPrefix = rtrim($url,$oldLangPrefix);
 			$newUrl = $newUrlPrefix.$currLangPrefix;
 			return $newUrl;
+		}else if(Utilities::endsWith($url,"about")||Utilities::endsWith($url,"chi-siamo")||Utilities::endsWith($url,"acerca-de")){
+			return Yii::app()->request->baseUrl."/".$currLangPrefix."/".Yii::t('urlmsg','about');
+		}else if(Utilities::endsWith($url,"note")||Utilities::endsWith($url,"note-legali")||Utilities::endsWith($url,"legal")){
+			return Yii::app()->request->baseUrl."/".$currLangPrefix."/".Yii::t('urlmsg','note');
+		}else if(Utilities::endsWith($url,"contact")||Utilities::endsWith($url,"contatti")||Utilities::endsWith($url,"contactenos")){
+			return Yii::app()->request->baseUrl."/".$currLangPrefix."/".Yii::t('urlmsg','contact');
+		}else if(Utilities::endsWith($url,"login")||Utilities::endsWith($url,"iniciar-sesion")){
+			return Yii::app()->request->baseUrl."/".$currLangPrefix."/".Yii::t('urlmsg','login');
 		}
+		
 	}
 }
