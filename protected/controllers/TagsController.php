@@ -17,6 +17,8 @@ class TagsController extends Controller
 	const C_L = 'l\' ';
 	const C_L2 = 'l \'';
 	const C_L3 = 'l\'';
+	const C_THE = 'the ';
+	const C_A = 'a ';
 	
 	/**
 	 * @return array action filters
@@ -221,15 +223,17 @@ class TagsController extends Controller
 										TagsController::C_LO,
 										TagsController::C_L,
 										TagsController::C_L2,
-										TagsController::C_L3);
+										TagsController::C_L3,
+										TagsController::C_THE,
+										TagsController::C_A);
 				foreach($articles_it as $article){
 					$pos = strpos(strtolower($tagNameMatch),$article);
 					if($pos !== false ){
 						$tagNameMatch = substr($tagNameMatch, $pos+strlen($article));	
 					}
 				}
-				
-				$filterTransTag = $this->searchFromTranslationsByTitle($tagMatch,$currLang,"tag");
+				$tagNameMatch = trim($tagNameMatch);
+				//$filterTransTag = $this->searchFromTranslationsByTitle($tagNameMatch,$currLang,"tag");
 				
 				//tags
 				$qTag = new CDbCriteria();
