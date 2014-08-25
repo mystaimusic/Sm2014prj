@@ -130,13 +130,6 @@ return array(
 		),*/
 		// uncomment the following to use a MySQL database
 		
-		/*'db'=>array(
-			'connectionString' => 'mysql:host=62.149.150.98;dbname=Sql273343_2',
-			'emulatePrepare' => true,
-			'username' => 'Sql273343',
-			'password' => 'rfefrefcerf43',
-			'charset' => 'utf8',
-		),*/
 		
 		'db'=>array(
 			'connectionString' => 'mysql:host=127.0.0.1;dbname=sql406570_1',
