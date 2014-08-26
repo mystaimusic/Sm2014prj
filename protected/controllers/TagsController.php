@@ -233,111 +233,153 @@ class TagsController extends Controller
 					}
 				}
 				$tagNameMatch = trim($tagNameMatch);
-				//$filterTransTag = $this->searchFromTranslationsByTitle($tagNameMatch,$currLang,"tag");
-				
-				//tags
-				$qTag = new CDbCriteria();
-				$qTag->addSearchCondition('Tagname', $tagNameMatch);
-				$qTag->order='tagname';
-				$filterTags = Tags::model()->findAll($qTag);
-				$filterTagsLen = count($filterTags);
-				if($filterTagsLen>0 && $filterTagsLen<10){
-					$filterTagsLimit = 10 - $filterTagsLen;
-					$filterTagsLast = end($filterTags);
-					$tagname = $filterTagsLast['tagname'];
-					//$sqlOtherTags = mysql_real_escape_string("SELECT * FROM tags WHERE tagname >  '" . $tagname . "' ORDER BY TAGNAME LIMIT 0, ".$filterTagsLimit); //todo check
-					//$otherTags =  Yii::app()->db->createCommand($sqlOtherTags)->queryAll();
-					$otherTags = Tags::model()->findAll(array(
-							'condition'=>'tagname>:tagname',
-							'params'=>array(':tagname'=>$tagname),
-							'order'=>'tagname',
-							'limit'=>$filterTagsLimit,
-					));
-					$filterTags = array_merge($filterTags, $otherTags);
-				}
-				//echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
-				$this->replaceDefaultImage($filterTags);
-				//translate
-				$tagPrefix = Utilities::getUrlPrefixByLang($currLang,"tag");
-				foreach($filterTags as $model){
-					$model->tagname = "/".$tagPrefix.$model->tagname;
-					if($currLang != "en_us"){
-						$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->tagid,'lang'=>$currLang,'topic'=>'tag'));
-						$model->tagname = "/".$tagPrefix.$traslation->title;
-						$model->description = $traslation->description;
+				if($currLang!="en_us"){
+					$output = $this->searchByLang($currLang,$tagNameMatch);
+					//echo $output;
+				}else{
+					//tags
+					$qTag = new CDbCriteria();
+					$qTag->addSearchCondition('Tagname', $tagNameMatch);
+					$qTag->order='tagname';
+					$filterTags = Tags::model()->findAll($qTag);
+					$filterTagsLen = count($filterTags);
+					if($filterTagsLen>0 && $filterTagsLen<10){
+						$filterTagsLimit = 10 - $filterTagsLen;
+						$filterTagsLast = end($filterTags);
+						$tagname = $filterTagsLast['tagname'];
+						//$sqlOtherTags = mysql_real_escape_string("SELECT * FROM tags WHERE tagname >  '" . $tagname . "' ORDER BY TAGNAME LIMIT 0, ".$filterTagsLimit); //todo check
+						//$otherTags =  Yii::app()->db->createCommand($sqlOtherTags)->queryAll();
+						$otherTags = Tags::model()->findAll(array(
+								'condition'=>'tagname>:tagname',
+								'params'=>array(':tagname'=>$tagname),
+								'order'=>'tagname',
+								'limit'=>$filterTagsLimit,
+						));
+						$filterTags = array_merge($filterTags, $otherTags);
 					}
-				}
-				
-				//playlists
-				$qPlist = new CDbCriteria();
-				$qPlist->addSearchCondition('Pltitle',$tagNameMatch);
-				$qPlist->order='Pltitle';
-				$filterPlist = Playlists::model()->findAll($qPlist);
-				$filterPlistLen = count($filterPlist);
-				if($filterPlistLen>0 && $filterPlistLen<10){
-					$filterPlistLimit = 10 - $filterPlistLen;
-					$filterPlistLast = end($filterPlist);
-					$plTitle = $filterPlistLast['pltitle'];
-					$otherPlists = Playlists::model()->findAll(array(
-							'condition'=>'pltitle>:pltitle',
-							'params'=>array(':pltitle'=>$plTitle),
-							'order'=>'pltitle',
-							'limit'=>$filterPlistLimit,
-					));
-					//echo Yii::trace(CVarDumper::dumpAsString($otherPlists),'vardump');
-					$filterPlist = array_merge($filterPlist, $otherPlists);
-				}
-				//$this->replaceDefaultImage($filterPlist);
-				//$this->shortPlistTitle($filterPlist);
-				$plPrefix = Utilities::getUrlPrefixByLang($currLang,"playlist");
-				foreach($filterPlist as $model){
-					$model->pltitle = "/".$plPrefix.$model->pltitle;
-					if($currLang != "en_us"){
-						$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->plid,'lang'=>$currLang,'topic'=>'playlist'));
-						$model->pltitle = "/".$tagPrefix.$traslation->title;
-						$model->description = $traslation->description;
+					//echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
+					$this->replaceDefaultImage($filterTags);
+					//translate
+					$tagPrefix = Utilities::getUrlPrefixByLang($currLang,"tag");
+					foreach($filterTags as $model){
+						$model->tagname = "/".$tagPrefix.$model->tagname;
+						if($currLang != "en_us"){
+							$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->tagid,'lang'=>$currLang,'topic'=>'tag'));
+							$model->tagname = "/".$tagPrefix.$traslation->title;
+							$model->description = $traslation->description;
+						}
 					}
-				}
-				//genres
-				$qGen = new CDbCriteria();
-				$qGen->addSearchCondition('Genrename',$tagNameMatch);
-				$qGen->order='Genrename';
-				$filterGen = Genres::model()->findAll($qGen);
-				$filterGenLen = count($filterGen);
-				if($filterGenLen>0 && $filterGenLen<10){
-					$filterGenLimit = 10 - $filterGenLen;
-					$filterGenLast = end($filterGen);
-					$genName = $filterGenLast['genrename'];
-					$otherGenres = Genres::model()->findAll(array(
-							'condition'=>'genrename>:genrename',
-							'params'=>array(':genrename'=>$genName),
-							'order'=>'genrename',
-							'limit'=>$filterGenLimit,
-					));
-					$filterGen = array_merge($filterGen, $otherGenres);
-				}
-				//$this->replaceDefaultImage($filterGen);
-				$genPrefix = Utilities::getUrlPrefixByLang($currLang,"genre");
-				foreach($filterGen as $model){
-					$model->genrename = "/".$genPrefix.$model->genrename;
-					if($currLang != "en_us"){
-						$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->genid,'lang'=>$currLang,'topic'=>'genre'));
-						$model->genrename = "/".$tagPrefix.$traslation->title;
-						$model->description = $traslation->description;
+					
+					//playlists
+					$qPlist = new CDbCriteria();
+					$qPlist->addSearchCondition('Pltitle',$tagNameMatch);
+					$qPlist->order='Pltitle';
+					$filterPlist = Playlists::model()->findAll($qPlist);
+					$filterPlistLen = count($filterPlist);
+					if($filterPlistLen>0 && $filterPlistLen<10){
+						$filterPlistLimit = 10 - $filterPlistLen;
+						$filterPlistLast = end($filterPlist);
+						$plTitle = $filterPlistLast['pltitle'];
+						$otherPlists = Playlists::model()->findAll(array(
+								'condition'=>'pltitle>:pltitle',
+								'params'=>array(':pltitle'=>$plTitle),
+								'order'=>'pltitle',
+								'limit'=>$filterPlistLimit,
+						));
+						//echo Yii::trace(CVarDumper::dumpAsString($otherPlists),'vardump');
+						$filterPlist = array_merge($filterPlist, $otherPlists);
 					}
+					//$this->replaceDefaultImage($filterPlist);
+					//$this->shortPlistTitle($filterPlist);
+					$plPrefix = Utilities::getUrlPrefixByLang($currLang,"playlist");
+					foreach($filterPlist as $model){
+						$model->pltitle = "/".$plPrefix.$model->pltitle;
+						if($currLang != "en_us"){
+							$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->plid,'lang'=>$currLang,'topic'=>'playlist'));
+							$model->pltitle = "/".$plPrefix.$traslation->title;
+							$model->description = $traslation->description;
+						}
+					}
+					//genres
+					$qGen = new CDbCriteria();
+					$qGen->addSearchCondition('Genrename',$tagNameMatch);
+					$qGen->order='Genrename';
+					$filterGen = Genres::model()->findAll($qGen);
+					$filterGenLen = count($filterGen);
+					if($filterGenLen>0 && $filterGenLen<10){
+						$filterGenLimit = 10 - $filterGenLen;
+						$filterGenLast = end($filterGen);
+						$genName = $filterGenLast['genrename'];
+						$otherGenres = Genres::model()->findAll(array(
+								'condition'=>'genrename>:genrename',
+								'params'=>array(':genrename'=>$genName),
+								'order'=>'genrename',
+								'limit'=>$filterGenLimit,
+						));
+						$filterGen = array_merge($filterGen, $otherGenres);
+					}
+					//$this->replaceDefaultImage($filterGen);
+					$genPrefix = Utilities::getUrlPrefixByLang($currLang,"genre");
+					foreach($filterGen as $model){
+						$model->genrename = "/".$genPrefix.$model->genrename;
+						if($currLang != "en_us"){
+							$traslation=TopicTranslations::model()->findByPk(array('id'=>$model->genid,'lang'=>$currLang,'topic'=>'genre'));
+							$model->genrename = "/".$genPrefix.$traslation->title;
+							$model->description = $traslation->description;
+						}
+					}
+
+					//echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
+					$output = CJSON::encode(array('filterTags'=>$filterTags,
+												'filterPlist'=>$filterPlist,
+												'filterGen'=>$filterGen));
 				}
-				
-				
-				echo Yii::trace(CVarDumper::dumpAsString($filterTags),'vardump');
-				$output = CJSON::encode(array('filterTags'=>$filterTags,
-											'filterPlist'=>$filterPlist,
-											'filterGen'=>$filterGen));
-				
 				//echo Yii::trace(CVarDumper::dumpAsString($output),'vardump');
 				
 			}catch(Exception $e){echo Yii::trace(CVarDumper::dumpAsString($e),'vardump');}
 		}
 		echo $output;
+	}
+	
+	public function searchByLang($currLang,$tagNameMatch)
+	{
+		$tagPrefix = Utilities::getUrlPrefixByLang($currLang,"tag");
+		$plistPrefix = Utilities::getUrlPrefixByLang($currLang,"playlist");
+		$genrePrefix = Utilities::getUrlPrefixByLang($currLang,"genre");
+		
+		$filterTransTag = $this->searchFromTranslationsByTitle($tagNameMatch,$currLang,"tag");
+		$filterTransPlist = $this->searchFromTranslationsByTitle($tagNameMatch,$currLang,"playlist");
+		$filterTransGenre = $this->searchFromTranslationsByTitle($tagNameMatch,$currLang,"genre");
+		
+		$filterTags = array();
+		$filterPlist = array();
+		$filterGen = array();
+		
+		foreach($filterTransTag as $translation){
+			$recordId = $translation['id'];
+			$tagModel = Tags::model()->findByPk($recordId);
+			$tagModel->tagname = "/".$tagPrefix.$translation->title;
+			$tagModel->description = $translation->description;
+			array_push($filterTags,$tagModel);
+		}
+		foreach($filterTransPlist as $translation){
+			$plistModel = Playlists::model()->findByPk($recordId);
+			$plistModel->pltitle = "/".$plistPrefix.$translation->title;
+			$plistModel->description = $translation->description;
+			array_push($filterPlist,$plistModel);
+		}
+		foreach($filterTransGenre as $translation){
+			$genreModel = Genres::model()->findByPk($recordId);
+			$genreModel->genrename = "/".$genrePrefix.$translation->title;
+			$genreModel->description = $translation->description;
+			array_push($filterGen,$genreModel);
+		}
+		
+		$output = CJSON::encode(array('filterTags'=>$filterTags,
+				'filterPlist'=>$filterPlist,
+				'filterGen'=>$filterGen));
+			
+		return $output;
 	}
 	
 	public function actionSearch()
@@ -425,17 +467,27 @@ class TagsController extends Controller
 	
 	public function searchFromTranslationsByTitle($tagMatch,$currLang,$topic)
 	{
-		if($currLang != "en_en")
-		{
-			$qTrans = new CDbCriteria();
-			$qTrans->addSearchCondition('Title',$tagNameMatch);
-			$qTrans->addSearchCondition('Lang',$currLang);
-			$qTrans->addSearchCondition('Topic',$topic);
-			$qTrans->order='title';
-			$filterTrans = TopicTranslations::model()->findAll($qTrans);
-			return $filterTrans;
+
+		$qTrans = new CDbCriteria();
+		$qTrans->addSearchCondition('Title',$tagMatch);
+		$qTrans->addSearchCondition('Lang',$currLang);
+		$qTrans->addSearchCondition('Topic',$topic);
+		$qTrans->order='title';
+		$filterTrans = TopicTranslations::model()->findAll($qTrans);
+		$filterTransLen = count($filterTrans);
+		if($filterTransLen>0 && $filterTransLen<10){
+			$filterTransLimit = 10 - $filterTransLen;
+			$filterTransLast = end($filterTrans);
+			$transTitle = $filterTransLast['title'];
+			$otherTrans = TopicTranslations::model()->findAll(array(
+					'condition'=>'title>:title and lang=:lang and topic=:topic',
+					'params'=>array(':title'=>$transTitle,':lang'=>$currLang,':topic'=>$topic),
+					'order'=>'title',
+					'limit'=>$filterTransLimit,
+			));
+			$filterTrans = array_merge($filterTrans, $otherTrans);
 		}
-		return null;
+		return $filterTrans;		
 	}
 	
 	
