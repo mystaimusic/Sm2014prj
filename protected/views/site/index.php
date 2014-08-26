@@ -69,10 +69,10 @@
 							$imagePath = Yii::app()->request->baseUrl."/images/stai-music.jpg";
 						}
 						$imghtml = CHtml::image($imagePath);
-						$tagUrl = Utilities::getTagUrl($tag->tagname,$tag->tagid);
+						//$tagUrl = Utilities::getTagUrl($tag->tagname,$tag->tagid);
 						//echo CHtml::link($divtag.$divtext.$imghtml, $tagUrl);
 						$urlPrefixTag = Utilities::getUrlPrefixByLang($currLang, "tag");
-						$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,/*$tag->tagname*/$title,$tag->tagid);
+						$tagLink = Utilities::buildUserFriendlyURL($urlPrefixTag,/*$tag->tagname*/strtolower($title),$tag->tagid);
 						//$tagLinkTest = Yii::app()->createUrl($tagLink);
 						//echo Yii::trace(CVarDumper::dumpAsString("----------> tagLinkTest"),'vardump');
 						//echo Yii::trace(CVarDumper::dumpAsString($tagLinkTest),'vardump');
@@ -128,7 +128,7 @@
 			}
 			//$imagePath = Utilities::replaceDefaultImage($imagePath);
 			$urlPrefixPlaylist = Utilities::getUrlPrefixByLang($currLang, "playlist");
-			$plistLink = Utilities::buildUserFriendlyURL($urlPrefixPlaylist,/*$playlist->pltitle*/$title,$playlist->plid);
+			$plistLink = Utilities::buildUserFriendlyURL($urlPrefixPlaylist,/*$playlist->pltitle*/strtolower($title),$playlist->plid);
 			$imghtml = CHtml::image($imagePath);
 			//'playlist-musicali/<id:\d+>_<title:\w+>.html'=>'Playlists/view2/<id:\d+>'
 			echo CHtml::link($divtag.$divtext.$imghtml, array($plistLink));
@@ -169,7 +169,7 @@
 						$traslation=TopicTranslations::model()->findByPk(array('id'=>$genre->genreid,'lang'=>$currLang,'topic'=>'genre'));
 						$title = $traslation->title;
 					}
-					$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenre,$title,$genre->genreid);
+					$genLink = Utilities::buildUserFriendlyURL($urlPrefixGenre,strtolower($title),$genre->genreid);
 					
 					echo CHtml::link($imgGenHtml, array($genLink));
 					//echo CHtml::link($imgGenHtml, array('Genres/viewRandomBandsPerGenres','id'=>$genre->GENREID));
