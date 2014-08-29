@@ -1051,7 +1051,8 @@
 			
 			function loadNextRandomBands()
 			{
-				var	plUrl = 'index.php/Songs/viewBandsSongsPerGenres';
+				var	plUrl = '/www.staimusic.com/Songs/viewBandsSongsPerGenres'; //TODO: modificare
+				//alert(document.URL);
 				//var	plUrl = 'index.php?r=Songs/viewBandsSongsPerGenres';
 				var videoJSON_G = new Object();
 				$.ajax(
